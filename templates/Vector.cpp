@@ -25,3 +25,10 @@ void	Vector<T>::assign(unsigned int nElements, T value)
 	for (unsigned int i = 0; i < nElements; i++)
 		this->_list[i] = value;
 }
+
+template <typename T>
+std::ostream	&operator<<(std::ostream &output, Vector<T> const &)
+{
+	output << "Vector: operator <<" << std::endl;
+	return output;
+}

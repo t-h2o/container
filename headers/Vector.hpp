@@ -14,10 +14,6 @@ class	Vector
 };
 
 template <typename T>
-std::ostream	&operator<<(std::ostream &output, Vector<T> const &)
-{
-	output << "Vector: operator <<" << std::endl;
-	return output;
-}
+std::ostream	&operator<<(std::ostream &output, Vector<T> const &);
 
 #include "../templates/Vector.cpp"
