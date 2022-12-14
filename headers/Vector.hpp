@@ -12,6 +12,16 @@ class	Vector
 		unsigned int	size(void) const;
 
 		T	&operator[](unsigned int) const;
+
+		class	ExceptionOverrange : public std::exception
+		{
+			public:
+				const char *what() const throw()
+				{
+					return "Vector: overrange";
+				}
+		};
+
 	private:
 		unsigned int	_size;
 		int		*_list;
