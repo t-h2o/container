@@ -9,7 +9,10 @@ class	Vector
 
 		void	assign(unsigned int, T);
 
+		unsigned int	size(void) const;
+
 	private:
+		unsigned int	_size;
 		int		*_list;
 };
 
