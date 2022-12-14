@@ -39,8 +39,10 @@ unsigned int	Vector<T>::size(void) const
 }
 
 template <typename T>
-std::ostream	&operator<<(std::ostream &output, Vector<T> const &)
+std::ostream	&operator<<(std::ostream &output, Vector<T> const & vec)
 {
 	output << "Vector: operator <<" << std::endl;
+	for (unsigned int i = 0; i < vec.size(); i++)
+		output << i << " : " << vec[i] << std::endl;
 	return output;
 }
