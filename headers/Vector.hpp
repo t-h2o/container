@@ -11,6 +11,7 @@ class	Vector
 
 		unsigned int	size(void) const;
 
+		T	&operator[](unsigned int) const;
 	private:
 		unsigned int	_size;
 		int		*_list;

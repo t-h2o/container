@@ -27,6 +27,12 @@ void	Vector<T>::assign(unsigned int nElements, T value)
 }
 
 template <typename T>
+T	&Vector<T>::operator[](unsigned int position) const
+{
+	return this->_list[position];
+}
+
+template <typename T>
 unsigned int	Vector<T>::size(void) const
 {
 	return this->_size;
