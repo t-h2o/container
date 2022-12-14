@@ -13,4 +13,11 @@ class	Vector
 		int		*_list;
 };
 
+template <typename T>
+std::ostream	&operator<<(std::ostream &output, Vector<T> const &)
+{
+	output << "Vector: operator <<" << std::endl;
+	return output;
+}
+
 #include "../templates/Vector.cpp"

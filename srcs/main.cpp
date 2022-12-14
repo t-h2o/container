@@ -7,6 +7,8 @@ static void	test_vector(void)
 	Vector<int>	vec;
 
 	vec.assign(7, 100);
+
+	std::cout << vec;
 }
 
 int	main(void)
