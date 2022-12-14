@@ -4,7 +4,7 @@
 
 static void	test_vector(void)
 {
-	Vector	vec;
+	Vector<int>	vec;
 
 	vec.assign(7, 100);
 }
