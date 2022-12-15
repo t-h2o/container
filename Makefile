@@ -66,6 +66,9 @@ re:	fclean all
 db: all
 	$(DB) $(NAME)
 
+doc:
+	asciidoctor README.adoc -o site/index.html
+
 
 .PHONY: all clean fclean libclean fullclean
 
