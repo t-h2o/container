@@ -26,6 +26,16 @@ static void	test_vector(void)
 
 	section("print the 3th number");
 	std::cout << vec[3] << std::endl;
+
+	section("try an overrange number");
+	try
+	{
+		std::cout << "overrange number " << vec[1171] << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what();
+	}
 }
 
 int	main(void)
