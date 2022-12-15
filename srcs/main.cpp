@@ -2,7 +2,7 @@
 #include	"color.hpp"
 #include	"Vector.hpp"
 
-static void	test_vector(void)
+static void	test_my_vector(void)
 {
 	Vector<int>	vec;
 
@@ -20,7 +20,7 @@ int	main(void)
 {
 	title("Main");
 
-	test_vector();
+	test_my_vector();
 
 	return 0;
 }
