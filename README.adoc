@@ -6,6 +6,10 @@
 
 == Vector
 
+____
+resource: https://cplusplus.com/reference/vector/vector[vector from cplusplus.com]
+____
+
 === Check list
 
 .Member functions
