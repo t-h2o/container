@@ -3,3 +3,42 @@
 == Subject
 
 42: https://cdn.intra.42.fr/pdf/pdf/60315/en.subject.pdf[subject]
+
+== Vector
+
+=== Check list
+
+.Member functions
+* [ ] `constructor`
+* [ ] `destructor`
+* [ ] `operator=`
+
+.Capacity
+* [ ] `size`
+* [ ] `max_size`
+* [ ] `resize`
+* [ ] `capacity`
+* [ ] `empty`
+* [ ] `reserve`
+* [ ] `shrink_to_fit`
+
+.Element access
+* [ ] `operator[]`
+* [ ] `at`
+* [ ] `front`
+* [ ] `back`
+* [ ] `data`
+
+.Modifiers
+* [ ] `assign`
+* [ ] `push_back`
+* [ ] `pop_back`
+* [ ] `insert`
+* [ ] `erase`
+* [ ] `swap`
+* [ ] `clear`
+* [ ] `emplace`
+* [ ] `emplace_back`
+
+.Allocator
+* [ ] `get_allocator`
