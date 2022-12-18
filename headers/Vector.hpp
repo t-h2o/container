@@ -10,6 +10,7 @@ class	Vector
 		void	assign(unsigned int, T);
 
 		unsigned int	size(void) const;
+		unsigned int	max_size(void) const;
 
 		T	&operator[](unsigned int) const;
 
