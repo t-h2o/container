@@ -15,6 +15,7 @@ class	Vector
 
 		T	&operator[](unsigned int) const;
 		T	&front(void) const;
+		T	&back(void) const;
 
 	private:
 		T				*_list;

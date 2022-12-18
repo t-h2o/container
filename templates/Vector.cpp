@@ -40,6 +40,12 @@ T	&Vector<T>::front(void) const
 }
 
 template <typename T>
+T	&Vector<T>::back(void) const
+{
+	return this->_list[this->_size - 1];
+}
+
+template <typename T>
 unsigned int	Vector<T>::size(void) const
 {
 	return this->_size;
