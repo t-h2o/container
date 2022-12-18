@@ -13,6 +13,13 @@ static void	test_my_vector(void)
 	section("print vec");
 	std::cout << vec << std::endl;
 
+	section("add 1, 2, 3...");
+	for (unsigned int i = 0; i < vec.size(); i++)
+		vec[i] += i;
+
+	section("print vec");
+	std::cout << vec << std::endl;
+
 	section("print the 3th number");
 	std::cout << vec[3] << std::endl;
 }
