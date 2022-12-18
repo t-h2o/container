@@ -15,15 +15,6 @@ class	Vector
 
 		T	&operator[](unsigned int) const;
 
-		class	ExceptionOverrange : public std::exception
-		{
-			public:
-				const char *what() const throw()
-				{
-					return "Vector: overrange";
-				}
-		};
-
 	private:
 		T				*_list;
 		unsigned int	_maxSize;

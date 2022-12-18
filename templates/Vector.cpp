@@ -30,8 +30,6 @@ void	Vector<T>::assign(unsigned int nElements, T value)
 template <typename T>
 T	&Vector<T>::operator[](unsigned int position) const
 {
-	if (position >= _size)
-		throw ExceptionOverrange();
 	return this->_list[position];
 }
 
