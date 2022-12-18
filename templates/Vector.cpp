@@ -34,6 +34,12 @@ T	&Vector<T>::operator[](unsigned int position) const
 }
 
 template <typename T>
+T	&Vector<T>::front(void) const
+{
+	return this->_list[0];
+}
+
+template <typename T>
 unsigned int	Vector<T>::size(void) const
 {
 	return this->_size;

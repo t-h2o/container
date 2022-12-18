@@ -14,6 +14,7 @@ class	Vector
 		bool			empty(void) const;
 
 		T	&operator[](unsigned int) const;
+		T	&front(void) const;
 
 	private:
 		T				*_list;
