@@ -1,5 +1,5 @@
 template <typename T>
-Vector<T>::Vector(void) : _size(0), _list(0)
+Vector<T>::Vector(void) : _list(0), _maxSize(0), _size(0)
 {
 	message("Vector: default constructor");
 }
@@ -20,6 +20,7 @@ void	Vector<T>::assign(unsigned int nElements, T value)
 	delete [] this->_list;
 
 	this->_size = nElements;
+	this->_maxSize = nElements;
 	this->_list = new T[nElements];
 
 	for (unsigned int i = 0; i < nElements; i++)

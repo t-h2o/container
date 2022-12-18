@@ -23,8 +23,9 @@ class	Vector
 		};
 
 	private:
+		T				*_list;
+		unsigned int	_maxSize;
 		unsigned int	_size;
-		int		*_list;
 };
 
 template <typename T>
