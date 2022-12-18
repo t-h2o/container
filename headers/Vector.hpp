@@ -11,6 +11,7 @@ class	Vector
 
 		unsigned int	size(void) const;
 		unsigned int	max_size(void) const;
+		bool			empty(void) const;
 
 		T	&operator[](unsigned int) const;
 

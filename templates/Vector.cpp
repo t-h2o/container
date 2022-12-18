@@ -48,6 +48,12 @@ unsigned int	Vector<T>::max_size(void) const
 }
 
 template <typename T>
+bool	Vector<T>::empty(void) const
+{
+	return this->_size;
+}
+
+template <typename T>
 std::ostream	&operator<<(std::ostream &output, Vector<T> const & vec)
 {
 	output << "(vector) = size=" << vec.size() << " {" << std::endl;
