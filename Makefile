@@ -66,8 +66,11 @@ re:	fclean all
 db: all
 	$(DB) $(NAME)
 
-doc:
-	asciidoctor README.adoc -o site/index.html
+diagram:
+	asciidoctor -r asciidoctor-diagram assets/README.adoc -o assets/index.html
+
+doc: diagram
+	asciidoctor README.adoc -o index.html
 
 
 .PHONY: all clean fclean libclean fullclean

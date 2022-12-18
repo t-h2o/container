@@ -2,3 +2,4 @@
 program
 *.swp
 site
+assets/.asciidoctor
