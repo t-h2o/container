@@ -25,6 +25,9 @@ static void	test_my_vector(void)
 
 	section("print the front number");
 	std::cout << vec.front() << std::endl;
+
+	section("print the back number");
+	std::cout << vec.back() << std::endl;
 }
 
 static void	test_vector(void)
