@@ -18,28 +18,28 @@ ____
 === Check list
 
 .Member functions
-* [ ] `constructor`
-* [ ] `destructor`
+* [x] `constructor`
+* [x] `destructor`
 * [ ] `operator=`
 
 .Capacity
-* [ ] `size`
-* [ ] `max_size`
+* [x] `size`
+* [x] `max_size`
 * [ ] `resize`
 * [ ] `capacity`
-* [ ] `empty`
+* [x] `empty`
 * [ ] `reserve`
 * [ ] `shrink_to_fit`
 
 .Element access
-* [ ] `operator[]`
+* [x] `operator[]`
 * [ ] `at`
-* [ ] `front`
-* [ ] `back`
+* [x] `front`
+* [x] `back`
 * [ ] `data`
 
 .Modifiers
-* [ ] `assign`
+* [x] `assign`
 * [ ] `push_back`
 * [ ] `pop_back`
 * [ ] `insert`
