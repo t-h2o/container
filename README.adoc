@@ -9,6 +9,8 @@
 
 == Vector
 
+image::assets/vector.svg[example]
+
 ____
 resource: https://cplusplus.com/reference/vector/vector[vector from cplusplus.com]
 ____
