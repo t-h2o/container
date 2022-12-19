@@ -11,9 +11,11 @@
 
 image::assets/vector.svg[example]
 
-____
-resource: https://cplusplus.com/reference/vector/vector[vector from cplusplus.com]
-____
+=== Resources
+
+.cplusplus.com
+* https://cplusplus.com/reference/vector/vector[`std::vector`]
+* https://cplusplus.com/reference/memory/allocator/[`std::allocator`]
 
 === Check list
 
