@@ -79,6 +79,17 @@ void	Vector<T>::assign(unsigned int nElements, T value)
 		this->_list[i] = value;
 }
 
+template <typename T>
+void	Vector<T>::pop_back(void)
+{
+	message("Vector: pop_back");
+
+	if (this->empty() == 0)
+		return ;
+
+	--this->_size;
+}
+
 /**
  * Extra...
  */

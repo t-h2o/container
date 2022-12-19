@@ -28,6 +28,12 @@ static void	test_my_vector(void)
 
 	section("print the back number");
 	std::cout << vec.back() << std::endl;
+
+	section("pop back number");
+	vec.pop_back();
+
+	section("print the back number");
+	std::cout << vec.back() << std::endl;
 }
 
 static void	test_vector(void)

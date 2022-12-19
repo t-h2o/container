@@ -20,6 +20,7 @@ class	Vector
 
 		/* Modifiers */
 		void	assign(unsigned int, T);
+		void	pop_back(void);
 
 	private:
 		T				*_list;

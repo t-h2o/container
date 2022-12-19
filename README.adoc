@@ -41,7 +41,7 @@ ____
 .Modifiers
 * [x] `assign`
 * [ ] `push_back`
-* [ ] `pop_back`
+* [x] `pop_back`
 * [ ] `insert`
 * [ ] `erase`
 * [ ] `swap`
