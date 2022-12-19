@@ -34,6 +34,17 @@ static void	test_my_vector(void)
 
 	section("print the back number");
 	std::cout << vec.back() << std::endl;
+
+	section("try an overrange number");
+	try
+	{
+		std::cout << "vec at    2 : " << vec.at(2) << std::endl;
+		std::cout << "vec at 1234 : " << vec.at(1234) << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		print_exception(e);
+	}
 }
 
 static void	test_vector(void)

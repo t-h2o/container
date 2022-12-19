@@ -15,12 +15,22 @@ class	Vector
 
 		/* Element access */
 		T	&operator[](unsigned int) const;
+		T	&at(unsigned int) const;
 		T	&front(void) const;
 		T	&back(void) const;
 
 		/* Modifiers */
 		void	assign(unsigned int, T);
 		void	pop_back(void);
+
+		class	out_of_range : public std::exception
+		{
+			public:
+				const char *what() const throw()
+				{
+					return "Out of Range error: vector";
+				}
+		};
 
 	private:
 		T				*_list;

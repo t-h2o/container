@@ -33,7 +33,7 @@ ____
 
 .Element access
 * [x] `operator[]`
-* [ ] `at`
+* [x] `at`
 * [x] `front`
 * [x] `back`
 * [ ] `data`

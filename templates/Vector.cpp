@@ -49,6 +49,14 @@ T	&Vector<T>::operator[](unsigned int position) const
 }
 
 template <typename T>
+T	&Vector<T>::at(unsigned int position) const
+{
+	if (this->size() <= position)
+		throw out_of_range();
+	return (*this)[position];
+}
+
+template <typename T>
 T	&Vector<T>::front(void) const
 {
 	return this->_list[0];
