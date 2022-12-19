@@ -52,7 +52,7 @@ ____
 .Allocator
 * [ ] `get_allocator`
 
-=== Rallocation
+=== Reallocation
 
 [blockquote, cplusplus.com]
 ____
