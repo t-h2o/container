@@ -1,3 +1,7 @@
+/**
+ * Member Funcion
+ */
+
 template <typename T>
 Vector<T>::Vector(void) : _list(0), _maxSize(0), _size(0)
 {
@@ -11,6 +15,10 @@ Vector<T>::~Vector(void)
 
 	delete [] this->_list;
 }
+
+/**
+ * Capacity
+ */
 
 template <typename T>
 unsigned int	Vector<T>::size(void) const
@@ -30,6 +38,10 @@ bool	Vector<T>::empty(void) const
 	return this->_size;
 }
 
+/**
+ * Element access
+ */
+
 template <typename T>
 T	&Vector<T>::operator[](unsigned int position) const
 {
@@ -48,6 +60,10 @@ T	&Vector<T>::back(void) const
 	return this->_list[this->_size - 1];
 }
 
+/**
+ * Modifiers
+ */
+
 template <typename T>
 void	Vector<T>::assign(unsigned int nElements, T value)
 {
@@ -62,6 +78,10 @@ void	Vector<T>::assign(unsigned int nElements, T value)
 	for (unsigned int i = 0; i < nElements; i++)
 		this->_list[i] = value;
 }
+
+/**
+ * Extra...
+ */
 
 template <typename T>
 std::ostream	&operator<<(std::ostream &output, Vector<T> const & vec)
