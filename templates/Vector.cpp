@@ -89,6 +89,22 @@ void	Vector<T>::assign(unsigned int nElements, T value)
 }
 
 template <typename T>
+void	Vector<T>::push_back(T & object)
+{
+	std::cout << object << std::endl;
+	if (this->_allocated == this->_size)
+	{
+		std::cout << "need reallocation" << std::endl;
+	}
+	else
+	{
+		std::cout << "push back" << object << std::endl;
+		this->_allocator.construct(&((*this)[this->_size]), object);
+		++this->_size;
+	}
+}
+
+template <typename T>
 void	Vector<T>::pop_back(void)
 {
 	message("Vector: pop_back");

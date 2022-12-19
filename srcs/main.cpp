@@ -32,6 +32,9 @@ static void	test_my_vector(void)
 	section("pop back number");
 	vec.pop_back();
 
+	section("print vec");
+	std::cout << vec << std::endl;
+
 	section("print the back number");
 	std::cout << vec.back() << std::endl;
 
@@ -48,6 +51,13 @@ static void	test_my_vector(void)
 
 	section("print the max size");
 	std::cout << vec.max_size() << std::endl;
+
+	section("push back 42");
+	int	myint = 42;
+	vec.push_back(myint);
+
+	section("print vec");
+	std::cout << vec << std::endl;
 }
 
 static void	test_vector(void)

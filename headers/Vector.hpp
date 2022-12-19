@@ -21,6 +21,7 @@ class	Vector
 
 		/* Modifiers */
 		void	assign(unsigned int, T);
+		void	push_back(T &);
 		void	pop_back(void);
 
 		class	out_of_range : public std::exception
