@@ -36,6 +36,7 @@ class	Vector
 		T				*_list;
 		unsigned int	_maxSize;
 		unsigned int	_size;
+		unsigned int	_allocated;
 
 		std::allocator<T>	_allocator;
 };

@@ -3,7 +3,7 @@
  */
 
 template <typename T>
-Vector<T>::Vector(void) : _list(0), _maxSize(0), _size(0)
+Vector<T>::Vector(void) : _list(0), _maxSize(0), _size(0), _allocated(0)
 {
 	message("Vector: default constructor");
 }
@@ -13,7 +13,7 @@ Vector<T>::~Vector(void)
 {
 	message("Vector: destructor");
 
-	_allocator.deallocate(this->_list, this->_size);
+	_allocator.deallocate(this->_list, this->_allocated);
 }
 
 /**
@@ -77,9 +77,10 @@ void	Vector<T>::assign(unsigned int nElements, T value)
 {
 	message("Vector: assign");
 
-	_allocator.deallocate(this->_list, this->_size);
+	_allocator.deallocate(this->_list, this->_allocated);
 
 	this->_size = nElements;
+	this->_allocated = nElements;
 	this->_maxSize = nElements;
 	this->_list = _allocator.allocate(nElements);
 
