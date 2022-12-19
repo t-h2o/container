@@ -13,7 +13,7 @@ Vector<T>::~Vector(void)
 {
 	message("Vector: destructor");
 
-	delete [] this->_list;
+	_allocator.deallocate(this->_list, this->_size);
 }
 
 /**
@@ -77,11 +77,11 @@ void	Vector<T>::assign(unsigned int nElements, T value)
 {
 	message("Vector: assign");
 
-	delete [] this->_list;
+	_allocator.deallocate(this->_list, this->_size);
 
 	this->_size = nElements;
 	this->_maxSize = nElements;
-	this->_list = new T[nElements];
+	this->_list = _allocator.allocate(nElements);
 
 	for (unsigned int i = 0; i < nElements; i++)
 		this->_list[i] = value;
