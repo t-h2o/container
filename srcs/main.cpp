@@ -45,6 +45,9 @@ static void	test_my_vector(void)
 	{
 		print_exception(e);
 	}
+
+	section("print the max size");
+	std::cout << vec.max_size() << std::endl;
 }
 
 static void	test_vector(void)

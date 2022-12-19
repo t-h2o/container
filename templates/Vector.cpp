@@ -29,7 +29,7 @@ unsigned int	Vector<T>::size(void) const
 template <typename T>
 unsigned int	Vector<T>::max_size(void) const
 {
-	return this->_size;
+	return this->_allocator.max_size();
 }
 
 template <typename T>
