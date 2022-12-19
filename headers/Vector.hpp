@@ -7,8 +7,6 @@ class	Vector
 		Vector(void);
 		~Vector(void);
 
-		void	assign(unsigned int, T);
-
 		unsigned int	size(void) const;
 		unsigned int	max_size(void) const;
 		bool			empty(void) const;
@@ -16,6 +14,8 @@ class	Vector
 		T	&operator[](unsigned int) const;
 		T	&front(void) const;
 		T	&back(void) const;
+
+		void	assign(unsigned int, T);
 
 	private:
 		T				*_list;

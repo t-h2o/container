@@ -13,18 +13,21 @@ Vector<T>::~Vector(void)
 }
 
 template <typename T>
-void	Vector<T>::assign(unsigned int nElements, T value)
+unsigned int	Vector<T>::size(void) const
 {
-	message("Vector: assign");
+	return this->_size;
+}
 
-	delete [] this->_list;
+template <typename T>
+unsigned int	Vector<T>::max_size(void) const
+{
+	return this->_size;
+}
 
-	this->_size = nElements;
-	this->_maxSize = nElements;
-	this->_list = new T[nElements];
-
-	for (unsigned int i = 0; i < nElements; i++)
-		this->_list[i] = value;
+template <typename T>
+bool	Vector<T>::empty(void) const
+{
+	return this->_size;
 }
 
 template <typename T>
@@ -46,21 +49,18 @@ T	&Vector<T>::back(void) const
 }
 
 template <typename T>
-unsigned int	Vector<T>::size(void) const
+void	Vector<T>::assign(unsigned int nElements, T value)
 {
-	return this->_size;
-}
+	message("Vector: assign");
 
-template <typename T>
-unsigned int	Vector<T>::max_size(void) const
-{
-	return this->_size;
-}
+	delete [] this->_list;
 
-template <typename T>
-bool	Vector<T>::empty(void) const
-{
-	return this->_size;
+	this->_size = nElements;
+	this->_maxSize = nElements;
+	this->_list = new T[nElements];
+
+	for (unsigned int i = 0; i < nElements; i++)
+		this->_list[i] = value;
 }
 
 template <typename T>
