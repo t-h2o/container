@@ -7,6 +7,10 @@
 
 42: https://cdn.intra.42.fr/pdf/pdf/60315/en.subject.pdf[subject]
 
+== Google test
+
+In this project, I want inclure https://en.wikipedia.org/wiki/Unit_testing[unit testing] with the https://google.github.io/googletest/[Google test] framework.
+
 == Vector
 
 image::assets/vector.svg[example]
