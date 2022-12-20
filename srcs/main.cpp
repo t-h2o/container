@@ -25,7 +25,7 @@ static void	test_my_vector(void)
 	std::cout << vec << std::endl;
 
 	section("add 1, 2, 3...");
-	for (unsigned int i = 0; i < vec.size(); i++)
+	for (unsigned long i = 0; i < vec.size(); i++)
 		vec[i] += i;
 
 	section("print vec");
