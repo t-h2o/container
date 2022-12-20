@@ -1,5 +1,20 @@
 #include	"color.hpp"
 
+
+/**
+ *  @brief A standard container which offers fixed time access to
+ *  individual elements in any order.
+ *
+ *  @ingroup sequences
+ *
+ *  @tparam T  Type of element.
+ *
+ *  In some terminology a %vector can be described as a dynamic
+ *  C-style array, it offers fast and efficient access to individual
+ *  elements in any order and saves the user from worrying about
+ *  memory and size allocation.  Subscripting ( @c [] ) access is
+ *  also provided as with C-style arrays.
+*/
 template <typename T>
 class	Vector
 {

@@ -32,6 +32,10 @@ unsigned long	Vector<T>::max_size(void) const
 	return this->_allocator.max_size();
 }
 
+/**
+ *  Returns true if the %vector is empty.  (Thus begin() would
+ *  equal end().)
+ */
 template <typename T>
 bool	Vector<T>::empty(void) const
 {
@@ -88,6 +92,16 @@ void	Vector<T>::assign(unsigned long nElements, T value)
 		this->_list[i] = value;
 }
 
+/**
+ *  @brief  Add data to the end of the %vector.
+ *  @param  object  Data to be added.
+ *
+ *  This is a typical stack operation.  The function creates an
+ *  element at the end of the %vector and assigns the given data
+ *  to it.  Due to the nature of a %vector this operation can be
+ *  done in constant time if the %vector has preallocated space
+ *  available.
+ */
 template <typename T>
 void	Vector<T>::push_back(T const & object)
 {
@@ -104,6 +118,15 @@ void	Vector<T>::push_back(T const & object)
 	}
 }
 
+/**
+ *  @brief  Removes last element.
+ *
+ *  This is a typical stack operation. It shrinks the %vector by one.
+ *
+ *  Note that no data is returned, and if the last element's
+ *  data is needed, it should be retrieved before pop_back() is
+ *  called.
+ */
 template <typename T>
 void	Vector<T>::pop_back(void)
 {
