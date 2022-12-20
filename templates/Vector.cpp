@@ -89,7 +89,7 @@ void	Vector<T>::assign(unsigned long nElements, T value)
 }
 
 template <typename T>
-void	Vector<T>::push_back(T & object)
+void	Vector<T>::push_back(T const & object)
 {
 	std::cout << object << std::endl;
 	if (this->_allocated == this->_size)
