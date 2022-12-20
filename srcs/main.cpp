@@ -2,6 +2,17 @@
 #include	"color.hpp"
 #include	"Vector.hpp"
 #include	<vector>
+#include	<gtest/gtest.h>
+
+static void	test_comparison(void)
+{
+	section("Test with comparison");
+
+	std::vector<int>	vec_std;
+	Vector<int>			vec_ft;
+
+	EXPECT_EQ(vec_ft.size(), vec_std.size());
+}
 
 static void	test_my_vector(void)
 {
@@ -77,6 +88,7 @@ int	main(void)
 
 	test_my_vector();
 	test_vector();
+	test_comparison();
 
 	return 0;
 }
