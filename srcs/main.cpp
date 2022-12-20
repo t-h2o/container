@@ -12,6 +12,7 @@ static void	test_comparison(void)
 	Vector<int>			vec_ft;
 
 	EXPECT_EQ(vec_ft.size(), vec_std.size());
+	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
 }
 
 static void	test_my_vector(void)
