@@ -14,6 +14,15 @@ static void	test_comparison(void)
 	EXPECT_EQ(vec_ft.size(), vec_std.size());
 	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
 	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
+
+	vec_ft.assign(7, 100);
+	vec_std.assign(7, 100);
+
+	EXPECT_EQ(vec_ft[0], vec_std[0]);
+	EXPECT_EQ(vec_ft[6], vec_std[6]);
+	EXPECT_EQ(vec_ft.size(), vec_std.size());
+	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
+	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
 }
 
 static void	test_my_vector(void)
