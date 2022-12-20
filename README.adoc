@@ -17,6 +17,9 @@ image::assets/vector.svg[example]
 * https://cplusplus.com/reference/vector/vector[`std::vector`]
 * https://cplusplus.com/reference/memory/allocator/[`std::allocator`]
 
+.The STL: on GNU/Linux
+* `/usr/include/c++/12.2.0/bits/stl_vector.h`
+
 === Check list
 
 .Member functions
