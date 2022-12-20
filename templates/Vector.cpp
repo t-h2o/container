@@ -35,7 +35,7 @@ unsigned long	Vector<T>::max_size(void) const
 template <typename T>
 bool	Vector<T>::empty(void) const
 {
-	return this->_size;
+	return !(this->_size);
 }
 
 /**
@@ -109,7 +109,7 @@ void	Vector<T>::pop_back(void)
 {
 	message("Vector: pop_back");
 
-	if (this->empty() == 0)
+	if (this->empty())
 		return ;
 
 	--this->_size;
