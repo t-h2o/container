@@ -105,14 +105,27 @@ void	Vector<T>::assign(unsigned long nElements, T value)
 template <typename T>
 void	Vector<T>::push_back(T const & object)
 {
-	std::cout << object << std::endl;
+	T				*newList;
+	unsigned long	newAllocation;
+
+	message("Vector: push back");
 	if (this->_allocated == this->_size)
 	{
-		std::cout << "need reallocation" << std::endl;
+		newAllocation = this->_allocated * 2;
+		newList = this->_allocator.allocate(newAllocation);
+		for (unsigned long i = 0; i < this->_allocated; ++i)
+		{
+			this->_allocator.construct(&(newList[i]), (*this)[i]);
+			this->_allocator.destroy(&(*this)[i]);
+		}
+		this->_allocator.construct(&(newList[this->_allocated]), object);
+		this->_allocator.deallocate(this->_list, this->_allocated);
+		this->_list = newList;
+		this->_allocated = newAllocation;
+		++this->_size;
 	}
 	else
 	{
-		std::cout << "push back" << object << std::endl;
 		this->_allocator.construct(&((*this)[this->_size]), object);
 		++this->_size;
 	}
