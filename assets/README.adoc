@@ -4,7 +4,7 @@
 [plantuml, target=vector, format=svg, width=100%]
 ....
 @startuml
-skinparam defaultFontName JetBrains Mono ExtraBold
+skinparam defaultFontName JetBrains Mono
 
 class User {
   .. Member functions ..
