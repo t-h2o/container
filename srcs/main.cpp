@@ -55,6 +55,11 @@ static void	test_awesome(void)
 		Vector<Awesome>			vec_ft;
 		vec_ft.assign(5, awesome);
 		vec_ft.pop_back();
+
+		Vector<Awesome>			vec_ft_copy;
+		section("copy");
+		vec_ft = vec_ft;
+		vec_ft_copy = vec_ft;
 	}
 }
 
