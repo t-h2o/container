@@ -29,8 +29,10 @@ image::assets/vector.svg[example]
 
 .Member functions
 * [x] `constructor`
+** [x] `default`
+** [x] `copy`
 * [x] `destructor`
-* [ ] `operator=`
+* [x] `operator=`
 
 .Capacity
 * [x] `size`
@@ -55,7 +57,7 @@ image::assets/vector.svg[example]
 * [ ] `insert`
 * [ ] `erase`
 * [ ] `swap`
-* [ ] `clear`
+* [x] `clear`
 * [ ] `emplace`
 * [ ] `emplace_back`
 
