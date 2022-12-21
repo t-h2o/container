@@ -68,9 +68,14 @@ static void	test_awesome(void)
 		vec_ft.pop_back();
 
 		Vector<Awesome>			vec_ft_copy;
+		vec_ft[0].set_number(42);
+		vec_ft[2].set_number(21);
 		section("copy");
 		vec_ft = vec_ft;
 		vec_ft_copy = vec_ft;
+
+		std::cout << "ft" << vec_ft;
+		std::cout << "copy" << vec_ft_copy;
 	}
 }
 
