@@ -397,7 +397,10 @@
 		<text><tspan font-family='Arial'>the first assignation</tspan></text>
 	</g>
 	<g fill='black' font-family='Arial' font-size='12.00' stroke='none' text-anchor='middle' transform='translate(553.30,423.21)'>
-		<text><tspan font-family='Arial'>Reallocation</tspan></text>
+		<text><tspan font-family='Arial'>Number of times</tspan></text>
+	</g>
+	<g fill='black' font-family='Arial' font-size='12.00' stroke='none' text-anchor='middle' transform='translate(553.30,441.21)'>
+		<text><tspan font-family='Arial'>of reallocation</tspan></text>
 	</g>
 	<g fill='black' font-family='Arial' font-size='12.00' stroke='none' text-anchor='middle' transform='translate(300.00,40.52)'>
 		<text><tspan font-family='Arial'>Allocation size according</tspan></text>
