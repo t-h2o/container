@@ -2,6 +2,7 @@
 :nofooter:
 :toc: left
 :sectnums:
+:stylesheet: assets/my-stylesheet.css
 
 == Subject
 
