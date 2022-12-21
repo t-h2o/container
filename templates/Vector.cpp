@@ -13,7 +13,7 @@ Vector<T>::~Vector(void)
 {
 	message("Vector: destructor");
 
-	for (unsigned long i = 0; i < this->_size; ++i)
+	for (size_t i = 0; i < this->_size; ++i)
 		this->_allocator.destroy(&(*this)[i]);
 	_allocator.deallocate(this->_list, this->_allocated);
 }
@@ -23,13 +23,13 @@ Vector<T>::~Vector(void)
  */
 
 template <typename T>
-unsigned long	Vector<T>::size(void) const
+size_t	Vector<T>::size(void) const
 {
 	return this->_size;
 }
 
 template <typename T>
-unsigned long	Vector<T>::max_size(void) const
+size_t	Vector<T>::max_size(void) const
 {
 	return this->_allocator.max_size();
 }
@@ -49,13 +49,13 @@ bool	Vector<T>::empty(void) const
  */
 
 template <typename T>
-T	&Vector<T>::operator[](unsigned long position) const
+T	&Vector<T>::operator[](size_t position) const
 {
 	return this->_list[position];
 }
 
 template <typename T>
-T	&Vector<T>::at(unsigned long position) const
+T	&Vector<T>::at(size_t position) const
 {
 	if (this->size() <= position)
 		throw out_of_range();
@@ -79,7 +79,7 @@ T	&Vector<T>::back(void) const
  */
 
 template <typename T>
-void	Vector<T>::assign(unsigned long nElements, T value)
+void	Vector<T>::assign(size_t nElements, T value)
 {
 	message("Vector: assign");
 
@@ -90,7 +90,7 @@ void	Vector<T>::assign(unsigned long nElements, T value)
 	this->_maxSize = nElements;
 	this->_list = _allocator.allocate(nElements);
 
-	for (unsigned long i = 0; i < nElements; i++)
+	for (size_t i = 0; i < nElements; i++)
 		this->_allocator.construct(&(this->_list[i]), value);
 }
 
@@ -107,15 +107,15 @@ void	Vector<T>::assign(unsigned long nElements, T value)
 template <typename T>
 void	Vector<T>::push_back(T const & object)
 {
-	T				*newList;
-	unsigned long	newAllocation;
+	T		*newList;
+	size_t	newAllocation;
 
 	message("Vector: push back");
 	if (this->_allocated == this->_size)
 	{
 		newAllocation = this->_allocated * 2;
 		newList = this->_allocator.allocate(newAllocation);
-		for (unsigned long i = 0; i < this->_allocated; ++i)
+		for (size_t i = 0; i < this->_allocated; ++i)
 		{
 			this->_allocator.construct(&(newList[i]), (*this)[i]);
 			this->_allocator.destroy(&(*this)[i]);
@@ -162,7 +162,7 @@ template <typename T>
 std::ostream	&operator<<(std::ostream &output, Vector<T> const & vec)
 {
 	output << "(vector) = size=" << vec.size() << " {" << std::endl;
-	for (unsigned long i = 0; i < vec.size(); i++)
+	for (size_t i = 0; i < vec.size(); i++)
 		output << "  ["<< i << "] = " << vec[i] << std::endl;
 	output << "}" << std::endl;
 	return output;

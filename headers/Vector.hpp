@@ -24,18 +24,18 @@ class	Vector
 		~Vector(void);
 
 		/* Capacity */
-		unsigned long	size(void) const;
-		unsigned long	max_size(void) const;
-		bool			empty(void) const;
+		size_t	size(void) const;
+		size_t	max_size(void) const;
+		bool	empty(void) const;
 
 		/* Element access */
-		T	&operator[](unsigned long) const;
-		T	&at(unsigned long) const;
+		T	&operator[](size_t) const;
+		T	&at(size_t) const;
 		T	&front(void) const;
 		T	&back(void) const;
 
 		/* Modifiers */
-		void	assign(unsigned long, T);
+		void	assign(size_t, T);
 		void	push_back(T const &);
 		void	pop_back(void);
 
@@ -49,10 +49,10 @@ class	Vector
 		};
 
 	private:
-		T				*_list;
-		unsigned long	_maxSize;
-		unsigned long	_size;
-		unsigned long	_allocated;
+		T		*_list;
+		size_t	_maxSize;
+		size_t	_size;
+		size_t	_allocated;
 
 		std::allocator<T>	_allocator;
 };
