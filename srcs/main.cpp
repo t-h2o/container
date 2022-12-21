@@ -4,6 +4,53 @@
 #include	<vector>
 #include	<gtest/gtest.h>
 
+class	Awesome
+{
+	public:
+		Awesome (int number = 0)
+		{
+			std::cout << number << " ";
+			message("Awesome: default constructor");
+			this->_number = new int(number);
+		}
+		~Awesome(void)
+		{
+			message("Awesome: destructor");
+			delete this->_number;
+			this->_number = 0;
+		}
+		Awesome(Awesome const &other) : _number(0)
+		{
+			std::cout << *(other._number) << " ";
+			message("Awesome: copy constructor");
+			*this = other;
+		}
+
+		Awesome	&operator=(Awesome const &other)
+		{
+			delete this->_number;
+			message("Awesome: =");
+			this->_number = new int(*(other._number));
+
+			return *this;
+		}
+
+	private:
+		int	*_number;
+};
+
+static void	test_awesome(void)
+{
+	section("Test with Awesome class");
+
+	Awesome awesome;
+
+	{
+		std::vector<Awesome>	vec_std;
+		vec_std.assign(5, awesome);
+	}
+}
+
 static void	test_comparison(void)
 {
 	section("Test with comparison");
@@ -121,6 +168,7 @@ int	main(void)
 	test_my_vector();
 	test_vector();
 	test_comparison();
+	test_awesome();
 
 	return 0;
 }
