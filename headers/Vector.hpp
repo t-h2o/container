@@ -22,6 +22,22 @@ class	Vector
 		/* Member Funcion */
 		Vector(void);
 		~Vector(void);
+		Vector	&operator=(Vector const &other)
+		{
+			if (this == &other)
+				return *this;
+
+			this->clear();
+			this->_list = this->_allocator.allocate(other._allocated);
+			this->_size = other._size;
+			this->_allocated = other._allocated;
+
+			for (size_t i = 0; i < other._size; ++i)
+			{
+				this->_allocator.construct(&(*this)[i], other[i]);
+			}
+			return *this;
+		}
 
 		/* Capacity */
 		size_t	size(void) const;
