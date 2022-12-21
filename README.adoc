@@ -74,3 +74,12 @@ Instead, vector containers may allocate some extra storage to accommodate for po
 ____
 
 image::assets/gnuplot.svg[gnuplot]
+
+== Iterator
+
+=== Resources
+
+.cplusplus.com
+* https://cplusplus.com/reference/iterator/[`<iterator>`]
+* https://cplusplus.com/reference/iterator/iterator/[`std::iterator`]
+* https://cplusplus.com/reference/iterator/iterator_traits/[`std::iterator_traits`]
