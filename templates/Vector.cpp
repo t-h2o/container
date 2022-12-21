@@ -13,9 +13,7 @@ Vector<T>::~Vector(void)
 {
 	message("Vector: destructor");
 
-	for (size_t i = 0; i < this->_size; ++i)
-		this->_allocator.destroy(&(*this)[i]);
-	_allocator.deallocate(this->_list, this->_allocated);
+	this->clear();
 }
 
 /**
@@ -152,6 +150,22 @@ void	Vector<T>::pop_back(void)
 
 	this->_allocator.destroy(&(*this)[this->_size - 1]);
 	--this->_size;
+}
+
+template <typename T>
+void	Vector<T>::clear(void)
+{
+	message("Vector: clear");
+
+	if (this->empty())
+		return ;
+
+	for (size_t i = 0; i < this->_size; ++i)
+		this->_allocator.destroy(&(*this)[i]);
+	_allocator.deallocate(this->_list, this->_allocated);
+	this->_allocated = 0;
+	this->_size = 0;
+	this->_list = 0;
 }
 
 /**

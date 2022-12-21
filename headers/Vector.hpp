@@ -38,6 +38,7 @@ class	Vector
 		void	assign(size_t, T);
 		void	push_back(T const &);
 		void	pop_back(void);
+		void	clear(void);
 
 		class	out_of_range : public std::exception
 		{
