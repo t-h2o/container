@@ -172,6 +172,26 @@ void	Vector<T>::pop_back(void)
 }
 
 template <typename T>
+void	Vector<T>::swap(Vector &other)
+{
+	T		*tmpList;
+	size_t	tmpAllocated;
+	size_t	tmpSize;
+
+	tmpList = this->_list;
+	tmpAllocated = this->_allocated;
+	tmpSize = this->_size;
+
+	this->_list = other._list;
+	this->_allocated = other._allocated;
+	this->_size = other._size;
+
+	other._list = tmpList;
+	other._allocated = tmpAllocated;
+	other._size = tmpSize;
+}
+
+template <typename T>
 void	Vector<T>::clear(void)
 {
 	message("Vector: clear");

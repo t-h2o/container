@@ -25,6 +25,18 @@ static void	test_awesome(void)
 
 		std::cout << "ft" << vec_ft;
 		std::cout << "copy" << vec_ft_copy;
+
+		vec_ft.push_back(1);
+		vec_ft.push_back(2);
+
+		std::cout << "ft" << vec_ft;
+		std::cout << "copy" << vec_ft_copy;
+
+		section("swap");
+		vec_ft.swap(vec_ft_copy);
+
+		std::cout << "ft" << vec_ft;
+		std::cout << "copy" << vec_ft_copy;
 	}
 }
 

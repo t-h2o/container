@@ -56,7 +56,7 @@ image::assets/vector.svg[example]
 * [x] `pop_back`
 * [ ] `insert`
 * [ ] `erase`
-* [ ] `swap`
+* [x] `swap`
 * [x] `clear`
 * [ ] `emplace`
 * [ ] `emplace_back`
