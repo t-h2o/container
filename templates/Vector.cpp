@@ -150,6 +150,7 @@ void	Vector<T>::pop_back(void)
 	if (this->empty())
 		return ;
 
+	this->_allocator.destroy(&(*this)[this->_size - 1]);
 	--this->_size;
 }
 

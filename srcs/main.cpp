@@ -48,11 +48,13 @@ static void	test_awesome(void)
 	{
 		std::vector<Awesome>	vec_std;
 		vec_std.assign(5, awesome);
+		vec_std.pop_back();
 	}
 
 	{
 		Vector<Awesome>			vec_ft;
 		vec_ft.assign(5, awesome);
+		vec_ft.pop_back();
 	}
 }
 
