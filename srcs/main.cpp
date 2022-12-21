@@ -35,9 +35,20 @@ class	Awesome
 			return *this;
 		}
 
+		int		get_number(void) const { return *(this->_number); }
+		void	set_number(int number) { *(this->_number) = number; }
+
 	private:
 		int	*_number;
 };
+
+std::ostream	&operator<<(std::ostream &output, Awesome const &object)
+{
+	output << "Awesome : "
+		<< object.get_number();
+
+	return output;
+}
 
 static void	test_awesome(void)
 {
