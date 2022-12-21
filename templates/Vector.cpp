@@ -162,7 +162,7 @@ void	Vector<T>::clear(void)
 
 	for (size_t i = 0; i < this->_size; ++i)
 		this->_allocator.destroy(&(*this)[i]);
-	_allocator.deallocate(this->_list, this->_allocated);
+	this->_allocator.deallocate(this->_list, this->_allocated);
 	this->_allocated = 0;
 	this->_size = 0;
 	this->_list = 0;
