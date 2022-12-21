@@ -13,6 +13,8 @@ Vector<T>::~Vector(void)
 {
 	message("Vector: destructor");
 
+	for (unsigned long i = 0; i < this->_size; ++i)
+		this->_allocator.destroy(&(*this)[i]);
 	_allocator.deallocate(this->_list, this->_allocated);
 }
 
@@ -89,7 +91,7 @@ void	Vector<T>::assign(unsigned long nElements, T value)
 	this->_list = _allocator.allocate(nElements);
 
 	for (unsigned long i = 0; i < nElements; i++)
-		this->_list[i] = value;
+		this->_allocator.construct(&(this->_list[i]), value);
 }
 
 /**

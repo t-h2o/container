@@ -49,6 +49,11 @@ static void	test_awesome(void)
 		std::vector<Awesome>	vec_std;
 		vec_std.assign(5, awesome);
 	}
+
+	{
+		Vector<Awesome>			vec_ft;
+		vec_ft.assign(5, awesome);
+	}
 }
 
 static void	test_comparison(void)
