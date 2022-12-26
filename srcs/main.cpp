@@ -51,6 +51,7 @@ test_comparison(void)
 
 	EXPECT_EQ(vec_ft.size(), vec_std.size());
 	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
+	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
 	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
 
 	vec_ft.assign(7, 100);
@@ -60,6 +61,7 @@ test_comparison(void)
 	EXPECT_EQ(vec_ft[6], vec_std[6]);
 	EXPECT_EQ(vec_ft.size(), vec_std.size());
 	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
+	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
 	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
 
 	vec_ft.pop_back();
@@ -67,6 +69,7 @@ test_comparison(void)
 
 	EXPECT_EQ(vec_ft.size(), vec_std.size());
 	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
+	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
 	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
 
 	vec_ft.push_back(12);
@@ -74,6 +77,7 @@ test_comparison(void)
 
 	EXPECT_EQ(vec_ft.size(), vec_std.size());
 	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
+	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
 	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
 
 	vec_ft.push_back(13);
@@ -81,6 +85,7 @@ test_comparison(void)
 
 	EXPECT_EQ(vec_ft.size(), vec_std.size());
 	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
+	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
 	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
 
 	vec_ft.clear();
@@ -88,6 +93,7 @@ test_comparison(void)
 
 	EXPECT_EQ(vec_ft.size(), vec_std.size());
 	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
+	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
 	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
 
 	vec_ft.push_back(13);
@@ -95,6 +101,7 @@ test_comparison(void)
 
 	EXPECT_EQ(vec_ft.size(), vec_std.size());
 	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
+	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
 	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
 }
 
