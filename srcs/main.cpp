@@ -57,6 +57,19 @@ expect_equal(std::vector<T> &vec_std, Vector<T> &vec_ft)
 		EXPECT_EQ(data_ft[i], data_std[i]);
 }
 
+template <typename T>
+static void
+test_copy_equal(std::vector<T> &vec_std, Vector<T> &vec_ft)
+{
+	expect_equal(vec_std, vec_ft);
+
+	{
+		Vector<T> vec_ft_copy;
+		vec_ft_copy = vec_ft;
+		expect_equal(vec_std, vec_ft_copy);
+	}
+}
+
 static void
 test_comparison(void)
 {
@@ -65,39 +78,31 @@ test_comparison(void)
 	std::vector<int> vec_std;
 	Vector<int>		 vec_ft;
 
-	expect_equal(vec_std, vec_ft);
+	test_copy_equal(vec_std, vec_ft);
 
 	vec_ft.assign(7, 100);
 	vec_std.assign(7, 100);
-
-	EXPECT_EQ(vec_ft[0], vec_std[0]);
-	EXPECT_EQ(vec_ft[6], vec_std[6]);
-	expect_equal(vec_std, vec_ft);
+	test_copy_equal(vec_std, vec_ft);
 
 	vec_ft.pop_back();
 	vec_std.pop_back();
-
-	expect_equal(vec_std, vec_ft);
+	test_copy_equal(vec_std, vec_ft);
 
 	vec_ft.push_back(12);
 	vec_std.push_back(12);
-
-	expect_equal(vec_std, vec_ft);
+	test_copy_equal(vec_std, vec_ft);
 
 	vec_ft.push_back(13);
 	vec_std.push_back(13);
-
-	expect_equal(vec_std, vec_ft);
+	test_copy_equal(vec_std, vec_ft);
 
 	vec_ft.clear();
 	vec_std.clear();
-
-	expect_equal(vec_std, vec_ft);
+	test_copy_equal(vec_std, vec_ft);
 
 	vec_ft.push_back(13);
 	vec_std.push_back(13);
-
-	expect_equal(vec_std, vec_ft);
+	test_copy_equal(vec_std, vec_ft);
 }
 
 static void
