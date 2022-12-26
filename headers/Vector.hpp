@@ -33,6 +33,7 @@ template <typename T> class Vector
 	T &at(size_t) const;
 	T &front(void) const;
 	T &back(void) const;
+	T *data(void) const;
 
 	/* Modifiers */
 	void assign(size_t, T);

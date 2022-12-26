@@ -49,6 +49,12 @@ expect_equal(std::vector<T> &vec_std, Vector<T> &vec_ft)
 	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
 	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
 	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
+
+	int const *data_std = vec_std.data();
+	int const *data_ft = vec_ft.data();
+
+	for (size_t i = 0; i < vec_std.size(); ++i)
+		EXPECT_EQ(data_ft[i], data_std[i]);
 }
 
 static void

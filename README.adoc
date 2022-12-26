@@ -49,7 +49,7 @@ image::assets/vector.svg[example]
 * [x] `at`
 * [x] `front`
 * [x] `back`
-* [ ] `data`
+* [x] `data`
 
 .Modifiers
 * [x] `assign`

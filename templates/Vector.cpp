@@ -106,6 +106,13 @@ Vector<T>::back(void) const
 	return this->_list[this->_size - 1];
 }
 
+template <typename T>
+T *
+Vector<T>::data(void) const
+{
+	return this->_list;
+}
+
 /**
  * Modifiers
  */
