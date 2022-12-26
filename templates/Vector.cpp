@@ -53,6 +53,13 @@ Vector<T>::max_size(void) const
 	return this->_allocator.max_size();
 }
 
+template <typename T>
+size_t
+Vector<T>::capacity(void) const
+{
+	return this->_allocated;
+}
+
 /**
  *  Returns true if the %vector is empty.  (Thus begin() would
  *  equal end().)

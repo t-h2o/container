@@ -39,7 +39,7 @@ image::assets/vector.svg[example]
 * [x] `size`
 * [x] `max_size`
 * [ ] `resize`
-* [ ] `capacity`
+* [x] `capacity`
 * [x] `empty`
 * [ ] `reserve`
 * [ ] `shrink_to_fit`

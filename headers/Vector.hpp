@@ -25,6 +25,7 @@ template <typename T> class Vector
 	/* Capacity */
 	size_t size(void) const;
 	size_t max_size(void) const;
+	size_t capacity(void) const;
 	bool   empty(void) const;
 
 	/* Element access */
