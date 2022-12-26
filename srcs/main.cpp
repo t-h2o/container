@@ -41,6 +41,16 @@ test_awesome(void)
 	}
 }
 
+template <typename T>
+static void
+expect_equal(std::vector<T> &vec_std, Vector<T> &vec_ft)
+{
+	EXPECT_EQ(vec_ft.size(), vec_std.size());
+	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
+	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
+	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
+}
+
 static void
 test_comparison(void)
 {
@@ -49,60 +59,39 @@ test_comparison(void)
 	std::vector<int> vec_std;
 	Vector<int>		 vec_ft;
 
-	EXPECT_EQ(vec_ft.size(), vec_std.size());
-	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
-	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
-	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
+	expect_equal(vec_std, vec_ft);
 
 	vec_ft.assign(7, 100);
 	vec_std.assign(7, 100);
 
 	EXPECT_EQ(vec_ft[0], vec_std[0]);
 	EXPECT_EQ(vec_ft[6], vec_std[6]);
-	EXPECT_EQ(vec_ft.size(), vec_std.size());
-	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
-	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
-	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
+	expect_equal(vec_std, vec_ft);
 
 	vec_ft.pop_back();
 	vec_std.pop_back();
 
-	EXPECT_EQ(vec_ft.size(), vec_std.size());
-	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
-	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
-	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
+	expect_equal(vec_std, vec_ft);
 
 	vec_ft.push_back(12);
 	vec_std.push_back(12);
 
-	EXPECT_EQ(vec_ft.size(), vec_std.size());
-	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
-	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
-	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
+	expect_equal(vec_std, vec_ft);
 
 	vec_ft.push_back(13);
 	vec_std.push_back(13);
 
-	EXPECT_EQ(vec_ft.size(), vec_std.size());
-	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
-	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
-	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
+	expect_equal(vec_std, vec_ft);
 
 	vec_ft.clear();
 	vec_std.clear();
 
-	EXPECT_EQ(vec_ft.size(), vec_std.size());
-	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
-	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
-	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
+	expect_equal(vec_std, vec_ft);
 
 	vec_ft.push_back(13);
 	vec_std.push_back(13);
 
-	EXPECT_EQ(vec_ft.size(), vec_std.size());
-	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
-	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
-	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
+	expect_equal(vec_std, vec_ft);
 }
 
 static void
