@@ -1,6 +1,6 @@
-#include	"Awesome.hpp"
+#include "Awesome.hpp"
 
-Awesome::Awesome (int number)
+Awesome::Awesome(int number)
 {
 	std::cout << number << " ";
 	message("Awesome: default constructor");
@@ -19,7 +19,8 @@ Awesome::Awesome(Awesome const &other) : _number(0)
 	*this = other;
 }
 
-Awesome & Awesome::operator=(Awesome const &other)
+Awesome &
+Awesome::operator=(Awesome const &other)
 {
 	delete this->_number;
 	message("Awesome: =");
@@ -28,13 +29,21 @@ Awesome & Awesome::operator=(Awesome const &other)
 	return *this;
 }
 
-int		Awesome::get_number(void) const { return *(this->_number); }
-void	Awesome::set_number(int number) { *(this->_number) = number; }
-
-std::ostream	&operator<<(std::ostream &output, Awesome const &object)
+int
+Awesome::get_number(void) const
 {
-	output << "Awesome : "
-		<< object.get_number();
+	return *(this->_number);
+}
+void
+Awesome::set_number(int number)
+{
+	*(this->_number) = number;
+}
+
+std::ostream &
+operator<<(std::ostream &output, Awesome const &object)
+{
+	output << "Awesome : " << object.get_number();
 
 	return output;
 }

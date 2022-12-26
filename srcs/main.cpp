@@ -1,22 +1,23 @@
-#include	<iostream>
-#include	"color.hpp"
-#include	"Vector.hpp"
-#include	"Awesome.hpp"
-#include	<vector>
-#include	<gtest/gtest.h>
+#include "Awesome.hpp"
+#include "Vector.hpp"
+#include "color.hpp"
+#include <gtest/gtest.h>
+#include <iostream>
+#include <vector>
 
-static void	test_awesome(void)
+static void
+test_awesome(void)
 {
 	section("Test with Awesome class");
 
 	Awesome awesome;
 
 	{
-		Vector<Awesome>			vec_ft;
+		Vector<Awesome> vec_ft;
 		vec_ft.assign(5, awesome);
 		vec_ft.pop_back();
 
-		Vector<Awesome>			vec_ft_copy;
+		Vector<Awesome> vec_ft_copy;
 		vec_ft[0].set_number(42);
 		vec_ft[2].set_number(21);
 		section("copy");
@@ -40,12 +41,13 @@ static void	test_awesome(void)
 	}
 }
 
-static void	test_comparison(void)
+static void
+test_comparison(void)
 {
 	section("Test with comparison");
 
-	std::vector<int>	vec_std;
-	Vector<int>			vec_ft;
+	std::vector<int> vec_std;
+	Vector<int>		 vec_ft;
 
 	EXPECT_EQ(vec_ft.size(), vec_std.size());
 	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
@@ -96,9 +98,10 @@ static void	test_comparison(void)
 	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
 }
 
-static void	test_my_vector(void)
+static void
+test_my_vector(void)
 {
-	Vector<int>	vec;
+	Vector<int> vec;
 
 	section("assign 7 times the value 100");
 	vec.assign(7, 100);
@@ -146,16 +149,17 @@ static void	test_my_vector(void)
 	std::cout << vec.max_size() << std::endl;
 
 	section("push back 42");
-	int	myint = 42;
+	int myint = 42;
 	vec.push_back(myint);
 
 	section("print vec");
 	std::cout << vec << std::endl;
 }
 
-static void	test_vector(void)
+static void
+test_vector(void)
 {
-	std::vector<int>	vec;
+	std::vector<int> vec;
 
 	section("assign 7 times the value 100");
 	vec.assign(11, 100);
@@ -164,7 +168,8 @@ static void	test_vector(void)
 	std::cout << vec[3] << std::endl;
 }
 
-int	main(void)
+int
+main(void)
 {
 	title("Main");
 

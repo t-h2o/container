@@ -1,26 +1,26 @@
-#ifndef	AWESOME_HPP
-# define AWESOME_HPP
+#ifndef AWESOME_HPP
+#define AWESOME_HPP
 
-#include	<iostream>
+#include <iostream>
 
-#include	"color.hpp"
+#include "color.hpp"
 
-class	Awesome
+class Awesome
 {
-	public:
-		Awesome (int = 0);
-		~Awesome( void);
-		Awesome(Awesome const &other);
+  public:
+	Awesome(int = 0);
+	~Awesome(void);
+	Awesome(Awesome const &other);
 
-		Awesome	&operator=(Awesome const &other);
+	Awesome &operator=(Awesome const &other);
 
-		int		get_number(void) const;
-		void	set_number(int number);
+	int	 get_number(void) const;
+	void set_number(int number);
 
-	private:
-		int	*_number;
+  private:
+	int *_number;
 };
 
-std::ostream	&operator<<(std::ostream &output, Awesome const &object);
+std::ostream &operator<<(std::ostream &output, Awesome const &object);
 
 #endif /* AWESOME_HPP */

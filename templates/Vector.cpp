@@ -8,8 +8,7 @@ Vector<T>::Vector(void) : _list(0), _maxSize(0), _size(0), _allocated(0)
 	message("Vector: default constructor");
 }
 
-template <typename T>
-Vector<T>::~Vector(void)
+template <typename T> Vector<T>::~Vector(void)
 {
 	message("Vector: destructor");
 
@@ -17,7 +16,8 @@ Vector<T>::~Vector(void)
 }
 
 template <typename T>
-Vector<T>	&Vector<T>::operator=(Vector const &other)
+Vector<T> &
+Vector<T>::operator=(Vector const &other)
 {
 	if (this == &other)
 		return *this;
@@ -40,13 +40,15 @@ Vector<T>	&Vector<T>::operator=(Vector const &other)
  */
 
 template <typename T>
-size_t	Vector<T>::size(void) const
+size_t
+Vector<T>::size(void) const
 {
 	return this->_size;
 }
 
 template <typename T>
-size_t	Vector<T>::max_size(void) const
+size_t
+Vector<T>::max_size(void) const
 {
 	return this->_allocator.max_size();
 }
@@ -56,7 +58,8 @@ size_t	Vector<T>::max_size(void) const
  *  equal end().)
  */
 template <typename T>
-bool	Vector<T>::empty(void) const
+bool
+Vector<T>::empty(void) const
 {
 	return !(this->_size);
 }
@@ -66,13 +69,15 @@ bool	Vector<T>::empty(void) const
  */
 
 template <typename T>
-T	&Vector<T>::operator[](size_t position) const
+T &
+Vector<T>::operator[](size_t position) const
 {
 	return this->_list[position];
 }
 
 template <typename T>
-T	&Vector<T>::at(size_t position) const
+T &
+Vector<T>::at(size_t position) const
 {
 	if (this->size() <= position)
 		throw out_of_range();
@@ -80,13 +85,15 @@ T	&Vector<T>::at(size_t position) const
 }
 
 template <typename T>
-T	&Vector<T>::front(void) const
+T &
+Vector<T>::front(void) const
 {
 	return this->_list[0];
 }
 
 template <typename T>
-T	&Vector<T>::back(void) const
+T &
+Vector<T>::back(void) const
 {
 	return this->_list[this->_size - 1];
 }
@@ -96,7 +103,8 @@ T	&Vector<T>::back(void) const
  */
 
 template <typename T>
-void	Vector<T>::assign(size_t nElements, T value)
+void
+Vector<T>::assign(size_t nElements, T value)
 {
 	message("Vector: assign");
 
@@ -122,10 +130,11 @@ void	Vector<T>::assign(size_t nElements, T value)
  *  available.
  */
 template <typename T>
-void	Vector<T>::push_back(T const & object)
+void
+Vector<T>::push_back(T const &object)
 {
-	T		*newList;
-	size_t	newAllocation;
+	T	  *newList;
+	size_t newAllocation;
 
 	message("Vector: push back");
 	if (this->_allocated == this->_size)
@@ -160,23 +169,25 @@ void	Vector<T>::push_back(T const & object)
  *  called.
  */
 template <typename T>
-void	Vector<T>::pop_back(void)
+void
+Vector<T>::pop_back(void)
 {
 	message("Vector: pop_back");
 
 	if (this->empty())
-		return ;
+		return;
 
 	this->_allocator.destroy(&(*this)[this->_size - 1]);
 	--this->_size;
 }
 
 template <typename T>
-void	Vector<T>::swap(Vector &other)
+void
+Vector<T>::swap(Vector &other)
 {
-	T		*tmpList;
-	size_t	tmpAllocated;
-	size_t	tmpSize;
+	T	  *tmpList;
+	size_t tmpAllocated;
+	size_t tmpSize;
 
 	tmpList = this->_list;
 	tmpAllocated = this->_allocated;
@@ -192,12 +203,13 @@ void	Vector<T>::swap(Vector &other)
 }
 
 template <typename T>
-void	Vector<T>::clear(void)
+void
+Vector<T>::clear(void)
 {
 	message("Vector: clear");
 
 	if (this->empty())
-		return ;
+		return;
 
 	for (size_t i = 0; i < this->_size; ++i)
 		this->_allocator.destroy(&(*this)[i]);
@@ -212,11 +224,12 @@ void	Vector<T>::clear(void)
  */
 
 template <typename T>
-std::ostream	&operator<<(std::ostream &output, Vector<T> const & vec)
+std::ostream &
+operator<<(std::ostream &output, Vector<T> const &vec)
 {
 	output << "(vector) = size=" << vec.size() << " {" << std::endl;
 	for (size_t i = 0; i < vec.size(); i++)
-		output << "  ["<< i << "] = " << vec[i] << std::endl;
+		output << "  [" << i << "] = " << vec[i] << std::endl;
 	output << "}" << std::endl;
 	return output;
 }

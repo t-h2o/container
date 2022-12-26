@@ -1,5 +1,4 @@
-#include	"color.hpp"
-
+#include "color.hpp"
 
 /**
  *  @brief A standard container which offers fixed time access to
@@ -14,56 +13,54 @@
  *  elements in any order and saves the user from worrying about
  *  memory and size allocation.  Subscripting ( @c [] ) access is
  *  also provided as with C-style arrays.
-*/
-template <typename T>
-class	Vector
+ */
+template <typename T> class Vector
 {
-	public:
-		/* Member Funcion */
-		Vector(void);
-		~Vector(void);
-		Vector	&operator=(Vector const &);
+  public:
+	/* Member Funcion */
+	Vector(void);
+	~Vector(void);
+	Vector &operator=(Vector const &);
 
-		/* Capacity */
-		size_t	size(void) const;
-		size_t	max_size(void) const;
-		bool	empty(void) const;
+	/* Capacity */
+	size_t size(void) const;
+	size_t max_size(void) const;
+	bool   empty(void) const;
 
-		/* Element access */
-		T	&operator[](size_t) const;
-		T	&at(size_t) const;
-		T	&front(void) const;
-		T	&back(void) const;
+	/* Element access */
+	T &operator[](size_t) const;
+	T &at(size_t) const;
+	T &front(void) const;
+	T &back(void) const;
 
-		/* Modifiers */
-		void	assign(size_t, T);
-		void	push_back(T const &);
-		void	pop_back(void);
-		void	swap(Vector &);
-		void	clear(void);
+	/* Modifiers */
+	void assign(size_t, T);
+	void push_back(T const &);
+	void pop_back(void);
+	void swap(Vector &);
+	void clear(void);
 
-		class	out_of_range : public std::exception
+	class out_of_range : public std::exception
+	{
+	  public:
+		const char *
+		what() const throw()
 		{
-			public:
-				const char *what() const throw()
-				{
-					return "Out of Range error: vector";
-				}
-		};
+			return "Out of Range error: vector";
+		}
+	};
 
-	private:
-		T		*_list;
-		size_t	_maxSize;
-		size_t	_size;
-		size_t	_allocated;
+  private:
+	T	  *_list;
+	size_t _maxSize;
+	size_t _size;
+	size_t _allocated;
 
-		std::allocator<T>	_allocator;
+	std::allocator<T> _allocator;
 };
-
-
 
 /* Extra... */
 template <typename T>
-std::ostream	&operator<<(std::ostream &output, Vector<T> const &);
+std::ostream &operator<<(std::ostream &output, Vector<T> const &);
 
 #include "../templates/Vector.cpp"
