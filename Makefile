@@ -28,6 +28,18 @@ SRCS	+=	$(SRCD)/Awesome.cpp
 
 INCD	=	headers
 
+INCS	=	$(INCD)/color.hpp
+INCS	+=	$(INCD)/Awesome.hpp
+
+INCS	+=	$(INCD)/Vector.hpp
+
+
+#	Templates
+
+TMPD	=	templates
+
+TMPS	=	$(TMPD)/Vector.cpp
+
 
 #	Objets
 
