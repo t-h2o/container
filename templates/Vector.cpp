@@ -5,19 +5,12 @@
 template <typename T>
 Vector<T>::Vector(void) : _list(0), _maxSize(0), _size(0), _allocated(0)
 {
-	message("Vector: default constructor");
 }
 
-template <typename T> Vector<T>::Vector(Vector const &other)
-{
-	message("Vector: copy constructor");
-	*this = other;
-}
+template <typename T> Vector<T>::Vector(Vector const &other) { *this = other; }
 
 template <typename T> Vector<T>::~Vector(void)
 {
-	message("Vector: destructor");
-
 	this->clear();
 	this->_allocator.deallocate(this->_list, this->_allocated);
 }
@@ -127,8 +120,6 @@ template <typename T>
 void
 Vector<T>::assign(size_t nElements, T value)
 {
-	message("Vector: assign");
-
 	_allocator.deallocate(this->_list, this->_allocated);
 
 	this->_size = nElements;
@@ -157,7 +148,6 @@ Vector<T>::push_back(T const &object)
 	T	  *newList;
 	size_t newAllocation;
 
-	message("Vector: push back");
 	if (this->_allocated == this->_size)
 	{
 		newAllocation = this->_allocated * 2;
@@ -193,8 +183,6 @@ template <typename T>
 void
 Vector<T>::pop_back(void)
 {
-	message("Vector: pop_back");
-
 	if (this->empty())
 		return;
 
@@ -227,8 +215,6 @@ template <typename T>
 void
 Vector<T>::clear(void)
 {
-	message("Vector: clear");
-
 	if (this->empty())
 		return;
 
