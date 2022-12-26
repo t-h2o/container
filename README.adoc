@@ -53,7 +53,7 @@ image::assets/vector.svg[example]
 
 .Modifiers
 * [x] `assign`
-* [ ] `push_back`
+* [x] `push_back`
 * [x] `pop_back`
 * [ ] `insert`
 * [ ] `erase`
