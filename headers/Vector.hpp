@@ -1,5 +1,3 @@
-#include "color.hpp"
-
 /**
  *  @brief A standard container which offers fixed time access to
  *  individual elements in any order.
