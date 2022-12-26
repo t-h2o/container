@@ -79,6 +79,13 @@ re:	fclean all
 db: all
 	$(DB) $(NAME)
 
+format:
+	@cat $(SRCS) $(INCS) $(TMPS) > /tmp/before
+	@clang-format -i $(SRCS) $(INCS) $(TMPS)
+	@cat $(SRCS) $(INCS) $(TMPS) > /tmp/after
+	@diff -u --color=auto /tmp/before /tmp/after || true
+
+
 diagram:
 	asciidoctor -r asciidoctor-diagram assets/README.adoc -o assets/index.html
 
