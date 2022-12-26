@@ -68,6 +68,10 @@ test_copy_equal(std::vector<T> &vec_std, Vector<T> &vec_ft)
 		vec_ft_copy = vec_ft;
 		expect_equal(vec_std, vec_ft_copy);
 	}
+	{
+		Vector<T> vec_ft_copy(vec_ft);
+		expect_equal(vec_std, vec_ft_copy);
+	}
 }
 
 static void

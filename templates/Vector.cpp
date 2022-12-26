@@ -8,6 +8,12 @@ Vector<T>::Vector(void) : _list(0), _maxSize(0), _size(0), _allocated(0)
 	message("Vector: default constructor");
 }
 
+template <typename T> Vector<T>::Vector(Vector const &other)
+{
+	message("Vector: copy constructor");
+	*this = other;
+}
+
 template <typename T> Vector<T>::~Vector(void)
 {
 	message("Vector: destructor");

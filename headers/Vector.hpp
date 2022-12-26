@@ -19,6 +19,7 @@ template <typename T> class Vector
   public:
 	/* Member Funcion */
 	Vector(void);
+	Vector(Vector const &);
 	~Vector(void);
 	Vector &operator=(Vector const &);
 
