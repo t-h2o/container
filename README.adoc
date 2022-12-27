@@ -42,7 +42,7 @@ image::assets/vector.svg[example]
 * [x] `capacity`
 * [x] `empty`
 * [ ] `reserve`
-* [ ] `shrink_to_fit`
+* [x] `shrink_to_fit`
 
 .Element access
 * [x] `operator[]`
