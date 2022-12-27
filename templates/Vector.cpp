@@ -175,7 +175,14 @@ Vector<T>::push_back(T const &object)
 	T	  *newList;
 	size_t newAllocation;
 
-	if (this->_allocated == this->_size)
+	if (this->_list == 0)
+	{
+		this->_list = this->_allocator.allocate(1);
+		this->_allocator.construct(this->_list, object);
+		this->_allocated = 1;
+		this->_size = 1;
+	}
+	else if (this->_allocated == this->_size)
 	{
 		newAllocation = this->_allocated * 2;
 		newList = this->_allocator.allocate(newAllocation);
