@@ -73,6 +73,7 @@ test_comparison(void)
 	vec_std.push_back(13);
 	test_copy_equal(vec_std, vec_ft);
 }
+
 int
 main(void)
 {
