@@ -126,6 +126,11 @@ scenario_two(void)
 	vec_std.assign(7, 100);
 	test_copy_equal(vec_std, vec_ft);
 
+	section("erase(3);");
+	vec_ft.erase(3);
+	vec_std.erase(vec_std.begin() + 3);
+	test_copy_equal(vec_std, vec_ft);
+
 	section("shrink_to_fit();");
 	vec_ft.shrink_to_fit();
 	vec_std.shrink_to_fit();
@@ -142,6 +147,48 @@ scenario_two(void)
 	test_copy_equal(vec_std, vec_ft);
 }
 
+template <typename T>
+static void
+scenario_tree(void)
+{
+	section("Test with comparison");
+
+	std::vector<T> vec_std;
+	Vector<T>	   vec_ft;
+
+	test_copy_equal(vec_std, vec_ft);
+
+	section("push_back(1);");
+	vec_ft.push_back(1);
+	vec_std.push_back(1);
+	test_copy_equal(vec_std, vec_ft);
+
+	section("push_back(22);");
+	vec_ft.push_back(22);
+	vec_std.push_back(22);
+	test_copy_equal(vec_std, vec_ft);
+
+	section("push_back(333);");
+	vec_ft.push_back(333);
+	vec_std.push_back(333);
+	test_copy_equal(vec_std, vec_ft);
+
+	section("erase(1);");
+	vec_ft.erase(1);
+	vec_std.erase(vec_std.begin() + 1);
+	test_copy_equal(vec_std, vec_ft);
+
+	section("erase(1);");
+	vec_ft.erase(1);
+	vec_std.erase(vec_std.begin() + 1);
+	test_copy_equal(vec_std, vec_ft);
+
+	section("erase(0);");
+	vec_ft.erase(0);
+	vec_std.erase(vec_std.begin() + 0);
+	test_copy_equal(vec_std, vec_ft);
+}
+
 int
 main(void)
 {
@@ -154,6 +201,10 @@ main(void)
 	title("Scenario 2");
 	scenario_two<int>();
 	scenario_two<Awesome>();
+
+	title("Scenario 3");
+	scenario_tree<int>();
+	scenario_tree<Awesome>();
 
 	return 0;
 }
