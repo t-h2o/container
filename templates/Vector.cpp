@@ -134,12 +134,14 @@ Vector<T>::assign(size_t nElements, T value)
 	}
 	else if (nElements >= this->_size)
 	{
-		// reallocate memory
+		// reallocation
 		for (size_t i = 0; i < this->_size; i++)
 			this->_allocator.destroy(&(this->_list[i]));
-
 		_allocator.deallocate(this->_list, this->_allocated);
-		this->_list = _allocator.allocate(this->_allocated * 2);
+		this->_size = nElements;
+		this->_allocated = nElements;
+		this->_maxSize = nElements;
+		this->_list = _allocator.allocate(nElements);
 
 		for (size_t i = 0; i < nElements; i++)
 			this->_allocator.construct(&(this->_list[i]), value);
