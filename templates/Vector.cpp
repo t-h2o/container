@@ -120,15 +120,40 @@ template <typename T>
 void
 Vector<T>::assign(size_t nElements, T value)
 {
-	_allocator.deallocate(this->_list, this->_allocated);
 
-	this->_size = nElements;
-	this->_allocated = nElements;
-	this->_maxSize = nElements;
-	this->_list = _allocator.allocate(nElements);
+	if (this->_list == 0)
+	{
+		// first allocation
+		this->_size = nElements;
+		this->_allocated = nElements;
+		this->_maxSize = nElements;
+		this->_list = _allocator.allocate(nElements);
 
-	for (size_t i = 0; i < nElements; i++)
-		this->_allocator.construct(&(this->_list[i]), value);
+		for (size_t i = 0; i < nElements; i++)
+			this->_allocator.construct(&(this->_list[i]), value);
+	}
+	else if (nElements >= this->_size)
+	{
+		// reallocate memory
+		for (size_t i = 0; i < this->_size; i++)
+			this->_allocator.destroy(&(this->_list[i]));
+
+		_allocator.deallocate(this->_list, this->_allocated);
+		this->_list = _allocator.allocate(this->_allocated * 2);
+
+		for (size_t i = 0; i < nElements; i++)
+			this->_allocator.construct(&(this->_list[i]), value);
+	}
+	else if (nElements < this->_size)
+	{
+		// destroy and construct
+		for (size_t i = 0; i < this->_size; i++)
+			this->_allocator.destroy(&(this->_list[i]));
+
+		this->_size = nElements;
+		for (size_t i = 0; i < nElements; i++)
+			this->_allocator.construct(&(this->_list[i]), value);
+	}
 }
 
 /**
