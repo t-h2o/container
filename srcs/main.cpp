@@ -189,6 +189,22 @@ scenario_tree(void)
 	test_copy_equal(vec_std, vec_ft);
 }
 
+template <typename T>
+static void
+scenario_four(void)
+{
+	std::vector<T> vec;
+
+	vec.assign(2, 42);
+
+	typename std::vector<T>::iterator it;
+
+	it = vec.begin();
+
+	std::cout << "0: " << it[0] << std::endl;
+	std::cout << "1: " << it[1] << std::endl;
+}
+
 int
 main(void)
 {
@@ -205,6 +221,9 @@ main(void)
 	title("Scenario 3");
 	scenario_tree<int>();
 	scenario_tree<Awesome>();
+
+	title("Scenario 4");
+	scenario_four<int>();
 
 	return 0;
 }
