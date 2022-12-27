@@ -5,42 +5,6 @@
 #include <iostream>
 #include <vector>
 
-static void
-test_awesome(void)
-{
-	section("Test with Awesome class");
-
-	Awesome awesome;
-
-	{
-		Vector<Awesome> vec_ft;
-		vec_ft.assign(5, awesome);
-		vec_ft.pop_back();
-
-		Vector<Awesome> vec_ft_copy;
-		vec_ft[0].set_number(42);
-		vec_ft[2].set_number(21);
-		section("copy");
-		vec_ft = vec_ft;
-		vec_ft_copy = vec_ft;
-
-		std::cout << "ft" << vec_ft;
-		std::cout << "copy" << vec_ft_copy;
-
-		vec_ft.push_back(1);
-		vec_ft.push_back(2);
-
-		std::cout << "ft" << vec_ft;
-		std::cout << "copy" << vec_ft_copy;
-
-		section("swap");
-		vec_ft.swap(vec_ft_copy);
-
-		std::cout << "ft" << vec_ft;
-		std::cout << "copy" << vec_ft_copy;
-	}
-}
-
 template <typename T>
 static void
 expect_equal(std::vector<T> &vec_std, Vector<T> &vec_ft)
@@ -50,8 +14,8 @@ expect_equal(std::vector<T> &vec_std, Vector<T> &vec_ft)
 	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
 	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
 
-	int const *data_std = vec_std.data();
-	int const *data_ft = vec_ft.data();
+	T const *data_std = vec_std.data();
+	T const *data_ft = vec_ft.data();
 
 	for (size_t i = 0; i < vec_std.size(); ++i)
 		EXPECT_EQ(data_ft[i], data_std[i]);
@@ -72,6 +36,19 @@ test_copy_equal(std::vector<T> &vec_std, Vector<T> &vec_ft)
 		Vector<T> vec_ft_copy(vec_ft);
 		expect_equal(vec_std, vec_ft_copy);
 	}
+}
+
+static void
+test_awesome(void)
+{
+	section("Test with Awesome class");
+
+	Vector<Awesome>		 vec_ft;
+	std::vector<Awesome> vec_std;
+
+	vec_ft.assign(7, 100);
+	vec_std.assign(7, 100);
+	test_copy_equal(vec_std, vec_ft);
 }
 
 static void
