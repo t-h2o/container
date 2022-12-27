@@ -90,6 +90,23 @@ scenario_one(void)
 	test_copy_equal(vec_std, vec_ft);
 }
 
+template <typename T>
+static void
+scenario_two(void)
+{
+	section("Test with comparison");
+
+	std::vector<T> vec_std;
+	Vector<T>	   vec_ft;
+
+	test_copy_equal(vec_std, vec_ft);
+
+	section("push_back(12);");
+	vec_ft.push_back(12);
+	vec_std.push_back(12);
+	test_copy_equal(vec_std, vec_ft);
+}
+
 int
 main(void)
 {
@@ -98,6 +115,10 @@ main(void)
 	title("Scenario 1");
 	scenario_one<int>();
 	scenario_one<Awesome>();
+
+	title("Scenario 2");
+	scenario_two<int>();
+	scenario_two<Awesome>();
 
 	return 0;
 }
