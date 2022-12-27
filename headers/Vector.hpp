@@ -39,6 +39,7 @@ template <typename T> class Vector
 	void assign(size_t, T);
 	void push_back(T const &);
 	void pop_back(void);
+	void erase(size_t);
 	void swap(Vector &);
 	void clear(void);
 

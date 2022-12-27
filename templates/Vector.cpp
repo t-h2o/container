@@ -248,6 +248,30 @@ Vector<T>::pop_back(void)
 
 template <typename T>
 void
+Vector<T>::erase(size_t position)
+{
+	size_t newAllocation;
+	T	  *newList;
+
+	newAllocation = this->_allocated;
+	newList = this->_allocator.allocate(newAllocation);
+	for (size_t i = 0, j = 0; i < this->_size; ++i)
+	{
+		if (i != position)
+		{
+			this->_allocator.construct(&(newList[j]), ((*this)[i]));
+			++j;
+		}
+		this->_allocator.destroy(&(*this)[i]);
+	}
+	this->_allocator.deallocate(this->_list, this->_allocated);
+	--this->_size;
+	this->_allocated = newAllocation;
+	this->_list = newList;
+}
+
+template <typename T>
+void
 Vector<T>::swap(Vector &other)
 {
 	T	  *tmpList;
