@@ -71,6 +71,28 @@ Vector<T>::empty(void) const
 	return !(this->_size);
 }
 
+template <typename T>
+void
+Vector<T>::shrink_to_fit(void)
+{
+	size_t newAllocation;
+	T	  *newList;
+
+	if (this->_allocated == this->_size)
+		return;
+
+	newAllocation = this->_size;
+	newList = this->_allocator.allocate(newAllocation);
+	for (size_t i = 0; i < this->_size; ++i)
+	{
+		this->_allocator.construct(&(newList[i]), (*this)[i]);
+		this->_allocator.destroy(&(*this)[i]);
+	}
+	this->_allocator.deallocate(this->_list, this->_allocated);
+	this->_allocated = this->_size;
+	this->_list = newList;
+}
+
 /**
  * Element access
  */

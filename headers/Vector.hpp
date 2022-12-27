@@ -26,6 +26,7 @@ template <typename T> class Vector
 	size_t max_size(void) const;
 	size_t capacity(void) const;
 	bool   empty(void) const;
+	void   shrink_to_fit(void);
 
 	/* Element access */
 	T &operator[](size_t) const;
