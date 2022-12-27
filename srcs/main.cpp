@@ -101,9 +101,44 @@ scenario_two(void)
 
 	test_copy_equal(vec_std, vec_ft);
 
+	section("shrink_to_fit();");
+	vec_ft.shrink_to_fit();
+	vec_std.shrink_to_fit();
+	test_copy_equal(vec_std, vec_ft);
+
 	section("push_back(12);");
 	vec_ft.push_back(12);
 	vec_std.push_back(12);
+	test_copy_equal(vec_std, vec_ft);
+
+	section("push_back(2);");
+	vec_ft.push_back(2);
+	vec_std.push_back(2);
+	test_copy_equal(vec_std, vec_ft);
+
+	section("push_back(33);");
+	vec_ft.push_back(33);
+	vec_std.push_back(33);
+	test_copy_equal(vec_std, vec_ft);
+
+	section("assign(7, 100);");
+	vec_ft.assign(7, 100);
+	vec_std.assign(7, 100);
+	test_copy_equal(vec_std, vec_ft);
+
+	section("shrink_to_fit();");
+	vec_ft.shrink_to_fit();
+	vec_std.shrink_to_fit();
+	test_copy_equal(vec_std, vec_ft);
+
+	section("pop_back;");
+	vec_ft.pop_back();
+	vec_std.pop_back();
+	test_copy_equal(vec_std, vec_ft);
+
+	section("shrink_to_fit();");
+	vec_ft.shrink_to_fit();
+	vec_std.shrink_to_fit();
 	test_copy_equal(vec_std, vec_ft);
 }
 
