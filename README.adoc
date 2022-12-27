@@ -35,6 +35,17 @@ image::assets/vector.svg[example]
 * [x] `destructor`
 * [x] `operator=`
 
+.Iterators
+
+* [ ] begin
+* [ ] end
+* [ ] rbegin
+* [ ] rend
+* [ ] cbegin
+* [ ] cend
+* [ ] crbegin
+* [ ] crend
+
 .Capacity
 * [x] `size`
 * [x] `max_size`
