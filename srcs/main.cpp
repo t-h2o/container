@@ -59,6 +59,11 @@ test_comparison(void)
 	vec_std.assign(3, 200);
 	test_copy_equal(vec_std, vec_ft);
 
+	section("assign(12, 300);");
+	vec_ft.assign(12, 300);
+	vec_std.assign(12, 300);
+	test_copy_equal(vec_std, vec_ft);
+
 	section("pop_back;");
 	vec_ft.pop_back();
 	vec_std.pop_back();
