@@ -1,20 +1,12 @@
 #include "Awesome.hpp"
 
-Awesome::Awesome(int number)
-{
-	std::cout << number << " ";
-	this->_number = new int(number);
-}
+Awesome::Awesome(int number) { this->_number = new int(number); }
 Awesome::~Awesome(void)
 {
 	delete this->_number;
 	this->_number = 0;
 }
-Awesome::Awesome(Awesome const &other) : _number(0)
-{
-	std::cout << *(other._number) << " ";
-	*this = other;
-}
+Awesome::Awesome(Awesome const &other) : _number(0) { *this = other; }
 
 Awesome &
 Awesome::operator=(Awesome const &other)
