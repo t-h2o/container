@@ -17,6 +17,12 @@ Awesome::operator=(Awesome const &other)
 	return *this;
 }
 
+bool
+Awesome::operator==(Awesome const &other) const
+{
+	return (*(this->_number) == *(other._number));
+}
+
 int
 Awesome::get_number(void) const
 {

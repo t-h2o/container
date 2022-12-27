@@ -14,6 +14,8 @@ class Awesome
 
 	Awesome &operator=(Awesome const &other);
 
+	bool operator==(Awesome const &) const;
+
 	int	 get_number(void) const;
 	void set_number(int number);
 
