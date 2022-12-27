@@ -40,7 +40,7 @@ test_copy_equal(std::vector<T> &vec_std, Vector<T> &vec_ft)
 
 template <typename T>
 static void
-test_comparison(void)
+scenario_one(void)
 {
 	section("Test with comparison");
 
@@ -95,8 +95,9 @@ main(void)
 {
 	title("Main");
 
-	test_comparison<int>();
-	test_comparison<Awesome>();
+	title("Scenario 1");
+	scenario_one<int>();
+	scenario_one<Awesome>();
 
 	return 0;
 }
