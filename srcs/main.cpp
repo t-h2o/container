@@ -38,26 +38,14 @@ test_copy_equal(std::vector<T> &vec_std, Vector<T> &vec_ft)
 	}
 }
 
-static void
-test_awesome(void)
-{
-	section("Test with Awesome class");
-
-	Vector<Awesome>		 vec_ft;
-	std::vector<Awesome> vec_std;
-
-	vec_ft.assign(7, 100);
-	vec_std.assign(7, 100);
-	test_copy_equal(vec_std, vec_ft);
-}
-
+template <typename T>
 static void
 test_comparison(void)
 {
 	section("Test with comparison");
 
-	std::vector<int> vec_std;
-	Vector<int>		 vec_ft;
+	std::vector<T> vec_std;
+	Vector<T>	   vec_ft;
 
 	test_copy_equal(vec_std, vec_ft);
 
@@ -163,8 +151,8 @@ main(void)
 
 	test_my_vector();
 	test_vector();
-	test_comparison();
-	test_awesome();
+	test_comparison<int>();
+	test_comparison<Awesome>();
 
 	return 0;
 }
