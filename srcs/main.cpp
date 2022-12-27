@@ -49,30 +49,37 @@ test_comparison(void)
 
 	test_copy_equal(vec_std, vec_ft);
 
+	section("assign(7, 100);");
 	vec_ft.assign(7, 100);
 	vec_std.assign(7, 100);
 	test_copy_equal(vec_std, vec_ft);
 
+	section("assign(3, 200);");
 	vec_ft.assign(3, 200);
 	vec_std.assign(3, 200);
 	test_copy_equal(vec_std, vec_ft);
 
+	section("pop_back;");
 	vec_ft.pop_back();
 	vec_std.pop_back();
 	test_copy_equal(vec_std, vec_ft);
 
+	section("push_back(12);");
 	vec_ft.push_back(12);
 	vec_std.push_back(12);
 	test_copy_equal(vec_std, vec_ft);
 
+	section("push_back(13);");
 	vec_ft.push_back(13);
 	vec_std.push_back(13);
 	test_copy_equal(vec_std, vec_ft);
 
+	section("clear();");
 	vec_ft.clear();
 	vec_std.clear();
 	test_copy_equal(vec_std, vec_ft);
 
+	section("push_back(13);");
 	vec_ft.push_back(13);
 	vec_std.push_back(13);
 	test_copy_equal(vec_std, vec_ft);
