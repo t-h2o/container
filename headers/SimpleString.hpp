@@ -12,12 +12,13 @@ class SimpleString
 	~SimpleString(void);
 
 	char &operator[](size_t);
+	char &operator[](size_t) const;
 
   private:
 	size_t _size;
 	char  *_str;
 };
 
-std::ostream &operator<<(std::ostream &output, SimpleString &object);
+std::ostream &operator<<(std::ostream &output, SimpleString const &object);
 
 #endif /* SIMPLE_STRING_HPP */
