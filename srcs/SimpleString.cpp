@@ -38,5 +38,3 @@ operator<<(std::ostream &output, SimpleString const &object)
 
 	return output;
 }
-
-SimpleStringIterator::SimpleStringIterator(char *ptr) : _pointer(ptr) {}
