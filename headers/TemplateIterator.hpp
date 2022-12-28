@@ -11,6 +11,9 @@ template <typename T> class TemplateIterator
 
 	T &operator*(void);
 
+	TemplateIterator<T> &operator--(void);
+	TemplateIterator<T>	 operator--(int);
+
   private:
 	T	  *_pointer;
 	size_t _position;

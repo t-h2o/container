@@ -29,12 +29,20 @@ main(void)
 
 	std::cout << *(it) << std::endl;
 	std::cout << *(--it) << std::endl;
-	std::cout << *(it) << std::endl;
+	std::cout << *(it) << std::endl << std::endl;
 
 	TemplateIterator<char> paul;
 
 	paul = str.end();
+	paul--;
+	paul--;
 
+	std::cout << *(paul) << std::endl;
+	std::cout << *(paul--) << std::endl;
+	std::cout << *(paul) << std::endl;
+
+	std::cout << *(paul) << std::endl;
+	std::cout << *(--paul) << std::endl;
 	std::cout << *(paul) << std::endl;
 
 	return 0;

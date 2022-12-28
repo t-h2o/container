@@ -15,3 +15,20 @@ TemplateIterator<T>::operator*(void)
 {
 	return this->_pointer[_position];
 }
+
+template <typename T>
+TemplateIterator<T> &
+TemplateIterator<T>::operator--(void)
+{
+	this->_position--;
+	return *this;
+}
+
+template <typename T>
+TemplateIterator<T>
+TemplateIterator<T>::operator--(int)
+{
+	TemplateIterator<T> prev(*this);
+	this->_position--;
+	return prev;
+}
