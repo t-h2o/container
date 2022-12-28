@@ -25,3 +25,18 @@ SimpleStringIterator::operator++(int)
 	this->_pointer++;
 	return prev;
 }
+
+SimpleStringIterator &
+SimpleStringIterator::operator--(void)
+{
+	this->_pointer--;
+	return *this;
+}
+
+SimpleStringIterator
+SimpleStringIterator::operator--(int)
+{
+	SimpleStringIterator prev(*this);
+	this->_pointer--;
+	return prev;
+}

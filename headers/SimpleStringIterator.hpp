@@ -13,6 +13,9 @@ class SimpleStringIterator
 	SimpleStringIterator &operator++(void);
 	SimpleStringIterator  operator++(int);
 
+	SimpleStringIterator &operator--(void);
+	SimpleStringIterator  operator--(int);
+
   private:
 	char  *_pointer;
 	size_t _position;

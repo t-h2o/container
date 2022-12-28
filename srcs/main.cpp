@@ -19,6 +19,14 @@ main(void)
 
 	std::cout << *(it) << std::endl;
 	std::cout << *(++it) << std::endl;
+	std::cout << *(it) << std::endl << std::endl;
+
+	std::cout << *(it) << std::endl;
+	std::cout << *(it--) << std::endl;
+	std::cout << *(it) << std::endl;
+
+	std::cout << *(it) << std::endl;
+	std::cout << *(--it) << std::endl;
 	std::cout << *(it) << std::endl;
 
 	return 0;
