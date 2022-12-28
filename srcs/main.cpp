@@ -35,5 +35,7 @@ main(void)
 
 	paul = str.end();
 
+	std::cout << *(paul) << std::endl;
+
 	return 0;
 }
