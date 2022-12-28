@@ -11,6 +11,8 @@ class SimpleString
 	SimpleString(char const *);
 	~SimpleString(void);
 
+	char &operator[](size_t);
+
   private:
 	size_t _size;
 	char  *_str;

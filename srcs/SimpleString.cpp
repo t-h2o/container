@@ -11,3 +11,9 @@ SimpleString::SimpleString(char const *str)
 }
 
 SimpleString::~SimpleString(void) { delete[] _str; }
+
+char &
+SimpleString::operator[](size_t position)
+{
+	return _str[position];
+}

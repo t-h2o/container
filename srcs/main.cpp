@@ -9,5 +9,7 @@ main(void)
 	SimpleString str("hello world");
 	SimpleString str_empty;
 
+	std::cout << str[0] << std::endl;
+
 	return 0;
 }
