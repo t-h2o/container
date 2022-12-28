@@ -6,6 +6,7 @@
 class SimpleStringIterator
 {
   public:
+	SimpleStringIterator(void);
 	SimpleStringIterator(char *, size_t);
 
 	char &operator*(void) const;

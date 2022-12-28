@@ -4,6 +4,8 @@
 int
 main(void)
 {
+	SimpleStringIterator it;
+
 	title("Simple string");
 
 	SimpleString str("hello world");
@@ -11,7 +13,7 @@ main(void)
 
 	std::cout << str << std::endl;
 
-	SimpleStringIterator it = str.begin();
+	it = str.begin();
 
 	std::cout << *(it) << std::endl;
 	std::cout << *(it++) << std::endl;
