@@ -35,6 +35,13 @@ Vector<T>::operator=(Vector const &other)
 	return *this;
 }
 
+template <typename T>
+Iterator<T>
+Vector<T>::begin(void)
+{
+	return Iterator<T>(this->_list, 0);
+}
+
 /**
  * Capacity
  */

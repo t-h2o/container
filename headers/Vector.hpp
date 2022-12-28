@@ -21,6 +21,9 @@ template <typename T> class Vector
 	~Vector(void);
 	Vector &operator=(Vector const &);
 
+	/* Iterators */
+	Iterator<T> begin(void);
+
 	/* Capacity */
 	size_t size(void) const;
 	size_t max_size(void) const;
