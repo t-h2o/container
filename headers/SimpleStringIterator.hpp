@@ -1,15 +1,18 @@
 #ifndef SIMPLE_STRING_ITERATOR_HPP
 #define SIMPLE_STRING_ITERATOR_HPP
 
+#include <iostream>
+
 class SimpleStringIterator
 {
   public:
-	SimpleStringIterator(char *);
+	SimpleStringIterator(char *, size_t);
 
 	char &operator*(void) const;
 
   private:
-	char *_pointer;
+	char  *_pointer;
+	size_t _position;
 };
 
 #endif /* SIMPLE_STRING_ITERATOR_HPP */

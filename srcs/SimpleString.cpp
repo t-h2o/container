@@ -15,7 +15,7 @@ SimpleString::~SimpleString(void) { delete[] _str; }
 SimpleStringIterator
 SimpleString::begin(void)
 {
-	return SimpleStringIterator(_str);
+	return SimpleStringIterator(_str, 0);
 }
 
 char &

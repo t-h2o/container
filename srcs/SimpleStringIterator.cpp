@@ -1,6 +1,9 @@
 #include "SimpleStringIterator.hpp"
 
-SimpleStringIterator::SimpleStringIterator(char *ptr) : _pointer(ptr) {}
+SimpleStringIterator::SimpleStringIterator(char *ptr, size_t position)
+	: _pointer(ptr), _position(position)
+{
+}
 
 char &
 SimpleStringIterator::operator*(void) const
