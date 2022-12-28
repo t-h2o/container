@@ -10,3 +10,10 @@ SimpleStringIterator::operator*(void) const
 {
 	return this->_pointer[0];
 }
+
+SimpleStringIterator &
+SimpleStringIterator::operator++(void)
+{
+	this->_pointer++;
+	return *this;
+}

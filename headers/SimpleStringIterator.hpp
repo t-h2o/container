@@ -10,6 +10,8 @@ class SimpleStringIterator
 
 	char &operator*(void) const;
 
+	SimpleStringIterator &operator++(void);
+
   private:
 	char  *_pointer;
 	size_t _position;

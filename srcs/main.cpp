@@ -15,7 +15,8 @@ main(void)
 	SimpleStringIterator it = str.begin();
 
 	std::cout << *it << std::endl;
-	(void)it;
+	++it;
+	std::cout << *it << std::endl;
 
 	return 0;
 }
