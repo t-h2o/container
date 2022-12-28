@@ -3,3 +3,10 @@
 == Subject
 
 42: https://cdn.intra.42.fr/pdf/pdf/60315/en.subject.pdf[subject]
+
+== Simple string
+
+____
+I watched this https://youtu.be/wVcE02VWGds[video] that explains iterators on a simple string class.
+I found it a good idea to write the `SimpleString` class to start writing iterators on a simple class.
+____
