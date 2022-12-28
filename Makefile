@@ -22,12 +22,16 @@ SRCD	=	srcs
 SRCS	=	$(SRCD)/main.cpp
 SRCS	+=	$(SRCD)/color.cpp
 
+SRCS	+=	$(SRCD)/SimpleString.cpp
+
 
 #	Headers
 
 INCD	=	headers
 
 INCS	=	$(INCD)/color.hpp
+
+INCS	+=	$(INCD)/SimpleString.hpp
 
 
 #	Objets
