@@ -12,5 +12,9 @@ main(void)
 	std::cout << str[0] << std::endl;
 	std::cout << str << std::endl;
 
+	SimpleStringIterator it = str.begin();
+
+	(void)it;
+
 	return 0;
 }

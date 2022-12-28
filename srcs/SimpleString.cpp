@@ -12,6 +12,12 @@ SimpleString::SimpleString(char const *str)
 
 SimpleString::~SimpleString(void) { delete[] _str; }
 
+SimpleStringIterator
+SimpleString::begin(void)
+{
+	return SimpleStringIterator(_str);
+}
+
 char &
 SimpleString::operator[](size_t position)
 {

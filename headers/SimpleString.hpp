@@ -13,6 +13,8 @@ class SimpleString
 	SimpleString(char const *);
 	~SimpleString(void);
 
+	SimpleStringIterator begin(void);
+
 	char &operator[](size_t);
 	char &operator[](size_t) const;
 
