@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string.h>
 
+class SimpleStringIterator;
+
 class SimpleString
 {
   public:
@@ -20,5 +22,14 @@ class SimpleString
 };
 
 std::ostream &operator<<(std::ostream &output, SimpleString const &object);
+
+class SimpleStringIterator
+{
+  public:
+	SimpleStringIterator(char *);
+
+  private:
+	char *_pointer;
+};
 
 #endif /* SIMPLE_STRING_HPP */
