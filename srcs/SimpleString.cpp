@@ -18,6 +18,12 @@ SimpleString::begin(void)
 	return SimpleStringIterator(_str, 0);
 }
 
+TemplateIterator<char>
+SimpleString::end(void)
+{
+	return TemplateIterator<char>(_str, _size);
+}
+
 char &
 SimpleString::operator[](size_t position)
 {

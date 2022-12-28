@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "SimpleStringIterator.hpp"
+#include "TemplateIterator.hpp"
 
 class SimpleString
 {
@@ -13,7 +14,8 @@ class SimpleString
 	SimpleString(char const *);
 	~SimpleString(void);
 
-	SimpleStringIterator begin(void);
+	SimpleStringIterator   begin(void);
+	TemplateIterator<char> end(void);
 
 	char &operator[](size_t);
 	char &operator[](size_t) const;

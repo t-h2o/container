@@ -35,6 +35,15 @@ INCS	=	$(INCD)/color.hpp
 INCS	+=	$(INCD)/SimpleString.hpp
 INCS	+=	$(INCD)/SimpleStringIterator.hpp
 
+INCS	+=	$(INCD)/TemplateIterator.hpp
+
+
+#	Templates
+
+TMPD	=	templates
+
+TMPS	=	$(TMPD)/TemplateIterator.cpp
+
 
 #	Objets
 

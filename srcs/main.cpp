@@ -31,5 +31,9 @@ main(void)
 	std::cout << *(--it) << std::endl;
 	std::cout << *(it) << std::endl;
 
+	TemplateIterator<char> paul;
+
+	paul = str.end();
+
 	return 0;
 }
