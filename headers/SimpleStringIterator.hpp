@@ -11,6 +11,7 @@ class SimpleStringIterator
 	char &operator*(void) const;
 
 	SimpleStringIterator &operator++(void);
+	SimpleStringIterator  operator++(int);
 
   private:
 	char  *_pointer;
