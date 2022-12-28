@@ -17,3 +17,12 @@ SimpleString::operator[](size_t position)
 {
 	return _str[position];
 }
+
+std::ostream &
+operator<<(std::ostream &output, SimpleString &object)
+{
+	for (size_t i = 0; object[i]; ++i)
+		output << object[i];
+
+	return output;
+}

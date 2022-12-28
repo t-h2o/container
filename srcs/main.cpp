@@ -10,6 +10,7 @@ main(void)
 	SimpleString str_empty;
 
 	std::cout << str[0] << std::endl;
+	std::cout << str << std::endl;
 
 	return 0;
 }

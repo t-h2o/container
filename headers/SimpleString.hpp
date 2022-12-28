@@ -18,4 +18,6 @@ class SimpleString
 	char  *_str;
 };
 
+std::ostream &operator<<(std::ostream &output, SimpleString &object);
+
 #endif /* SIMPLE_STRING_HPP */
