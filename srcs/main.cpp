@@ -1,4 +1,5 @@
 #include "Awesome.hpp"
+#include "Iterator.hpp"
 #include "Vector.hpp"
 #include "color.hpp"
 #include <gtest/gtest.h>
@@ -193,16 +194,20 @@ template <typename T>
 static void
 scenario_four(void)
 {
-	std::vector<T> vec;
+	Vector<T>	   vec_ft;
+	std::vector<T> vec_std;
 
-	vec.assign(2, 42);
+	vec_std.assign(2, 42);
+	vec_ft.assign(2, 42);
 
-	typename std::vector<T>::iterator it;
+	typename std::vector<T>::iterator it_std;
+	Iterator<T>						  it_ft;
 
-	it = vec.begin();
+	it_std = vec_std.begin();
+	it_ft = vec_ft.begin();
 
-	std::cout << "0: " << it[0] << std::endl;
-	std::cout << "1: " << it[1] << std::endl;
+	std::cout << "0: " << it_std[0] << std::endl;
+	std::cout << "1: " << it_std[1] << std::endl;
 }
 
 int
