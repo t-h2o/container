@@ -31,6 +31,7 @@ INCD	=	headers
 INCS	=	$(INCD)/color.hpp
 INCS	+=	$(INCD)/Awesome.hpp
 
+INCS	+=	$(INCD)/Iterator.hpp
 INCS	+=	$(INCD)/Vector.hpp
 
 
@@ -38,7 +39,8 @@ INCS	+=	$(INCD)/Vector.hpp
 
 TMPD	=	templates
 
-TMPS	=	$(TMPD)/Vector.cpp
+TMPS	=	$(TMPD)/Iterator.cpp
+TMPS	+=	$(TMPD)/Vector.cpp
 
 
 #	Objets
