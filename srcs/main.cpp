@@ -14,6 +14,7 @@ main(void)
 
 	SimpleStringIterator it = str.begin();
 
+	std::cout << *it << std::endl;
 	(void)it;
 
 	return 0;
