@@ -87,3 +87,11 @@ iterator<T>::operator<=(iterator<T> const &other)
 {
 	return (!(*this > other));
 }
+
+template <typename T>
+iterator<T> &
+iterator<T>::operator+(const long add)
+{
+	this->_position += add;
+	return *this;
+}

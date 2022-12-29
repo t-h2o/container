@@ -14,6 +14,7 @@ template <typename T> class iterator
 	T			&operator[](size_t);
 	iterator<T> &operator++(void);
 	iterator<T>	 operator++(int);
+	iterator<T> &operator+(const long);
 
 	bool operator==(iterator<T> const &other);
 	bool operator!=(iterator<T> const &other);
