@@ -208,6 +208,9 @@ scenario_four(void)
 
 	std::cout << "0: " << it_std[0] << std::endl;
 	std::cout << "1: " << it_std[1] << std::endl;
+
+	std::cout << "0: " << it_ft[0] << std::endl;
+	std::cout << "1: " << it_ft[1] << std::endl;
 }
 
 int
