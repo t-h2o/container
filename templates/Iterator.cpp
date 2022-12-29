@@ -95,3 +95,11 @@ iterator<T>::operator+(const long add)
 	this->_position += add;
 	return *this;
 }
+
+template <typename T>
+iterator<T> &
+iterator<T>::operator-(const long remove)
+{
+	this->_position -= remove;
+	return *this;
+}
