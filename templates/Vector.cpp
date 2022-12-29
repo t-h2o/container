@@ -1,3 +1,5 @@
+// This file is included into headers/Iterator.hpp
+
 /**
  * Member Funcion
  */

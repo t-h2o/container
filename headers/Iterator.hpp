@@ -3,6 +3,7 @@
 
 namespace ft
 {
+
 template <typename T> class iterator
 {
   public:
@@ -20,6 +21,7 @@ template <typename T> class iterator
 };
 
 #include "../templates/Iterator.cpp"
-}
+
+} /* namespace ft */
 
 #endif /* ITERATOR_HPP */

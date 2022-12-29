@@ -1,3 +1,5 @@
+// This file is included into headers/Vector.hpp
+
 template <typename T> iterator<T>::iterator(void) : _pointer(0), _position(0)
 {
 }

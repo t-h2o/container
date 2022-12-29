@@ -15,6 +15,7 @@
 
 namespace ft
 {
+
 template <typename T> class vector
 {
   public:
@@ -73,4 +74,5 @@ template <typename T>
 std::ostream &operator<<(std::ostream &output, vector<T> const &);
 
 #include "../templates/Vector.cpp"
-}
+
+} /* namespace ft */
