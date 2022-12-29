@@ -220,8 +220,11 @@ scenario_four(void)
 	ft::vector<T>  vec_ft;
 	std::vector<T> vec_std;
 
-	vec_std.assign(2, 42);
-	vec_ft.assign(2, 42);
+	for (int i = 0; i < 10; i++)
+	{
+		vec_std.push_back(i);
+		vec_ft.push_back(i);
+	}
 
 	typename std::vector<T>::iterator it_std;
 	ft::iterator<T>					  it_ft;
@@ -232,8 +235,10 @@ scenario_four(void)
 	std::cout << "0: " << it_std[0] << std::endl;
 	std::cout << "1: " << it_std[1] << std::endl;
 
-	std::cout << "0: " << it_ft[0] << std::endl;
-	std::cout << "1: " << it_ft[1] << std::endl;
+	it_std = it_std + 2;
+	it_ft = it_ft + 2;
+	std::cout << "2: " << it_ft[0] << std::endl;
+	std::cout << "3: " << it_ft[1] << std::endl;
 }
 
 int
