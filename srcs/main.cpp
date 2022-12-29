@@ -235,13 +235,13 @@ scenario_four(void)
 	std::cout << "0: ft: " << it_std[0] << " std: " << it_std[1] << std::endl;
 	std::cout << "1: ft: " << it_std[1] << " std: " << it_std[1] << std::endl;
 
-	it_std = it_std + 2;
-	it_ft = it_ft + 2;
+	it_std += 2;
+	it_ft += 2;
 	std::cout << "2: ft: " << it_ft[0] << " std: " << it_std[1] << std::endl;
 	std::cout << "3: ft: " << it_ft[1] << " std: " << it_std[1] << std::endl;
 
-	it_std = it_std - 1;
-	it_ft = it_ft - 1;
+	it_std -= 1;
+	it_ft -= 1;
 	std::cout << "1: ft: " << it_ft[0] << " std: " << it_std[0] << std::endl;
 	std::cout << "2: ft: " << it_ft[1] << " std: " << it_std[1] << std::endl;
 }
