@@ -31,6 +31,9 @@ expect_equal(std::vector<T> &vec_std, ft::vector<T> &vec_ft)
 
 	for (size_t i = 0; i < vec_std.size(); ++i)
 		EXPECT_EQ(it_ft[i], it_std[i]);
+
+	for (it_ft = vec_ft.begin(); it_ft != vec_ft.end(); ++it_ft)
+		std::cout << *it_ft << std::endl;
 }
 
 template <typename T>
