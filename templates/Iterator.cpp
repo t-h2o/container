@@ -42,3 +42,18 @@ iterator<T>::operator++(int)
 	this->_pointer++;
 	return prev;
 }
+
+template <typename T>
+bool
+iterator<T>::operator==(iterator<T> const &other)
+{
+	return (&(this->_pointer[this->_position])
+			== &(other._pointer[other._position]));
+}
+
+template <typename T>
+bool
+iterator<T>::operator!=(iterator<T> const &other)
+{
+	return !(*this == other);
+}

@@ -15,6 +15,9 @@ template <typename T> class iterator
 	iterator<T> &operator++(void);
 	iterator<T>	 operator++(int);
 
+	bool operator==(iterator<T> const &other);
+	bool operator!=(iterator<T> const &other);
+
   private:
 	T	  *_pointer;
 	size_t _position;
