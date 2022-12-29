@@ -17,6 +17,10 @@ template <typename T> class iterator
 
 	bool operator==(iterator<T> const &other);
 	bool operator!=(iterator<T> const &other);
+	bool operator>(iterator<T> const &other);
+	bool operator<(iterator<T> const &other);
+	bool operator>=(iterator<T> const &other);
+	bool operator<=(iterator<T> const &other);
 
   private:
 	T	  *_pointer;
