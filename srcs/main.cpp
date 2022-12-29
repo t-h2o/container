@@ -20,6 +20,17 @@ expect_equal(std::vector<T> &vec_std, Vector<T> &vec_ft)
 
 	for (size_t i = 0; i < vec_std.size(); ++i)
 		EXPECT_EQ(data_ft[i], data_std[i]);
+
+	if (vec_ft.empty())
+		return;
+
+	typename std::vector<T>::iterator it_std(vec_std.begin());
+	Iterator<T>						  it_ft(vec_ft.begin());
+
+	EXPECT_EQ(*it_ft, *it_std);
+
+	for (size_t i = 0; i < vec_std.size(); ++i)
+		EXPECT_EQ(it_ft[i], it_std[i]);
 }
 
 template <typename T>
