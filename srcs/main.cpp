@@ -8,7 +8,7 @@
 
 template <typename T>
 static void
-expect_equal(std::vector<T> &vec_std, ft::Vector<T> &vec_ft)
+expect_equal(std::vector<T> &vec_std, ft::vector<T> &vec_ft)
 {
 	EXPECT_EQ(vec_ft.size(), vec_std.size());
 	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
@@ -35,17 +35,17 @@ expect_equal(std::vector<T> &vec_std, ft::Vector<T> &vec_ft)
 
 template <typename T>
 static void
-test_copy_equal(std::vector<T> &vec_std, ft::Vector<T> &vec_ft)
+test_copy_equal(std::vector<T> &vec_std, ft::vector<T> &vec_ft)
 {
 	expect_equal(vec_std, vec_ft);
 
 	{
-		ft::Vector<T> vec_ft_copy;
+		ft::vector<T> vec_ft_copy;
 		vec_ft_copy = vec_ft;
 		expect_equal(vec_std, vec_ft_copy);
 	}
 	{
-		ft::Vector<T> vec_ft_copy(vec_ft);
+		ft::vector<T> vec_ft_copy(vec_ft);
 		expect_equal(vec_std, vec_ft_copy);
 	}
 }
@@ -57,7 +57,7 @@ scenario_one(void)
 	section("Test with comparison");
 
 	std::vector<T> vec_std;
-	ft::Vector<T>  vec_ft;
+	ft::vector<T>  vec_ft;
 
 	test_copy_equal(vec_std, vec_ft);
 
@@ -109,7 +109,7 @@ scenario_two(void)
 	section("Test with comparison");
 
 	std::vector<T> vec_std;
-	ft::Vector<T>  vec_ft;
+	ft::vector<T>  vec_ft;
 
 	test_copy_equal(vec_std, vec_ft);
 
@@ -166,7 +166,7 @@ scenario_tree(void)
 	section("Test with comparison");
 
 	std::vector<T> vec_std;
-	ft::Vector<T>  vec_ft;
+	ft::vector<T>  vec_ft;
 
 	test_copy_equal(vec_std, vec_ft);
 
@@ -205,7 +205,7 @@ template <typename T>
 static void
 scenario_four(void)
 {
-	ft::Vector<T>  vec_ft;
+	ft::vector<T>  vec_ft;
 	std::vector<T> vec_std;
 
 	vec_std.assign(2, 42);

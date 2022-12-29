@@ -15,14 +15,14 @@
 
 namespace ft
 {
-template <typename T> class Vector
+template <typename T> class vector
 {
   public:
 	/* Member Funcion */
-	Vector(void);
-	Vector(Vector const &);
-	~Vector(void);
-	Vector &operator=(Vector const &);
+	vector(void);
+	vector(vector const &);
+	~vector(void);
+	vector &operator=(vector const &);
 
 	/* Iterators */
 	ft::Iterator<T> begin(void);
@@ -46,7 +46,7 @@ template <typename T> class Vector
 	void push_back(T const &);
 	void pop_back(void);
 	void erase(size_t);
-	void swap(Vector &);
+	void swap(vector &);
 	void clear(void);
 
 	class out_of_range : public std::exception
@@ -70,7 +70,7 @@ template <typename T> class Vector
 
 /* Extra... */
 template <typename T>
-std::ostream &operator<<(std::ostream &output, Vector<T> const &);
+std::ostream &operator<<(std::ostream &output, vector<T> const &);
 
 #include "../templates/Vector.cpp"
 }

@@ -3,21 +3,21 @@
  */
 
 template <typename T>
-Vector<T>::Vector(void) : _list(0), _maxSize(0), _size(0), _allocated(0)
+vector<T>::vector(void) : _list(0), _maxSize(0), _size(0), _allocated(0)
 {
 }
 
-template <typename T> Vector<T>::Vector(Vector const &other) { *this = other; }
+template <typename T> vector<T>::vector(vector const &other) { *this = other; }
 
-template <typename T> Vector<T>::~Vector(void)
+template <typename T> vector<T>::~vector(void)
 {
 	this->clear();
 	this->_allocator.deallocate(this->_list, this->_allocated);
 }
 
 template <typename T>
-Vector<T> &
-Vector<T>::operator=(Vector const &other)
+vector<T> &
+vector<T>::operator=(vector const &other)
 {
 	if (this == &other)
 		return *this;
@@ -37,7 +37,7 @@ Vector<T>::operator=(Vector const &other)
 
 template <typename T>
 ft::Iterator<T>
-Vector<T>::begin(void)
+vector<T>::begin(void)
 {
 	return ft::Iterator<T>(this->_list, 0);
 }
@@ -48,21 +48,21 @@ Vector<T>::begin(void)
 
 template <typename T>
 size_t
-Vector<T>::size(void) const
+vector<T>::size(void) const
 {
 	return this->_size;
 }
 
 template <typename T>
 size_t
-Vector<T>::max_size(void) const
+vector<T>::max_size(void) const
 {
 	return this->_allocator.max_size();
 }
 
 template <typename T>
 size_t
-Vector<T>::capacity(void) const
+vector<T>::capacity(void) const
 {
 	return this->_allocated;
 }
@@ -73,14 +73,14 @@ Vector<T>::capacity(void) const
  */
 template <typename T>
 bool
-Vector<T>::empty(void) const
+vector<T>::empty(void) const
 {
 	return !(this->_size);
 }
 
 template <typename T>
 void
-Vector<T>::shrink_to_fit(void)
+vector<T>::shrink_to_fit(void)
 {
 	size_t newAllocation;
 	T	  *newList;
@@ -106,14 +106,14 @@ Vector<T>::shrink_to_fit(void)
 
 template <typename T>
 T &
-Vector<T>::operator[](size_t position) const
+vector<T>::operator[](size_t position) const
 {
 	return this->_list[position];
 }
 
 template <typename T>
 T &
-Vector<T>::at(size_t position) const
+vector<T>::at(size_t position) const
 {
 	if (this->size() <= position)
 		throw out_of_range();
@@ -122,21 +122,21 @@ Vector<T>::at(size_t position) const
 
 template <typename T>
 T &
-Vector<T>::front(void) const
+vector<T>::front(void) const
 {
 	return this->_list[0];
 }
 
 template <typename T>
 T &
-Vector<T>::back(void) const
+vector<T>::back(void) const
 {
 	return this->_list[this->_size - 1];
 }
 
 template <typename T>
 T *
-Vector<T>::data(void) const
+vector<T>::data(void) const
 {
 	return this->_list;
 }
@@ -147,7 +147,7 @@ Vector<T>::data(void) const
 
 template <typename T>
 void
-Vector<T>::assign(size_t nElements, T value)
+vector<T>::assign(size_t nElements, T value)
 {
 
 	if (this->_list == 0)
@@ -199,7 +199,7 @@ Vector<T>::assign(size_t nElements, T value)
  */
 template <typename T>
 void
-Vector<T>::push_back(T const &object)
+vector<T>::push_back(T const &object)
 {
 	T	  *newList;
 	size_t newAllocation;
@@ -244,7 +244,7 @@ Vector<T>::push_back(T const &object)
  */
 template <typename T>
 void
-Vector<T>::pop_back(void)
+vector<T>::pop_back(void)
 {
 	if (this->empty())
 		return;
@@ -255,7 +255,7 @@ Vector<T>::pop_back(void)
 
 template <typename T>
 void
-Vector<T>::erase(size_t position)
+vector<T>::erase(size_t position)
 {
 	size_t newAllocation;
 	T	  *newList;
@@ -279,7 +279,7 @@ Vector<T>::erase(size_t position)
 
 template <typename T>
 void
-Vector<T>::swap(Vector &other)
+vector<T>::swap(vector &other)
 {
 	T	  *tmpList;
 	size_t tmpAllocated;
@@ -300,7 +300,7 @@ Vector<T>::swap(Vector &other)
 
 template <typename T>
 void
-Vector<T>::clear(void)
+vector<T>::clear(void)
 {
 	if (this->empty())
 		return;
@@ -316,7 +316,7 @@ Vector<T>::clear(void)
 
 template <typename T>
 std::ostream &
-operator<<(std::ostream &output, Vector<T> const &vec)
+operator<<(std::ostream &output, vector<T> const &vec)
 {
 	output << "(vector) = size=" << vec.size() << " {" << std::endl;
 	for (size_t i = 0; i < vec.size(); i++)
