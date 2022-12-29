@@ -7,6 +7,7 @@ template <typename T> class Iterator
 	Iterator(void);
 	Iterator(T *, size_t);
 
+	T &operator*(void);
 	T &operator[](size_t);
 
   private:
