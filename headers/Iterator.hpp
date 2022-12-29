@@ -7,8 +7,10 @@ template <typename T> class Iterator
 	Iterator(void);
 	Iterator(T *, size_t);
 
-	T &operator*(void);
-	T &operator[](size_t);
+	T			&operator*(void);
+	T			&operator[](size_t);
+	Iterator<T> &operator++(void);
+	Iterator<T>	 operator++(int);
 
   private:
 	T	  *_pointer;

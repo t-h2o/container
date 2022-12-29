@@ -21,3 +21,22 @@ Iterator<T>::operator[](size_t position)
 {
 	return this->_pointer[_position + position];
 }
+
+template <typename T>
+Iterator<T> &
+Iterator<T>::operator++(void)
+{
+	this->_pointer++;
+	return *this;
+}
+
+template <typename T>
+Iterator<T>
+Iterator<T>::operator++(int)
+{
+	Iterator<T> prev;
+
+	prev = *this;
+	this->_pointer++;
+	return prev;
+}
