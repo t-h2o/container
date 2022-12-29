@@ -25,7 +25,7 @@ expect_equal(std::vector<T> &vec_std, ft::vector<T> &vec_ft)
 		return;
 
 	typename std::vector<T>::iterator it_std(vec_std.begin());
-	ft::Iterator<T>					  it_ft(vec_ft.begin());
+	ft::iterator<T>					  it_ft(vec_ft.begin());
 
 	EXPECT_EQ(*it_ft, *it_std);
 
@@ -212,7 +212,7 @@ scenario_four(void)
 	vec_ft.assign(2, 42);
 
 	typename std::vector<T>::iterator it_std;
-	ft::Iterator<T>					  it_ft;
+	ft::iterator<T>					  it_ft;
 
 	it_std = vec_std.begin();
 	it_ft = vec_ft.begin();

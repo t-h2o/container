@@ -3,16 +3,16 @@
 
 namespace ft
 {
-template <typename T> class Iterator
+template <typename T> class iterator
 {
   public:
-	Iterator(void);
-	Iterator(T *, size_t);
+	iterator(void);
+	iterator(T *, size_t);
 
 	T			&operator*(void);
 	T			&operator[](size_t);
-	Iterator<T> &operator++(void);
-	Iterator<T>	 operator++(int);
+	iterator<T> &operator++(void);
+	iterator<T>	 operator++(int);
 
   private:
 	T	  *_pointer;

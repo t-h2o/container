@@ -36,10 +36,10 @@ vector<T>::operator=(vector const &other)
 }
 
 template <typename T>
-ft::Iterator<T>
+ft::iterator<T>
 vector<T>::begin(void)
 {
-	return ft::Iterator<T>(this->_list, 0);
+	return ft::iterator<T>(this->_list, 0);
 }
 
 /**
