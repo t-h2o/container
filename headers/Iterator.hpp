@@ -1,6 +1,8 @@
 #ifndef ITERATOR_HPP
 #define ITERATOR_HPP
 
+namespace ft
+{
 template <typename T> class Iterator
 {
   public:
@@ -18,5 +20,6 @@ template <typename T> class Iterator
 };
 
 #include "../templates/Iterator.cpp"
+}
 
 #endif /* ITERATOR_HPP */

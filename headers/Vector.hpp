@@ -22,7 +22,7 @@ template <typename T> class Vector
 	Vector &operator=(Vector const &);
 
 	/* Iterators */
-	Iterator<T> begin(void);
+	ft::Iterator<T> begin(void);
 
 	/* Capacity */
 	size_t size(void) const;
