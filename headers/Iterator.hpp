@@ -14,6 +14,8 @@ template <typename T> class iterator
 	T			&operator[](size_t);
 	iterator<T> &operator++(void);
 	iterator<T>	 operator++(int);
+	iterator<T> &operator--(void);
+	iterator<T>	 operator--(int);
 	iterator<T> &operator+(const long);
 	iterator<T> &operator-(const long);
 	iterator<T> &operator+=(const long);

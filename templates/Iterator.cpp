@@ -44,6 +44,25 @@ iterator<T>::operator++(int)
 }
 
 template <typename T>
+iterator<T> &
+iterator<T>::operator--(void)
+{
+	this->_pointer--;
+	return *this;
+}
+
+template <typename T>
+iterator<T>
+iterator<T>::operator--(int)
+{
+	iterator<T> prev;
+
+	prev = *this;
+	this->_pointer--;
+	return prev;
+}
+
+template <typename T>
 bool
 iterator<T>::operator==(iterator<T> const &other)
 {
