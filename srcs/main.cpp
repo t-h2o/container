@@ -43,6 +43,32 @@ expect_equal(std::vector<T> &vec_std, ft::vector<T> &vec_ft)
 	EXPECT_EQ(vec_ft.end() < vec_ft.end(), vec_std.end() < vec_std.end());
 	EXPECT_EQ(vec_ft.end() >= vec_ft.end(), vec_std.end() >= vec_std.end());
 	EXPECT_EQ(vec_ft.end() <= vec_ft.end(), vec_std.end() <= vec_std.end());
+
+	if (vec_ft.size() < 3)
+		return;
+
+	it_ft = vec_ft.begin();
+	it_std = vec_std.begin();
+	EXPECT_EQ(*(it_ft++), *(it_std++));
+	EXPECT_EQ(*(++it_ft), *(++it_std));
+	EXPECT_EQ(*(it_ft--), *(it_std--));
+	EXPECT_EQ(*(--it_ft), *(--it_std));
+
+	it_ft += 1;
+	it_std += 1;
+	EXPECT_EQ(*(it_ft), *(it_std));
+
+	it_ft = it_ft + 1;
+	it_std = it_std + 1;
+	EXPECT_EQ(*(it_ft), *(it_std));
+
+	it_ft -= 1;
+	it_std -= 1;
+	EXPECT_EQ(*(it_ft), *(it_std));
+
+	it_ft = it_ft - 1;
+	it_std = it_std - 1;
+	EXPECT_EQ(*(it_ft), *(it_std));
 }
 
 template <typename T>
@@ -225,25 +251,6 @@ scenario_four(void)
 		vec_std.push_back(i);
 		vec_ft.push_back(i);
 	}
-
-	typename std::vector<T>::iterator it_std;
-	ft::iterator<T>					  it_ft;
-
-	it_std = vec_std.begin();
-	it_ft = vec_ft.begin();
-
-	std::cout << "0: ft: " << it_std[0] << " std: " << it_std[1] << std::endl;
-	std::cout << "1: ft: " << it_std[1] << " std: " << it_std[1] << std::endl;
-
-	it_std += 2;
-	it_ft += 2;
-	std::cout << "2: ft: " << it_ft[0] << " std: " << it_std[1] << std::endl;
-	std::cout << "3: ft: " << it_ft[1] << " std: " << it_std[1] << std::endl;
-
-	it_std -= 1;
-	it_ft -= 1;
-	std::cout << "1: ft: " << it_ft[0] << " std: " << it_std[0] << std::endl;
-	std::cout << "2: ft: " << it_ft[1] << " std: " << it_std[1] << std::endl;
 }
 
 int
