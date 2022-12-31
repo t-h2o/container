@@ -25,7 +25,7 @@ expect_equal(std::vector<T> &vec_std, ft::vector<T> &vec_ft)
 		return;
 
 	typename std::vector<T>::iterator it_std(vec_std.begin());
-	ft::iterator<T>					  it_ft(vec_ft.begin());
+	typename ft::vector<T>::iterator  it_ft(vec_ft.begin());
 
 	EXPECT_EQ(*it_ft, *it_std);
 
