@@ -19,6 +19,8 @@ namespace ft
 template <typename T> class vector
 {
   public:
+	typedef ft::iterator<T> iterator;
+
 	/* Member Funcion */
 	vector(void);
 	vector(vector const &);
@@ -26,8 +28,8 @@ template <typename T> class vector
 	vector &operator=(vector const &);
 
 	/* Iterators */
-	iterator<T> begin(void);
-	iterator<T> end(void);
+	iterator begin(void);
+	iterator end(void);
 
 	/* Capacity */
 	size_t size(void) const;

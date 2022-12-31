@@ -38,17 +38,17 @@ vector<T>::operator=(vector const &other)
 }
 
 template <typename T>
-iterator<T>
+typename vector<T>::iterator
 vector<T>::begin(void)
 {
-	return iterator<T>(this->_list, 0);
+	return iterator(this->_list, 0);
 }
 
 template <typename T>
-iterator<T>
+typename vector<T>::iterator
 vector<T>::end(void)
 {
-	return iterator<T>(this->_list, this->_size);
+	return iterator(this->_list, this->_size);
 }
 
 /**
