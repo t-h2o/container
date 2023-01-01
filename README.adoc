@@ -37,8 +37,8 @@ image::assets/vector.svg[example]
 
 .Iterators
 
-* [ ] begin
-* [ ] end
+* [x] begin
+* [x] end
 * [ ] rbegin
 * [ ] rend
 * [ ] cbegin
