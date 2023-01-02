@@ -246,10 +246,38 @@ scenario_four(void)
 	ft::vector<T>  vec_ft;
 	std::vector<T> vec_std;
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 3; i++)
 	{
+		section("push back i");
 		vec_std.push_back(i);
 		vec_ft.push_back(i);
+		test_copy_equal(vec_std, vec_ft);
+	}
+
+	test_copy_equal(vec_std, vec_ft);
+
+	{
+		section("copy constructor");
+		ft::vector<T>  vec_ft_copy(vec_ft);
+		std::vector<T> vec_std_copy(vec_std);
+
+		section("\tcopy");
+		test_copy_equal(vec_std_copy, vec_ft_copy);
+
+		section("push back 42");
+		vec_ft.push_back(42);
+		vec_std.push_back(42);
+
+		section("\tnormal");
+		test_copy_equal(vec_std, vec_ft);
+		section("\tcopy");
+		test_copy_equal(vec_std_copy, vec_ft_copy);
+
+		section("operator =");
+		vec_ft_copy = vec_ft;
+		vec_std_copy = vec_std;
+		test_copy_equal(vec_std, vec_ft);
+		test_copy_equal(vec_std_copy, vec_ft_copy);
 	}
 }
 
