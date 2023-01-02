@@ -275,7 +275,14 @@ template <typename T>
 void
 vector<T>::erase(iterator position)
 {
-	T	  *newList;
+	T *newList;
+
+	if (position == this->end() - 1)
+	{
+		this->_allocator.destroy(&(position[0]));
+		--this->_size;
+		return;
+	}
 
 	newList = this->_allocator.allocate(this->_allocated);
 	for (size_t i = 0, j = 0; i < this->_size; ++i)
