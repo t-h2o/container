@@ -28,7 +28,7 @@ template <typename T>
 iterator<T> &
 iterator<T>::operator++(void)
 {
-	this->_pointer++;
+	this->_position++;
 	return *this;
 }
 
@@ -39,7 +39,7 @@ iterator<T>::operator++(int)
 	iterator<T> prev;
 
 	prev = *this;
-	this->_pointer++;
+	this->_position++;
 	return prev;
 }
 
@@ -47,7 +47,7 @@ template <typename T>
 iterator<T> &
 iterator<T>::operator--(void)
 {
-	this->_pointer--;
+	this->_position--;
 	return *this;
 }
 
@@ -58,7 +58,7 @@ iterator<T>::operator--(int)
 	iterator<T> prev;
 
 	prev = *this;
-	this->_pointer--;
+	this->_position--;
 	return prev;
 }
 
