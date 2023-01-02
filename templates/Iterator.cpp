@@ -124,6 +124,13 @@ iterator<T>::operator-(const long remove)
 }
 
 template <typename T>
+std::ptrdiff_t
+iterator<T>::operator-(iterator const &other)
+{
+	return this->_position - other._position;
+}
+
+template <typename T>
 iterator<T> &
 iterator<T>::operator+=(const long add)
 {

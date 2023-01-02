@@ -21,6 +21,8 @@ template <typename T> class iterator
 	iterator<T> &operator+=(const long);
 	iterator<T> &operator-=(const long);
 
+	std::ptrdiff_t operator-(iterator const &);
+
 	bool operator==(iterator<T> const &other);
 	bool operator!=(iterator<T> const &other);
 	bool operator>(iterator<T> const &other);
