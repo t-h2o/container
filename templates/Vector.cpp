@@ -33,10 +33,10 @@ vector<T>::operator=(vector const &other)
 	if (this->_allocated < other._allocated)
 	{
 		this->_allocator.deallocate(this->_list, this->_allocated);
-		this->_list = this->_allocator.allocate(other._allocated);
+		this->_list = this->_allocator.allocate(other._size);
 	}
 	this->_size = other._size;
-	this->_allocated = other._allocated;
+	this->_allocated = other._size;
 
 	for (size_t i = 0; i < other._size; ++i)
 	{
