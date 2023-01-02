@@ -75,16 +75,25 @@ template <typename T>
 static void
 test_copy_equal(std::vector<T> &vec_std, ft::vector<T> &vec_ft)
 {
+	section("\tnormal");
 	expect_equal(vec_std, vec_ft);
 
 	{
-		ft::vector<T> vec_ft_copy;
+		std::vector<T> vec_std_copy;
+		ft::vector<T>  vec_ft_copy;
+
 		vec_ft_copy = vec_ft;
-		expect_equal(vec_std, vec_ft_copy);
+		vec_std_copy = vec_std;
+
+		section("\toperator =");
+		expect_equal(vec_std_copy, vec_ft_copy);
 	}
 	{
-		ft::vector<T> vec_ft_copy(vec_ft);
-		expect_equal(vec_std, vec_ft_copy);
+		section("\tcopy constructor");
+		std::vector<T> vec_std_copy(vec_std);
+		ft::vector<T>  vec_ft_copy(vec_ft);
+
+		expect_equal(vec_std_copy, vec_ft_copy);
 	}
 }
 
