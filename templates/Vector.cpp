@@ -9,7 +9,12 @@ vector<T>::vector(void) : _list(0), _maxSize(0), _size(0), _allocated(0)
 {
 }
 
-template <typename T> vector<T>::vector(vector const &other) { *this = other; }
+template <typename T>
+vector<T>::vector(vector const &other)
+	: _list(0), _maxSize(0), _size(0), _allocated(0)
+{
+	*this = other;
+}
 
 template <typename T> vector<T>::~vector(void)
 {
