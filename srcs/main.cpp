@@ -186,7 +186,7 @@ scenario_two(void)
 	test_copy_equal(vec_std, vec_ft);
 
 	section("erase(3);");
-	vec_ft.erase(3);
+	vec_ft.erase(vec_ft.begin() + 3);
 	vec_std.erase(vec_std.begin() + 3);
 	test_copy_equal(vec_std, vec_ft);
 
@@ -233,17 +233,17 @@ scenario_tree(void)
 	test_copy_equal(vec_std, vec_ft);
 
 	section("erase(1);");
-	vec_ft.erase(1);
+	vec_ft.erase(vec_ft.begin() + 1);
 	vec_std.erase(vec_std.begin() + 1);
 	test_copy_equal(vec_std, vec_ft);
 
 	section("erase(1);");
-	vec_ft.erase(1);
+	vec_ft.erase(vec_ft.begin() + 1);
 	vec_std.erase(vec_std.begin() + 1);
 	test_copy_equal(vec_std, vec_ft);
 
 	section("erase(0);");
-	vec_ft.erase(0);
+	vec_ft.erase(vec_ft.begin() + 0);
 	vec_std.erase(vec_std.begin() + 0);
 	test_copy_equal(vec_std, vec_ft);
 }

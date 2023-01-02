@@ -273,7 +273,7 @@ vector<T>::pop_back(void)
 
 template <typename T>
 void
-vector<T>::erase(size_t position)
+vector<T>::erase(iterator position)
 {
 	size_t newAllocation;
 	T	  *newList;
@@ -282,7 +282,7 @@ vector<T>::erase(size_t position)
 	newList = this->_allocator.allocate(newAllocation);
 	for (size_t i = 0, j = 0; i < this->_size; ++i)
 	{
-		if (i != position)
+		if (&((*this)[i]) != &(position[0]))
 		{
 			this->_allocator.construct(&(newList[j]), ((*this)[i]));
 			++j;
