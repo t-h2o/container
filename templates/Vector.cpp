@@ -307,6 +307,19 @@ vector<T>::pop_back(void)
 
 template <typename T>
 void
+vector<T>::insert(iterator position, const T &value)
+{
+	if (this->_size + 1 <= this->_allocated)
+	{
+		for (iterator it = this->end(); it != position; --it)
+			*it = *(it - 1);
+		*position = value;
+	}
+	this->_size++;
+}
+
+template <typename T>
+void
 vector<T>::erase(iterator position)
 {
 	T *newList;
