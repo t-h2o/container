@@ -342,6 +342,21 @@ vector<T>::insert(iterator position, const T &value)
 
 template <typename T>
 void
+vector<T>::insert(iterator position, size_t number, const T &value)
+{
+	this->_size += number;
+	if (this->_size <= this->_allocated)
+	{
+		for (iterator it = this->end(); it != position; --it)
+			*it = *(it - number);
+
+		for (size_t i = number; i; --i)
+			position[i - 1] = value;
+	}
+}
+
+template <typename T>
+void
 vector<T>::erase(iterator position)
 {
 	T *newList;
