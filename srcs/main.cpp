@@ -8,6 +8,17 @@
 
 template <typename T>
 static void
+push_back_ten(std::vector<T> &vec_std, ft::vector<T> &vec_ft)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		vec_std.push_back(i * 10);
+		vec_ft.push_back(i * 10);
+	}
+}
+
+template <typename T>
+static void
 expect_equal(std::vector<T> &vec_std, ft::vector<T> &vec_ft)
 {
 	EXPECT_EQ(vec_ft.size(), vec_std.size());
@@ -255,13 +266,7 @@ scenario_four(void)
 	ft::vector<T>  vec_ft;
 	std::vector<T> vec_std;
 
-	for (int i = 0; i < 3; i++)
-	{
-		section("push back i");
-		vec_std.push_back(i);
-		vec_ft.push_back(i);
-		test_copy_equal(vec_std, vec_ft);
-	}
+	push_back_ten(vec_std, vec_ft);
 
 	test_copy_equal(vec_std, vec_ft);
 
@@ -297,12 +302,7 @@ scenario_five(void)
 	ft::vector<T>  vec_ft;
 	std::vector<T> vec_std;
 
-	for (int i = 0; i < 5; i++)
-	{
-		vec_std.push_back(i);
-		vec_ft.push_back(i);
-		test_copy_equal(vec_std, vec_ft);
-	}
+	push_back_ten(vec_std, vec_ft);
 
 	{
 		ft::vector	v_ft_copy(vec_ft);
