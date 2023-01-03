@@ -233,7 +233,7 @@ vector<T>::assign(size_t nElements, T value)
 	{
 		// reallocation
 		_destroy_all();
-		_allocator.deallocate(this->_list, this->_allocated);
+		this->_allocator.deallocate(this->_list, this->_allocated);
 		this->_size = nElements;
 		this->_allocated = nElements;
 		this->_maxSize = nElements;
