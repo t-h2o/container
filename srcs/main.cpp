@@ -332,6 +332,26 @@ scenario_five(void)
 	}
 }
 
+template <typename T>
+static void
+scenario_six(void)
+{
+	ft::vector<T>  vec_ft;
+	std::vector<T> vec_std;
+
+	vec_ft.assign(5, 5);
+	vec_std.assign(5, 5);
+	test_copy_equal(vec_std, vec_ft);
+
+	vec_ft.resize(7);
+	vec_std.resize(7);
+	test_copy_equal(vec_std, vec_ft);
+
+	vec_ft.resize(2);
+	vec_std.resize(2);
+	test_copy_equal(vec_std, vec_ft);
+}
+
 int
 main(void)
 {
@@ -354,6 +374,10 @@ main(void)
 
 	title("Scenario 5");
 	scenario_five<int>();
+
+	title("Scenario 6");
+	scenario_six<int>();
+	scenario_six<Awesome>();
 
 	return 0;
 }
