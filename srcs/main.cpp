@@ -422,6 +422,12 @@ scenario_eight(void)
 	vec_std.insert(vec_std.begin() + 10, 2, -999);
 	std::cout << vec_ft;
 	test_copy_equal(vec_std, vec_ft);
+
+	section("insert(vec_ft.begin() + 10, 99, -999);");
+	vec_ft.insert(vec_ft.begin() + 10, 99, -999);
+	vec_std.insert(vec_std.begin() + 10, 99, -999);
+	std::cout << vec_ft;
+	test_copy_equal(vec_std, vec_ft);
 }
 
 int
