@@ -349,6 +349,7 @@ vector<T>::insert(iterator position, size_t number, const T &value)
 {
 	size_t i;
 	T	  *newList;
+	size_t newAllocation;
 
 	if (this->_size + number < this->_allocated)
 	{
@@ -372,7 +373,12 @@ vector<T>::insert(iterator position, size_t number, const T &value)
 		i = 0;
 		iterator it(this->begin());
 
-		newList = this->_allocator.allocate(this->_allocated * 2);
+		if (this->_allocated * 2 > this->_size + number)
+			newAllocation = this->_allocated * 2;
+		else
+			newAllocation = this->_size + number;
+
+		newList = this->_allocator.allocate(newAllocation);
 
 		for (; it != position; it++)
 		{
@@ -390,7 +396,7 @@ vector<T>::insert(iterator position, size_t number, const T &value)
 		}
 
 		this->_allocator.deallocate(this->_list, this->_allocated);
-		this->_allocated *= 2;
+		this->_allocated = newAllocation;
 		this->_list = newList;
 		this->_size += number;
 	}
