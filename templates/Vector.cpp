@@ -301,6 +301,36 @@ vector<T>::erase(iterator position)
 
 template <typename T>
 void
+vector<T>::erase(iterator first, iterator last)
+{
+	T *newList;
+
+	if (last == this->end())
+	{
+		for (iterator it = first; it != last; it++)
+			this->_allocator.destroy(&(it[0]));
+
+		this->_size -= last - first;
+		return;
+	}
+
+	newList = this->_allocator.allocate(this->_allocated);
+	for (size_t i = 0, j = 0; i < this->_size; ++i)
+	{
+		if (&((*this)[i]) < &(first[0]) || &(last[0]) <= &((*this)[i]))
+		{
+			this->_allocator.construct(&(newList[j]), ((*this)[i]));
+			++j;
+		}
+		this->_allocator.destroy(&(*this)[i]);
+	}
+	this->_allocator.deallocate(this->_list, this->_allocated);
+	this->_size -= last - first;
+	this->_list = newList;
+}
+
+template <typename T>
+void
 vector<T>::swap(vector &other)
 {
 	T	  *tmpList;
