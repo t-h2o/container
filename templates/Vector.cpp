@@ -133,12 +133,7 @@ vector<T>::reserve(size_t newAllocation)
 	if (newAllocation <= this->_allocated)
 		return;
 
-	newList = this->_allocator.allocate(newAllocation);
-
-	for (size_t i = 0; i < this->_size; ++i)
-	{
-		this->_allocator.construct(&(newList[i]), (*this)[i]);
-	}
+	newList = this->_gen_new_list(newAllocation);
 
 	_destroy_all();
 
@@ -158,11 +153,7 @@ vector<T>::shrink_to_fit(void)
 		return;
 
 	newAllocation = this->_size;
-	newList = this->_allocator.allocate(newAllocation);
-	for (size_t i = 0; i < this->_size; ++i)
-	{
-		this->_allocator.construct(&(newList[i]), (*this)[i]);
-	}
+	newList = this->_gen_new_list(newAllocation);
 	_destroy_all();
 	this->_allocator.deallocate(this->_list, this->_allocated);
 	this->_allocated = this->_size;
@@ -279,11 +270,7 @@ vector<T>::push_back(T const &object)
 	else if (this->_allocated == this->_size)
 	{
 		newAllocation = this->_allocated * 2;
-		newList = this->_allocator.allocate(newAllocation);
-		for (size_t i = 0; i < this->_allocated; ++i)
-		{
-			this->_allocator.construct(&(newList[i]), (*this)[i]);
-		}
+		newList = this->_gen_new_list(newAllocation);
 		_destroy_all();
 		this->_allocator.construct(&(newList[this->_allocated]), object);
 		this->_allocator.deallocate(this->_list, this->_allocated);
@@ -427,6 +414,21 @@ vector<T>::_construct_val(T &value)
 {
 	for (size_t i = 0; i < this->_size; i++)
 		this->_allocator.construct(&(this->_list[i]), value);
+}
+
+template <typename T>
+T *
+vector<T>::_gen_new_list(size_t newAllocation)
+{
+	T *newList;
+
+	newList = this->_allocator.allocate(newAllocation);
+	for (size_t i = 0; i < this->_size; ++i)
+	{
+		this->_allocator.construct(&(newList[i]), (*this)[i]);
+	}
+
+	return newList;
 }
 
 template <typename T>

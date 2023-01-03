@@ -76,6 +76,7 @@ template <typename T> class vector
 
 	void _destroy_all(void);
 	void _construct_val(T &);
+	T	*_gen_new_list(size_t);
 };
 
 /* Extra... */
