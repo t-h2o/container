@@ -51,7 +51,7 @@ image::assets/vector.svg[example]
 .Capacity
 * [x] `size`
 * [x] `max_size`
-* [ ] `resize`
+* [x] `resize`
 * [x] `capacity`
 * [x] `empty`
 * [ ] `reserve`
