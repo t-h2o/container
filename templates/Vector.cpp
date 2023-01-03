@@ -314,7 +314,10 @@ vector<T>::insert(iterator position, const T &value)
 
 	if (this->_size + 1 <= this->_allocated)
 	{
-		for (iterator it = this->end(); it != position; --it)
+		iterator it = this->end();
+
+		this->_allocator.construct(&(it[0]), value);
+		for (; it != position; --it)
 			*it = *(it - 1);
 		*position = value;
 	}
@@ -327,7 +330,7 @@ vector<T>::insert(iterator position, const T &value)
 			this->_allocator.construct(&(newList[i++]), *it);
 			this->_allocator.destroy(&(it[0]));
 		}
-		newList[i++] = value;
+		this->_allocator.construct(&(newList[i++]), value);
 		for (iterator it = position; it != this->end(); it++)
 		{
 			this->_allocator.construct(&(newList[i++]), *it);
