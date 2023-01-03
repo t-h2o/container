@@ -54,7 +54,7 @@ image::assets/vector.svg[example]
 * [x] `resize`
 * [x] `capacity`
 * [x] `empty`
-* [ ] `reserve`
+* [x] `reserve`
 * [x] `shrink_to_fit`
 
 .Element access
@@ -69,7 +69,7 @@ image::assets/vector.svg[example]
 * [x] `push_back`
 * [x] `pop_back`
 * [ ] `insert`
-* [ ] `erase`
+* [x] `erase`
 * [x] `swap`
 * [x] `clear`
 * [ ] `emplace`
