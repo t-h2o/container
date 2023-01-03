@@ -98,7 +98,7 @@ vector<T>::resize(size_t newSize)
 			this->_allocator.construct(&(newList[i]));
 	}
 
-	_destroy_all();
+	this->_destroy_all();
 
 	this->_allocator.deallocate(this->_list, this->_allocated);
 	this->_size = newSize;
@@ -135,7 +135,7 @@ vector<T>::reserve(size_t newAllocation)
 
 	newList = this->_gen_new_list(newAllocation);
 
-	_destroy_all();
+	this->_destroy_all();
 
 	this->_allocator.deallocate(this->_list, this->_allocated);
 	this->_allocated = newAllocation;
@@ -154,7 +154,7 @@ vector<T>::shrink_to_fit(void)
 
 	newAllocation = this->_size;
 	newList = this->_gen_new_list(newAllocation);
-	_destroy_all();
+	this->_destroy_all();
 	this->_allocator.deallocate(this->_list, this->_allocated);
 	this->_allocated = this->_size;
 	this->_list = newList;
@@ -223,7 +223,7 @@ vector<T>::assign(size_t nElements, T value)
 	else if (nElements >= this->_size)
 	{
 		// reallocation
-		_destroy_all();
+		this->_destroy_all();
 		this->_allocator.deallocate(this->_list, this->_allocated);
 		this->_size = nElements;
 		this->_allocated = nElements;
@@ -271,7 +271,7 @@ vector<T>::push_back(T const &object)
 	{
 		newAllocation = this->_allocated * 2;
 		newList = this->_gen_new_list(newAllocation);
-		_destroy_all();
+		this->_destroy_all();
 		this->_allocator.construct(&(newList[this->_allocated]), object);
 		this->_allocator.deallocate(this->_list, this->_allocated);
 		this->_list = newList;
@@ -391,7 +391,7 @@ vector<T>::clear(void)
 	if (this->empty())
 		return;
 
-	_destroy_all();
+	this->_destroy_all();
 
 	this->_size = 0;
 }
