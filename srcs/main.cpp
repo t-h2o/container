@@ -432,6 +432,7 @@ main(void)
 
 	title("Scenario 8");
 	scenario_eight<int>();
+	scenario_eight<Awesome>();
 
 	return 0;
 }
