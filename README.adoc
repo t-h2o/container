@@ -31,52 +31,50 @@ image::assets/vector.svg[example]
 === Check list
 
 .Member functions
-* [x] `constructor`
-** [x] `default`
-** [x] `copy`
-* [x] `destructor`
-* [x] `operator=`
+* [x] https://cplusplus.com/reference/vector/vector/vector/[`constructor`]
+* [x] https://cplusplus.com/reference/vector/vector/~vector/[`destructor`]
+* [x] https://cplusplus.com/reference/vector/vector/operator=/[`operator=`]
 
 .Iterators
 
-* [x] begin
-* [x] end
-* [ ] rbegin
-* [ ] rend
-* [ ] cbegin
-* [ ] cend
-* [ ] crbegin
-* [ ] crend
+* [x] https://cplusplus.com/reference/vector/vector/begin/[`begin`]
+* [x] https://cplusplus.com/reference/vector/vector/end/[`end`]
+* [ ] https://cplusplus.com/reference/vector/vector/rbegin/[`rbegin`]
+* [ ] https://cplusplus.com/reference/vector/vector/rend/[`rend`]
+* [ ] https://cplusplus.com/reference/vector/vector/cbegin/[`cbegin`]
+* [ ] https://cplusplus.com/reference/vector/vector/cend/[`cend`]
+* [ ] https://cplusplus.com/reference/vector/vector/crbegin/[`crbegin`]
+* [ ] https://cplusplus.com/reference/vector/vector/crend/[`crend`]
 
 .Capacity
-* [x] `size`
-* [x] `max_size`
-* [x] `resize`
-* [x] `capacity`
-* [x] `empty`
-* [x] `reserve`
-* [x] `shrink_to_fit`
+* [x] https://cplusplus.com/reference/vector/vector/size/[`size`]
+* [x] https://cplusplus.com/reference/vector/vector/max_size/[`max_size`]
+* [x] https://cplusplus.com/reference/vector/vector/resize/[`resize`]
+* [x] https://cplusplus.com/reference/vector/vector/capacity/[`capacity`]
+* [x] https://cplusplus.com/reference/vector/vector/empty/[`empty`]
+* [x] https://cplusplus.com/reference/vector/vector/reserve/[`reserve`]
+* [x] https://cplusplus.com/reference/vector/vector/shrink_to_fit/[`shrink_to_fit`]
 
 .Element access
 * [x] `operator[]`
-* [x] `at`
-* [x] `front`
-* [x] `back`
-* [x] `data`
+* [x] https://cplusplus.com/reference/vector/vector/at/[`at`]
+* [x] https://cplusplus.com/reference/vector/vector/front/[`front`]
+* [x] https://cplusplus.com/reference/vector/vector/back/[`back`]
+* [x] https://cplusplus.com/reference/vector/vector/data/[`data`]
 
 .Modifiers
-* [x] `assign`
-* [x] `push_back`
-* [x] `pop_back`
-* [x] `insert`
-* [x] `erase`
-* [x] `swap`
-* [x] `clear`
-* [ ] `emplace`
-* [ ] `emplace_back`
+* [x] https://cplusplus.com/reference/vector/vector/assign/[`assign`]
+* [x] https://cplusplus.com/reference/vector/vector/push_back/[`push_back`]
+* [x] https://cplusplus.com/reference/vector/vector/pop_back/[`pop_back`]
+* [x] https://cplusplus.com/reference/vector/vector/insert/[`insert`]
+* [x] https://cplusplus.com/reference/vector/vector/erase/[`erase`]
+* [x] https://cplusplus.com/reference/vector/vector/swap/[`swap`]
+* [x] https://cplusplus.com/reference/vector/vector/clear/[`clear`]
+* [ ] https://cplusplus.com/reference/vector/vector/emplace/[`emplace`]
+* [ ] https://cplusplus.com/reference/vector/vector/emplace_back/[`emplace_back`]
 
 .Allocator
-* [ ] `get_allocator`
+* [ ] https://cplusplus.com/reference/vector/vector/get_allocator/[`get_allocator`]
 
 === Reallocation
 
