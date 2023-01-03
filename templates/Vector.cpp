@@ -435,7 +435,8 @@ template <typename T>
 std::ostream &
 operator<<(std::ostream &output, vector<T> const &vec)
 {
-	output << "(vector) = size=" << vec.size() << " {" << std::endl;
+	output << "(vector) = size=" << vec.size()
+		   << ", capacity=" << vec.capacity() << " {" << std::endl;
 	for (size_t i = 0; i < vec.size(); i++)
 		output << "  [" << i << "] = " << vec[i] << std::endl;
 	output << "}" << std::endl;
