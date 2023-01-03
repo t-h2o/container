@@ -309,11 +309,33 @@ template <typename T>
 void
 vector<T>::insert(iterator position, const T &value)
 {
+	T	  *newList;
+	size_t i;
+
 	if (this->_size + 1 <= this->_allocated)
 	{
 		for (iterator it = this->end(); it != position; --it)
 			*it = *(it - 1);
 		*position = value;
+	}
+	else
+	{
+		i = 0;
+		newList = this->_allocator.allocate(this->_allocated * 2);
+		for (iterator it = this->begin(); it != position; it++)
+		{
+			this->_allocator.construct(&(newList[i++]), *it);
+			this->_allocator.destroy(&(it[0]));
+		}
+		newList[i++] = value;
+		for (iterator it = position; it != this->end(); it++)
+		{
+			this->_allocator.construct(&(newList[i++]), *it);
+			this->_allocator.destroy(&(it[0]));
+		}
+		this->_allocator.deallocate(this->_list, this->_allocated);
+		this->_allocated *= 2;
+		this->_list = newList;
 	}
 	this->_size++;
 }
