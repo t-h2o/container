@@ -129,6 +129,28 @@ vector<T>::empty(void) const
 
 template <typename T>
 void
+vector<T>::reserve(size_t newAllocation)
+{
+	T *newList;
+
+	if (newAllocation <= this->_allocated)
+		return;
+
+	newList = this->_allocator.allocate(newAllocation);
+
+	for (size_t i = 0; i < this->_size; ++i)
+	{
+		this->_allocator.construct(&(newList[i]), (*this)[i]);
+		this->_allocator.destroy(&((*this)[i]));
+	}
+
+	this->_allocator.deallocate(this->_list, this->_allocated);
+	this->_allocated = newAllocation;
+	this->_list = newList;
+}
+
+template <typename T>
+void
 vector<T>::shrink_to_fit(void)
 {
 	size_t newAllocation;

@@ -37,6 +37,7 @@ template <typename T> class vector
 	void   resize(size_t);
 	size_t capacity(void) const;
 	bool   empty(void) const;
+	void   reserve(size_t);
 	void   shrink_to_fit(void);
 
 	/* Element access */
