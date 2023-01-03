@@ -395,9 +395,11 @@ main(void)
 
 	title("Scenario 4");
 	scenario_four<int>();
+	scenario_four<Awesome>();
 
 	title("Scenario 5");
 	scenario_five<int>();
+	scenario_five<Awesome>();
 
 	title("Scenario 6");
 	scenario_six<int>();
