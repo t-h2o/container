@@ -370,9 +370,30 @@ scenario_seven(void)
 	vec_ft.reserve(7);
 	vec_std.reserve(7);
 	test_copy_equal(vec_std, vec_ft);
+}
 
-	vec_ft.push_back(1234);
-	vec_std.push_back(1234);
+template <typename T>
+static void
+scenario_eight(void)
+{
+	ft::vector<T>  vec_ft;
+	std::vector<T> vec_std;
+
+	push_back_ten(vec_std, vec_ft);
+
+	section("push_back(42);");
+	vec_ft.push_back(42);
+	vec_std.push_back(42);
+	test_copy_equal(vec_std, vec_ft);
+
+	section("insert(vec_ft.begin() + 1, 1234);");
+	vec_ft.insert(vec_ft.begin() + 1, 1234);
+	vec_std.insert(vec_std.begin() + 1, 1234);
+	test_copy_equal(vec_std, vec_ft);
+
+	section("insert(vec_ft.begin(), -1);");
+	vec_ft.insert(vec_ft.begin(), -1);
+	vec_std.insert(vec_std.begin(), -1);
 	test_copy_equal(vec_std, vec_ft);
 }
 
@@ -408,6 +429,9 @@ main(void)
 	title("Scenario 7");
 	scenario_seven<int>();
 	scenario_six<Awesome>();
+
+	title("Scenario 8");
+	scenario_eight<int>();
 
 	return 0;
 }
