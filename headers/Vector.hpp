@@ -73,6 +73,8 @@ template <typename T> class vector
 	size_t _allocated;
 
 	std::allocator<T> _allocator;
+
+	void _destroy_all(void);
 };
 
 /* Extra... */

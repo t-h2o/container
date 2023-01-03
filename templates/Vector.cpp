@@ -98,10 +98,7 @@ vector<T>::resize(size_t newSize)
 			this->_allocator.construct(&(newList[i]));
 	}
 
-	for (size_t i = 0; i < this->_size; i++)
-	{
-		this->_allocator.destroy(&(*this)[i]);
-	}
+	_destroy_all();
 
 	this->_allocator.deallocate(this->_list, this->_allocated);
 	this->_size = newSize;
@@ -141,8 +138,9 @@ vector<T>::reserve(size_t newAllocation)
 	for (size_t i = 0; i < this->_size; ++i)
 	{
 		this->_allocator.construct(&(newList[i]), (*this)[i]);
-		this->_allocator.destroy(&((*this)[i]));
 	}
+
+	_destroy_all();
 
 	this->_allocator.deallocate(this->_list, this->_allocated);
 	this->_allocated = newAllocation;
@@ -164,8 +162,8 @@ vector<T>::shrink_to_fit(void)
 	for (size_t i = 0; i < this->_size; ++i)
 	{
 		this->_allocator.construct(&(newList[i]), (*this)[i]);
-		this->_allocator.destroy(&(*this)[i]);
 	}
+	_destroy_all();
 	this->_allocator.deallocate(this->_list, this->_allocated);
 	this->_allocated = this->_size;
 	this->_list = newList;
@@ -235,8 +233,7 @@ vector<T>::assign(size_t nElements, T value)
 	else if (nElements >= this->_size)
 	{
 		// reallocation
-		for (size_t i = 0; i < this->_size; i++)
-			this->_allocator.destroy(&(this->_list[i]));
+		_destroy_all();
 		_allocator.deallocate(this->_list, this->_allocated);
 		this->_size = nElements;
 		this->_allocated = nElements;
@@ -249,9 +246,8 @@ vector<T>::assign(size_t nElements, T value)
 	else if (nElements < this->_size)
 	{
 		// destroy and construct
-		for (size_t i = 0; i < this->_size; i++)
-			this->_allocator.destroy(&(this->_list[i]));
 
+		_destroy_all();
 		this->_size = nElements;
 		for (size_t i = 0; i < nElements; i++)
 			this->_allocator.construct(&(this->_list[i]), value);
@@ -289,8 +285,8 @@ vector<T>::push_back(T const &object)
 		for (size_t i = 0; i < this->_allocated; ++i)
 		{
 			this->_allocator.construct(&(newList[i]), (*this)[i]);
-			this->_allocator.destroy(&(*this)[i]);
 		}
+		_destroy_all();
 		this->_allocator.construct(&(newList[this->_allocated]), object);
 		this->_allocator.deallocate(this->_list, this->_allocated);
 		this->_list = newList;
@@ -410,14 +406,22 @@ vector<T>::clear(void)
 	if (this->empty())
 		return;
 
-	for (size_t i = 0; i < this->_size; ++i)
-		this->_allocator.destroy(&(*this)[i]);
+	_destroy_all();
+
 	this->_size = 0;
 }
 
 /**
  * Extra...
  */
+
+template <typename T>
+void
+vector<T>::_destroy_all(void)
+{
+	for (size_t i = 0; i < this->_size; ++i)
+		this->_allocator.destroy(&((*this)[i]));
+}
 
 template <typename T>
 std::ostream &
