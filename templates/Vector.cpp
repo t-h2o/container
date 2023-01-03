@@ -79,6 +79,37 @@ vector<T>::max_size(void) const
 }
 
 template <typename T>
+void
+vector<T>::resize(size_t newSize)
+{
+	T *newList;
+
+	size_t newAllocation = this->_allocated;
+	while (newSize > newAllocation)
+		newAllocation *= 2;
+
+	newList = this->_allocator.allocate(newAllocation);
+
+	for (size_t i = 0; i < newSize; i++)
+	{
+		if (i < this->_size)
+			this->_allocator.construct(&(newList[i]), (*this)[i]);
+		else
+			this->_allocator.construct(&(newList[i]));
+	}
+
+	for (size_t i = 0; i < this->_size; i++)
+	{
+		this->_allocator.destroy(&(*this)[i]);
+	}
+
+	this->_allocator.deallocate(this->_list, this->_allocated);
+	this->_size = newSize;
+	this->_allocated = newAllocation;
+	this->_list = newList;
+}
+
+template <typename T>
 size_t
 vector<T>::capacity(void) const
 {

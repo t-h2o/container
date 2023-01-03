@@ -34,6 +34,7 @@ template <typename T> class vector
 	/* Capacity */
 	size_t size(void) const;
 	size_t max_size(void) const;
+	void   resize(size_t);
 	size_t capacity(void) const;
 	bool   empty(void) const;
 	void   shrink_to_fit(void);
