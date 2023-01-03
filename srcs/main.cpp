@@ -410,6 +410,18 @@ scenario_eight(void)
 	vec_ft.insert(vec_ft.begin() + 5, 3, 333);
 	vec_std.insert(vec_std.begin() + 5, 3, 333);
 	test_copy_equal(vec_std, vec_ft);
+
+	section("shrink_to_fit();");
+	vec_ft.shrink_to_fit();
+	vec_std.shrink_to_fit();
+	test_copy_equal(vec_std, vec_ft);
+	std::cout << vec_ft;
+
+	section("insert(vec_ft.begin() + 10, 2, -999);");
+	vec_ft.insert(vec_ft.begin() + 10, 2, -999);
+	vec_std.insert(vec_std.begin() + 10, 2, -999);
+	std::cout << vec_ft;
+	test_copy_equal(vec_std, vec_ft);
 }
 
 int
