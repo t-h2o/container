@@ -347,21 +347,53 @@ template <typename T>
 void
 vector<T>::insert(iterator position, size_t number, const T &value)
 {
-	size_t	 i;
-	iterator it(this->end());
+	size_t i;
+	T	  *newList;
 
-	for (; it != this->end() + number; ++it)
-		this->_allocator.construct(&(*it), *(it - number));
+	if (this->_size + number < this->_allocated)
+	{
+		iterator it(this->end());
 
-	it = this->end() - 1;
-	this->_size += number;
+		for (; it != this->end() + number; ++it)
+			this->_allocator.construct(&(*it), *(it - number));
 
-	for (; it != position; --it)
-		*it = *(it - number);
+		it = this->end() - 1;
+		this->_size += number;
 
-	it = position;
-	for (i = 0; i < number; i++)
-		*(it + i) = value;
+		for (; it != position; --it)
+			*it = *(it - number);
+
+		it = position;
+		for (i = 0; i < number; i++)
+			*(it + i) = value;
+	}
+	else
+	{
+		i = 0;
+		iterator it(this->begin());
+
+		newList = this->_allocator.allocate(this->_allocated * 2);
+
+		for (; it != position; it++)
+		{
+			this->_allocator.construct(&(newList[i++]), *it);
+			this->_allocator.destroy(&(it[0]));
+		}
+
+		for (size_t j = number; j; --j)
+			this->_allocator.construct(&(newList[i++]), value);
+
+		for (iterator it = position; it != this->end(); it++)
+		{
+			this->_allocator.construct(&(newList[i++]), *it);
+			this->_allocator.destroy(&(it[0]));
+		}
+
+		this->_allocator.deallocate(this->_list, this->_allocated);
+		this->_allocated *= 2;
+		this->_list = newList;
+		this->_size += number;
+	}
 }
 
 template <typename T>
