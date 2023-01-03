@@ -347,15 +347,26 @@ template <typename T>
 void
 vector<T>::insert(iterator position, size_t number, const T &value)
 {
-	this->_size += number;
-	if (this->_size <= this->_allocated)
-	{
-		for (iterator it = this->end(); it != position; --it)
-			*it = *(it - number);
+	size_t	 i;
+	iterator it(this->end());
 
-		for (size_t i = number; i; --i)
-			position[i - 1] = value;
+	for (; it != this->end() + number; ++it)
+	{
+		std::cout << *this;
+		this->_allocator.construct(&(*it), *(it - number));
 	}
+	std::cout << *this;
+
+	it = this->end() - 1;
+	this->_size += number;
+	std::cout << *this;
+
+	for (; it != position; --it)
+		*it = *(it - number);
+
+	it = position;
+	for (i = 0; i < number; i++)
+		*(it + i) = value;
 }
 
 template <typename T>
