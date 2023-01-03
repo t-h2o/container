@@ -227,8 +227,7 @@ vector<T>::assign(size_t nElements, T value)
 		this->_maxSize = nElements;
 		this->_list = _allocator.allocate(nElements);
 
-		for (size_t i = 0; i < nElements; i++)
-			this->_allocator.construct(&(this->_list[i]), value);
+		_construct_val(value);
 	}
 	else if (nElements >= this->_size)
 	{
@@ -240,8 +239,7 @@ vector<T>::assign(size_t nElements, T value)
 		this->_maxSize = nElements;
 		this->_list = _allocator.allocate(nElements);
 
-		for (size_t i = 0; i < nElements; i++)
-			this->_allocator.construct(&(this->_list[i]), value);
+		_construct_val(value);
 	}
 	else if (nElements < this->_size)
 	{
@@ -249,8 +247,8 @@ vector<T>::assign(size_t nElements, T value)
 
 		_destroy_all();
 		this->_size = nElements;
-		for (size_t i = 0; i < nElements; i++)
-			this->_allocator.construct(&(this->_list[i]), value);
+
+		_construct_val(value);
 	}
 }
 
@@ -421,6 +419,14 @@ vector<T>::_destroy_all(void)
 {
 	for (size_t i = 0; i < this->_size; ++i)
 		this->_allocator.destroy(&((*this)[i]));
+}
+
+template <typename T>
+void
+vector<T>::_construct_val(T &value)
+{
+	for (size_t i = 0; i < this->_size; i++)
+		this->_allocator.construct(&(this->_list[i]), value);
 }
 
 template <typename T>

@@ -75,6 +75,7 @@ template <typename T> class vector
 	std::allocator<T> _allocator;
 
 	void _destroy_all(void);
+	void _construct_val(T &);
 };
 
 /* Extra... */
