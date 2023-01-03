@@ -351,15 +351,10 @@ vector<T>::insert(iterator position, size_t number, const T &value)
 	iterator it(this->end());
 
 	for (; it != this->end() + number; ++it)
-	{
-		std::cout << *this;
 		this->_allocator.construct(&(*it), *(it - number));
-	}
-	std::cout << *this;
 
 	it = this->end() - 1;
 	this->_size += number;
-	std::cout << *this;
 
 	for (; it != position; --it)
 		*it = *(it - number);

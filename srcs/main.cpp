@@ -395,6 +395,21 @@ scenario_eight(void)
 	vec_ft.insert(vec_ft.begin(), -1);
 	vec_std.insert(vec_std.begin(), -1);
 	test_copy_equal(vec_std, vec_ft);
+
+	section("shrink_to_fit();");
+	vec_ft.shrink_to_fit();
+	vec_std.shrink_to_fit();
+	test_copy_equal(vec_std, vec_ft);
+
+	section("insert(vec_ft.begin() + 1, 777);");
+	vec_ft.insert(vec_ft.begin() + 1, 777);
+	vec_std.insert(vec_std.begin() + 1, 777);
+	test_copy_equal(vec_std, vec_ft);
+
+	section("insert(vec_ft.begin() + 5, 3, 333);");
+	vec_ft.insert(vec_ft.begin() + 5, 3, 333);
+	vec_std.insert(vec_std.begin() + 5, 3, 333);
+	test_copy_equal(vec_std, vec_ft);
 }
 
 int
