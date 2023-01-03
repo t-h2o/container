@@ -290,6 +290,48 @@ scenario_four(void)
 	}
 }
 
+template <typename T>
+static void
+scenario_five(void)
+{
+	ft::vector<T>  vec_ft;
+	std::vector<T> vec_std;
+
+	for (int i = 0; i < 5; i++)
+	{
+		vec_std.push_back(i);
+		vec_ft.push_back(i);
+		test_copy_equal(vec_std, vec_ft);
+	}
+
+	{
+		ft::vector	v_ft_copy(vec_ft);
+		std::vector v_std_copy(vec_std);
+
+		v_ft_copy.erase(v_ft_copy.begin() + 1, v_ft_copy.end() - 1);
+		v_std_copy.erase(v_std_copy.begin() + 1, v_std_copy.end() - 1);
+		test_copy_equal(v_std_copy, v_ft_copy);
+	}
+
+	{
+		ft::vector	v_ft_copy(vec_ft);
+		std::vector v_std_copy(vec_std);
+
+		v_ft_copy.erase(v_ft_copy.begin() + 1, v_ft_copy.end());
+		v_std_copy.erase(v_std_copy.begin() + 1, v_std_copy.end());
+		test_copy_equal(v_std_copy, v_ft_copy);
+	}
+
+	{
+		ft::vector	v_ft_copy(vec_ft);
+		std::vector v_std_copy(vec_std);
+
+		v_ft_copy.erase(v_ft_copy.end() - 3, v_ft_copy.end());
+		v_std_copy.erase(v_std_copy.end() - 3, v_std_copy.end());
+		test_copy_equal(v_std_copy, v_ft_copy);
+	}
+}
+
 int
 main(void)
 {
@@ -309,6 +351,9 @@ main(void)
 
 	title("Scenario 4");
 	scenario_four<int>();
+
+	title("Scenario 5");
+	scenario_five<int>();
 
 	return 0;
 }
