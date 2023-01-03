@@ -116,11 +116,11 @@ iterator<T>::operator+(const long add)
 }
 
 template <typename T>
-iterator<T> &
+iterator<T>
 iterator<T>::operator-(const long remove)
 {
-	this->_position -= remove;
-	return *this;
+	iterator<T> diff(this->_pointer, this->_position - remove);
+	return diff;
 }
 
 template <typename T>
