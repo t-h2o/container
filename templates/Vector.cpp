@@ -5,13 +5,13 @@
  */
 
 template <typename T>
-vector<T>::vector(void) : _list(0), _maxSize(0), _size(0), _allocated(0)
+vector<T>::vector(void) : _list(0), _size(0), _allocated(0)
 {
 }
 
 template <typename T>
 vector<T>::vector(size_t nElements, const T &value)
-	: _list(0), _maxSize(0), _size(0), _allocated(0)
+	: _list(0), _size(0), _allocated(0)
 {
 	if (nElements == 0)
 		return;
@@ -23,7 +23,7 @@ vector<T>::vector(size_t nElements, const T &value)
 
 template <typename T>
 vector<T>::vector(iterator first, iterator last)
-	: _list(0), _maxSize(0), _size(0), _allocated(0)
+	: _list(0), _size(0), _allocated(0)
 {
 	std::ptrdiff_t length;
 
@@ -41,8 +41,7 @@ vector<T>::vector(iterator first, iterator last)
 }
 
 template <typename T>
-vector<T>::vector(vector const &other)
-	: _list(0), _maxSize(0), _size(0), _allocated(0)
+vector<T>::vector(vector const &other) : _list(0), _size(0), _allocated(0)
 {
 	*this = other;
 }
@@ -246,7 +245,6 @@ vector<T>::assign(size_t nElements, T value)
 		// first allocation
 		this->_size = nElements;
 		this->_allocated = nElements;
-		this->_maxSize = nElements;
 		this->_list = _allocator.allocate(nElements);
 
 		_construct_val(value);
@@ -258,7 +256,6 @@ vector<T>::assign(size_t nElements, T value)
 		this->_allocator.deallocate(this->_list, this->_allocated);
 		this->_size = nElements;
 		this->_allocated = nElements;
-		this->_maxSize = nElements;
 		this->_list = _allocator.allocate(nElements);
 
 		_construct_val(value);

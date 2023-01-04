@@ -72,7 +72,6 @@ template <typename T> class vector
 
   private:
 	T	  *_list;
-	size_t _maxSize;
 	size_t _size;
 	size_t _allocated;
 
