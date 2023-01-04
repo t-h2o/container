@@ -122,10 +122,7 @@ vector<T>::resize(size_t newSize)
 		this->_size = newSize;
 		return;
 	}
-	else if (this->_allocated * 2 > newSize)
-		newAllocation = this->_allocated * 2;
-	else
-		newAllocation = newSize;
+	newAllocation = this->_new_size(newSize);
 
 	newList = this->_allocator.allocate(newAllocation);
 
@@ -341,7 +338,7 @@ vector<T>::push_back(T const &object)
 	}
 	else if (this->_allocated == this->_size)
 	{
-		newAllocation = this->_allocated * 2;
+		newAllocation = this->_new_size(this->_size + 1);
 		newList = this->_gen_new_list(newAllocation);
 		this->_destroy_all();
 		this->_allocator.construct(&(newList[this->_allocated]), object);
@@ -383,6 +380,7 @@ vector<T>::insert(iterator position, const T &value)
 {
 	T	  *newList;
 	size_t i;
+	size_t newAllocation;
 
 	if (this->_size + 1 <= this->_allocated)
 	{
@@ -396,7 +394,8 @@ vector<T>::insert(iterator position, const T &value)
 	else
 	{
 		i = 0;
-		newList = this->_allocator.allocate(this->_allocated * 2);
+		newAllocation = this->_new_size(this->_size + 1);
+		newList = this->_allocator.allocate(newAllocation);
 		for (iterator it = this->begin(); it != position; it++)
 		{
 			this->_allocator.construct(&(newList[i++]), *it);
@@ -409,7 +408,7 @@ vector<T>::insert(iterator position, const T &value)
 			this->_allocator.destroy(&(it[0]));
 		}
 		this->_allocator.deallocate(this->_list, this->_allocated);
-		this->_allocated *= 2;
+		this->_allocated = newAllocation;
 		this->_list = newList;
 	}
 	this->_size++;
@@ -445,10 +444,7 @@ vector<T>::insert(iterator position, size_t number, const T &value)
 		i = 0;
 		iterator it(this->begin());
 
-		if (this->_allocated * 2 > this->_size + number)
-			newAllocation = this->_allocated * 2;
-		else
-			newAllocation = this->_size + number;
+		newAllocation = this->_new_size(this->_size + number);
 
 		newList = this->_allocator.allocate(newAllocation);
 
@@ -508,10 +504,7 @@ vector<T>::insert(iterator position, iterator first, iterator last)
 		i = 0;
 		iterator it(this->begin());
 
-		if (this->_allocated * 2 > this->_size + length)
-			newAllocation = this->_allocated * 2;
-		else
-			newAllocation = this->_size + length;
+		newAllocation = this->_new_size(this->_size + length);
 
 		newList = this->_allocator.allocate(newAllocation);
 
@@ -681,6 +674,16 @@ vector<T>::_first_allocation(size_t newAllocation)
 	this->_allocated = newAllocation;
 	this->_size = newAllocation;
 	this->_list = this->_allocator.allocate(this->_allocated);
+}
+
+template <typename T>
+size_t
+vector<T>::_new_size(size_t minimum) const
+{
+	if (this->_allocated * 2 > minimum)
+		return this->_allocated * 2;
+	else
+		return minimum;
 }
 
 template <typename T>
