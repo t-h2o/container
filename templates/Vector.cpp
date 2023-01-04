@@ -271,6 +271,53 @@ vector<T>::assign(size_t nElements, T value)
 	}
 }
 
+template <typename T>
+void
+vector<T>::assign(iterator first, iterator last)
+{
+	std::ptrdiff_t length;
+
+	length = last - first;
+	if (length == 0)
+		return;
+
+	if (this->_list == 0)
+	{
+		// first allocation
+		this->_allocated = length;
+		this->_size = length;
+		this->_list = this->_allocator.allocate(this->_allocated);
+
+		iterator it = this->begin();
+		for (; first != last; ++first)
+			this->_allocator.construct(&((it++)[0]), *first);
+	}
+	else if (static_cast<size_t>(length) >= this->_size)
+	{
+		// reallocation
+		this->_destroy_all();
+		this->_allocator.deallocate(this->_list, this->_allocated);
+		this->_size = length;
+		this->_allocated = length;
+		this->_list = _allocator.allocate(length);
+
+		iterator it = this->begin();
+		for (; first != last; ++first)
+			this->_allocator.construct(&((it++)[0]), *first);
+	}
+	else if (static_cast<size_t>(length) < this->_size)
+	{
+		// destroy and construct
+
+		_destroy_all();
+		this->_size = length;
+
+		iterator it = this->begin();
+		for (; first != last; ++first)
+			this->_allocator.construct(&((it++)[0]), *first);
+	}
+}
+
 /**
  *  @brief  Add data to the end of the %vector.
  *  @param  object  Data to be added.

@@ -51,6 +51,7 @@ template <typename T> class vector
 
 	/* Modifiers */
 	void assign(size_t, T);
+	void assign(iterator, iterator);
 	void push_back(T const &);
 	void pop_back(void);
 	void insert(iterator, const T &);
