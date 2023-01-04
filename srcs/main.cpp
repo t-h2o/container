@@ -441,10 +441,21 @@ scenario_nine(void)
 
 		test_copy_equal(vec_std, vec_ft);
 
-		section("push_back(42);");
-		vec_ft.push_back(42);
-		vec_std.push_back(42);
+		section("push_back(0);");
+		vec_ft.push_back(0);
+		vec_std.push_back(0);
 		test_copy_equal(vec_std, vec_ft);
+
+		section("Constructor range (vec_ft.begin(), vec_ft.end();");
+		ft::vector<T>  vec_ft_copy(vec_ft.begin(), vec_ft.end());
+		std::vector<T> vec_std_copy(vec_std.begin(), vec_std.end());
+
+		test_copy_equal(vec_std_copy, vec_ft_copy);
+
+		section("push_back(42);");
+		vec_ft_copy.push_back(42);
+		vec_std_copy.push_back(42);
+		test_copy_equal(vec_std_copy, vec_ft_copy);
 	}
 	{
 		section("Constructor fill (0, 42);");
@@ -452,6 +463,12 @@ scenario_nine(void)
 		std::vector<T> vec_std(0, 42);
 
 		test_copy_equal(vec_std, vec_ft);
+
+		section("Constructor range (vec_ft.begin(), vec_ft.end();");
+		ft::vector<T>  vec_ft_copy(vec_ft.begin(), vec_ft.end());
+		std::vector<T> vec_std_copy(vec_std.begin(), vec_std.end());
+
+		test_copy_equal(vec_std_copy, vec_ft_copy);
 
 		section("push_back(42);");
 		vec_ft.push_back(42);
