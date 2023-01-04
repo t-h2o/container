@@ -430,6 +430,16 @@ scenario_eight(void)
 	test_copy_equal(vec_std, vec_ft);
 }
 
+template <typename T>
+static void
+scenario_nine(void)
+{
+	ft::vector<T>  vec_ft(4, 42);
+	std::vector<T> vec_std(4, 42);
+
+	test_copy_equal(vec_std, vec_ft);
+}
+
 int
 main(void)
 {
@@ -466,6 +476,10 @@ main(void)
 	title("Scenario 8");
 	scenario_eight<int>();
 	scenario_eight<Awesome>();
+
+	title("Scenario 9");
+	scenario_nine<int>();
+	scenario_nine<Awesome>();
 
 	return 0;
 }
