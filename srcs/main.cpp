@@ -434,10 +434,30 @@ template <typename T>
 static void
 scenario_nine(void)
 {
-	ft::vector<T>  vec_ft(4, 42);
-	std::vector<T> vec_std(4, 42);
+	{
+		section("Constructor fill (4, 42);");
+		ft::vector<T>  vec_ft(4, 42);
+		std::vector<T> vec_std(4, 42);
 
-	test_copy_equal(vec_std, vec_ft);
+		test_copy_equal(vec_std, vec_ft);
+
+		section("push_back(42);");
+		vec_ft.push_back(42);
+		vec_std.push_back(42);
+		test_copy_equal(vec_std, vec_ft);
+	}
+	{
+		section("Constructor fill (0, 42);");
+		ft::vector<T>  vec_ft(0, 42);
+		std::vector<T> vec_std(0, 42);
+
+		test_copy_equal(vec_std, vec_ft);
+
+		section("push_back(42);");
+		vec_ft.push_back(42);
+		vec_std.push_back(42);
+		test_copy_equal(vec_std, vec_ft);
+	}
 }
 
 int
