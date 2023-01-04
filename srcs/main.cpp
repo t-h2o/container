@@ -482,40 +482,49 @@ main(void)
 {
 	title("Main");
 
-	title("Scenario 1");
+	title("Scenario 1: int");
 	scenario_one<int>();
+	title("Scenario 1: Awesome");
 	scenario_one<Awesome>();
 
-	title("Scenario 2");
+	title("Scenario 2: int");
 	scenario_two<int>();
+	title("Scenario 2: Awesome");
 	scenario_two<Awesome>();
 
-	title("Scenario 3");
+	title("Scenario 3: int");
 	scenario_tree<int>();
+	title("Scenario 3: Awesome");
 	scenario_tree<Awesome>();
 
-	title("Scenario 4");
+	title("Scenario 4: int");
 	scenario_four<int>();
+	title("Scenario 4: Awesome");
 	scenario_four<Awesome>();
 
-	title("Scenario 5");
+	title("Scenario 5: int");
 	scenario_five<int>();
+	title("Scenario 5: Awesome");
 	scenario_five<Awesome>();
 
-	title("Scenario 6");
+	title("Scenario 6: int");
 	scenario_six<int>();
+	title("Scenario 6: Awesome");
 	scenario_six<Awesome>();
 
-	title("Scenario 7");
+	title("Scenario 7: int");
 	scenario_seven<int>();
+	title("Scenario 7: Awesome");
 	scenario_six<Awesome>();
 
-	title("Scenario 8");
+	title("Scenario 8: int");
 	scenario_eight<int>();
+	title("Scenario 8: Awesome");
 	scenario_eight<Awesome>();
 
-	title("Scenario 9");
+	title("Scenario 9: int");
 	scenario_nine<int>();
+	title("Scenario 9: Awesome");
 	scenario_nine<Awesome>();
 
 	return 0;
