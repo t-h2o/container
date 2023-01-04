@@ -10,8 +10,11 @@ vector<T>::vector(void) : _list(0), _maxSize(0), _size(0), _allocated(0)
 }
 
 template <typename T>
-vector<T>::vector(size_t nElements, const T & value) : _list(0), _maxSize(0), _size(0), _allocated(0)
+vector<T>::vector(size_t nElements, const T &value)
+	: _list(0), _maxSize(0), _size(0), _allocated(0)
 {
+	if (nElements == 0)
+		return;
 	this->_allocated = nElements;
 	this->_size = nElements;
 	this->_list = this->_allocator.allocate(this->_allocated);
