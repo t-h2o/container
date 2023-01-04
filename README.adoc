@@ -92,10 +92,6 @@ z(x, y) = x * 2 ^ y
 
 image::assets/gnuplot.svg[gnuplot]
 
-=== Insert
-
-image::assets/insert.svg[example]
-
 == Iterator
 
 === Resources

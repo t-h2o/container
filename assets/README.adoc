@@ -77,26 +77,3 @@ NO_ANIMATION = 1
 ## Last datafile plotted: "$grid"
 splot x * 2**y
 ....
-
-[plantuml, target=insert, format=svg, width=100%]
-....
-@startuml
-skinparam defaultFontName JetBrains Mono
-
-collections list
-participant tmp1
-participant tmp2
-participant value
-
-list -> tmp1 : save position
-value -> list : put value in position
-
-list -> list : increase list
-list -> tmp2 : save position + 1
-tmp1 -> list : set position
-
-list -> list : increase list
-list -> tmp1 : save postition + 2
-tmp2 -> list : set position + 1
-@enduml
-....
