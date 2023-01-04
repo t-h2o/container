@@ -415,18 +415,15 @@ scenario_eight(void)
 	vec_ft.shrink_to_fit();
 	vec_std.shrink_to_fit();
 	test_copy_equal(vec_std, vec_ft);
-	std::cout << vec_ft;
 
 	section("insert(vec_ft.begin() + 10, 2, -999);");
 	vec_ft.insert(vec_ft.begin() + 10, 2, -999);
 	vec_std.insert(vec_std.begin() + 10, 2, -999);
-	std::cout << vec_ft;
 	test_copy_equal(vec_std, vec_ft);
 
 	section("insert(vec_ft.begin() + 10, 99, -999);");
 	vec_ft.insert(vec_ft.begin() + 10, 99, -999);
 	vec_std.insert(vec_std.begin() + 10, 99, -999);
-	std::cout << vec_ft;
 	test_copy_equal(vec_std, vec_ft);
 }
 
@@ -505,8 +502,6 @@ scenario_ten(void)
 		std::vector<T> vec_std_copy(42, 42);
 		test_copy_equal(vec_std_copy, vec_ft_copy);
 
-		std::cout << vec_ft << vec_ft_copy;
-
 		section("vec_ft_copy.assign(vec_ft.begin() + 1, vec_ft.end();");
 		vec_ft_copy.assign(vec_ft.begin() + 1, vec_ft.end());
 		vec_std_copy.assign(vec_std.begin() + 1, vec_std.end());
@@ -519,8 +514,6 @@ scenario_ten(void)
 		ft::vector<T>  vec_ft_copy(1, 42);
 		std::vector<T> vec_std_copy(1, 42);
 		test_copy_equal(vec_std_copy, vec_ft_copy);
-
-		std::cout << vec_ft << vec_ft_copy;
 
 		section("vec_ft_copy.assign(vec_ft.begin() + 1, vec_ft.end();");
 		vec_ft_copy.assign(vec_ft.begin() + 1, vec_ft.end());
