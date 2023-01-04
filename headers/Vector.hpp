@@ -22,7 +22,7 @@ template <typename T> class vector
 	typedef ft::iterator<T> iterator;
 
 	/* Member Funcion */
-	vector(void);
+	explicit vector(void);
 	vector(vector const &);
 	~vector(void);
 	vector &operator=(vector const &);
