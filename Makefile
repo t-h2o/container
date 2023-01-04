@@ -24,6 +24,7 @@ SRCS	+=	$(SRCD)/color.cpp
 SRCS	+=	$(SRCD)/Awesome.cpp
 
 SRCS	+=	$(SRCD)/test_vector.cpp
+SRCS	+=	$(SRCD)/test_pair.cpp
 
 
 #	Headers
