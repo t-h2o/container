@@ -79,7 +79,7 @@ template <typename T> class vector
 	std::allocator<T> _allocator;
 
 	void _destroy_all(void);
-	void _construct_val(const T &);
+	void _construct_value(const T &);
 	void _construct_range(T *, iterator first, iterator last);
 	T	*_gen_new_list(size_t);
 };
