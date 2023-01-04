@@ -81,6 +81,7 @@ template <typename T> class vector
 	void _destroy_all(void);
 	void _construct_value(const T &);
 	void _construct_range(T *, iterator first, iterator last);
+	void _first_allocation(size_t);
 	T	*_gen_new_list(size_t);
 };
 

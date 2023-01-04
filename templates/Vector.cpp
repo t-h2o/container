@@ -15,9 +15,8 @@ vector<T>::vector(size_t nElements, const T &value)
 {
 	if (nElements == 0)
 		return;
-	this->_allocated = nElements;
-	this->_size = nElements;
-	this->_list = this->_allocator.allocate(this->_allocated);
+
+	_first_allocation(nElements);
 
 	_construct_value(value);
 }
@@ -32,9 +31,7 @@ vector<T>::vector(iterator first, iterator last)
 	if (length == 0)
 		return;
 
-	this->_allocated = length;
-	this->_size = length;
-	this->_list = this->_allocator.allocate(this->_allocated);
+	_first_allocation(length);
 
 	_construct_range(this->data(), first, last);
 }
@@ -242,9 +239,7 @@ vector<T>::assign(size_t nElements, T value)
 	if (this->_list == 0)
 	{
 		// first allocation
-		this->_size = nElements;
-		this->_allocated = nElements;
-		this->_list = _allocator.allocate(nElements);
+		_first_allocation(nElements);
 
 		_construct_value(value);
 	}
@@ -282,10 +277,7 @@ vector<T>::assign(iterator first, iterator last)
 
 	if (this->_list == 0)
 	{
-		// first allocation
-		this->_allocated = length;
-		this->_size = length;
-		this->_list = this->_allocator.allocate(this->_allocated);
+		_first_allocation(length);
 
 		_construct_range(this->_list, first, last);
 	}
@@ -294,9 +286,8 @@ vector<T>::assign(iterator first, iterator last)
 		// reallocation
 		this->_destroy_all();
 		this->_allocator.deallocate(this->_list, this->_allocated);
-		this->_size = length;
-		this->_allocated = length;
-		this->_list = _allocator.allocate(length);
+
+		_first_allocation(length);
 
 		_construct_range(this->_list, first, last);
 	}
@@ -605,6 +596,15 @@ vector<T>::_gen_new_list(size_t newAllocation)
 	}
 
 	return newList;
+}
+
+template <typename T>
+void
+vector<T>::_first_allocation(size_t newAllocation)
+{
+	this->_allocated = newAllocation;
+	this->_size = newAllocation;
+	this->_list = this->_allocator.allocate(this->_allocated);
 }
 
 template <typename T>
