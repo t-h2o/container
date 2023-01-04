@@ -507,7 +507,7 @@ vector<T>::_destroy_all(void)
 
 template <typename T>
 void
-vector<T>::_construct_val(T &value)
+vector<T>::_construct_val(const T &value)
 {
 	for (size_t i = 0; i < this->_size; i++)
 		this->_allocator.construct(&(this->_list[i]), value);

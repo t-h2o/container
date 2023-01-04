@@ -77,7 +77,7 @@ template <typename T> class vector
 	std::allocator<T> _allocator;
 
 	void _destroy_all(void);
-	void _construct_val(T &);
+	void _construct_val(const T &);
 	T	*_gen_new_list(size_t);
 };
 
