@@ -476,6 +476,69 @@ vector<T>::insert(iterator position, size_t number, const T &value)
 
 template <typename T>
 void
+vector<T>::insert(iterator position, iterator first, iterator last)
+{
+	std::ptrdiff_t length;
+	size_t		   i;
+	T			  *newList;
+	size_t		   newAllocation;
+
+	length = last - first;
+
+	if (this->_size + length < this->_allocated)
+	{
+		iterator it(this->end());
+
+		for (; it != this->end() + length; ++it)
+			this->_allocator.construct(&(*it), *(it - length));
+
+		it = this->end() - 1;
+		this->_size += length;
+
+		for (; it != position && this->begin() != (it - length); --it)
+			*it = *(it - length);
+
+		it = position;
+
+		for (; first != last; ++first)
+			(*(it++)) = *first;
+	}
+	else
+	{
+		i = 0;
+		iterator it(this->begin());
+
+		if (this->_allocated * 2 > this->_size + length)
+			newAllocation = this->_allocated * 2;
+		else
+			newAllocation = this->_size + length;
+
+		newList = this->_allocator.allocate(newAllocation);
+
+		for (; it != position; it++)
+		{
+			this->_allocator.construct(&(newList[i++]), *it);
+			this->_allocator.destroy(&(it[0]));
+		}
+
+		_construct_range(&(newList[i]), first, last);
+		i += length;
+
+		for (iterator it = position; it != this->end(); it++)
+		{
+			this->_allocator.construct(&(newList[i++]), *it);
+			this->_allocator.destroy(&(it[0]));
+		}
+
+		this->_allocator.deallocate(this->_list, this->_allocated);
+		this->_allocated = newAllocation;
+		this->_list = newList;
+		this->_size += length;
+	}
+}
+
+template <typename T>
+void
 vector<T>::erase(iterator position)
 {
 	T *newList;

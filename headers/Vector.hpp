@@ -56,6 +56,7 @@ template <typename T> class vector
 	void pop_back(void);
 	void insert(iterator, const T &);
 	void insert(iterator, size_t, const T &);
+	void insert(iterator, iterator, iterator);
 	void erase(iterator);
 	void erase(iterator, iterator);
 	void swap(vector &);
