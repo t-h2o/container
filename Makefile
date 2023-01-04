@@ -23,6 +23,8 @@ SRCS	=	$(SRCD)/main.cpp
 SRCS	+=	$(SRCD)/color.cpp
 SRCS	+=	$(SRCD)/Awesome.cpp
 
+SRCS	+=	$(SRCD)/test_vector.cpp
+
 
 #	Headers
 
@@ -33,6 +35,8 @@ INCS	+=	$(INCD)/Awesome.hpp
 
 INCS	+=	$(INCD)/Iterator.hpp
 INCS	+=	$(INCD)/Vector.hpp
+
+INCS	+=	$(INCD)/test.hpp
 
 
 #	Templates
