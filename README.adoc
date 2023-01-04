@@ -67,7 +67,9 @@ image::assets/vector.svg[example]
 * [x] https://cplusplus.com/reference/vector/vector/data/[`data`]
 
 .Modifiers
-* [x] https://cplusplus.com/reference/vector/vector/assign/[`assign`]
+* [ ] https://cplusplus.com/reference/vector/vector/assign/[`assign`]
+** [ ] range
+** [x] fill
 * [x] https://cplusplus.com/reference/vector/vector/push_back/[`push_back`]
 * [x] https://cplusplus.com/reference/vector/vector/pop_back/[`pop_back`]
 * [x] https://cplusplus.com/reference/vector/vector/insert/[`insert`]
