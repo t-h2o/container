@@ -31,7 +31,11 @@ image::assets/vector.svg[example]
 === Check list
 
 .Member functions
-* [x] https://cplusplus.com/reference/vector/vector/vector/[`constructor`]
+* [ ] https://cplusplus.com/reference/vector/vector/vector/[`constructor`]
+** [x] default
+** [ ] fill
+** [ ] range
+** [x] copy
 * [x] https://cplusplus.com/reference/vector/vector/~vector/[`destructor`]
 * [x] https://cplusplus.com/reference/vector/vector/operator=/[`operator=`]
 
