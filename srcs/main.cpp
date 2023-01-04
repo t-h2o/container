@@ -526,6 +526,51 @@ scenario_ten(void)
 	}
 }
 
+template <typename T>
+static void
+scenario_eleven(void)
+{
+	ft::vector<T>  vec_ft;
+	std::vector<T> vec_std;
+
+	section("push_back_ten()");
+	push_back_ten(vec_std, vec_ft);
+	test_copy_equal(vec_std, vec_ft);
+
+	{
+		section("range constructor(5, 42)");
+		ft::vector<T>  vec_ft_copy(5, 42);
+		std::vector<T> vec_std_copy(5, 42);
+
+		section("push_back(777);");
+		vec_ft_copy.push_back(777);
+		vec_std_copy.push_back(777);
+		test_copy_equal(vec_std, vec_ft);
+
+		section("insert(vec_ft_copy.begin + 1, vec_ft.begin(), vec_ft.begin + "
+				"3);");
+		vec_ft_copy.insert(vec_ft_copy.begin() + 1, vec_ft.begin(),
+						   vec_ft.begin() + 3);
+		vec_std_copy.insert(vec_std_copy.begin() + 1, vec_std.begin(),
+							vec_std.begin() + 3);
+		test_copy_equal(vec_std, vec_ft);
+	}
+
+	{
+		section("range constructor(5, 42)");
+		ft::vector<T>  vec_ft_copy(5, 42);
+		std::vector<T> vec_std_copy(5, 42);
+
+		section("insert(vec_ft_copy.begin + 1, vec_ft.begin(), vec_ft.begin + "
+				"3);");
+		vec_ft_copy.insert(vec_ft_copy.begin() + 1, vec_ft.begin(),
+						   vec_ft.begin() + 3);
+		vec_std_copy.insert(vec_std_copy.begin() + 1, vec_std.begin(),
+							vec_std.begin() + 3);
+		test_copy_equal(vec_std, vec_ft);
+	}
+}
+
 int
 main(void)
 {
@@ -580,6 +625,11 @@ main(void)
 	scenario_ten<int>();
 	title("Scenario 10: Awesome");
 	scenario_ten<Awesome>();
+
+	title("Scenario 11: int");
+	scenario_eleven<int>();
+	title("Scenario 11: Awesome");
+	scenario_eleven<Awesome>();
 
 	return 0;
 }
