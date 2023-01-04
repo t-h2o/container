@@ -110,9 +110,22 @@ vector<T>::resize(size_t newSize)
 {
 	T *newList;
 
-	size_t newAllocation = this->_allocated;
-	while (newSize > newAllocation)
-		newAllocation *= 2;
+	size_t newAllocation;
+
+	if (newSize < this->_allocated)
+	{
+		size_t i = this->_size;
+		while (i >= newSize)
+		{
+			this->_allocator.destroy(&(this->_list[i--]));
+		}
+		this->_size = newSize;
+		return;
+	}
+	else if (this->_allocated * 2 > newSize)
+		newAllocation = this->_allocated * 2;
+	else
+		newAllocation = newSize;
 
 	newList = this->_allocator.allocate(newAllocation);
 
