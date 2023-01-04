@@ -44,6 +44,7 @@ INCS	+=	$(INCD)/test.hpp
 TMPD	=	templates
 
 TMPS	=	$(TMPD)/Iterator.cpp
+TMPS	+=	$(TMPD)/Pair.cpp
 TMPS	+=	$(TMPD)/Vector.cpp
 
 
