@@ -477,6 +477,59 @@ scenario_nine(void)
 	}
 }
 
+template <typename T>
+static void
+scenario_ten(void)
+{
+	ft::vector<T>  vec_ft;
+	std::vector<T> vec_std;
+
+	push_back_ten(vec_std, vec_ft);
+	test_copy_equal(vec_std, vec_ft);
+
+	{
+		section("default constructor");
+		ft::vector<T>  vec_ft_copy;
+		std::vector<T> vec_std_copy;
+
+		section("vec_ft_copy.assign(vec_ft.begin(), vec_ft.end();");
+		vec_ft_copy.assign(vec_ft.begin(), vec_ft.end());
+		vec_std_copy.assign(vec_std.begin(), vec_std.end());
+
+		test_copy_equal(vec_std_copy, vec_ft_copy);
+	}
+
+	{
+		section("(big) fill constructor");
+		ft::vector<T>  vec_ft_copy(42, 42);
+		std::vector<T> vec_std_copy(42, 42);
+		test_copy_equal(vec_std_copy, vec_ft_copy);
+
+		std::cout << vec_ft << vec_ft_copy;
+
+		section("vec_ft_copy.assign(vec_ft.begin() + 1, vec_ft.end();");
+		vec_ft_copy.assign(vec_ft.begin() + 1, vec_ft.end());
+		vec_std_copy.assign(vec_std.begin() + 1, vec_std.end());
+
+		test_copy_equal(vec_std_copy, vec_ft_copy);
+	}
+
+	{
+		section("(little) fill constructor");
+		ft::vector<T>  vec_ft_copy(1, 42);
+		std::vector<T> vec_std_copy(1, 42);
+		test_copy_equal(vec_std_copy, vec_ft_copy);
+
+		std::cout << vec_ft << vec_ft_copy;
+
+		section("vec_ft_copy.assign(vec_ft.begin() + 1, vec_ft.end();");
+		vec_ft_copy.assign(vec_ft.begin() + 1, vec_ft.end());
+		vec_std_copy.assign(vec_std.begin() + 1, vec_std.end());
+
+		test_copy_equal(vec_std_copy, vec_ft_copy);
+	}
+}
+
 int
 main(void)
 {
@@ -526,6 +579,11 @@ main(void)
 	scenario_nine<int>();
 	title("Scenario 9: Awesome");
 	scenario_nine<Awesome>();
+
+	title("Scenario 10: int");
+	scenario_ten<int>();
+	title("Scenario 10: Awesome");
+	scenario_ten<Awesome>();
 
 	return 0;
 }
