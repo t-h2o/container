@@ -22,6 +22,25 @@ vector<T>::vector(size_t nElements, const T &value)
 }
 
 template <typename T>
+vector<T>::vector(iterator first, iterator last)
+	: _list(0), _maxSize(0), _size(0), _allocated(0)
+{
+	std::ptrdiff_t length;
+
+	length = last - first;
+	if (length == 0)
+		return;
+
+	this->_allocated = length;
+	this->_size = length;
+	this->_list = this->_allocator.allocate(this->_allocated);
+
+	iterator it = this->begin();
+	for (; first != last; ++first)
+		this->_allocator.construct(&((it++)[0]), *first);
+}
+
+template <typename T>
 vector<T>::vector(vector const &other)
 	: _list(0), _maxSize(0), _size(0), _allocated(0)
 {

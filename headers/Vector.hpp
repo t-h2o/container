@@ -24,6 +24,7 @@ template <typename T> class vector
 	/* Member Funcion */
 	explicit vector(void);
 	explicit vector(size_t, const T &);
+	vector(iterator, iterator);
 	vector(vector const &);
 	~vector(void);
 	vector &operator=(vector const &);
