@@ -339,14 +339,17 @@ scenario_six(void)
 	ft::vector<T>  vec_ft;
 	std::vector<T> vec_std;
 
+	section("assign(5, 5);");
 	vec_ft.assign(5, 5);
 	vec_std.assign(5, 5);
 	test_copy_equal(vec_std, vec_ft);
 
-	vec_ft.resize(7);
-	vec_std.resize(7);
+	section("resize(777);");
+	vec_ft.resize(777);
+	vec_std.resize(777);
 	test_copy_equal(vec_std, vec_ft);
 
+	section("resize(2);");
 	vec_ft.resize(2);
 	vec_std.resize(2);
 	test_copy_equal(vec_std, vec_ft);
