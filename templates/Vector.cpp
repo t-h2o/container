@@ -35,9 +35,7 @@ vector<T>::vector(iterator first, iterator last)
 	this->_size = length;
 	this->_list = this->_allocator.allocate(this->_allocated);
 
-	iterator it = this->begin();
-	for (; first != last; ++first)
-		this->_allocator.construct(&((it++)[0]), *first);
+	_construct_range(this->data(), first, last);
 }
 
 template <typename T>
@@ -288,9 +286,7 @@ vector<T>::assign(iterator first, iterator last)
 		this->_size = length;
 		this->_list = this->_allocator.allocate(this->_allocated);
 
-		iterator it = this->begin();
-		for (; first != last; ++first)
-			this->_allocator.construct(&((it++)[0]), *first);
+		_construct_range(this->_list, first, last);
 	}
 	else if (static_cast<size_t>(length) >= this->_size)
 	{
@@ -301,9 +297,7 @@ vector<T>::assign(iterator first, iterator last)
 		this->_allocated = length;
 		this->_list = _allocator.allocate(length);
 
-		iterator it = this->begin();
-		for (; first != last; ++first)
-			this->_allocator.construct(&((it++)[0]), *first);
+		_construct_range(this->_list, first, last);
 	}
 	else if (static_cast<size_t>(length) < this->_size)
 	{
@@ -312,9 +306,7 @@ vector<T>::assign(iterator first, iterator last)
 		_destroy_all();
 		this->_size = length;
 
-		iterator it = this->begin();
-		for (; first != last; ++first)
-			this->_allocator.construct(&((it++)[0]), *first);
+		_construct_range(this->_list, first, last);
 	}
 }
 
@@ -586,6 +578,17 @@ vector<T>::_construct_val(const T &value)
 {
 	for (size_t i = 0; i < this->_size; i++)
 		this->_allocator.construct(&(this->_list[i]), value);
+}
+
+template <typename T>
+void
+vector<T>::_construct_range(T *list, iterator first, iterator last)
+{
+	size_t index;
+
+	index = 0;
+	for (; first != last; ++first)
+		this->_allocator.construct(&(list[index++]), *first);
 }
 
 template <typename T>
