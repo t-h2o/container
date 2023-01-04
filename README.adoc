@@ -72,7 +72,10 @@ image::assets/vector.svg[example]
 ** [x] fill
 * [x] https://cplusplus.com/reference/vector/vector/push_back/[`push_back`]
 * [x] https://cplusplus.com/reference/vector/vector/pop_back/[`pop_back`]
-* [x] https://cplusplus.com/reference/vector/vector/insert/[`insert`]
+* [ ] https://cplusplus.com/reference/vector/vector/insert/[`insert`]
+** [x] single element
+** [x] fill
+** [ ] range
 * [x] https://cplusplus.com/reference/vector/vector/erase/[`erase`]
 * [x] https://cplusplus.com/reference/vector/vector/swap/[`swap`]
 * [x] https://cplusplus.com/reference/vector/vector/clear/[`clear`]
