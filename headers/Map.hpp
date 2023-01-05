@@ -17,8 +17,10 @@ template <typename T1, typename T2> class map
 	explicit map(void);
 	~map(void);
 
+	pair &operator[](const T1 &);
+
   private:
-	pair *_root;
+	t_node *_root;
 };
 
 #include "../templates/Map.cpp"
