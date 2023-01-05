@@ -45,3 +45,19 @@ map<T1, T2>::_free_tree(void)
 		delete free;
 	}
 }
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::print(void) const
+{
+	t_node *ptr(_root);
+
+	std::cout << "map:"
+		<< std::endl;
+
+	while (ptr)
+	{
+		std::cout << ptr->dual;
+		ptr = ptr->next;
+	}
+}
