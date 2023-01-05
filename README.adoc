@@ -159,7 +159,7 @@ image::assets/gnuplot.svg[gnuplot]
 * [ ] https://cplusplus.com/reference/map/map/crend[`crend`]
 
 .Capacity:
-* [ ] https://cplusplus.com/reference/map/map/empty[`empty`]
+* [x] https://cplusplus.com/reference/map/map/empty[`empty`]
 * [ ] https://cplusplus.com/reference/map/map/size[`size`]
 * [ ] https://cplusplus.com/reference/map/map/max_size[`max_size`]
 
