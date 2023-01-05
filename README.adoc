@@ -121,5 +121,8 @@ image::assets/gnuplot.svg[gnuplot]
 
 .Member functions
 * [ ] https://cplusplus.com/reference/utility/pair/pair/[`constructor`]
+** [ ] default
+** [ ] copy
+** [ ] initialization
 * [ ] https://cplusplus.com/reference/utility/pair/operator=/[`operator=`]
 * [ ] https://cplusplus.com/reference/utility/pair/swap/[`swap`]
