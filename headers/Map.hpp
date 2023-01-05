@@ -21,6 +21,8 @@ template <typename T1, typename T2> class map
 
   private:
 	t_node *_root;
+
+	void _free_tree(void);
 };
 
 #include "../templates/Map.cpp"
