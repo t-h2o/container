@@ -6,6 +6,7 @@ template <typename T1, typename T2> class pair
   public:
 	/* Member Funcion */
 	pair(void);
+	pair(const pair &);
 	explicit pair(T1 const &, const T2 &);
 
   private:
