@@ -13,9 +13,8 @@ template <typename T1, typename T2> class pair
 
 	void swap(pair &);
 
-  private:
-	T1	  _first;
-	T2	  _second;
+	T1	  first;
+	T2	  second;
 };
 
 #include "../templates/Pair.cpp"
