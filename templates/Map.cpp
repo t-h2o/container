@@ -4,6 +4,17 @@ template <typename T1, typename T2> map<T1, T2>::map(void) : _root(0), _size(0)
 
 template <typename T1, typename T2> map<T1, T2>::~map(void) { _free_tree(); }
 
+/**
+ * Capacity
+ */
+
+template <typename T1, typename T2>
+bool
+map<T1, T2>::empty(void) const
+{
+	return !_size;
+}
+
 template <typename T1, typename T2>
 pair<T1, T2> &
 map<T1, T2>::operator[](const T1 &key)

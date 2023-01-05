@@ -20,6 +20,10 @@ template <typename T1, typename T2> class map
 	explicit map(void);
 	~map(void);
 
+	/* Capacity */
+	bool empty(void) const;
+
+	/* Element access */
 	pair &operator[](const T1 &);
 
 	void print(void) const;
