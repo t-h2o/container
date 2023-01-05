@@ -123,9 +123,9 @@ image::assets/gnuplot.svg[gnuplot]
 === Check-list
 
 .Member functions
-* [ ] https://cplusplus.com/reference/utility/pair/pair/[`constructor`]
-** [ ] default
-** [ ] copy
-** [ ] initialization
+* [x] https://cplusplus.com/reference/utility/pair/pair/[`constructor`]
+** [x] default
+** [x] copy
+** [x] initialization
 * [ ] https://cplusplus.com/reference/utility/pair/operator=/[`operator=`]
 * [ ] https://cplusplus.com/reference/utility/pair/swap/[`swap`]
