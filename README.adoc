@@ -109,3 +109,17 @@ image::assets/gnuplot.svg[gnuplot]
 * https://cplusplus.com/reference/iterator/[`<iterator>`]
 * https://cplusplus.com/reference/iterator/iterator/[`std::iterator`]
 * https://cplusplus.com/reference/iterator/iterator_traits/[`std::iterator_traits`]
+
+== Pair
+
+=== Resources
+
+.cplusplus.com
+* https://cplusplus.com/reference/utility/pair/[`std::pair`]
+
+=== Check-list
+
+.Member functions
+* [ ] https://cplusplus.com/reference/utility/pair/pair/[`constructor`]
+* [ ] https://cplusplus.com/reference/utility/pair/operator=/[`operator=`]
+* [ ] https://cplusplus.com/reference/utility/pair/swap/[`swap`]
