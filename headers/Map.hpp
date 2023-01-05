@@ -21,7 +21,8 @@ template <typename T1, typename T2> class map
 	~map(void);
 
 	/* Capacity */
-	bool empty(void) const;
+	bool   empty(void) const;
+	size_t size(void) const;
 
 	/* Element access */
 	pair &operator[](const T1 &);

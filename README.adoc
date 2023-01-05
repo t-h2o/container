@@ -160,7 +160,7 @@ image::assets/gnuplot.svg[gnuplot]
 
 .Capacity:
 * [x] https://cplusplus.com/reference/map/map/empty[`empty`]
-* [ ] https://cplusplus.com/reference/map/map/size[`size`]
+* [x] https://cplusplus.com/reference/map/map/size[`size`]
 * [ ] https://cplusplus.com/reference/map/map/max_size[`max_size`]
 
 .Element access:

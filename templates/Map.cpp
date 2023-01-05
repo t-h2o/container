@@ -16,6 +16,13 @@ map<T1, T2>::empty(void) const
 }
 
 template <typename T1, typename T2>
+size_t
+map<T1, T2>::size(void) const
+{
+	return _size;
+}
+
+template <typename T1, typename T2>
 pair<T1, T2> &
 map<T1, T2>::operator[](const T1 &key)
 {
