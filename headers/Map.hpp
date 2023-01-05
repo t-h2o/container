@@ -1,3 +1,6 @@
+#ifndef MAP_HPP
+#define MAP_HPP
+
 #include "Pair.hpp"
 
 namespace ft
@@ -28,3 +31,5 @@ template <typename T1, typename T2> class map
 #include "../templates/Map.cpp"
 
 } /* namespace ft */
+
+#endif /* MAP_HPP */
