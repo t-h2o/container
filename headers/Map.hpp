@@ -26,6 +26,7 @@ template <typename T1, typename T2> class map
 
   private:
 	t_node *_root;
+	size_t	_size;
 
 	void _free_tree(void);
 };

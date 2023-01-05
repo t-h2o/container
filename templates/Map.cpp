@@ -1,4 +1,6 @@
-template <typename T1, typename T2> map<T1, T2>::map(void) : _root(0) {}
+template <typename T1, typename T2> map<T1, T2>::map(void) : _root(0), _size(0)
+{
+}
 
 template <typename T1, typename T2> map<T1, T2>::~map(void) { _free_tree(); }
 
@@ -24,6 +26,7 @@ map<T1, T2>::operator[](const T1 &key)
 		ptr = new t_node;
 		_root = ptr;
 	}
+	++_size;
 
 	ptr->next = 0;
 	ptr->dual.first = key;
@@ -52,7 +55,7 @@ map<T1, T2>::print(void) const
 {
 	t_node *ptr(_root);
 
-	std::cout << "map:" << std::endl;
+	std::cout << "map: size = " << _size << std::endl;
 
 	while (ptr)
 	{
