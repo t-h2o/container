@@ -52,8 +52,7 @@ map<T1, T2>::print(void) const
 {
 	t_node *ptr(_root);
 
-	std::cout << "map:"
-		<< std::endl;
+	std::cout << "map:" << std::endl;
 
 	while (ptr)
 	{

@@ -22,7 +22,7 @@ template <typename T1, typename T2> class map
 
 	pair &operator[](const T1 &);
 
-	void	print(void) const ;
+	void print(void) const;
 
   private:
 	t_node *_root;
