@@ -140,3 +140,51 @@ image::assets/gnuplot.svg[gnuplot]
 .wikipedia
 * https://en.wikipedia.org/wiki/Binary_search_tree[Binary search tree]
 * https://en.wikipedia.org/wiki/Red%E2%80%93black_tree[Red–black tree]
+
+=== Check-list
+
+.Member functions
+* [ ] https://cplusplus.com/reference/map/map/map/[`constructor`]
+* [ ] https://cplusplus.com/reference/map/map/~map/[`destructor`]
+* [ ] https://cplusplus.com/reference/map/map/operator=/[`operator=`]
+
+.Iterators:
+* [ ] https://cplusplus.com/reference/map/map/begin[`begin`]
+* [ ] https://cplusplus.com/reference/map/map/end[`end`]
+* [ ] https://cplusplus.com/reference/map/map/rbegin[`rbegin`]
+* [ ] https://cplusplus.com/reference/map/map/rend[`rend`]
+* [ ] https://cplusplus.com/reference/map/map/cbegin[`cbegin`]
+* [ ] https://cplusplus.com/reference/map/map/cend[`cend`]
+* [ ] https://cplusplus.com/reference/map/map/crbegin[`crbegin`]
+* [ ] https://cplusplus.com/reference/map/map/crend[`crend`]
+
+.Capacity:
+* [ ] https://cplusplus.com/reference/map/map/empty[`empty`]
+* [ ] https://cplusplus.com/reference/map/map/size[`size`]
+* [ ] https://cplusplus.com/reference/map/map/max_size[`max_size`]
+
+.Element access:
+* [ ] `operator[]`
+* [ ] https://cplusplus.com/reference/map/map/at[`at`]
+
+.Modifiers:
+* [ ] https://cplusplus.com/reference/map/map/insert[`insert`]
+* [ ] https://cplusplus.com/reference/map/map/erase[`erase`]
+* [ ] https://cplusplus.com/reference/map/map/swap[`swap`]
+* [ ] https://cplusplus.com/reference/map/map/clear[`clear`]
+* [ ] https://cplusplus.com/reference/map/map/emplace[`emplace`]
+* [ ] https://cplusplus.com/reference/map/map/emplace_hint[`emplace_hint`]
+
+.Observers:
+* [ ] https://cplusplus.com/reference/map/map/key_comp[`key_comp`]
+* [ ] https://cplusplus.com/reference/map/map/value_comp[`value_comp`]
+
+.Operations:
+* [ ] https://cplusplus.com/reference/map/map/find[`find`]
+* [ ] https://cplusplus.com/reference/map/map/count[`count`]
+* [ ] https://cplusplus.com/reference/map/map/lower_bound[`lower_bound`]
+* [ ] https://cplusplus.com/reference/map/map/upper_bound[`upper_bound`]
+* [ ] https://cplusplus.com/reference/map/map/equal_range[`equal_range`]
+
+.Allocator:
+* [ ] https://cplusplus.com/reference/map/map/get_allocator[`get_allocator`]
