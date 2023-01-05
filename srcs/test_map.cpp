@@ -14,6 +14,8 @@ map_one(void)
 
 	tree[42] = 100;
 	tree[12] = 200;
+
+	tree.print();
 }
 
 void
