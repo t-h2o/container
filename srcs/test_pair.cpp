@@ -46,6 +46,19 @@ pair_one(void)
 	}
 }
 
+static void
+pair_tree(void)
+{
+	ft::pair<char, int>	 pair_ft;
+	std::pair<char, int> pair_std;
+
+	pair_ft.first = 'a';
+	pair_std.first = 'a';
+
+	pair_ft.second = 42;
+	pair_std.second = 42;
+}
+
 void
 test_pair(void)
 {
@@ -54,4 +67,7 @@ test_pair(void)
 
 	title("Pair 2");
 	pair_two();
+
+	title("Pair 3");
+	pair_tree();
 }
