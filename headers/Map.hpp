@@ -15,6 +15,7 @@ template <typename T1, typename T2> class map
 
   public:
 	explicit map(void);
+	~map(void);
 
   private:
 	pair *_root;
