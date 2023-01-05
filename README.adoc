@@ -117,6 +117,9 @@ image::assets/gnuplot.svg[gnuplot]
 .cplusplus.com
 * https://cplusplus.com/reference/utility/pair/[`std::pair`]
 
+.The STL: on GNU/Linux
+* `/usr/include/c++/12.2.0/bits/stl_pair.h`
+
 === Check-list
 
 .Member functions
