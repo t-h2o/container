@@ -3,6 +3,19 @@
 #include <iostream>
 
 static void
+pair_two(void)
+{
+	ft::pair<int, int>	pair_ft_1(10, 42);
+	std::pair<int, int> pair_std_1(10, 42);
+
+	ft::pair<int, int>	pair_ft_2(1234, 777);
+	std::pair<int, int> pair_std_2(1234, 777);
+
+	pair_ft_2.swap(pair_ft_1);
+	pair_std_2.swap(pair_std_1);
+}
+
+static void
 pair_one(void)
 {
 	{
@@ -38,4 +51,7 @@ test_pair(void)
 {
 	title("Pair 1");
 	pair_one();
+
+	title("Pair 2");
+	pair_two();
 }
