@@ -51,6 +51,39 @@ map<T1, T2>::operator[](const T1 &key)
 	return ptr->dual;
 }
 
+/**
+ * Modifiers
+ */
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::insert(pair const &pair)
+{
+	t_node *ptr;
+
+	ptr = _root;
+	while (ptr && ptr->next)
+	{
+		ptr = ptr->next;
+	}
+
+	if (ptr)
+	{
+		ptr->next = new t_node;
+		ptr = ptr->next;
+	}
+	else
+	{
+		ptr = new t_node;
+		_root = ptr;
+	}
+	++_size;
+
+	ptr->next = 0;
+	ptr->dual.first = pair.first;
+	ptr->dual.second = pair.second;
+}
+
 template <typename T1, typename T2>
 void
 map<T1, T2>::_free_tree(void)

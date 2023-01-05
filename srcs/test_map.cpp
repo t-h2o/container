@@ -19,6 +19,9 @@ map_one(void)
 {
 	section("test");
 
+	std::pair<int, int> pair_std(1, 2);
+	ft::pair<int, int>	pair_ft(1, 2);
+
 	std::map<int, int> map_std;
 	ft::map<int, int>  map_ft;
 
@@ -31,6 +34,11 @@ map_one(void)
 
 	map_ft[12] = 200;
 	map_std[12] = 200;
+
+	expected_equal(map_std, map_ft);
+
+	map_ft.insert(pair_ft);
+	map_std.insert(pair_std);
 
 	expected_equal(map_std, map_ft);
 }

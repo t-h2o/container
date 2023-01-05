@@ -27,6 +27,9 @@ template <typename T1, typename T2> class map
 	/* Element access */
 	pair &operator[](const T1 &);
 
+	/* Modifiers */
+	void insert(pair const &);
+
 	void print(void) const;
 
   private:
