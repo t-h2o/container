@@ -13,6 +13,7 @@ map_one(void)
 	ft::map<int, int> tree;
 
 	tree[42] = 100;
+	tree[12] = 200;
 }
 
 void
