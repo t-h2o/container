@@ -1,3 +1,6 @@
+#ifndef PAIR_HPP
+#define PAIR_HPP
+
 namespace ft
 {
 
@@ -21,3 +24,5 @@ template <typename T1, typename T2> class pair
 #include "../templates/Pair.cpp"
 
 } /* namespace ft */
+
+#endif /* PAIR_HPP */
