@@ -6,7 +6,7 @@ main(void)
 {
 	title("Main");
 
-	test_pair();
+	test_map();
 
 	return 0;
 }
