@@ -6,10 +6,28 @@ template <typename T1, typename T2>
 pair<T1, T2> &
 map<T1, T2>::operator[](const T1 &key)
 {
-	_root = new t_node;
+	t_node *ptr;
 
-	_root->dual.first = key;
-	return _root->dual;
+	ptr = _root;
+	while (ptr && ptr->next)
+	{
+		ptr = ptr->next;
+	}
+
+	if (ptr)
+	{
+		ptr->next = new t_node;
+		ptr = ptr->next;
+	}
+	else
+	{
+		ptr = new t_node;
+		_root = ptr;
+	}
+
+	ptr->next = 0;
+	ptr->dual.first = key;
+	return ptr->dual;
 }
 
 template <typename T1, typename T2>
