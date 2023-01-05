@@ -129,3 +129,14 @@ image::assets/gnuplot.svg[gnuplot]
 ** [x] initialization
 * [ ] https://cplusplus.com/reference/utility/pair/operator=/[`operator=`]
 * [ ] https://cplusplus.com/reference/utility/pair/swap/[`swap`]
+
+== Map
+
+=== Resources
+
+.cplusplus.com
+* https://cplusplus.com/reference/map/map/[`std::map`]
+
+.wikipedia
+* https://en.wikipedia.org/wiki/Binary_search_tree[Binary search tree]
+* https://en.wikipedia.org/wiki/Red%E2%80%93black_tree[Red–black tree]
