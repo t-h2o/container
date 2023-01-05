@@ -11,6 +11,8 @@ map_one(void)
 	section("test");
 
 	ft::map<int, int> tree;
+
+	tree[42] = 100;
 }
 
 void
