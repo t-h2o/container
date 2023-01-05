@@ -9,6 +9,8 @@ template <typename T1, typename T2> class pair
 	pair(const pair &);
 	pair(T1 const &, const T2 &);
 
+	pair &operator=(const pair &);
+
   private:
 	T1	  _first;
 	T2	  _second;
