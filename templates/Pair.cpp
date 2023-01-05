@@ -25,6 +25,15 @@ pair<T1, T2>::operator=(pair const &other)
 }
 
 template <typename T1, typename T2>
+pair<T1, T2> &
+pair<T1, T2>::operator=(T2 const &value)
+{
+	this->second = value;
+
+	return *this;
+}
+
+template <typename T1, typename T2>
 void
 pair<T1, T2>::swap(pair &other)
 {
