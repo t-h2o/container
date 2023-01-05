@@ -7,7 +7,7 @@ template <typename T1, typename T2> class pair
 	/* Member Funcion */
 	pair(void);
 	pair(const pair &);
-	explicit pair(T1 const &, const T2 &);
+	pair(T1 const &, const T2 &);
 
   private:
 	T1	  _first;
