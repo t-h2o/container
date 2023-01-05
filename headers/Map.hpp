@@ -11,7 +11,7 @@ template <typename T1, typename T2> class map
 	explicit map(void);
 
   private:
-	pair _root;
+	pair *_root;
 };
 
 #include "../templates/Map.cpp"
