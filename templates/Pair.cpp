@@ -49,3 +49,12 @@ pair<T1, T2>::swap(pair &other)
 	other.first = tmp1;
 	other.second = tmp2;
 }
+
+template <typename T1, typename T2>
+std::ostream &
+operator<<(std::ostream &output, pair<T1, T2> const &pair)
+{
+	output << "pair [" << pair.first << "] = " << pair.second << std::endl;
+
+	return output;
+}

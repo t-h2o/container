@@ -1,6 +1,8 @@
 #ifndef PAIR_HPP
 #define PAIR_HPP
 
+#include <iostream>
+
 namespace ft
 {
 
@@ -20,6 +22,10 @@ template <typename T1, typename T2> class pair
 	T1	  first;
 	T2	  second;
 };
+
+/* Extra... */
+template <typename T1, typename T2>
+std::ostream &operator<<(std::ostream &output, pair<T1, T2> const &);
 
 #include "../templates/Pair.cpp"
 
