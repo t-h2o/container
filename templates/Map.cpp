@@ -105,6 +105,29 @@ map<T1, T2>::_free_tree(void)
 
 template <typename T1, typename T2>
 void
+map<T1, T2>::print_tree(void) const
+{
+	_print_tree(_root, 0);
+}
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::_print_tree(t_node *ptr, size_t level) const
+{
+	if (ptr == 0)
+		return;
+
+	_print_tree(ptr->child[LEFT], level + 2);
+
+	for (size_t i = 0; i < level; ++i)
+		std::cout << " ";
+	std::cout << ptr->dual;
+
+	_print_tree(ptr->child[RIGHT], level + 2);
+}
+
+template <typename T1, typename T2>
+void
 map<T1, T2>::print(void) const
 {
 	t_node *ptr(_root);

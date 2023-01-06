@@ -34,12 +34,14 @@ template <typename T1, typename T2> class map
 	void insert(pair const &);
 
 	void print(void) const;
+	void print_tree(void) const;
 
   private:
 	t_node *_root;
 	size_t	_size;
 
 	void _free_tree(void);
+	void _print_tree(t_node *, size_t) const;
 };
 
 #include "../templates/Map.cpp"

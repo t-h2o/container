@@ -41,6 +41,8 @@ map_one(void)
 	map_std.insert(pair_std);
 
 	expected_equal(map_std, map_ft);
+
+	map_ft.print_tree();
 }
 
 void
