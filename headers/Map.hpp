@@ -3,14 +3,17 @@
 
 #include "Pair.hpp"
 
-#define LEFT 0
-#define RIGHT 1
-
 namespace ft
 {
 
 template <typename T1, typename T2> class map
 {
+	enum e_side
+	{
+		LEFT,
+		RIGHT
+	};
+
 	typedef ft::pair<T1, T2> pair;
 
 	typedef struct s_node

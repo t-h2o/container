@@ -26,18 +26,20 @@ template <typename T1, typename T2>
 pair<T1, T2> &
 map<T1, T2>::operator[](const T1 &key)
 {
-	t_node *ptr;
+	t_node	   *ptr;
+	enum e_side side;
 
+	side = static_cast<enum e_side>(_size % 2);
 	ptr = _root;
-	while (ptr && ptr->child[LEFT])
+	while (ptr && ptr->child[side])
 	{
-		ptr = ptr->child[LEFT];
+		ptr = ptr->child[side];
 	}
 
 	if (ptr)
 	{
-		ptr->child[LEFT] = new t_node;
-		ptr = ptr->child[LEFT];
+		ptr->child[side] = new t_node;
+		ptr = ptr->child[side];
 	}
 	else
 	{
