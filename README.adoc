@@ -140,6 +140,7 @@ image::assets/gnuplot.svg[gnuplot]
 .wikipedia
 * https://en.wikipedia.org/wiki/Binary_search_tree[Binary search tree]
 * https://en.wikipedia.org/wiki/Red%E2%80%93black_tree[Red–black tree]
+* https://en.wikipedia.org/wiki/Tree_rotation[Tree rotation]
 
 === Check-list
 
