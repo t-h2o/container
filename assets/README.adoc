@@ -1,6 +1,42 @@
 = Assets
 :nofooter:
 
+== Red black
+
+[plantuml, target=rbtree, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono
+
+left to right direction
+' Horizontal lines: -->, <--, <-->
+' Vertical lines: ->, <-, <->
+title PERT: Project Name
+
+map _root #grey {
+    Key => Value
+}
+map task.1 #pink {
+    Key => Value
+}
+map task.2 {
+    Key => Value
+}
+map task.4 {
+    Key => Value
+}
+map task.5 {
+    Key => Value
+}
+_root --> task.1 : Label 1
+_root --> task.2 : Label 2
+task.1 --> task.4
+task.2 --> task.4
+task.4 --> task.5 : Label 4
+
+@enduml
+....
+
 [plantuml, target=vector, format=svg, width=100%]
 ....
 @startuml

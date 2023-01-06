@@ -189,3 +189,7 @@ image::assets/gnuplot.svg[gnuplot]
 
 .Allocator:
 * [ ] https://cplusplus.com/reference/map/map/get_allocator[`get_allocator`]
+
+=== Red black tree
+
+image::assets/rbtree.svg[redblack]
