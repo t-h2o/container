@@ -2,7 +2,10 @@ template <typename T1, typename T2> map<T1, T2>::map(void) : _root(0), _size(0)
 {
 }
 
-template <typename T1, typename T2> map<T1, T2>::~map(void) { _free_tree(); }
+template <typename T1, typename T2> map<T1, T2>::~map(void)
+{
+	_free_tree(_root);
+}
 
 /**
  * Capacity
@@ -91,18 +94,14 @@ map<T1, T2>::insert(pair const &pair)
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_free_tree(void)
+map<T1, T2>::_free_tree(t_node *ptr)
 {
-	t_node *ptr;
-	t_node *free;
+	if (ptr == 0)
+		return;
 
-	ptr = _root;
-	while (ptr)
-	{
-		free = ptr;
-		ptr = ptr->child[LEFT];
-		delete free;
-	}
+	_free_tree(ptr->child[LEFT]);
+	_free_tree(ptr->child[RIGHT]);
+	delete ptr;
 }
 
 template <typename T1, typename T2>
