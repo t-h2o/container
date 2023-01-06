@@ -94,22 +94,29 @@ map<T1, T2>::insert(pair const &pair)
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_free_tree(t_node *ptr)
-{
-	if (ptr == 0)
-		return;
-
-	_free_tree(ptr->child[LEFT]);
-	_free_tree(ptr->child[RIGHT]);
-	delete ptr;
-}
-
-template <typename T1, typename T2>
-void
 map<T1, T2>::print_tree(void) const
 {
 	_print_tree(_root, 0);
 }
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::print(void) const
+{
+	t_node *ptr(_root);
+
+	std::cout << "map: size = " << _size << std::endl;
+
+	while (ptr)
+	{
+		std::cout << ptr->dual;
+		ptr = ptr->child[LEFT];
+	}
+}
+
+/**
+ * Private
+ */
 
 template <typename T1, typename T2>
 void
@@ -129,15 +136,12 @@ map<T1, T2>::_print_tree(t_node *ptr, size_t level) const
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::print(void) const
+map<T1, T2>::_free_tree(t_node *ptr)
 {
-	t_node *ptr(_root);
+	if (ptr == 0)
+		return;
 
-	std::cout << "map: size = " << _size << std::endl;
-
-	while (ptr)
-	{
-		std::cout << ptr->dual;
-		ptr = ptr->child[LEFT];
-	}
+	_free_tree(ptr->child[LEFT]);
+	_free_tree(ptr->child[RIGHT]);
+	delete ptr;
 }
