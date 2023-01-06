@@ -43,11 +43,13 @@ map<T1, T2>::operator[](const T1 &key)
 	{
 		ptr->child[side] = new t_node;
 		ptr = ptr->child[side];
+		ptr->color = RED;
 	}
 	else
 	{
 		ptr = new t_node;
 		_root = ptr;
+		ptr->color = BLACK;
 	}
 	++_size;
 
@@ -77,10 +79,12 @@ map<T1, T2>::insert(pair const &pair)
 	{
 		ptr->child[LEFT] = new t_node;
 		ptr = ptr->child[LEFT];
+		ptr->color = RED;
 	}
 	else
 	{
 		ptr = new t_node;
+		ptr->color = BLACK;
 		_root = ptr;
 	}
 	++_size;
@@ -129,7 +133,12 @@ map<T1, T2>::_print_tree(t_node *ptr, size_t level) const
 
 	for (size_t i = 0; i < level; ++i)
 		std::cout << " ";
-	std::cout << ptr->dual;
+
+	if (ptr->color == RED)
+		std::cout << COL_RED;
+	else
+		std::cout << COL_YEL;
+	std::cout << ptr->dual << COL_RES;
 
 	_print_tree(ptr->child[RIGHT], level + 2);
 }

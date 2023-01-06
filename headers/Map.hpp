@@ -14,12 +14,19 @@ template <typename T1, typename T2> class map
 		RIGHT
 	};
 
+	enum e_color
+	{
+		BLACK,
+		RED
+	};
+
 	typedef ft::pair<T1, T2> pair;
 
 	typedef struct s_node
 	{
 		struct s_node *child[2];
 		pair		   dual;
+		enum e_color   color;
 	} t_node;
 
   public:
