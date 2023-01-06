@@ -139,7 +139,14 @@ image::assets/gnuplot.svg[gnuplot]
 
 .wikipedia
 * https://en.wikipedia.org/wiki/Binary_search_tree[Binary search tree]
+** Nodes can have 2 subtrees
+** Items to the left of a given node are smaller
+** Items to the right of a given node are larger
 * https://en.wikipedia.org/wiki/Red%E2%80%93black_tree[Red–black tree]
+** A node is either red or black
+** The root adn leaves (NULL) are balck
+** If a node is red, then its children are black
+** All path from a node to its NULL descendants contain the same number of black nodes
 * https://en.wikipedia.org/wiki/Tree_rotation[Tree rotation]
 
 === Check-list
@@ -192,4 +199,40 @@ image::assets/gnuplot.svg[gnuplot]
 
 === Red black tree
 
-image::assets/rbtree.svg[redblack]
+For a node:
+
+image::assets/node.svg[redblack]
+
+Here an example of a red black tree
+
+. Case 0: Init, the first node is black
++
+image::assets/rbt00.svg[redblack]
+
+. Insert: Add a second node
++
+The key (5) is smaller than the node key (15), so we set it into the left
++
+image::assets/rbt10.svg[redblack]
++
+We recolor the new node (5) to red
++
+image::assets/rbt11.svg[redblack]
+
+. Add a third node
++
+The key (1) is smaller than the node key (15): go to the left. The key (1) is smaller than (5), so we set it into the left.
++
+image::assets/rbt20.svg[redblack]
++
+The uncle of the new node is NULL
++
+image::assets/rbt21.svg[redblack]
++
+We rotate
++
+image::assets/rbt22.svg[redblack]
++
+We recolor
++
+image::assets/rbt23.svg[redblack]

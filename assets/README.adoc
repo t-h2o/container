@@ -3,7 +3,23 @@
 
 == Red black
 
-[plantuml, target=rbtree, format=svg, width=100%]
+=== A simple node
+
+[plantuml, target=node, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono
+
+map t_node {
+    Key => Value
+}
+
+@enduml
+....
+
+=== Case 0
+
+[plantuml, target=rbt00, format=svg, width=100%]
 ....
 @startuml
 skinparam defaultFontName JetBrains Mono
@@ -11,28 +27,171 @@ skinparam defaultFontName JetBrains Mono
 left to right direction
 ' Horizontal lines: -->, <--, <-->
 ' Vertical lines: ->, <-, <->
-title PERT: Project Name
 
-map _root #grey {
-    Key => Value
+map root #grey {
+    15 => "Paul" 
 }
-map task.1 #pink {
-    Key => Value
+
+@enduml
+....
+
+=== Case 1
+
+[plantuml, target=rbt10, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono
+
+left to right direction
+' Horizontal lines: -->, <--, <-->
+' Vertical lines: ->, <-, <->
+
+map root #grey {
+    15 => "Paul" 
 }
-map task.2 {
-    Key => Value
+
+map left_1 #grey {
+    5 => "Jean" 
 }
-map task.4 {
-    Key => Value
+
+root --> left_1 : left
+
+@enduml
+....
+
+[plantuml, target=rbt11, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono
+
+left to right direction
+' Horizontal lines: -->, <--, <-->
+' Vertical lines: ->, <-, <->
+
+map root #grey {
+    15 => "Paul" 
 }
-map task.5 {
-    Key => Value
+
+map left_1 #pink {
+    5 => "Jean" 
 }
-_root --> task.1 : Label 1
-_root --> task.2 : Label 2
-task.1 --> task.4
-task.2 --> task.4
-task.4 --> task.5 : Label 4
+
+root --> left_1 : left
+
+@enduml
+....
+
+=== Case 2
+
+[plantuml, target=rbt20, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono
+
+left to right direction
+' Horizontal lines: -->, <--, <-->
+' Vertical lines: ->, <-, <->
+
+map root #grey {
+    15 => "Paul" 
+}
+
+map left_1 #pink {
+    5 => "Jean" 
+}
+
+map left_2 #pink {
+    1 => "Marc" 
+}
+
+root --> left_1 : left
+left_1 --> left_2 : left
+
+@enduml
+....
+
+[plantuml, target=rbt21, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono
+
+left to right direction
+' Horizontal lines: -->, <--, <-->
+' Vertical lines: ->, <-, <->
+
+map root #grey {
+    15 => "Paul" 
+}
+
+object uncle #grey {
+    "NULL"
+}
+
+map left_1 #pink {
+    5 => "Jean" 
+}
+
+map left_2 #pink {
+    1 => "Marc" 
+}
+
+root --> left_1 : left
+root --> uncle : right
+left_1 --> left_2 : left
+
+@enduml
+....
+
+[plantuml, target=rbt22, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono
+
+left to right direction
+' Horizontal lines: -->, <--, <-->
+' Vertical lines: ->, <-, <->
+
+map right_1 #grey {
+    15 => "Paul" 
+}
+
+map root #pink {
+    5 => "Jean" 
+}
+
+map left_1 #pink {
+    1 => "Marc" 
+}
+
+root --> left_1 : left
+root --> right_1 : right
+
+@enduml
+....
+
+[plantuml, target=rbt23, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono
+
+left to right direction
+' Horizontal lines: -->, <--, <-->
+' Vertical lines: ->, <-, <->
+
+map right_1 #pink {
+    15 => "Paul" 
+}
+
+map root #grey {
+    5 => "Jean" 
+}
+
+map left_1 #pink {
+    1 => "Marc" 
+}
+
+root --> left_1 : left
+root --> right_1 : right
 
 @enduml
 ....

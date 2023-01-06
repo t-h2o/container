@@ -820,9 +820,38 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul>
 <li>
 <p><a href="https://en.wikipedia.org/wiki/Binary_search_tree">Binary search tree</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Nodes can have 2 subtrees</p>
+</li>
+<li>
+<p>Items to the left of a given node are smaller</p>
+</li>
+<li>
+<p>Items to the right of a given node are larger</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><a href="https://en.wikipedia.org/wiki/Red%E2%80%93black_tree">Red–black tree</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>A node is either red or black</p>
+</li>
+<li>
+<p>The root adn leaves (NULL) are balck</p>
+</li>
+<li>
+<p>If a node is red, then its children are black</p>
+</li>
+<li>
+<p>All path from a node to its NULL descendants contain the same number of black nodes</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><a href="https://en.wikipedia.org/wiki/Tree_rotation">Tree rotation</a></p>
@@ -965,10 +994,82 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect2">
 <h3 id="_red_black_tree">6.3. Red black tree</h3>
+<div class="paragraph">
+<p>For a node:</p>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="assets/rbtree.svg" alt="redblack">
+<img src="assets/node.svg" alt="redblack">
 </div>
+</div>
+<div class="paragraph">
+<p>Here an example of a red black tree</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Case 0: Init, the first node is black</p>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt00.svg" alt="redblack">
+</div>
+</div>
+</li>
+<li>
+<p>Insert: Add a second node</p>
+<div class="paragraph">
+<p>The key (5) is smaller than the node key (15), so we set it into the left</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt10.svg" alt="redblack">
+</div>
+</div>
+<div class="paragraph">
+<p>We recolor the new node (5) to red</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt11.svg" alt="redblack">
+</div>
+</div>
+</li>
+<li>
+<p>Add a third node</p>
+<div class="paragraph">
+<p>The key (1) is smaller than the node key (15): go to the left. The key (1) is smaller than (5), so we set it into the left.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt20.svg" alt="redblack">
+</div>
+</div>
+<div class="paragraph">
+<p>The uncle of the new node is NULL</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt21.svg" alt="redblack">
+</div>
+</div>
+<div class="paragraph">
+<p>We rotate</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt22.svg" alt="redblack">
+</div>
+</div>
+<div class="paragraph">
+<p>We recolor</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt23.svg" alt="redblack">
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>

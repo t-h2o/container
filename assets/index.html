@@ -444,9 +444,55 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="_red_black">Red black</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_a_simple_node">A simple node</h3>
 <div class="imageblock">
 <div class="content">
-<img src="rbtree.svg" alt="rbtree" width="100%" height="185">
+<img src="node.svg" alt="node" width="100%" height="65">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_case_0">Case 0</h3>
+<div class="imageblock">
+<div class="content">
+<img src="rbt00.svg" alt="rbt00" width="100%" height="65">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_case_1">Case 1</h3>
+<div class="imageblock">
+<div class="content">
+<img src="rbt10.svg" alt="rbt10" width="100%" height="58">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="rbt11.svg" alt="rbt11" width="100%" height="58">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_case_2">Case 2</h3>
+<div class="imageblock">
+<div class="content">
+<img src="rbt20.svg" alt="rbt20" width="100%" height="58">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="rbt21.svg" alt="rbt21" width="100%" height="147">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="rbt22.svg" alt="rbt22" width="100%" height="145">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="rbt23.svg" alt="rbt23" width="100%" height="145">
 </div>
 </div>
 <div class="imageblock">
@@ -454,35 +500,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <img src="vector.svg" alt="vector" width="100%" height="750">
 </div>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: Could not find the 'gnuplot' executable in PATH; add it to the PATH or specify its location using the 'gnuplot' document attribute
-set grid nopolar
-set grid xtics nomxtics ytics nomytics noztics nomztics nortics nomrtics \
- nox2tics nomx2tics noy2tics nomy2tics nocbtics nomcbtics
-set grid layerdefault   lt 0 linecolor 0 linewidth 0.500,  lt 0 linecolor 0 linewidth 0.500
-set samples 21, 21
-set isosamples 11, 11
-set style data lines
-set xyplane relative 0
-set title "Allocation size according\nto the first assignation(x-axis)\nand number of times of reallocation(y-axis)"
-set xlabel "Number of elements for\nthe first assignation"
-set xlabel  offset character -3, -2, 0 font "" textcolor lt -1 norotate
-set xrange [ 0.0000 : 8.0000  ] noreverse nowriteback
-set x2range [ * : *  ] noreverse writeback
-set ylabel "Number of times\nof reallocation"
-set ylabel  offset character 3, -2, 0 font "" textcolor lt -1 rotate
-set yrange [ 0.0000 : 5.0000  ] noreverse nowriteback
-set y2range [ * : *  ] noreverse writeback
-set zlabel ""
-set zlabel  offset character -5, 0, 0 font "" textcolor lt -1 norotate
-set zrange [ * : *  ] noreverse writeback
-set cbrange [ * : *  ] noreverse writeback
-set rrange [ * : *  ] noreverse writeback
-set colorbox vertical origin screen 0.9, 0.2 size screen 0.05, 0.6 front  noinvert bdefault
-NO_ANIMATION = 1
-## Last datafile plotted: "$grid"
-splot x * 2**y</pre>
+<img src="gnuplot.svg" alt="gnuplot" width="100%" height="480">
+</div>
 </div>
 </div>
 </div>
