@@ -40,6 +40,16 @@ map_one(void)
 	map_ft.insert(pair_ft);
 	map_std.insert(pair_std);
 
+	map_ft[-15] = 99;
+	map_std[-15] = 99;
+
+	expected_equal(map_std, map_ft);
+
+	map_ft[15] = 99;
+	map_std[15] = 99;
+
+	expected_equal(map_std, map_ft);
+
 	expected_equal(map_std, map_ft);
 
 	map_ft.print_tree();
