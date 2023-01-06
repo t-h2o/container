@@ -199,6 +199,11 @@ image::assets/gnuplot.svg[gnuplot]
 
 === Red black tree
 
+==== Rules
+
+* The root is always black
+* Not two consecutives node can be red
+
 For a node:
 
 image::assets/node.svg[redblack]
