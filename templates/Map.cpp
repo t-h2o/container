@@ -29,15 +29,15 @@ map<T1, T2>::operator[](const T1 &key)
 	t_node *ptr;
 
 	ptr = _root;
-	while (ptr && ptr->next)
+	while (ptr && ptr->child[LEFT])
 	{
-		ptr = ptr->next;
+		ptr = ptr->child[LEFT];
 	}
 
 	if (ptr)
 	{
-		ptr->next = new t_node;
-		ptr = ptr->next;
+		ptr->child[LEFT] = new t_node;
+		ptr = ptr->child[LEFT];
 	}
 	else
 	{
@@ -46,7 +46,8 @@ map<T1, T2>::operator[](const T1 &key)
 	}
 	++_size;
 
-	ptr->next = 0;
+	ptr->child[LEFT] = 0;
+	ptr->child[RIGHT] = 0;
 	ptr->dual.first = key;
 	return ptr->dual;
 }
@@ -62,15 +63,15 @@ map<T1, T2>::insert(pair const &pair)
 	t_node *ptr;
 
 	ptr = _root;
-	while (ptr && ptr->next)
+	while (ptr && ptr->child[LEFT])
 	{
-		ptr = ptr->next;
+		ptr = ptr->child[LEFT];
 	}
 
 	if (ptr)
 	{
-		ptr->next = new t_node;
-		ptr = ptr->next;
+		ptr->child[LEFT] = new t_node;
+		ptr = ptr->child[LEFT];
 	}
 	else
 	{
@@ -79,7 +80,9 @@ map<T1, T2>::insert(pair const &pair)
 	}
 	++_size;
 
-	ptr->next = 0;
+	ptr->child[LEFT] = 0;
+	ptr->child[RIGHT] = 0;
+
 	ptr->dual.first = pair.first;
 	ptr->dual.second = pair.second;
 }
@@ -95,7 +98,7 @@ map<T1, T2>::_free_tree(void)
 	while (ptr)
 	{
 		free = ptr;
-		ptr = ptr->next;
+		ptr = ptr->child[LEFT];
 		delete free;
 	}
 }
@@ -111,6 +114,6 @@ map<T1, T2>::print(void) const
 	while (ptr)
 	{
 		std::cout << ptr->dual;
-		ptr = ptr->next;
+		ptr = ptr->child[LEFT];
 	}
 }
