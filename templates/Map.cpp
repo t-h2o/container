@@ -212,5 +212,21 @@ map<T1, T2>::_check(t_node *node)
 {
 	// is two following red
 	if (node->color == RED && node->parent && node->parent->color == RED)
+	{
 		std::cout << "two red" << std::endl;
+		t_node *grandParent(_get_grandparent(node));
+
+		_flip_color(grandParent->child[LEFT]);
+		_flip_color(grandParent->child[RIGHT]);
+	}
+}
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::_flip_color(t_node *node)
+{
+	if (node->color == RED)
+		node->color = BLACK;
+	else
+		node->color = RED;
 }

@@ -59,6 +59,7 @@ template <typename T1, typename T2> class map
 	t_node *_get_grandparent(t_node *) const;
 
 	void _check(t_node *);
+	void _flip_color(t_node *);
 };
 
 #include "../templates/Map.cpp"
