@@ -41,6 +41,8 @@ map<T1, T2>::operator[](const T1 &key)
 	node->child[LEFT] = 0;
 	node->child[RIGHT] = 0;
 	node->dual.first = key;
+
+	_check(node);
 	return node->dual;
 }
 
@@ -195,4 +197,13 @@ map<T1, T2>::_new_node(t_node *parent, enum e_side &side)
 		node->parent = parent;
 	}
 	return node;
+}
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::_check(t_node *node)
+{
+	// is two following red
+	if (node->color == RED && node->parent && node->parent->color == RED)
+		std::cout << "two red" << std::endl;
 }
