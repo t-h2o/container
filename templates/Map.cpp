@@ -42,6 +42,7 @@ map<T1, T2>::operator[](const T1 &key)
 	node->child[RIGHT] = 0;
 	node->dual.first = key;
 
+	print_tree();
 	_check(node);
 	return node->dual;
 }
@@ -213,9 +214,10 @@ map<T1, T2>::_check(t_node *node)
 	// is two following red
 	if (node->color == RED && node->parent && node->parent->color == RED)
 	{
+		print_tree();
 		std::cout << "two red" << std::endl;
-		t_node *grandParent(_get_grandparent(node));
 
+		t_node *grandParent(_get_grandparent(node));
 		_flip_color(grandParent->child[LEFT]);
 		_flip_color(grandParent->child[RIGHT]);
 	}

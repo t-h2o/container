@@ -27,7 +27,6 @@ map_one(void)
 	map_std[3] = "";
 
 	expected_equal(map_std, map_ft);
-	map_ft.print_tree();
 
 	section("Init new pair 1 => ");
 
@@ -35,7 +34,6 @@ map_one(void)
 	map_std[1] = "";
 
 	expected_equal(map_std, map_ft);
-	map_ft.print_tree();
 
 	section("Init new pair 5 => ");
 
@@ -43,7 +41,6 @@ map_one(void)
 	map_std[5] = "";
 
 	expected_equal(map_std, map_ft);
-	map_ft.print_tree();
 
 	section("(Two red) Init new pair 7 => ");
 
@@ -51,7 +48,6 @@ map_one(void)
 	map_std[7] = "";
 
 	expected_equal(map_std, map_ft);
-	map_ft.print_tree();
 }
 
 void
