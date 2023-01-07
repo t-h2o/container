@@ -17,71 +17,38 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 static void
 map_one(void)
 {
-	section("test");
-
-	std::pair<int, int> pair_std(1, 2);
-	ft::pair<int, int>	pair_ft(1, 2);
-
-	std::map<int, int> map_std;
-	ft::map<int, int>  map_ft;
-
-	expected_equal(map_std, map_ft);
-
-	map_ft[42] = 100;
-	map_std[42] = 100;
-
-	expected_equal(map_std, map_ft);
-
-	map_ft[12] = 200;
-	map_std[12] = 200;
-
-	expected_equal(map_std, map_ft);
-
-	map_ft.insert(pair_ft);
-	map_std.insert(pair_std);
-
-	map_ft[-15] = 99;
-	map_std[-15] = 99;
-
-	expected_equal(map_std, map_ft);
-
-	map_ft[15] = 99;
-	map_std[15] = 99;
-
-	expected_equal(map_std, map_ft);
-
-	expected_equal(map_std, map_ft);
-
-	map_ft.print_tree();
-}
-
-static void
-map_two(void)
-{
 	section("default constructor int, int");
 	std::map<int, std::string> map_std;
 	ft::map<int, std::string>  map_ft;
 
-	section("Init new pair 15 => Paul");
+	section("Init new pair 3 => ");
 
-	map_ft[15] = "Paul";
-	map_std[15] = "Paul";
-
-	expected_equal(map_std, map_ft);
-	map_ft.print_tree();
-
-	section("Init new pair 5 => Jean");
-
-	map_ft[5] = "Jean";
-	map_std[5] = "Jean";
+	map_ft[3] = "";
+	map_std[3] = "";
 
 	expected_equal(map_std, map_ft);
 	map_ft.print_tree();
 
-	section("Init new pair 1 => Marc");
+	section("Init new pair 1 => ");
 
-	map_ft[1] = "Marc";
-	map_std[1] = "Marc";
+	map_ft[1] = "";
+	map_std[1] = "";
+
+	expected_equal(map_std, map_ft);
+	map_ft.print_tree();
+
+	section("Init new pair 5 => ");
+
+	map_ft[5] = "";
+	map_std[5] = "";
+
+	expected_equal(map_std, map_ft);
+	map_ft.print_tree();
+
+	section("(Two red) Init new pair 7 => ");
+
+	map_ft[7] = "";
+	map_std[7] = "";
 
 	expected_equal(map_std, map_ft);
 	map_ft.print_tree();
@@ -92,7 +59,4 @@ test_map(void)
 {
 	title("Pair 1");
 	map_one();
-
-	title("Pair 2");
-	map_two();
 }
