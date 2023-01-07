@@ -208,6 +208,17 @@ map<T1, T2>::_get_grandparent(t_node *node) const
 }
 
 template <typename T1, typename T2>
+typename map<T1, T2>::t_node *
+map<T1, T2>::_get_uncle(t_node *node) const
+{
+	t_node *grandParent(_get_grandparent(node));
+
+	if (grandParent->child[LEFT] == node->parent)
+		return grandParent->child[RIGHT];
+	return grandParent->child[LEFT];
+}
+
+template <typename T1, typename T2>
 void
 map<T1, T2>::_check(t_node *node)
 {
