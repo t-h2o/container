@@ -293,3 +293,13 @@ map<T1, T2>::_flip_color(t_node *node)
 	else
 		node->color = RED;
 }
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::_flip_side(enum e_side &side)
+{
+	if (side == LEFT)
+		side = RIGHT;
+	else
+		side = LEFT;
+}
