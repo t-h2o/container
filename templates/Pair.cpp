@@ -54,7 +54,7 @@ template <typename T1, typename T2>
 std::ostream &
 operator<<(std::ostream &output, pair<T1, T2> const &pair)
 {
-	output << "pair [" << pair.first << "] = " << pair.second << std::endl;
+	output << "[" << pair.first << "] = " << pair.second;
 
 	return output;
 }

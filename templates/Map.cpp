@@ -129,18 +129,21 @@ map<T1, T2>::_print_tree(t_node *ptr, size_t level) const
 	if (ptr == 0)
 		return;
 
-	_print_tree(ptr->child[LEFT], level + 2);
+	_print_tree(ptr->child[LEFT], level + 1);
+
+	std::cout << std::endl;
 
 	for (size_t i = 0; i < level; ++i)
-		std::cout << " ";
+		std::cout << "  ";
 
 	if (ptr->color == RED)
 		std::cout << COL_RED;
 	else
 		std::cout << COL_YEL;
-	std::cout << ptr->dual << COL_RES;
 
-	_print_tree(ptr->child[RIGHT], level + 2);
+	std::cout << ptr->dual << std::endl << COL_RES;
+
+	_print_tree(ptr->child[RIGHT], level + 1);
 }
 
 template <typename T1, typename T2>
