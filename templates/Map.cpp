@@ -235,6 +235,8 @@ map<T1, T2>::_check(t_node *node)
 			std::cout << "---- switch color ----" << std::endl;
 			_flip_color(grandParent->child[LEFT]);
 			_flip_color(grandParent->child[RIGHT]);
+			if (grandParent->parent)
+				_flip_color(grandParent);
 			print_tree();
 			return;
 		}
