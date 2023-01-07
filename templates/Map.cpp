@@ -35,20 +35,7 @@ map<T1, T2>::operator[](const T1 &key)
 
 	parent = _get_parent(key, side);
 
-	if (parent == 0)
-	{
-		node = new t_node;
-		node->color = BLACK;
-		node->parent = 0;
-		_root = node;
-	}
-	else
-	{
-		node = new t_node;
-		parent->child[side] = node;
-		node->color = RED;
-		node->parent = parent;
-	}
+	node = _new_node(parent, side);
 
 	++_size;
 	node->child[LEFT] = 0;
@@ -185,4 +172,27 @@ map<T1, T2>::_get_parent(T1 const &key, enum e_side &side) const
 		}
 	}
 	return parent;
+}
+
+template <typename T1, typename T2>
+typename map<T1, T2>::t_node *
+map<T1, T2>::_new_node(t_node *parent, enum e_side &side)
+{
+	t_node *node;
+
+	if (parent == 0)
+	{
+		node = new t_node;
+		node->color = BLACK;
+		node->parent = 0;
+		_root = node;
+	}
+	else
+	{
+		node = new t_node;
+		parent->child[side] = node;
+		node->color = RED;
+		node->parent = parent;
+	}
+	return node;
 }
