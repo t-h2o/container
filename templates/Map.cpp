@@ -148,7 +148,7 @@ map<T1, T2>::_print_tree(t_node *ptr, size_t level) const
 	if (ptr == 0)
 		return;
 
-	_print_tree(ptr->child[LEFT], level + 1);
+	_print_tree(ptr->child[RIGHT], level + 1);
 
 	std::cout << std::endl;
 
@@ -162,7 +162,7 @@ map<T1, T2>::_print_tree(t_node *ptr, size_t level) const
 
 	std::cout << ptr->dual << std::endl << COL_RES;
 
-	_print_tree(ptr->child[RIGHT], level + 1);
+	_print_tree(ptr->child[LEFT], level + 1);
 }
 
 template <typename T1, typename T2>
