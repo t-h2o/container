@@ -24,6 +24,7 @@ template <typename T1, typename T2> class map
 
 	typedef struct s_node
 	{
+		struct s_node *parent;
 		struct s_node *child[2];
 		pair		   dual;
 		enum e_color   color;

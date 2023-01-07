@@ -29,34 +29,53 @@ template <typename T1, typename T2>
 pair<T1, T2> &
 map<T1, T2>::operator[](const T1 &key)
 {
-	t_node	   *ptr;
+	t_node	   *parent;
+	t_node	   *node;
 	enum e_side side;
 
-	side = static_cast<enum e_side>(_size % 2);
-	ptr = _root;
-	while (ptr && ptr->child[side])
+	parent = _root;
+	while (parent)
 	{
-		ptr = ptr->child[side];
+		if (key > parent->dual.first)
+		{
+			if (parent->child[RIGHT] == 0)
+			{
+				side = RIGHT;
+				break;
+			}
+			parent = parent->child[RIGHT];
+		}
+		else if (key < parent->dual.first)
+		{
+			if (parent->child[LEFT] == 0)
+			{
+				side = LEFT;
+				break;
+			}
+			parent = parent->child[LEFT];
+		}
 	}
 
-	if (ptr)
+	if (parent == 0)
 	{
-		ptr->child[side] = new t_node;
-		ptr = ptr->child[side];
-		ptr->color = RED;
+		node = new t_node;
+		node->color = BLACK;
+		node->parent = 0;
+		_root = node;
 	}
 	else
 	{
-		ptr = new t_node;
-		_root = ptr;
-		ptr->color = BLACK;
+		node = new t_node;
+		parent->child[side] = node;
+		node->color = RED;
+		node->parent = parent;
 	}
-	++_size;
 
-	ptr->child[LEFT] = 0;
-	ptr->child[RIGHT] = 0;
-	ptr->dual.first = key;
-	return ptr->dual;
+	++_size;
+	node->child[LEFT] = 0;
+	node->child[RIGHT] = 0;
+	node->dual.first = key;
+	return node->dual;
 }
 
 /**
