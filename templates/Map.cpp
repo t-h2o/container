@@ -122,7 +122,7 @@ map<T1, T2>::_print_tree(t_node *ptr, size_t level) const
 	std::cout << std::endl;
 
 	for (size_t i = 0; i < level; ++i)
-		std::cout << "  ";
+		std::cout << "    ";
 
 	if (ptr->color == RED)
 		std::cout << COL_RED;
@@ -227,10 +227,56 @@ map<T1, T2>::_check(t_node *node)
 	{
 		std::cout << "two red" << std::endl;
 
+		t_node *uncle(_get_uncle(node));
 		t_node *grandParent(_get_grandparent(node));
-		_flip_color(grandParent->child[LEFT]);
-		_flip_color(grandParent->child[RIGHT]);
-		print_tree();
+
+		if (uncle != 0)
+		{
+			std::cout << "---- switch color ----" << std::endl;
+			_flip_color(grandParent->child[LEFT]);
+			_flip_color(grandParent->child[RIGHT]);
+			print_tree();
+			return;
+		}
+		else
+		{
+			t_node *parent(node->parent);
+			std::cout << "---- rotate ----" << std::endl
+					  << "       node: " << node->dual << std::endl
+					  << "     parent: " << parent->dual << std::endl
+					  << "grandParent: " << grandParent->dual << std::endl;
+
+			// Rotate 6 & 7
+			node->child[RIGHT] = parent;
+			grandParent->child[RIGHT] = node;
+			node->parent = grandParent;
+			parent->child[LEFT] = 0;
+			parent->parent = node;
+
+			print_tree();
+
+			grandParent = _get_grandparent(node);
+			parent = node->parent;
+			std::cout << "---- rotate ----" << std::endl
+					  << "       node: " << node->dual << std::endl
+					  << "     parent: " << parent->dual << std::endl
+					  << "grandParent: " << grandParent->dual << std::endl;
+
+			node->child[LEFT] = parent;
+			grandParent->child[RIGHT] = node;
+			node->parent = grandParent;
+			parent->child[RIGHT] = 0;
+			parent->parent = node;
+
+			print_tree();
+
+			std::cout << "---- switch color ----" << std::endl;
+			node->color = BLACK;
+			node->child[LEFT]->color = RED;
+			node->child[RIGHT]->color = RED;
+
+			print_tree();
+		}
 	}
 }
 
