@@ -33,28 +33,7 @@ map<T1, T2>::operator[](const T1 &key)
 	t_node	   *node;
 	enum e_side side;
 
-	parent = _root;
-	while (parent)
-	{
-		if (key > parent->dual.first)
-		{
-			if (parent->child[RIGHT] == 0)
-			{
-				side = RIGHT;
-				break;
-			}
-			parent = parent->child[RIGHT];
-		}
-		else if (key < parent->dual.first)
-		{
-			if (parent->child[LEFT] == 0)
-			{
-				side = LEFT;
-				break;
-			}
-			parent = parent->child[LEFT];
-		}
-	}
+	parent = _get_parent(key, side);
 
 	if (parent == 0)
 	{
@@ -175,4 +154,35 @@ map<T1, T2>::_free_tree(t_node *ptr)
 	_free_tree(ptr->child[LEFT]);
 	_free_tree(ptr->child[RIGHT]);
 	delete ptr;
+}
+
+template <typename T1, typename T2>
+typename map<T1, T2>::t_node *
+map<T1, T2>::_get_parent(T1 const &key, enum e_side &side) const
+{
+	t_node *parent;
+
+	parent = _root;
+	while (parent)
+	{
+		if (key > parent->dual.first)
+		{
+			if (parent->child[RIGHT] == 0)
+			{
+				side = RIGHT;
+				break;
+			}
+			parent = parent->child[RIGHT];
+		}
+		else if (key < parent->dual.first)
+		{
+			if (parent->child[LEFT] == 0)
+			{
+				side = LEFT;
+				break;
+			}
+			parent = parent->child[LEFT];
+		}
+	}
+	return parent;
 }

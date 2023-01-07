@@ -51,8 +51,9 @@ template <typename T1, typename T2> class map
 	t_node *_root;
 	size_t	_size;
 
-	void _free_tree(t_node *);
-	void _print_tree(t_node *, size_t) const;
+	void	_free_tree(t_node *);
+	void	_print_tree(t_node *, size_t) const;
+	t_node *_get_parent(T1 const &, enum e_side &) const;
 };
 
 #include "../templates/Map.cpp"
