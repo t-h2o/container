@@ -200,6 +200,13 @@ map<T1, T2>::_new_node(t_node *parent, enum e_side &side)
 }
 
 template <typename T1, typename T2>
+typename map<T1, T2>::t_node *
+map<T1, T2>::_get_grandparent(t_node *node) const
+{
+	return node->parent->parent;
+}
+
+template <typename T1, typename T2>
 void
 map<T1, T2>::_check(t_node *node)
 {

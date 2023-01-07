@@ -56,6 +56,7 @@ template <typename T1, typename T2> class map
 
 	t_node *_get_parent(T1 const &, enum e_side &) const;
 	t_node *_new_node(t_node *, enum e_side &);
+	t_node *_get_grandparent(t_node *) const;
 
 	void _check(t_node *);
 };
