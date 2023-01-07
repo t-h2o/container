@@ -55,9 +55,44 @@ map_one(void)
 	map_ft.print_tree();
 }
 
+static void
+map_two(void)
+{
+	section("default constructor int, int");
+	std::map<int, std::string> map_std;
+	ft::map<int, std::string>  map_ft;
+
+	section("Init new pair 15 => Paul");
+
+	map_ft[15] = "Paul";
+	map_std[15] = "Paul";
+
+	expected_equal(map_std, map_ft);
+	map_ft.print_tree();
+
+	section("Init new pair 5 => Jean");
+
+	map_ft[5] = "Jean";
+	map_std[5] = "Jean";
+
+	expected_equal(map_std, map_ft);
+	map_ft.print_tree();
+
+	section("Init new pair 1 => Marc");
+
+	map_ft[1] = "Marc";
+	map_std[1] = "Marc";
+
+	expected_equal(map_std, map_ft);
+	map_ft.print_tree();
+}
+
 void
 test_map(void)
 {
 	title("Pair 1");
 	map_one();
+
+	title("Pair 2");
+	map_two();
 }
