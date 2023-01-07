@@ -248,12 +248,7 @@ map<T1, T2>::_check(t_node *node)
 					  << "     parent: " << parent->dual << std::endl
 					  << "grandParent: " << grandParent->dual << std::endl;
 
-			// Rotate 6 & 7
-			node->child[RIGHT] = parent;
-			grandParent->child[RIGHT] = node;
-			node->parent = grandParent;
-			parent->child[LEFT] = 0;
-			parent->parent = node;
+			_rotate(node, RIGHT);
 
 			print_tree();
 
@@ -280,6 +275,28 @@ map<T1, T2>::_check(t_node *node)
 			print_tree();
 		}
 	}
+}
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::_rotate(t_node *node, enum e_side rs)
+{
+	enum e_side os(rs);
+	_flip_side(os);
+
+	t_node *parent(node->parent);
+	t_node *grandParent(_get_grandparent(node));
+
+	std::cout << "---- rotate ----" << std::endl
+			  << "       node: " << node->dual << std::endl
+			  << "     parent: " << parent->dual << std::endl
+			  << "grandParent: " << grandParent->dual << std::endl;
+
+	node->child[rs] = parent;
+	grandParent->child[rs] = node;
+	node->parent = grandParent;
+	parent->child[os] = 0;
+	parent->parent = node;
 }
 
 template <typename T1, typename T2>

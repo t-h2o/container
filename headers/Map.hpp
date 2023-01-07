@@ -62,6 +62,7 @@ template <typename T1, typename T2> class map
 	void _check(t_node *);
 	void _flip_color(t_node *);
 	void _flip_side(enum e_side &);
+	void _rotate(t_node *, enum e_side);
 };
 
 #include "../templates/Map.cpp"
