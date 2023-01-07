@@ -227,6 +227,8 @@ template <typename T1, typename T2>
 void
 map<T1, T2>::_flip_color(t_node *node)
 {
+	if (node == 0)
+		return;
 	if (node->color == RED)
 		node->color = BLACK;
 	else
