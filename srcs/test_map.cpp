@@ -69,6 +69,13 @@ map_one(void)
 	map_std[9] = "";
 
 	expected_equal(map_std, map_ft);
+
+	section("(Two red) Init new pair 10 => ");
+
+	map_ft[10] = "";
+	map_std[10] = "";
+
+	expected_equal(map_std, map_ft);
 }
 
 void
