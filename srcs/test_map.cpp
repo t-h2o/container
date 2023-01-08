@@ -147,6 +147,13 @@ map_two(void)
 	map_std[1] = "";
 
 	expected_equal(map_std, map_ft);
+
+	section("insert 0 ");
+
+	map_ft[0] = "";
+	map_std[0] = "";
+
+	expected_equal(map_std, map_ft);
 }
 
 void

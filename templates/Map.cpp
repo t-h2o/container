@@ -276,6 +276,12 @@ map<T1, T2>::_check(t_node *node)
 					}
 					root->parent = parent;
 
+					if (root->child[RIGHT]->color == RED)
+					{
+						root->child[RIGHT]->color = BLACK;
+						root->child[RIGHT]->child[LEFT]->color = RED;
+						root->child[RIGHT]->child[RIGHT]->color = RED;
+					}
 					parent->child[RIGHT]->color = RED;
 					parent->child[LEFT]->color = RED;
 					parent->color = BLACK;
