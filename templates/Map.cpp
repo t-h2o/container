@@ -240,7 +240,7 @@ map<T1, T2>::_check(t_node *node)
 			print_tree();
 			return;
 		}
-		else
+		else if (_get_side(node) == LEFT && _get_side(node->parent) == RIGHT)
 		{
 			t_node *parent(node->parent);
 
@@ -270,6 +270,12 @@ map<T1, T2>::_check(t_node *node)
 
 			print_tree();
 		}
+		else if (_get_side(node) == RIGHT && _get_side(node->parent) == RIGHT)
+		{
+			std::cout << "TODO: case for RIGHT RIGHT" << std::endl;
+		}
+		else
+			std::cout << "No case" << std::endl;
 	}
 }
 
