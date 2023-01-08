@@ -238,7 +238,34 @@ map<T1, T2>::_check(t_node *node)
 			if (grandParent->parent)
 				_flip_color(grandParent);
 			print_tree();
-			return;
+			if (grandParent->color == RED && grandParent->parent
+				&& grandParent->parent->color == RED)
+			{
+				t_node *root = grandParent->parent->parent;
+				t_node *parent = grandParent->parent;
+				std::cout << "---- rotate ----" << std::endl
+						  << "       root: " << root->dual << std::endl
+						  << "     parent: " << parent->dual << std::endl;
+
+				root->child[RIGHT] = parent->child[LEFT];
+				root->child[RIGHT]->parent = root;
+				parent->child[LEFT] = root;
+				if (root->parent == 0)
+				{
+					_root = parent;
+					parent->parent = 0;
+				}
+				root->parent = parent;
+
+				print_tree();
+
+				std::cout << "---- switch color ----" << std::endl;
+				parent->child[LEFT]->color = RED;
+				parent->child[RIGHT]->color = RED;
+				parent->color = BLACK;
+
+				print_tree();
+			}
 		}
 		else if (_get_side(node) == LEFT && _get_side(node->parent) == RIGHT)
 		{
