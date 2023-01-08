@@ -289,6 +289,13 @@ map<T1, T2>::_check(t_node *node)
 			grandParent->child[RIGHT] = node;
 
 			print_tree();
+
+			std::cout << "---- switch color ----" << std::endl;
+			node->color = BLACK;
+			node->child[LEFT]->color = RED;
+			node->child[RIGHT]->color = RED;
+
+			print_tree();
 		}
 		else
 			std::cout << "No case" << std::endl;
