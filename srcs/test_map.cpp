@@ -154,6 +154,20 @@ map_two(void)
 	map_std[0] = "";
 
 	expected_equal(map_std, map_ft);
+
+	section("insert -1 ");
+
+	map_ft[-1] = "";
+	map_std[-1] = "";
+
+	expected_equal(map_std, map_ft);
+
+	section("insert -2 ");
+
+	map_ft[-2] = "";
+	map_std[-2] = "";
+
+	expected_equal(map_std, map_ft);
 }
 
 void
