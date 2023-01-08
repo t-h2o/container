@@ -291,6 +291,27 @@ map<T1, T2>::_check(t_node *node)
 			node->child[LEFT]->color = RED;
 			node->child[RIGHT]->color = RED;
 		}
+		else if (_get_side(node) == LEFT && _get_side(node->parent) == LEFT)
+		{
+			print_tree();
+			t_node *parent(node->parent);
+			grandParent = _get_grandparent(node);
+
+			std::cout << "LEFT -- LEFT" << std::endl
+					  << "  node: " << node->dual << std::endl
+					  << "parent: " << parent->dual << std::endl
+					  << " grand: " << grandParent->dual << std::endl;
+
+			parent->child[RIGHT] = grandParent;
+			if (grandParent->parent == 0)
+				_root = parent;
+			grandParent->parent = parent;
+			grandParent->child[RIGHT] = 0;
+			grandParent->child[LEFT] = 0;
+			parent->color = BLACK;
+			parent->child[RIGHT]->color = RED;
+			parent->child[LEFT]->color = RED;
+		}
 		else
 			std::cout << "No case" << std::endl;
 	}
