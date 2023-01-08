@@ -320,3 +320,14 @@ map<T1, T2>::_flip_side(enum e_side &side)
 	else
 		side = LEFT;
 }
+
+template <typename T1, typename T2>
+typename map<T1, T2>::e_side
+map<T1, T2>::_get_side(t_node *node)
+{
+	if (node->parent == 0)
+		std::cout << "Not a side" << std::endl;
+	if (node->parent->child[RIGHT] == node)
+		return RIGHT;
+	return LEFT;
+}
