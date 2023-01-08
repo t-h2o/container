@@ -304,7 +304,10 @@ map<T1, T2>::_check(t_node *node)
 
 			parent->child[RIGHT] = grandParent;
 			if (grandParent->parent == 0)
+			{
 				_root = parent;
+				parent->parent = 0;
+			}
 			else
 				grandParent->parent->child[_get_side(parent)] = parent;
 			grandParent->parent = parent;
