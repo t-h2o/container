@@ -243,10 +243,6 @@ map<T1, T2>::_check(t_node *node)
 		else
 		{
 			t_node *parent(node->parent);
-			std::cout << "---- rotate ----" << std::endl
-					  << "       node: " << node->dual << std::endl
-					  << "     parent: " << parent->dual << std::endl
-					  << "grandParent: " << grandParent->dual << std::endl;
 
 			_rotate(node, RIGHT);
 
