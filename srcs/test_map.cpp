@@ -85,38 +85,45 @@ map_two(void)
 	std::map<int, std::string> map_std;
 	ft::map<int, std::string>  map_ft;
 
-	section("Init new pair 9 ");
+	section("insert 9 ");
 
 	map_ft[9] = "";
 	map_std[9] = "";
 
 	expected_equal(map_std, map_ft);
 
-	section("Init new pair 8 ");
+	section("insert 8 ");
 
 	map_ft[8] = "";
 	map_std[8] = "";
 
 	expected_equal(map_std, map_ft);
 
-	section("Init new pair 7 ");
+	section("insert 7 ");
 
 	map_ft[7] = "";
 	map_std[7] = "";
 
 	expected_equal(map_std, map_ft);
 
-	section("Init new pair 6 ");
+	section("insert 6 ");
 
 	map_ft[6] = "";
 	map_std[6] = "";
 
 	expected_equal(map_std, map_ft);
 
-	section("Init new pair 5 ");
+	section("insert 5 ");
 
 	map_ft[5] = "";
 	map_std[5] = "";
+
+	expected_equal(map_std, map_ft);
+
+	section("insert 4 ");
+
+	map_ft[4] = "";
+	map_std[4] = "";
 
 	expected_equal(map_std, map_ft);
 }
