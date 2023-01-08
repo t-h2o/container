@@ -42,8 +42,8 @@ map<T1, T2>::operator[](const T1 &key)
 	node->child[RIGHT] = 0;
 	node->dual.first = key;
 
-	print_tree();
 	_check(node);
+	print_tree();
 	return node->dual;
 }
 
@@ -225,28 +225,22 @@ map<T1, T2>::_check(t_node *node)
 	// is two following red
 	if (node->color == RED && node->parent && node->parent->color == RED)
 	{
-		std::cout << "two red" << std::endl;
 
 		t_node *uncle(_get_uncle(node));
 		t_node *grandParent(_get_grandparent(node));
 
 		if (uncle != 0)
 		{
-			std::cout << "---- switch color ----" << std::endl;
 			_flip_color(grandParent->child[LEFT]);
 			_flip_color(grandParent->child[RIGHT]);
 			if (grandParent->parent)
 				_flip_color(grandParent);
-			print_tree();
+
 			if (grandParent->color == RED && grandParent->parent
 				&& grandParent->parent->color == RED)
 			{
 				t_node *root = grandParent->parent->parent;
 				t_node *parent = grandParent->parent;
-				std::cout << "---- rotate ----" << std::endl
-						  << "       root: " << root->dual << std::endl
-						  << "     parent: " << parent->dual << std::endl;
-
 				root->child[RIGHT] = parent->child[LEFT];
 				root->child[RIGHT]->parent = root;
 				parent->child[LEFT] = root;
@@ -257,14 +251,9 @@ map<T1, T2>::_check(t_node *node)
 				}
 				root->parent = parent;
 
-				print_tree();
-
-				std::cout << "---- switch color ----" << std::endl;
 				parent->child[LEFT]->color = RED;
 				parent->child[RIGHT]->color = RED;
 				parent->color = BLACK;
-
-				print_tree();
 			}
 		}
 		else if (_get_side(node) == LEFT && _get_side(node->parent) == RIGHT)
@@ -273,40 +262,23 @@ map<T1, T2>::_check(t_node *node)
 
 			_rotate(node, RIGHT);
 
-			print_tree();
-
 			grandParent = _get_grandparent(node);
 			parent = node->parent;
-			std::cout << "---- rotate ----" << std::endl
-					  << "       node: " << node->dual << std::endl
-					  << "     parent: " << parent->dual << std::endl
-					  << "grandParent: " << grandParent->dual << std::endl;
-
 			node->child[LEFT] = parent;
 			grandParent->child[RIGHT] = node;
 			node->parent = grandParent;
 			parent->child[RIGHT] = 0;
 			parent->parent = node;
 
-			print_tree();
-
-			std::cout << "---- switch color ----" << std::endl;
 			node->color = BLACK;
 			node->child[LEFT]->color = RED;
 			node->child[RIGHT]->color = RED;
-
-			print_tree();
 		}
 		else if (_get_side(node) == RIGHT && _get_side(node->parent) == RIGHT)
 		{
 			node = node->parent;
 			t_node *parent(node->parent);
 			grandParent = _get_grandparent(node);
-
-			std::cout << "---- rotate ----" << std::endl
-					  << "       node: " << node->dual << std::endl
-					  << "     parent: " << parent->dual << std::endl
-					  << "grandParent: " << grandParent->dual << std::endl;
 
 			node->child[LEFT] = parent;
 			parent->parent = node;
@@ -315,14 +287,9 @@ map<T1, T2>::_check(t_node *node)
 			node->parent = grandParent;
 			grandParent->child[RIGHT] = node;
 
-			print_tree();
-
-			std::cout << "---- switch color ----" << std::endl;
 			node->color = BLACK;
 			node->child[LEFT]->color = RED;
 			node->child[RIGHT]->color = RED;
-
-			print_tree();
 		}
 		else
 			std::cout << "No case" << std::endl;
@@ -339,30 +306,19 @@ map<T1, T2>::_rotate(t_node *node, enum e_side rs)
 	t_node *parent(node->parent);
 	t_node *grandParent(_get_grandparent(node));
 
-	std::cout << "---- rotate ----" << std::endl
-			  << "       node: " << node->dual << std::endl
-			  << "     parent: " << parent->dual << std::endl
-			  << "grandParent: " << grandParent->dual << std::endl;
-
-	section("rotate: node->child[LEFT/RIGHT] = parent");
 	if (parent->dual.first < node->dual.first)
 		node->child[LEFT] = parent;
 	else
 		node->child[RIGHT] = parent;
 
-	section("rotate: grandParent->child[LEFT/RIGHT] = node;");
 	if (parent->dual.first < grandParent->dual.first)
 		grandParent->child[LEFT] = node;
 	else
 		grandParent->child[RIGHT] = node;
 
-	section("rotate: node->parent = grandParent;");
 	node->parent = grandParent;
-	section("rotate: parent->child[LEFT] = 0;");
 	parent->child[LEFT] = 0;
-	section("rotate: parent->child[RIGHT] = 0;");
 	parent->child[RIGHT] = 0;
-	section("rotate: parent->parent = node;");
 	parent->parent = node;
 }
 
