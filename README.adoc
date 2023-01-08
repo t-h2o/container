@@ -149,6 +149,9 @@ image::assets/gnuplot.svg[gnuplot]
 ** All path from a node to its NULL descendants contain the same number of black nodes
 * https://en.wikipedia.org/wiki/Tree_rotation[Tree rotation]
 
+.other
+* https://www.cs.usfca.edu/~galles/visualization/RedBlack.html[red black tree visualization]
+
 === Check-list
 
 .Member functions
