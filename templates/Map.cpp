@@ -241,19 +241,45 @@ map<T1, T2>::_check(t_node *node)
 			{
 				t_node *root = grandParent->parent->parent;
 				t_node *parent = grandParent->parent;
-				root->child[RIGHT] = parent->child[LEFT];
-				root->child[RIGHT]->parent = root;
-				parent->child[LEFT] = root;
-				if (root->parent == 0)
-				{
-					_root = parent;
-					parent->parent = 0;
-				}
-				root->parent = parent;
 
-				parent->child[LEFT]->color = RED;
-				parent->child[RIGHT]->color = RED;
-				parent->color = BLACK;
+				std::cout << "switch color" << std::endl;
+				print_tree();
+				std::cout << "..." << std::endl;
+
+				if (_get_side(parent) == RIGHT)
+				{
+					std::cout << "right" << std::endl;
+					root->child[RIGHT] = parent->child[LEFT];
+					root->child[RIGHT]->parent = root;
+					parent->child[LEFT] = root;
+					if (root->parent == 0)
+					{
+						_root = parent;
+						parent->parent = 0;
+					}
+					root->parent = parent;
+
+					parent->child[LEFT]->color = RED;
+					parent->child[RIGHT]->color = RED;
+					parent->color = BLACK;
+				}
+				else if (_get_side(parent) == LEFT)
+				{
+					std::cout << "left" << std::endl;
+					root->child[LEFT] = parent->child[RIGHT];
+					root->child[LEFT]->parent = root;
+					parent->child[RIGHT] = root;
+					if (root->parent == 0)
+					{
+						_root = parent;
+						parent->parent = 0;
+					}
+					root->parent = parent;
+
+					parent->child[RIGHT]->color = RED;
+					parent->child[LEFT]->color = RED;
+					parent->color = BLACK;
+				}
 			}
 		}
 		else if (_get_side(node) == LEFT && _get_side(node->parent) == RIGHT)
@@ -309,7 +335,10 @@ map<T1, T2>::_check(t_node *node)
 				parent->parent = 0;
 			}
 			else
+			{
 				grandParent->parent->child[_get_side(parent)] = parent;
+				parent->parent = grandParent->parent;
+			}
 			grandParent->parent = parent;
 			grandParent->child[RIGHT] = 0;
 			grandParent->child[LEFT] = 0;
