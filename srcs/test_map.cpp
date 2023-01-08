@@ -78,9 +78,41 @@ map_one(void)
 	expected_equal(map_std, map_ft);
 }
 
+static void
+map_two(void)
+{
+	section("default constructor int, int");
+	std::map<int, std::string> map_std;
+	ft::map<int, std::string>  map_ft;
+
+	section("Init new pair 9 ");
+
+	map_ft[9] = "";
+	map_std[9] = "";
+
+	expected_equal(map_std, map_ft);
+
+	section("Init new pair 8 ");
+
+	map_ft[8] = "";
+	map_std[8] = "";
+
+	expected_equal(map_std, map_ft);
+
+	section("Init new pair 7 ");
+
+	map_ft[7] = "";
+	map_std[7] = "";
+
+	expected_equal(map_std, map_ft);
+}
+
 void
 test_map(void)
 {
-	title("Pair 1");
+	title("Map 1");
 	map_one();
+
+	title("Map 2");
+	map_two();
 }
