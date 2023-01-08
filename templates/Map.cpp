@@ -288,10 +288,25 @@ map<T1, T2>::_rotate(t_node *node, enum e_side rs)
 			  << "     parent: " << parent->dual << std::endl
 			  << "grandParent: " << grandParent->dual << std::endl;
 
-	node->child[rs] = parent;
-	grandParent->child[rs] = node;
+	section("rotate: node->child[LEFT/RIGHT] = parent");
+	if (parent->dual.first < node->dual.first)
+		node->child[LEFT] = parent;
+	else
+		node->child[RIGHT] = parent;
+
+	section("rotate: grandParent->child[LEFT/RIGHT] = node;");
+	if (parent->dual.first < grandParent->dual.first)
+		grandParent->child[LEFT] = node;
+	else
+		grandParent->child[RIGHT] = node;
+
+	section("rotate: node->parent = grandParent;");
 	node->parent = grandParent;
-	parent->child[os] = 0;
+	section("rotate: parent->child[LEFT] = 0;");
+	parent->child[LEFT] = 0;
+	section("rotate: parent->child[RIGHT] = 0;");
+	parent->child[RIGHT] = 0;
+	section("rotate: parent->parent = node;");
 	parent->parent = node;
 }
 
