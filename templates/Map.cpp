@@ -308,49 +308,11 @@ map<T1, T2>::_check(t_node *node)
 		}
 		else if (_get_side(node) == RIGHT && _get_side(node->parent) == RIGHT)
 		{
-			node = node->parent;
-			t_node *parent(node->parent);
-			grandParent = _get_grandparent(node);
-
-			node->child[LEFT] = parent;
-			parent->parent = node;
-			parent->child[LEFT] = 0;
-			parent->child[RIGHT] = 0;
-			node->parent = grandParent;
-			grandParent->child[RIGHT] = node;
-
-			node->color = BLACK;
-			node->child[LEFT]->color = RED;
-			node->child[RIGHT]->color = RED;
+			_rotate_same_side(node, RIGHT, LEFT);
 		}
 		else if (_get_side(node) == LEFT && _get_side(node->parent) == LEFT)
 		{
-			print_tree();
-			t_node *parent(node->parent);
-			grandParent = _get_grandparent(node);
-
-			std::cout << "LEFT -- LEFT" << std::endl
-					  << "  node: " << node->dual << std::endl
-					  << "parent: " << parent->dual << std::endl
-					  << " grand: " << grandParent->dual << std::endl;
-
-			parent->child[RIGHT] = grandParent;
-			if (grandParent->parent == 0)
-			{
-				_root = parent;
-				parent->parent = 0;
-			}
-			else
-			{
-				grandParent->parent->child[_get_side(parent)] = parent;
-				parent->parent = grandParent->parent;
-			}
-			grandParent->parent = parent;
-			grandParent->child[RIGHT] = 0;
-			grandParent->child[LEFT] = 0;
-			parent->color = BLACK;
-			parent->child[RIGHT]->color = RED;
-			parent->child[LEFT]->color = RED;
+			_rotate_same_side(node, LEFT, RIGHT);
 		}
 		else
 			std::cout << "No case" << std::endl;
@@ -414,4 +376,36 @@ map<T1, T2>::_get_side(t_node *node)
 	if (node->parent->child[RIGHT] == node)
 		return RIGHT;
 	return LEFT;
+}
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::_rotate_same_side(t_node *node, enum e_side rs, enum e_side os)
+{
+	t_node *parent(node->parent);
+	t_node *grandParent = _get_grandparent(node);
+
+	print_tree();
+	std::cout << "rotate same side: " << rs << std::endl
+			  << "  node: " << node->dual << std::endl
+			  << "parent: " << parent->dual << std::endl
+			  << " grand: " << grandParent->dual << std::endl;
+
+	parent->child[os] = grandParent;
+	if (grandParent->parent == 0)
+	{
+		_root = parent;
+		parent->parent = 0;
+	}
+	else
+	{
+		grandParent->parent->child[_get_side(parent)] = parent;
+		parent->parent = grandParent->parent;
+	}
+	grandParent->parent = parent;
+	grandParent->child[os] = 0;
+	grandParent->child[rs] = 0;
+	parent->color = BLACK;
+	parent->child[os]->color = RED;
+	parent->child[rs]->color = RED;
 }
