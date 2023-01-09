@@ -302,58 +302,30 @@ map<T1, T2>::_check(t_node *node)
 				if (RBT_LOG)
 					std::cout << "pivot: " << parent->dual.first << std::endl;
 
-				if (_get_side(parent) == RIGHT)
-				{
-					if (RBT_LOG)
-						std::cout << "right" << std::endl;
-					root->child[RIGHT] = parent->child[LEFT];
-					root->child[RIGHT]->parent = root;
-					parent->child[LEFT] = root;
-					if (root->parent == 0)
-					{
-						_root = parent;
-						parent->parent = 0;
-					}
-					else
-					{
-						root->parent->child[_get_side(root)] = parent;
-						parent->parent = root->parent;
-					}
-					root->parent = parent;
+				enum e_side os(_get_side(parent));
+				enum e_side rs(os);
+				_flip_side(rs);
 
-					parent->child[LEFT]->color = RED;
-					parent->child[RIGHT]->color = RED;
-					parent->color = BLACK;
-				}
-				else if (_get_side(parent) == LEFT)
+				if (RBT_LOG)
+					std::cout << "right" << std::endl;
+				root->child[os] = parent->child[rs];
+				root->child[os]->parent = root;
+				parent->child[rs] = root;
+				if (root->parent == 0)
 				{
-					if (RBT_LOG)
-						std::cout << "left" << std::endl;
-					root->child[LEFT] = parent->child[RIGHT];
-					root->child[LEFT]->parent = root;
-					parent->child[RIGHT] = root;
-					if (root->parent == 0)
-					{
-						_root = parent;
-						parent->parent = 0;
-					}
-					else
-					{
-						root->parent->child[_get_side(root)] = parent;
-						parent->parent = root->parent;
-					}
-					root->parent = parent;
-
-					if (root->child[RIGHT]->color == RED)
-					{
-						root->child[RIGHT]->color = BLACK;
-						root->child[RIGHT]->child[LEFT]->color = RED;
-						root->child[RIGHT]->child[RIGHT]->color = RED;
-					}
-					parent->child[RIGHT]->color = RED;
-					parent->child[LEFT]->color = RED;
-					parent->color = BLACK;
+					_root = parent;
+					parent->parent = 0;
 				}
+				else
+				{
+					root->parent->child[_get_side(root)] = parent;
+					parent->parent = root->parent;
+				}
+				root->parent = parent;
+
+				parent->child[LEFT]->color = RED;
+				parent->child[RIGHT]->color = RED;
+				parent->color = BLACK;
 			}
 		}
 		else if (_get_side(node) == LEFT && _get_side(node->parent) == RIGHT)
