@@ -290,21 +290,9 @@ map<T1, T2>::_check(t_node *node)
 		}
 		else if (_get_side(node) == LEFT && _get_side(node->parent) == RIGHT)
 		{
-			t_node *parent(node->parent);
-
 			_rotate(node, RIGHT);
 
-			grandParent = _get_grandparent(node);
-			parent = node->parent;
-			node->child[LEFT] = parent;
-			grandParent->child[RIGHT] = node;
-			node->parent = grandParent;
-			parent->child[RIGHT] = 0;
-			parent->parent = node;
-
-			node->color = BLACK;
-			node->child[LEFT]->color = RED;
-			node->child[RIGHT]->color = RED;
+			_rotate_same_side(node->child[RIGHT], RIGHT, LEFT);
 		}
 		else if (_get_side(node) == RIGHT && _get_side(node->parent) == RIGHT)
 		{
