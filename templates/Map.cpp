@@ -231,10 +231,7 @@ map<T1, T2>::_check(t_node *node)
 
 		if (uncle != 0)
 		{
-			_flip_color(grandParent->child[LEFT]);
-			_flip_color(grandParent->child[RIGHT]);
-			if (grandParent->parent)
-				_flip_color(grandParent);
+			_flip_color_grandparent(grandParent);
 
 			if (grandParent->color == RED && grandParent->parent
 				&& grandParent->parent->color == RED)
@@ -242,7 +239,6 @@ map<T1, T2>::_check(t_node *node)
 				t_node *root = grandParent->parent->parent;
 				t_node *parent = grandParent->parent;
 
-				std::cout << "switch color" << std::endl;
 				print_tree();
 				std::cout << "..." << std::endl;
 
@@ -396,4 +392,16 @@ map<T1, T2>::_rotate_same_side(t_node *node, enum e_side rs, enum e_side os)
 	parent->color = BLACK;
 	parent->child[os]->color = RED;
 	parent->child[rs]->color = RED;
+}
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::_flip_color_grandparent(t_node *grandParent)
+{
+	_flip_color(grandParent->child[LEFT]);
+	_flip_color(grandParent->child[RIGHT]);
+	if (grandParent->parent)
+		_flip_color(grandParent);
+	else
+		grandParent->color = BLACK;
 }
