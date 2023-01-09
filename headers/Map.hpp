@@ -1,6 +1,8 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
+#define RBT_LOG 0
+
 #include "Pair.hpp"
 
 namespace ft

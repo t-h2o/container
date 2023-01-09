@@ -235,20 +235,77 @@ map<T1, T2>::_check(t_node *node)
 
 		if (uncle != 0)
 		{
-			_flip_color_grandparent(grandParent);
-
-			if (grandParent->color == RED && grandParent->parent
-				&& grandParent->parent->color == RED)
+			while (node->parent->color == RED && uncle->color == RED)
 			{
-				t_node *root = grandParent->parent->parent;
-				t_node *parent = grandParent->parent;
+				if (RBT_LOG)
+					std::cout << "parent and uncle are RED" << std::endl;
 
-				print_tree();
-				std::cout << "..." << std::endl;
+				if (RBT_LOG)
+					std::cout
+						<< "       node: " << node->dual.first << std::endl
+						<< "grandParent: " << grandParent->dual.first
+						<< std::endl
+						<< "      uncle: " << uncle->dual.first << std::endl;
+				if (RBT_LOG)
+					std::cout << "Before flip" << std::endl;
+				if (RBT_LOG)
+					print_tree();
+
+				_flip_color_grandparent(grandParent);
+
+				if (RBT_LOG)
+					std::cout << "after flip" << std::endl;
+				if (RBT_LOG)
+					print_tree();
+
+				if (RBT_LOG)
+					std::cout
+						<< "change node value: " << grandParent->dual.first
+						<< " <- " << node->dual.first << std::endl;
+				node = grandParent;
+				grandParent = _get_grandparent(node);
+				uncle = _get_uncle(node);
+				if (grandParent == 0)
+				{
+					if (RBT_LOG)
+						std::cout << "grandparent = 0" << std::endl;
+					break;
+				}
+				if (node->parent == 0)
+				{
+					if (RBT_LOG)
+						std::cout << "node->parent = 0" << std::endl;
+					break;
+				}
+				if (uncle == 0)
+				{
+					if (RBT_LOG)
+						std::cout << "uncle = 0" << std::endl;
+					break;
+				}
+			}
+
+			if (node->parent == 0)
+				return;
+			if (RBT_LOG)
+				std::cout << "(end of while) parent: "
+						  << node->parent->dual.first << std::endl;
+			if (node->color == RED && node->parent->color == RED)
+			{
+				if (RBT_LOG)
+					std::cout << "node and parent are RED" << std::endl;
+				t_node *root = _get_grandparent(node);
+				t_node *parent = node->parent;
+
+				if (RBT_LOG)
+					std::cout << " root: " << root->dual.first << std::endl;
+				if (RBT_LOG)
+					std::cout << "pivot: " << parent->dual.first << std::endl;
 
 				if (_get_side(parent) == RIGHT)
 				{
-					std::cout << "right" << std::endl;
+					if (RBT_LOG)
+						std::cout << "right" << std::endl;
 					root->child[RIGHT] = parent->child[LEFT];
 					root->child[RIGHT]->parent = root;
 					parent->child[LEFT] = root;
@@ -256,6 +313,11 @@ map<T1, T2>::_check(t_node *node)
 					{
 						_root = parent;
 						parent->parent = 0;
+					}
+					else
+					{
+						root->parent->child[_get_side(root)] = parent;
+						parent->parent = root->parent;
 					}
 					root->parent = parent;
 
@@ -265,7 +327,8 @@ map<T1, T2>::_check(t_node *node)
 				}
 				else if (_get_side(parent) == LEFT)
 				{
-					std::cout << "left" << std::endl;
+					if (RBT_LOG)
+						std::cout << "left" << std::endl;
 					root->child[LEFT] = parent->child[RIGHT];
 					root->child[LEFT]->parent = root;
 					parent->child[RIGHT] = root;
@@ -273,6 +336,11 @@ map<T1, T2>::_check(t_node *node)
 					{
 						_root = parent;
 						parent->parent = 0;
+					}
+					else
+					{
+						root->parent->child[_get_side(root)] = parent;
+						parent->parent = root->parent;
 					}
 					root->parent = parent;
 
@@ -296,14 +364,21 @@ map<T1, T2>::_check(t_node *node)
 		}
 		else if (_get_side(node) == RIGHT && _get_side(node->parent) == RIGHT)
 		{
+			if (RBT_LOG)
+				std::cout << "There is no uncle" << std::endl;
 			_rotate_same_side(node, RIGHT, LEFT);
 		}
 		else if (_get_side(node) == LEFT && _get_side(node->parent) == LEFT)
 		{
+			if (RBT_LOG)
+				std::cout << "There is no uncle" << std::endl;
 			_rotate_same_side(node, LEFT, RIGHT);
 		}
 		else
-			std::cout << "No case" << std::endl;
+		{
+			if (RBT_LOG)
+				std::cout << "No case" << std::endl;
+		}
 	}
 }
 
@@ -373,11 +448,13 @@ map<T1, T2>::_rotate_same_side(t_node *node, enum e_side rs, enum e_side os)
 	t_node *parent(node->parent);
 	t_node *grandParent = _get_grandparent(node);
 
-	print_tree();
-	std::cout << "rotate same side: " << rs << std::endl
-			  << "  node: " << node->dual << std::endl
-			  << "parent: " << parent->dual << std::endl
-			  << " grand: " << grandParent->dual << std::endl;
+	if (RBT_LOG)
+		print_tree();
+	if (RBT_LOG)
+		std::cout << "rotate same side: " << rs << std::endl
+				  << "  node: " << node->dual << std::endl
+				  << "parent: " << parent->dual << std::endl
+				  << " grand: " << grandParent->dual << std::endl;
 
 	parent->child[os] = grandParent;
 	if (grandParent->parent == 0)
