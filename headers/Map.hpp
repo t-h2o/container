@@ -69,6 +69,8 @@ template <typename T1, typename T2> class map
 	void _rotate_same_side(t_node *, enum e_side, enum e_side);
 
 	enum e_side _get_side(t_node *);
+
+	pair &_get_reference(const T1 &);
 };
 
 #include "../templates/Map.cpp"

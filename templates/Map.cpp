@@ -29,20 +29,7 @@ template <typename T1, typename T2>
 pair<T1, T2> &
 map<T1, T2>::operator[](const T1 &key)
 {
-	t_node	   *parent;
-	t_node	   *node;
-	enum e_side side;
-
-	parent = _get_parent(key, side);
-
-	node = _new_node(parent, side);
-
-	++_size;
-	node->dual.first = key;
-
-	_check(node);
-	print_tree();
-	return node->dual;
+	return _get_reference(key);
 }
 
 /**
@@ -107,6 +94,28 @@ map<T1, T2>::print(void) const
 /**
  * Private
  */
+
+template <typename T1, typename T2>
+pair<T1, T2> &
+map<T1, T2>::_get_reference(const T1 &key)
+{
+	t_node	   *parent;
+	t_node	   *node;
+	enum e_side side;
+
+	parent = _get_parent(key, side);
+
+	node = _new_node(parent, side);
+
+	++_size;
+
+	node->dual.first = key;
+
+	_check(node);
+	if (RBT_LOG)
+		print_tree();
+	return node->dual;
+}
 
 template <typename T1, typename T2>
 void
