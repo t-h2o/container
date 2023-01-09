@@ -204,7 +204,9 @@ template <typename T1, typename T2>
 typename map<T1, T2>::t_node *
 map<T1, T2>::_get_grandparent(t_node *node) const
 {
-	return node->parent->parent;
+	if (node && node->parent)
+		return node->parent->parent;
+	return 0;
 }
 
 template <typename T1, typename T2>
