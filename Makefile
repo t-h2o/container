@@ -66,7 +66,7 @@ all : $(NAME)
 
 $(NAME):	$(OBJS)
 	@printf "$(YELLOW)Creating executable..$(DEFAULT)\n"
-	@$(CC) $(OBJS) $(OFLAGS) $(CLIB) -o $(NAME)
+	@$(CC) $(OBJS) $(OFLAGS) -o $(NAME)
 	@printf "$(GREEN)---> $(NAME) is ready$(DEFAULT)\n"
 
 $(OBJD)/%.o : %.cpp | $(OBJD)

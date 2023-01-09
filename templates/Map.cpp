@@ -215,6 +215,8 @@ map<T1, T2>::_get_uncle(t_node *node) const
 {
 	t_node *grandParent(_get_grandparent(node));
 
+	if (grandParent == 0)
+		return 0;
 	if (grandParent->child[LEFT] == node->parent)
 		return grandParent->child[RIGHT];
 	return grandParent->child[LEFT];
