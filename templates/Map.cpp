@@ -40,33 +40,7 @@ template <typename T1, typename T2>
 void
 map<T1, T2>::insert(pair const &pair)
 {
-	t_node *ptr;
-
-	ptr = _root;
-	while (ptr && ptr->child[LEFT])
-	{
-		ptr = ptr->child[LEFT];
-	}
-
-	if (ptr)
-	{
-		ptr->child[LEFT] = new t_node;
-		ptr = ptr->child[LEFT];
-		ptr->color = RED;
-	}
-	else
-	{
-		ptr = new t_node;
-		ptr->color = BLACK;
-		_root = ptr;
-	}
-	++_size;
-
-	ptr->child[LEFT] = 0;
-	ptr->child[RIGHT] = 0;
-
-	ptr->dual.first = pair.first;
-	ptr->dual.second = pair.second;
+	_get_reference(pair.first).second = pair.second;
 }
 
 template <typename T1, typename T2>
