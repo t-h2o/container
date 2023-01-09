@@ -314,6 +314,12 @@ map<T1, T2>::_check(t_node *node)
 
 			_rotate_same_side(node->child[RIGHT], RIGHT, LEFT);
 		}
+		else if (_get_side(node) == RIGHT && _get_side(node->parent) == LEFT)
+		{
+			_rotate(node, LEFT);
+
+			_rotate_same_side(node->child[LEFT], LEFT, RIGHT);
+		}
 		else if (_get_side(node) == RIGHT && _get_side(node->parent) == RIGHT)
 		{
 			if (RBT_LOG)
