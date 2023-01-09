@@ -38,8 +38,6 @@ map<T1, T2>::operator[](const T1 &key)
 	node = _new_node(parent, side);
 
 	++_size;
-	node->child[LEFT] = 0;
-	node->child[RIGHT] = 0;
 	node->dual.first = key;
 
 	_check(node);
@@ -197,6 +195,8 @@ map<T1, T2>::_new_node(t_node *parent, enum e_side &side)
 		node->color = RED;
 		node->parent = parent;
 	}
+	node->child[LEFT] = 0;
+	node->child[RIGHT] = 0;
 	return node;
 }
 
