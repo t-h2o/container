@@ -56,6 +56,10 @@ map<T1, T2>::erase(T1 const &key)
 		_size = 0;
 		return;
 	}
+	else if (_size > 1)
+	{
+		_erase(key);
+	}
 }
 
 template <typename T1, typename T2>
@@ -83,6 +87,23 @@ map<T1, T2>::print(void) const
 /**
  * Private
  */
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::_erase(const T1 &key)
+{
+	t_node *node(_get_pointer(key));
+
+	if (node == 0)
+		return;
+
+	if (_is_leaf(node))
+	{
+		node->parent->child[_get_side(node)] = 0;
+		delete node;
+		_size--;
+	}
+}
 
 template <typename T1, typename T2>
 bool
