@@ -45,6 +45,21 @@ map<T1, T2>::insert(pair const &pair)
 
 template <typename T1, typename T2>
 void
+map<T1, T2>::erase(T1 const &key)
+{
+	t_node *node = _get_pointer(key);
+
+	if (_size == 1)
+	{
+		delete node;
+		_root = 0;
+		_size = 0;
+		return;
+	}
+}
+
+template <typename T1, typename T2>
+void
 map<T1, T2>::print_tree(void) const
 {
 	_print_tree(_root, 0);
