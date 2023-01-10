@@ -103,6 +103,27 @@ map<T1, T2>::_erase(const T1 &key)
 		delete node;
 		_size--;
 	}
+	else
+	{
+		t_node *largestLeft(node->child[LEFT]);
+
+		while (largestLeft->child[RIGHT])
+			largestLeft = largestLeft->child[RIGHT];
+
+		node->dual = largestLeft->dual;
+		delete node->child[LEFT];
+		node->child[LEFT] = 0;
+
+		// black sibling
+		if (((!node->child[RIGHT]) || node->child[RIGHT]->color == BLACK)
+			&& ((!node->child[LEFT]) || node->child[LEFT]->color == BLACK))
+		{
+			if (RBT_LOG)
+				std::cout << "black sibling" << std::endl;
+		}
+
+		_size--;
+	}
 }
 
 template <typename T1, typename T2>
