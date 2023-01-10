@@ -422,7 +422,7 @@ map<T1, T2>::_rotate_same_side(t_node *node, enum e_side rs, enum e_side os)
 	}
 	else
 	{
-		grandParent->parent->child[_get_side(parent)] = parent;
+		grandParent->parent->child[_get_side(grandParent)] = parent;
 		parent->parent = grandParent->parent;
 	}
 	grandParent->parent = parent;
