@@ -78,6 +78,8 @@ map<T1, T2>::_get_reference(const T1 &key)
 	enum e_side side;
 
 	parent = _get_parent(key, side);
+	if (parent && parent->dual.first == key)
+		return parent->dual;
 
 	node = _new_node(parent, side);
 
@@ -154,6 +156,8 @@ map<T1, T2>::_get_parent(T1 const &key, enum e_side &side) const
 			}
 			parent = parent->child[LEFT];
 		}
+		else if (key == parent->dual.first)
+			return parent;
 	}
 	return parent;
 }
