@@ -1,6 +1,33 @@
 = Assets
 :nofooter:
 
+== Map
+
+[plantuml, target=map_usecase, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono
+
+actor user
+
+package map {
+	usecase "insert"
+	usecase "erase"
+}
+
+package "red black tree" as rbt {
+	usecase "rotate"
+}
+
+user --> insert
+user --> erase
+map  --> rbt
+
+@enduml
+....
+
+
+
 == Red black
 
 === A simple node
