@@ -85,6 +85,13 @@ map<T1, T2>::print(void) const
  */
 
 template <typename T1, typename T2>
+bool
+map<T1, T2>::_is_leaf(t_node *node) const
+{
+	return !(node->child[LEFT] && node->child[RIGHT]);
+}
+
+template <typename T1, typename T2>
 typename map<T1, T2>::t_node *
 map<T1, T2>::_get_pointer(const T1 &key) const
 {
