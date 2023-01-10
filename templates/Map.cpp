@@ -70,6 +70,19 @@ map<T1, T2>::print(void) const
  */
 
 template <typename T1, typename T2>
+typename map<T1, T2>::t_node *
+map<T1, T2>::_get_pointer(const T1 &key) const
+{
+	t_node	   *parent;
+	enum e_side side;
+
+	parent = _get_parent(key, side);
+	if (parent && parent->dual.first == key)
+		return parent;
+	return 0;
+}
+
+template <typename T1, typename T2>
 pair<T1, T2> &
 map<T1, T2>::_get_reference(const T1 &key)
 {
