@@ -16,6 +16,16 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 
 template <typename T1, typename T2>
 void
+erase_map(T1 const &key, std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
+{
+	map_ft.erase(key);
+	map_std.erase(key);
+
+	expected_equal(map_std, map_ft);
+}
+
+template <typename T1, typename T2>
+void
 insert_map(int n, std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 {
 	map_ft[n] = "";
@@ -179,6 +189,8 @@ map_map(void)
 
 	map_std.insert(pair_std);
 	map_ft.insert(pair_ft);
+
+	erase_map(23, map_std, map_ft);
 
 	pair_std.second = "0987";
 	pair_ft.second = "0987";
