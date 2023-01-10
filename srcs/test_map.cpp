@@ -144,6 +144,14 @@ map_right(void)
 	section("Init new pair 5 => ");
 	insert_map(5, map_std, map_ft);
 
+	map_ft.print_tree();
+
+	section("erase 5");
+	erase_map(5, map_std, map_ft);
+	map_ft.print_tree();
+
+	return;
+
 	section("Init new pair 6 => ");
 	insert_map(6, map_std, map_ft);
 
@@ -219,15 +227,15 @@ map_map(void)
 void
 test_map(void)
 {
-	title("Map one");
-	map_one();
-
-	title("Map left");
-	map_left();
+	//	title("Map one");
+	//	map_one();
+	//
+	//	title("Map left");
+	//	map_left();
 
 	title("Map right");
 	map_right();
 
-	title("Map map");
-	map_map();
+	//	title("Map map");
+	//	map_map();
 }
