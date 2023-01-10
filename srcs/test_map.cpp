@@ -167,6 +167,42 @@ map_right(void)
 	section("Init new pair 16 => ");
 	insert_map(16, map_std, map_ft);
 }
+void
+map_map(void)
+{
+	section("default constructor int, int");
+	std::map<int, std::string> map_std;
+	ft::map<int, std::string>  map_ft;
+
+	std::pair<int, std::string> pair_std(23, "1234");
+	ft::pair<int, std::string>	pair_ft(23, "1234");
+
+	map_std.insert(pair_std);
+	map_ft.insert(pair_ft);
+
+	pair_std.second = "0987";
+	pair_ft.second = "0987";
+
+	map_std.insert(pair_std);
+	map_ft.insert(pair_ft);
+
+	section("Init new pair 12 => ");
+	insert_map(12, map_std, map_ft);
+
+	section("Init new pair 13 => ");
+	insert_map(13, map_std, map_ft);
+
+	section("Init new pair 14 => ");
+	insert_map(14, map_std, map_ft);
+
+	section("Init new pair 15 => ");
+	insert_map(15, map_std, map_ft);
+
+	section("Init new pair 16 => ");
+	insert_map(16, map_std, map_ft);
+
+	map_ft.print_tree();
+}
 
 void
 test_map(void)
@@ -179,4 +215,7 @@ test_map(void)
 
 	title("Map right");
 	map_right();
+
+	title("Map map");
+	map_map();
 }
