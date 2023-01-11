@@ -160,6 +160,9 @@ map<T1, T2>::_get_reference(const T1 &key)
 	node->dual.first = key;
 
 	_check(node);
+
+	if (RBT_LOG)
+		section("print_tree()");
 	if (RBT_LOG)
 		print_tree();
 	return node->dual;
@@ -453,9 +456,6 @@ map<T1, T2>::_rotate_two(t_node *node, t_node *parent)
 		if (RBT_LOG)
 			std::cout << "No case" << std::endl;
 	}
-
-	if (RBT_LOG)
-		print_tree();
 }
 
 template <typename T1, typename T2>
@@ -491,9 +491,15 @@ map<T1, T2>::_flip_color(t_node *node)
 	if (node == 0)
 		return;
 	if (node->color == RED)
+	{
+		std::cout << "Flip " << node->dual.first << " RED -> BLACK" << std::endl;
 		node->color = BLACK;
+	}
 	else
+	{
+		std::cout << "Flip " << node->dual.first << " BLACK -> RED" << std::endl;
 		node->color = RED;
+	}
 }
 
 template <typename T1, typename T2>
@@ -533,10 +539,8 @@ map<T1, T2>::_rotate_same_side(t_node *node, enum e_side rs, enum e_side os)
 	if (RBT_LOG)
 		print_tree();
 	if (RBT_LOG)
-		std::cout << "rotate same side: " << rs << std::endl
-				  << "  node: " << node->dual << std::endl
-				  << "parent: " << parent->dual << std::endl
-				  << " grand: " << grandParent->dual << std::endl;
+		std::cout << grandParent->dual.first << " -> " << parent->dual.first << " -> " << node->dual.first
+				  << std::endl;
 
 	parent->child[os] = grandParent;
 	if (grandParent->parent == 0)
@@ -555,6 +559,12 @@ map<T1, T2>::_rotate_same_side(t_node *node, enum e_side rs, enum e_side os)
 	parent->color = BLACK;
 	parent->child[os]->color = RED;
 	parent->child[rs]->color = RED;
+
+	if (RBT_LOG)
+		print_tree();
+	if (RBT_LOG)
+		std::cout << parent->dual.first << " => " << grandParent->dual.first << " & " << node->dual.first
+				  << std::endl;
 }
 
 template <typename T1, typename T2>
