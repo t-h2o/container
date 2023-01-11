@@ -1,12 +1,9 @@
 // This file is included into headers/Vector.hpp
 
-template <typename T> iterator<T>::iterator(void) : _pointer(0), _position(0)
-{
-}
+template <typename T> iterator<T>::iterator(void) : _pointer(0), _position(0) {}
 
 template <typename T>
-iterator<T>::iterator(T *pointer, size_t position)
-	: _pointer(pointer), _position(position)
+iterator<T>::iterator(T *pointer, size_t position) : _pointer(pointer), _position(position)
 {
 }
 
@@ -66,8 +63,7 @@ template <typename T>
 bool
 iterator<T>::operator==(iterator<T> const &other)
 {
-	return (&(this->_pointer[this->_position])
-			== &(other._pointer[other._position]));
+	return (&(this->_pointer[this->_position]) == &(other._pointer[other._position]));
 }
 
 template <typename T>
@@ -81,16 +77,14 @@ template <typename T>
 bool
 iterator<T>::operator>(iterator<T> const &other)
 {
-	return (&(this->_pointer[this->_position])
-			> &(other._pointer[other._position]));
+	return (&(this->_pointer[this->_position]) > &(other._pointer[other._position]));
 }
 
 template <typename T>
 bool
 iterator<T>::operator<(iterator<T> const &other)
 {
-	return (&(this->_pointer[this->_position])
-			< &(other._pointer[other._position]));
+	return (&(this->_pointer[this->_position]) < &(other._pointer[other._position]));
 }
 
 template <typename T>

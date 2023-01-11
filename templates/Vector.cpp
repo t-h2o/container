@@ -4,14 +4,9 @@
  * Member Funcion
  */
 
-template <typename T>
-vector<T>::vector(void) : _list(0), _size(0), _allocated(0)
-{
-}
+template <typename T> vector<T>::vector(void) : _list(0), _size(0), _allocated(0) {}
 
-template <typename T>
-vector<T>::vector(size_t nElements, const T &value)
-	: _list(0), _size(0), _allocated(0)
+template <typename T> vector<T>::vector(size_t nElements, const T &value) : _list(0), _size(0), _allocated(0)
 {
 	if (nElements == 0)
 		return;
@@ -21,9 +16,7 @@ vector<T>::vector(size_t nElements, const T &value)
 	_construct_value(value);
 }
 
-template <typename T>
-vector<T>::vector(iterator first, iterator last)
-	: _list(0), _size(0), _allocated(0)
+template <typename T> vector<T>::vector(iterator first, iterator last) : _list(0), _size(0), _allocated(0)
 {
 	std::ptrdiff_t length;
 
@@ -36,8 +29,7 @@ vector<T>::vector(iterator first, iterator last)
 	_construct_range(this->data(), first, last);
 }
 
-template <typename T>
-vector<T>::vector(vector const &other) : _list(0), _size(0), _allocated(0)
+template <typename T> vector<T>::vector(vector const &other) : _list(0), _size(0), _allocated(0)
 {
 	*this = other;
 }
@@ -690,8 +682,7 @@ template <typename T>
 std::ostream &
 operator<<(std::ostream &output, vector<T> const &vec)
 {
-	output << "(vector) = size=" << vec.size()
-		   << ", capacity=" << vec.capacity() << " {" << std::endl;
+	output << "(vector) = size=" << vec.size() << ", capacity=" << vec.capacity() << " {" << std::endl;
 	for (size_t i = 0; i < vec.size(); i++)
 		output << "  [" << i << "] = " << vec[i] << std::endl;
 	output << "}" << std::endl;

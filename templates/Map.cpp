@@ -1,11 +1,6 @@
-template <typename T1, typename T2> map<T1, T2>::map(void) : _root(0), _size(0)
-{
-}
+template <typename T1, typename T2> map<T1, T2>::map(void) : _root(0), _size(0) {}
 
-template <typename T1, typename T2> map<T1, T2>::~map(void)
-{
-	_free_tree(_root);
-}
+template <typename T1, typename T2> map<T1, T2>::~map(void) { _free_tree(_root); }
 
 /**
  * Capacity
@@ -316,13 +311,11 @@ map<T1, T2>::_check(t_node *node)
 			while (node->parent->color == RED && uncle->color == RED)
 			{
 				if (RBT_LOG)
-					std::cout
-						<< "       node: " << node->dual.first << std::endl
-						<< "grandParent: " << grandParent->dual.first
-						<< std::endl
-						<< "      uncle: " << uncle->dual.first << std::endl
-						<< "parent and uncle are RED" << std::endl
-						<< "Before flip..." << std::endl;
+					std::cout << "       node: " << node->dual.first << std::endl
+							  << "grandParent: " << grandParent->dual.first << std::endl
+							  << "      uncle: " << uncle->dual.first << std::endl
+							  << "parent and uncle are RED" << std::endl
+							  << "Before flip..." << std::endl;
 				if (RBT_LOG)
 					print_tree();
 
@@ -334,9 +327,8 @@ map<T1, T2>::_check(t_node *node)
 					print_tree();
 
 				if (RBT_LOG)
-					std::cout
-						<< "change node value: " << grandParent->dual.first
-						<< " <- " << node->dual.first << std::endl;
+					std::cout << "change node value: " << grandParent->dual.first << " <- "
+							  << node->dual.first << std::endl;
 				node = grandParent;
 				grandParent = _get_grandparent(node);
 				uncle = _get_uncle(node);
@@ -363,8 +355,7 @@ map<T1, T2>::_check(t_node *node)
 			if (node->parent == 0)
 				return;
 			if (RBT_LOG)
-				std::cout << "(end of while) parent: "
-						  << node->parent->dual.first << std::endl;
+				std::cout << "(end of while) parent: " << node->parent->dual.first << std::endl;
 			if (node->color == RED && node->parent->color == RED)
 			{
 				if (RBT_LOG)

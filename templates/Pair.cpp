@@ -1,15 +1,11 @@
 template <typename T1, typename T2> pair<T1, T2>::pair(void) {}
 
 template <typename T1, typename T2>
-pair<T1, T2>::pair(const pair &other)
-	: first(other.first), second(other.second)
+pair<T1, T2>::pair(const pair &other) : first(other.first), second(other.second)
 {
 }
 
-template <typename T1, typename T2>
-pair<T1, T2>::pair(T1 const &f, T2 const &s) : first(f), second(s)
-{
-}
+template <typename T1, typename T2> pair<T1, T2>::pair(T1 const &f, T2 const &s) : first(f), second(s) {}
 
 template <typename T1, typename T2>
 pair<T1, T2> &
