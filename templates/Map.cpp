@@ -396,6 +396,8 @@ map<T1, T2>::_check(t_node *node)
 		}
 		else
 		{
+			if (RBT_LOG)
+				std::cout << node->dual.first << " hasn't uncle" << std::endl;
 			_rotate_two(node, node->parent);
 		}
 	}
@@ -419,14 +421,10 @@ map<T1, T2>::_rotate_two(t_node *node, t_node *parent)
 	}
 	else if (_get_side(node) == RIGHT && _get_side(parent) == RIGHT)
 	{
-		if (RBT_LOG)
-			std::cout << "There is no uncle" << std::endl;
 		_rotate_same_side(node, RIGHT, LEFT);
 	}
 	else if (_get_side(node) == LEFT && _get_side(parent) == LEFT)
 	{
-		if (RBT_LOG)
-			std::cout << "There is no uncle" << std::endl;
 		_rotate_same_side(node, LEFT, RIGHT);
 	}
 	else
