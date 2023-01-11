@@ -217,8 +217,12 @@ map<T1, T2>::_get_parent(T1 const &key, enum e_side &side) const
 	{
 		if (key > parent->dual.first)
 		{
+			if (RBT_LOG)
+				std::cout << key << " > " << parent->dual.first << " => Right" << std::endl;
 			if (parent->child[RIGHT] == 0)
 			{
+				if (RBT_LOG)
+					std::cout << key << " will be the right child of " << parent->dual.first << std::endl;
 				side = RIGHT;
 				break;
 			}
@@ -226,15 +230,23 @@ map<T1, T2>::_get_parent(T1 const &key, enum e_side &side) const
 		}
 		else if (key < parent->dual.first)
 		{
+			if (RBT_LOG)
+				std::cout << key << " < " << parent->dual.first << " => Left" << std::endl;
 			if (parent->child[LEFT] == 0)
 			{
+				if (RBT_LOG)
+					std::cout << key << " will be the left child of " << parent->dual.first << std::endl;
 				side = LEFT;
 				break;
 			}
 			parent = parent->child[LEFT];
 		}
 		else if (key == parent->dual.first)
+		{
+			if (RBT_LOG)
+				std::cout << key << " = " << parent->dual.first << " => find the same key" << std::endl;
 			return parent;
+		}
 	}
 	return parent;
 }
@@ -247,6 +259,8 @@ map<T1, T2>::_new_node(t_node *parent, enum e_side &side)
 
 	if (parent == 0)
 	{
+		if (RBT_LOG)
+			std::cout << "_root is NULL" << std::endl;
 		node = new t_node;
 		node->color = BLACK;
 		node->parent = 0;
