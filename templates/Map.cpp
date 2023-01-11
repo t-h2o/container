@@ -407,23 +407,28 @@ template <typename T1, typename T2>
 void
 map<T1, T2>::_rotate_two(t_node *node, t_node *parent)
 {
-	if (_get_side(node) == LEFT && _get_side(parent) == RIGHT)
+	if (RBT_LOG)
+		print_tree();
+	enum e_side node_side(_get_side(node));
+	enum e_side parent_side(_get_side(parent));
+
+	if (node_side == LEFT && parent_side == RIGHT)
 	{
 		_rotate(node, RIGHT);
 
 		_rotate_same_side(node->child[RIGHT], RIGHT, LEFT);
 	}
-	else if (_get_side(node) == RIGHT && _get_side(parent) == LEFT)
+	else if (node_side == RIGHT && parent_side == LEFT)
 	{
 		_rotate(node, LEFT);
 
 		_rotate_same_side(node->child[LEFT], LEFT, RIGHT);
 	}
-	else if (_get_side(node) == RIGHT && _get_side(parent) == RIGHT)
+	else if (node_side == RIGHT && parent_side == RIGHT)
 	{
 		_rotate_same_side(node, RIGHT, LEFT);
 	}
-	else if (_get_side(node) == LEFT && _get_side(parent) == LEFT)
+	else if (node_side == LEFT && parent_side == LEFT)
 	{
 		_rotate_same_side(node, LEFT, RIGHT);
 	}
