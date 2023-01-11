@@ -314,18 +314,13 @@ map<T1, T2>::_check(t_node *node)
 			while (node->parent->color == RED && uncle->color == RED)
 			{
 				if (RBT_LOG)
-					std::cout << "       node: " << node->dual.first << std::endl
-							  << "grandParent: " << grandParent->dual.first << std::endl
-							  << "      uncle: " << uncle->dual.first << std::endl
-							  << "parent and uncle are RED" << std::endl
-							  << "Before flip..." << std::endl;
-				if (RBT_LOG)
 					print_tree();
+				if (RBT_LOG)
+					std::cout << grandParent->dual.first << " => " << uncle->dual.first << " & "
+							  << node->parent->dual.first << " -> " << node->dual.first << std::endl
+							  << "uncle and parent are RED" << std::endl;
 
 				_flip_color_grandparent(grandParent);
-
-				if (RBT_LOG)
-					std::cout << "after flip" << std::endl;
 				if (RBT_LOG)
 					print_tree();
 
@@ -576,5 +571,9 @@ map<T1, T2>::_flip_color_grandparent(t_node *grandParent)
 	if (grandParent->parent)
 		_flip_color(grandParent);
 	else
+	{
+		if (RBT_LOG)
+			std::cout << "Grand parent (" << grandParent->dual.first << ") is the root" << std::endl;
 		grandParent->color = BLACK;
+	}
 }
