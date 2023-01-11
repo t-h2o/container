@@ -494,7 +494,13 @@ map<T1, T2>::_get_side(t_node *node)
 	if (node->parent == 0)
 		std::cout << "Not a side" << std::endl;
 	if (node->parent->child[RIGHT] == node)
+	{
+		if (RBT_LOG)
+			std::cout << node->dual.first << " is right of " << node->parent->dual.first << std::endl;
 		return RIGHT;
+	}
+	if (RBT_LOG)
+		std::cout << node->dual.first << " is left of " << node->parent->dual.first << std::endl;
 	return LEFT;
 }
 
