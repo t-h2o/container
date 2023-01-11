@@ -389,35 +389,45 @@ map<T1, T2>::_check(t_node *node)
 				parent->color = BLACK;
 			}
 		}
-		else if (_get_side(node) == LEFT && _get_side(node->parent) == RIGHT)
-		{
-			_rotate(node, RIGHT);
-
-			_rotate_same_side(node->child[RIGHT], RIGHT, LEFT);
-		}
-		else if (_get_side(node) == RIGHT && _get_side(node->parent) == LEFT)
-		{
-			_rotate(node, LEFT);
-
-			_rotate_same_side(node->child[LEFT], LEFT, RIGHT);
-		}
-		else if (_get_side(node) == RIGHT && _get_side(node->parent) == RIGHT)
-		{
-			if (RBT_LOG)
-				std::cout << "There is no uncle" << std::endl;
-			_rotate_same_side(node, RIGHT, LEFT);
-		}
-		else if (_get_side(node) == LEFT && _get_side(node->parent) == LEFT)
-		{
-			if (RBT_LOG)
-				std::cout << "There is no uncle" << std::endl;
-			_rotate_same_side(node, LEFT, RIGHT);
-		}
 		else
 		{
-			if (RBT_LOG)
-				std::cout << "No case" << std::endl;
+			_rotate_two(node, node->parent);
 		}
+	}
+}
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::_rotate_two(t_node *node, t_node *parent)
+{
+	if (_get_side(node) == LEFT && _get_side(parent) == RIGHT)
+	{
+		_rotate(node, RIGHT);
+
+		_rotate_same_side(node->child[RIGHT], RIGHT, LEFT);
+	}
+	else if (_get_side(node) == RIGHT && _get_side(parent) == LEFT)
+	{
+		_rotate(node, LEFT);
+
+		_rotate_same_side(node->child[LEFT], LEFT, RIGHT);
+	}
+	else if (_get_side(node) == RIGHT && _get_side(parent) == RIGHT)
+	{
+		if (RBT_LOG)
+			std::cout << "There is no uncle" << std::endl;
+		_rotate_same_side(node, RIGHT, LEFT);
+	}
+	else if (_get_side(node) == LEFT && _get_side(parent) == LEFT)
+	{
+		if (RBT_LOG)
+			std::cout << "There is no uncle" << std::endl;
+		_rotate_same_side(node, LEFT, RIGHT);
+	}
+	else
+	{
+		if (RBT_LOG)
+			std::cout << "No case" << std::endl;
 	}
 }
 
