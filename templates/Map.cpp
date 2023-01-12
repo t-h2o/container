@@ -378,38 +378,8 @@ map<T1, T2>::_rebalanceTree(t_node *node)
 			{
 				if (RBT_LOG)
 					std::cout << "node and parent are RED" << std::endl;
-				t_node *root = _get_grandparent(node);
-				t_node *parent = node->parent;
 
-				if (RBT_LOG)
-					std::cout << " root: " << root->dual.first << std::endl;
-				if (RBT_LOG)
-					std::cout << "pivot: " << parent->dual.first << std::endl;
-
-				enum e_side os(_get_side(parent));
-				enum e_side rs(os);
-				_flip_side(rs);
-
-				if (RBT_LOG)
-					std::cout << "right" << std::endl;
-				root->child[os] = parent->child[rs];
-				root->child[os]->parent = root;
-				parent->child[rs] = root;
-				if (root->parent == 0)
-				{
-					_root = parent;
-					parent->parent = 0;
-				}
-				else
-				{
-					root->parent->child[_get_side(root)] = parent;
-					parent->parent = root->parent;
-				}
-				root->parent = parent;
-
-				parent->child[LEFT]->color = RED;
-				parent->child[RIGHT]->color = RED;
-				parent->color = BLACK;
+				_rotate_three(node->parent);
 			}
 		}
 		else
@@ -436,7 +406,33 @@ map<T1, T2>::_rotate_three(t_node *pivot)
 
 	if (RBT_LOG)
 		std::cout << "pivot: " << pivot->dual.first << std::endl;
-	if (pivot->child[oSide])
+
+	if (pivot->child[LEFT] && pivot->child[RIGHT])
+	{
+		if (RBT_LOG)
+			std::cout << "pivot has two child" << std::endl;
+		if (RBT_LOG)
+			std::cout << "pivot -> child oposite side: " << pivot->child[oSide]->dual.first << std::endl;
+
+		root->child[side] = pivot->child[oSide];
+		pivot->child[oSide] = root;
+		if (root->parent == 0)
+		{
+			_root = pivot;
+			pivot->parent = 0;
+			root->parent = pivot;
+		}
+		else
+		{
+			root->parent->child[_get_side(root)] = pivot;
+			pivot->parent = root->parent;
+			root->parent = pivot;
+		}
+		pivot->color = BLACK;
+		pivot->child[LEFT]->color = RED;
+		pivot->child[RIGHT]->color = RED;
+	}
+	else if (pivot->child[oSide])
 	{
 		if (RBT_LOG)
 			std::cout << "oposite side" << std::endl;
