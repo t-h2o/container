@@ -379,21 +379,21 @@ map<T1, T2>::_rebalanceTree(t_node *node)
 				if (RBT_LOG)
 					std::cout << "node and parent are RED" << std::endl;
 
-				_rotate_three(node->parent);
+				_rotate(node->parent);
 			}
 		}
 		else
 		{
 			if (RBT_LOG)
 				std::cout << node->dual.first << " hasn't uncle" << std::endl;
-			_rotate_three(node->parent);
+			_rotate(node->parent);
 		}
 	}
 }
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_rotate_three(t_node *pivot)
+map<T1, T2>::_rotate(t_node *pivot)
 {
 	t_node	   *root(pivot->parent);
 	enum e_side side(_get_side(pivot));
