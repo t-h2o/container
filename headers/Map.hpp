@@ -67,9 +67,6 @@ template <typename T1, typename T2> class map
 	void _flip_color(t_node *);
 	void _flip_color_grandparent(t_node *);
 	void _flip_side(enum e_side &);
-	void _rotate(t_node *, enum e_side);
-	void _rotate_two(t_node *, t_node *);
-	void _rotate_same_side(t_node *, enum e_side, enum e_side);
 	void _rotate_three(t_node *);
 	void _erase(T1 const &);
 

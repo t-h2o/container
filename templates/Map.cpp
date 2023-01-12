@@ -500,84 +500,6 @@ map<T1, T2>::_rotate_three(t_node *pivot)
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_rotate_two(t_node *node, t_node *parent)
-{
-	if (RBT_LOG)
-		print_tree();
-
-	enum e_side node_side(_get_side(node));
-	enum e_side parent_side(_get_side(parent));
-
-	if (RBT_LOG)
-		std::cout << std::endl;
-
-	if (node_side == LEFT && parent_side == RIGHT)
-	{
-		if (RBT_LOG)
-			std::cout << "rotate right " << std::endl;
-
-		_rotate(node, RIGHT);
-
-		_rotate_same_side(node->child[RIGHT], RIGHT, LEFT);
-	}
-	else if (node_side == RIGHT && parent_side == LEFT)
-	{
-		if (RBT_LOG)
-			std::cout << "rotate left " << std::endl;
-
-		_rotate(node, LEFT);
-
-		_rotate_same_side(node->child[LEFT], LEFT, RIGHT);
-	}
-	else if (node_side == RIGHT && parent_side == RIGHT)
-	{
-		if (RBT_LOG)
-			std::cout << "rotate right " << std::endl;
-
-		_rotate_same_side(node, RIGHT, LEFT);
-	}
-	else if (node_side == LEFT && parent_side == LEFT)
-	{
-		if (RBT_LOG)
-			std::cout << "rotate left " << std::endl;
-
-		_rotate_same_side(node, LEFT, RIGHT);
-	}
-	else
-	{
-		if (RBT_LOG)
-			std::cout << "No case" << std::endl;
-	}
-}
-
-template <typename T1, typename T2>
-void
-map<T1, T2>::_rotate(t_node *node, enum e_side rs)
-{
-	enum e_side os(rs);
-	_flip_side(os);
-
-	t_node *parent(node->parent);
-	t_node *grandParent(_get_grandparent(node));
-
-	if (parent->dual.first < node->dual.first)
-		node->child[LEFT] = parent;
-	else
-		node->child[RIGHT] = parent;
-
-	if (parent->dual.first < grandParent->dual.first)
-		grandParent->child[LEFT] = node;
-	else
-		grandParent->child[RIGHT] = node;
-
-	node->parent = grandParent;
-	parent->child[LEFT] = 0;
-	parent->child[RIGHT] = 0;
-	parent->parent = node;
-}
-
-template <typename T1, typename T2>
-void
 map<T1, T2>::_flip_color(t_node *node)
 {
 	if (node == 0)
@@ -619,44 +541,6 @@ map<T1, T2>::_get_side(t_node *node)
 	if (RBT_LOG)
 		std::cout << node->dual.first << " is left of " << node->parent->dual.first << std::endl;
 	return LEFT;
-}
-
-template <typename T1, typename T2>
-void
-map<T1, T2>::_rotate_same_side(t_node *node, enum e_side rs, enum e_side os)
-{
-	t_node *parent(node->parent);
-	t_node *grandParent = _get_grandparent(node);
-
-	if (RBT_LOG)
-		print_tree();
-	if (RBT_LOG)
-		std::cout << grandParent->dual.first << " -> " << parent->dual.first << " -> " << node->dual.first
-				  << std::endl;
-
-	parent->child[os] = grandParent;
-	if (grandParent->parent == 0)
-	{
-		_root = parent;
-		parent->parent = 0;
-	}
-	else
-	{
-		grandParent->parent->child[_get_side(grandParent)] = parent;
-		parent->parent = grandParent->parent;
-	}
-	grandParent->parent = parent;
-	grandParent->child[os] = 0;
-	grandParent->child[rs] = 0;
-	parent->color = BLACK;
-	parent->child[os]->color = RED;
-	parent->child[rs]->color = RED;
-
-	if (RBT_LOG)
-		print_tree();
-	if (RBT_LOG)
-		std::cout << parent->dual.first << " => " << grandParent->dual.first << " & " << node->dual.first
-				  << std::endl;
 }
 
 template <typename T1, typename T2>
