@@ -179,7 +179,7 @@ map<T1, T2>::_get_reference(const T1 &key)
 
 	node->dual.first = key;
 
-	_check(node);
+	_rebalanceTree(node);
 
 	if (RBT_LOG)
 		section("print_tree()");
@@ -320,7 +320,7 @@ map<T1, T2>::_get_uncle(t_node *node) const
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_check(t_node *node)
+map<T1, T2>::_rebalanceTree(t_node *node)
 {
 	// is two following red
 	if (node->color == RED && node->parent && node->parent->color == RED)

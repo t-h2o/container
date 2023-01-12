@@ -63,7 +63,7 @@ template <typename T1, typename T2> class map
 	t_node *_get_uncle(t_node *) const;
 	t_node *_get_pointer(T1 const &) const;
 
-	void _check(t_node *);
+	void _rebalanceTree(t_node *);
 	void _flip_color(t_node *);
 	void _flip_color_grandparent(t_node *);
 	void _flip_side(enum e_side &);
