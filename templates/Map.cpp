@@ -416,8 +416,85 @@ map<T1, T2>::_rebalanceTree(t_node *node)
 		{
 			if (RBT_LOG)
 				std::cout << node->dual.first << " hasn't uncle" << std::endl;
-			_rotate_two(node, node->parent);
+			_rotate_three(node->parent);
 		}
+	}
+}
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::_rotate_three(t_node *pivot)
+{
+	t_node	   *root(pivot->parent);
+	enum e_side side(_get_side(pivot));
+	enum e_side oSide = side;
+
+	_flip_side(oSide);
+
+	if (RBT_LOG)
+		print_tree();
+
+	if (RBT_LOG)
+		std::cout << "pivot: " << pivot->dual.first << std::endl;
+	if (pivot->child[oSide])
+	{
+		if (RBT_LOG)
+			std::cout << "oposite side" << std::endl;
+
+		std::cout << "pivot child oposite: " << pivot->child[oSide]->dual.first << std::endl;
+		pivot->child[oSide]->child[side] = pivot;
+		pivot->child[oSide]->child[oSide] = root;
+
+		if (root->parent == 0)
+		{
+			if (RBT_LOG)
+				std::cout << "is root" << std::endl;
+			_root = pivot->child[oSide];
+			pivot->child[oSide]->parent = 0;
+			root->parent = pivot->child[oSide];
+			pivot->parent = pivot->child[oSide];
+			pivot->child[oSide]->color = BLACK;
+		}
+		else
+		{
+			if (RBT_LOG)
+				std::cout << "isn't root" << std::endl;
+			root->parent->child[_get_side(root)] = pivot->child[oSide];
+			pivot->child[oSide]->parent = root->parent;
+			root->parent = pivot->child[oSide];
+			pivot->parent = pivot->child[oSide];
+			pivot->child[oSide]->color = RED;
+		}
+
+		pivot->color = BLACK;
+		root->color = BLACK;
+
+		root->child[RIGHT] = 0;
+		root->child[LEFT] = 0;
+		pivot->child[RIGHT] = 0;
+		pivot->child[LEFT] = 0;
+	}
+	else
+	{
+		if (RBT_LOG)
+			std::cout << "same side" << std::endl;
+		pivot->child[oSide] = root;
+		if (root->parent == 0)
+		{
+			_root = pivot;
+			pivot->parent = 0;
+			root->parent = pivot;
+		}
+		else
+		{
+			root->parent->child[_get_side(root)] = pivot;
+			pivot->parent = root->parent;
+			root->parent = pivot;
+		}
+		root->child[side] = 0;
+		pivot->color = BLACK;
+		pivot->child[LEFT]->color = RED;
+		pivot->child[RIGHT]->color = RED;
 	}
 }
 
