@@ -94,20 +94,40 @@ map<T1, T2>::_erase(const T1 &key)
 
 	if (_is_leaf(node))
 	{
+		if (RBT_LOG)
+			std::cout << "node (" << node->dual.first << ") is leaf" << std::endl;
+
 		node->parent->child[_get_side(node)] = 0;
 		delete node;
 		_size--;
 	}
 	else
 	{
+		if (RBT_LOG)
+			std::cout << "node (" << node->dual.first << ") isn't leaf" << std::endl;
+
 		t_node *largestLeft(node->child[LEFT]);
 
 		while (largestLeft->child[RIGHT])
 			largestLeft = largestLeft->child[RIGHT];
 
+		if (RBT_LOG)
+			std::cout << "Find the largest in the left branch: " << largestLeft->dual.first << std::endl;
+
 		node->dual = largestLeft->dual;
-		delete node->child[LEFT];
+
+		if (RBT_LOG)
+			print_tree();
+		if (RBT_LOG)
+			std::cout << "copy the largest into the node" << largestLeft->dual.first << std::endl;
+
+		delete largestLeft;
 		node->child[LEFT] = 0;
+
+		if (RBT_LOG)
+			print_tree();
+		if (RBT_LOG)
+			std::cout << "delete the node" << largestLeft->dual.first << std::endl;
 
 		// black sibling
 		if (((!node->child[RIGHT]) || node->child[RIGHT]->color == BLACK)
