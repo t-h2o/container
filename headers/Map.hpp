@@ -82,6 +82,7 @@ template <typename T1, typename T2> class map
 	pair &_get_reference(const T1 &);
 
 	bool _is_leaf(t_node *) const;
+	bool _has_black_children(t_node *) const;
 };
 
 #include "../templates/Map.cpp"

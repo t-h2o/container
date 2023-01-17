@@ -155,6 +155,14 @@ map<T1, T2>::_erase(t_node *node)
 }
 
 template <typename T1, typename T2>
+bool
+map<T1, T2>::_has_black_children(t_node *node) const
+{
+	return ((!(node->child[LEFT]) || node->child[LEFT]->color == BLACK)
+			&& (!(node->child[LEFT]) || node->child[LEFT]->color == BLACK));
+}
+
+template <typename T1, typename T2>
 unsigned char
 map<T1, T2>::_number_child(t_node *node) const
 {
