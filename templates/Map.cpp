@@ -143,6 +143,13 @@ map<T1, T2>::_erase(const T1 &key)
 }
 
 template <typename T1, typename T2>
+unsigned char
+map<T1, T2>::_number_child(t_node *node) const
+{
+	return (!!(node->child[LEFT]) + !!(node->child[RIGHT]));
+}
+
+template <typename T1, typename T2>
 bool
 map<T1, T2>::_is_leaf(t_node *node) const
 {

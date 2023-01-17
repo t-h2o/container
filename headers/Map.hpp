@@ -73,6 +73,8 @@ template <typename T1, typename T2> class map
 
 	enum e_side _get_side(t_node *);
 
+	unsigned char _number_child(t_node *) const;
+
 	pair &_get_reference(const T1 &);
 
 	bool _is_leaf(t_node *) const;
