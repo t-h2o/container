@@ -180,7 +180,39 @@ map<T1, T2>::_resolve_double_black(t_node *sibling, t_node *parent)
 		if (RBT_LOG_ERASE)
 			std::cout << "color red sibling; color black parent" << std::endl;
 		sibling->color = RED;
-		parent->color = BLACK;
+
+		if (parent->color == BLACK)
+		{
+			if (RBT_LOG_ERASE)
+				std::cout << "parent is already black, so parent become double-black" << std::endl;
+
+			if (parent->parent != 0)
+			{
+				if (RBT_LOG_ERASE)
+					std::cout << "parent isn't root" << std::endl;
+
+				sibling = _get_sibling(parent);
+				parent = sibling->parent;
+				if (RBT_LOG_ERASE)
+					std::cout << "_resolve_double_black(" << sibling->dual.first << ", " << parent->dual.first
+							  << ")" << std::endl;
+
+				_resolve_double_black(sibling, parent);
+			}
+			else
+			{
+				if (RBT_LOG_ERASE)
+					std::cout << "parent is root => end" << std::endl;
+			}
+			parent->color = BLACK;
+		}
+		else if (parent->color == RED)
+		{
+			if (RBT_LOG_ERASE)
+				std::cout << "parent is red, so parent become black" << std::endl;
+
+			parent->color = BLACK;
+		}
 	}
 }
 
