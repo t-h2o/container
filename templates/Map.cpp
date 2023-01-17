@@ -45,7 +45,7 @@ map<T1, T2>::erase(T1 const &key)
 	if (RBT_LOG_ERASE)
 		print_tree();
 
-	_erase(key);
+	_erase(_get_pointer(key));
 }
 
 template <typename T1, typename T2>
@@ -76,10 +76,8 @@ map<T1, T2>::print(void) const
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_erase(const T1 &key)
+map<T1, T2>::_erase(t_node *node)
 {
-	t_node *node(_get_pointer(key));
-
 	if (node == 0)
 		return;
 
