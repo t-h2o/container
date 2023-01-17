@@ -112,8 +112,18 @@ map<T1, T2>::_erase(const T1 &key)
 	}
 	else if (_number_child(node) == 1)
 	{
-		if (RBT_LOG_ERASE)
-			std::cout << "node (" << node->dual.first << ") has one child ()" << std::endl;
+		t_node *child = _get_child(node);
+
+		if (child->color == RED)
+		{
+			if (RBT_LOG_ERASE)
+				std::cout << "node (" << node->dual.first << ") has one red child ()" << std::endl;
+		}
+		else if (child->color == BLACK)
+		{
+			if (RBT_LOG_ERASE)
+				std::cout << "node (" << node->dual.first << ") has one black child ()" << std::endl;
+		}
 	}
 	else
 	{
