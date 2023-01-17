@@ -133,6 +133,18 @@ map<T1, T2>::_erase(t_node *node)
 	{
 		if (RBT_LOG_ERASE)
 			std::cout << "node (" << node->dual.first << ") has two children" << std::endl;
+
+		t_node *predecessor(_get_predecessor(node));
+
+		if (RBT_LOG_ERASE)
+			std::cout << "copy :" << predecessor->dual.first << " into " << node->dual.first << std::endl;
+
+		node->dual = predecessor->dual;
+
+		if (RBT_LOG_ERASE)
+			std::cout << "_erase(" << predecessor->dual.first << ");" << std::endl;
+
+		_erase(predecessor);
 	}
 }
 
