@@ -87,10 +87,10 @@ map<T1, T2>::_erase(const T1 &key)
 		_size = 0;
 		return;
 	}
-	if (_is_leaf(node))
+	if (_is_leaf(node) && node->color == RED)
 	{
 		if (RBT_LOG)
-			std::cout << "node (" << node->dual.first << ") is leaf" << std::endl;
+			std::cout << "node (" << node->dual.first << ") is leaf and red" << std::endl;
 
 		node->parent->child[_get_side(node)] = 0;
 		delete node;
