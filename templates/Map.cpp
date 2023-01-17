@@ -135,8 +135,6 @@ map<T1, T2>::_erase(const T1 &key)
 	{
 		if (RBT_LOG_ERASE)
 			std::cout << "node (" << node->dual.first << ") has two children" << std::endl;
-
-		_size--;
 	}
 }
 
