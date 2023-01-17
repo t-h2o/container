@@ -106,6 +106,12 @@ map<T1, T2>::_erase(t_node *node)
 		{
 			if (RBT_LOG_ERASE)
 				std::cout << "node (" << node->dual.first << ") is leaf and black" << std::endl;
+
+			t_node *sibling(_get_sibling(node));
+
+			if (RBT_LOG_ERASE)
+				std::cout << "node (" << node->dual.first << ") and his sibling(" << sibling->dual.first
+						  << ")" << std::endl;
 		}
 	}
 	else if (_number_child(node) == 1)
