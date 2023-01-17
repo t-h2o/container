@@ -74,6 +74,7 @@ template <typename T1, typename T2> class map
 	void _erase(t_node *);
 
 	enum e_side _get_side(t_node *) const;
+	enum e_side _flip_side_s(enum e_side) const;
 
 	unsigned char _number_child(t_node *) const;
 
