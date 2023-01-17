@@ -29,7 +29,7 @@ map  --> rbt
 
 == Red black
 
-=== deletation
+=== deletion
 
 [plantuml, target=rbt_delete, format=svg, width=100%]
 ....
@@ -37,7 +37,98 @@ map  --> rbt
 skinparam defaultFontName JetBrains Mono
 
 start
-:erase;
+if (node is alone and is the root) then (yes)
+  :_root = 0;
+  stop
+else (no)
+endif
+
+if (node is leaf) then (yes)
+
+  if (node is red) then (yes)
+    :delete the node;
+    stop
+  else (no)
+  endif
+  if (node is black) then (yes)
+    :color node double-black;
+    :resolve_double_black(node);
+    stop
+  else (no)
+  endif
+
+else (no)
+endif
+
+if (node has a red child) then (yes)
+  :delete node;
+  :promote the child;
+  :color child black;
+  stop
+else (no)
+endif
+
+if (node has two children) then (yes)
+  :find the predecessor;
+  note left
+  the predecessor is located
+  at rightmost position
+  of p's left subtree
+  end note
+  :replace the node value with his predecessor;
+  :erase(predecessor);
+  stop
+else (no)
+endif
+
+end
+
+@enduml
+....
+
+=== Resolve double black
+
+[plantuml, target=resolve_double_black, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono
+
+start
+
+if (sibling is black and nephew is red) then (yes)
+  :rotate between the parent
+  and the sibling;
+  :color black the nephew, sibling and the parent;
+  stop
+else (no)
+endif
+
+if (sibling is black and has black children) then (yes)
+  :color red sibling;
+
+  if (parent is red) then (yes)
+    :color black the parent;
+    :color red the sibling;
+    stop
+  else (no)
+    if (parent is the root) then (yes)
+      stop
+    else (no)
+      :color double-black the parent;
+      :resolve_double_black(parent);
+    endif
+  endif
+  stop
+else (no)
+endif
+
+if (sibling is red and has black children) then (yes)
+  :rotate sibling and parent;
+  :resolve_double_black(node);
+  stop
+else (no)
+endif
+
 end
 
 @enduml
@@ -69,7 +160,7 @@ left to right direction
 ' Vertical lines: ->, <-, <->
 
 map root #grey {
-    15 => "Paul" 
+    15 => "Paul"
 }
 
 @enduml
@@ -87,11 +178,11 @@ left to right direction
 ' Vertical lines: ->, <-, <->
 
 map root #grey {
-    15 => "Paul" 
+    15 => "Paul"
 }
 
 map left_1 #grey {
-    5 => "Jean" 
+    5 => "Jean"
 }
 
 root --> left_1 : left
@@ -109,11 +200,11 @@ left to right direction
 ' Vertical lines: ->, <-, <->
 
 map root #grey {
-    15 => "Paul" 
+    15 => "Paul"
 }
 
 map left_1 #pink {
-    5 => "Jean" 
+    5 => "Jean"
 }
 
 root --> left_1 : left
@@ -133,15 +224,15 @@ left to right direction
 ' Vertical lines: ->, <-, <->
 
 map root #grey {
-    15 => "Paul" 
+    15 => "Paul"
 }
 
 map left_1 #pink {
-    5 => "Jean" 
+    5 => "Jean"
 }
 
 map left_2 #pink {
-    1 => "Marc" 
+    1 => "Marc"
 }
 
 root --> left_1 : left
@@ -160,7 +251,7 @@ left to right direction
 ' Vertical lines: ->, <-, <->
 
 map root #grey {
-    15 => "Paul" 
+    15 => "Paul"
 }
 
 object uncle #grey {
@@ -168,11 +259,11 @@ object uncle #grey {
 }
 
 map left_1 #pink {
-    5 => "Jean" 
+    5 => "Jean"
 }
 
 map left_2 #pink {
-    1 => "Marc" 
+    1 => "Marc"
 }
 
 root --> left_1 : left
@@ -192,15 +283,15 @@ left to right direction
 ' Vertical lines: ->, <-, <->
 
 map right_1 #grey {
-    15 => "Paul" 
+    15 => "Paul"
 }
 
 map root #pink {
-    5 => "Jean" 
+    5 => "Jean"
 }
 
 map left_1 #pink {
-    1 => "Marc" 
+    1 => "Marc"
 }
 
 root --> left_1 : left
@@ -219,15 +310,15 @@ left to right direction
 ' Vertical lines: ->, <-, <->
 
 map right_1 #pink {
-    15 => "Paul" 
+    15 => "Paul"
 }
 
 map root #grey {
-    5 => "Jean" 
+    5 => "Jean"
 }
 
 map left_1 #pink {
-    1 => "Marc" 
+    1 => "Marc"
 }
 
 root --> left_1 : left
@@ -293,8 +384,8 @@ set samples 21, 21
 set isosamples 11, 11
 set style data lines
 set xyplane relative 0
-set title "Allocation size according\nto the first assignation(x-axis)\nand number of times of reallocation(y-axis)" 
-set xlabel "Number of elements for\nthe first assignation" 
+set title "Allocation size according\nto the first assignation(x-axis)\nand number of times of reallocation(y-axis)"
+set xlabel "Number of elements for\nthe first assignation"
 set xlabel  offset character -3, -2, 0 font "" textcolor lt -1 norotate
 set xrange [ 0.0000 : 8.0000  ] noreverse nowriteback
 set x2range [ * : *  ] noreverse writeback

@@ -208,9 +208,13 @@ image::assets/map_usecase.svg[map usecase]
 
 === Red black tree
 
-==== Deletation
+==== Deletion
 
 image::assets/rbt_delete.svg[redblack delete]
+
+==== resolve double black
+
+image::assets/resolve_double_black.svg[redblack delete]
 
 ==== Rules
 
