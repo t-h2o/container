@@ -83,6 +83,7 @@ template <typename T1, typename T2> class map
 
 	bool _is_leaf(t_node *) const;
 	bool _has_black_children(t_node *) const;
+	bool _has_red_child(t_node *) const;
 };
 
 #include "../templates/Map.cpp"
