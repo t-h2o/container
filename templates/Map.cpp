@@ -155,6 +155,25 @@ map<T1, T2>::_erase(t_node *node)
 }
 
 template <typename T1, typename T2>
+void
+map<T1, T2>::_resolve_double_black(t_node *sibling, t_node *parent)
+{
+	if (RBT_LOG_ERASE)
+		print_tree();
+
+	if (sibling->color == BLACK && _has_black_children(sibling))
+	{
+		if (RBT_LOG_ERASE)
+			std::cout << "sibling is black and has two black children" << std::endl;
+
+		if (RBT_LOG_ERASE)
+			std::cout << "color red sibling; color black parent" << std::endl;
+		sibling->color = RED;
+		parent->color = BLACK;
+	}
+}
+
+template <typename T1, typename T2>
 bool
 map<T1, T2>::_has_black_children(t_node *node) const
 {

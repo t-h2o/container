@@ -73,6 +73,7 @@ template <typename T1, typename T2> class map
 	void _flip_side(enum e_side &);
 	void _rotate(t_node *);
 	void _erase(t_node *);
+	void _resolve_double_black(t_node *, t_node *);
 
 	enum e_side _get_side(t_node *) const;
 	enum e_side _flip_side_s(enum e_side) const;
