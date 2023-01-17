@@ -112,6 +112,17 @@ map<T1, T2>::_erase(t_node *node)
 			if (RBT_LOG_ERASE)
 				std::cout << "node (" << node->dual.first << ") and his sibling(" << sibling->dual.first
 						  << ")" << std::endl;
+
+			if (RBT_LOG_ERASE)
+				std::cout << "_resolve_double_black(" << sibling->dual.first << ", "
+						  << node->parent->dual.first << ")" << std::endl;
+
+			node->parent->child[_get_side(node)] = 0;
+
+			_resolve_double_black(sibling, node->parent);
+
+			delete node;
+			--_size;
 		}
 	}
 	else if (_number_child(node) == 1)
