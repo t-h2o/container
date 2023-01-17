@@ -132,6 +132,15 @@ map<T1, T2>::_number_child(t_node *node) const
 }
 
 template <typename T1, typename T2>
+typename map<T1, T2>::t_node *
+map<T1, T2>::_get_child(t_node *node) const
+{
+	if (node->child[LEFT])
+		return node->child[LEFT];
+	return node->child[RIGHT];
+}
+
+template <typename T1, typename T2>
 bool
 map<T1, T2>::_is_leaf(t_node *node) const
 {
