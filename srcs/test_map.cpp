@@ -132,6 +132,13 @@ map_right(void)
 	section("Init new pair 1 => ");
 	insert_map(1, map_std, map_ft);
 
+	section("erase 1");
+	erase_map(1, map_std, map_ft);
+	map_ft.print_tree();
+
+	section("Init new pair 1 => ");
+	insert_map(1, map_std, map_ft);
+
 	section("Init new pair 2 => ");
 	insert_map(2, map_std, map_ft);
 
@@ -150,6 +157,11 @@ map_right(void)
 	erase_map(5, map_std, map_ft);
 	map_ft.print_tree();
 
+	section("erase 4");
+	erase_map(4, map_std, map_ft);
+	map_ft.print_tree();
+
+	return;
 	section("Init new pair 6 => ");
 	insert_map(6, map_std, map_ft);
 
