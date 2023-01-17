@@ -214,6 +214,15 @@ map<T1, T2>::_resolve_double_black(t_node *sibling, t_node *parent)
 			parent->color = BLACK;
 		}
 	}
+	else if (sibling->color == BLACK && _has_red_child(sibling))
+	{
+		if (RBT_LOG_ERASE)
+			std::cout << "sibling is black and has red child" << std::endl;
+		if (RBT_LOG_ERASE)
+			std::cout << "_rotate(" << sibling->dual.first << ")" << std::endl;
+
+		_rotate(sibling);
+	}
 }
 
 template <typename T1, typename T2>
