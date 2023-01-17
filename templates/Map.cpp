@@ -165,12 +165,17 @@ template <typename T1, typename T2>
 typename map<T1, T2>::t_node *
 map<T1, T2>::_get_pointer(const T1 &key) const
 {
-	t_node	   *parent;
-	enum e_side side;
+	t_node *node(_root);
 
-	parent = _get_parent(key, side);
-	if (parent && parent->dual.first == key)
-		return parent;
+	while (node && node->dual.first != key)
+	{
+		if (node->dual.first < key)
+			node = node->child[RIGHT];
+		else
+			node = node->child[LEFT];
+	}
+	if (node && node->dual.first == key)
+		return node;
 	return 0;
 }
 
