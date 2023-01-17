@@ -70,7 +70,6 @@ template <typename T1, typename T2> class map
 	void _rebalanceTree(t_node *);
 	void _flip_color(t_node *);
 	void _flip_color_grandparent(t_node *);
-	void _flip_side(enum e_side &);
 	void _rotate(t_node *);
 	void _erase(t_node *);
 	void _resolve_double_black(t_node *, t_node *);

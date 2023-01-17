@@ -488,9 +488,7 @@ map<T1, T2>::_rotate(t_node *pivot)
 {
 	t_node	   *root(pivot->parent);
 	enum e_side side(_get_side(pivot));
-	enum e_side oSide = side;
-
-	_flip_side(oSide);
+	enum e_side oSide(_flip_side_s(side));
 
 	if (RBT_LOG)
 		print_tree();
@@ -601,16 +599,6 @@ map<T1, T2>::_flip_color(t_node *node)
 		std::cout << "Flip " << node->dual.first << " BLACK -> RED" << std::endl;
 		node->color = RED;
 	}
-}
-
-template <typename T1, typename T2>
-void
-map<T1, T2>::_flip_side(enum e_side &side)
-{
-	if (side == LEFT)
-		side = RIGHT;
-	else
-		side = LEFT;
 }
 
 template <typename T1, typename T2>
