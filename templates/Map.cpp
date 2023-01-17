@@ -221,7 +221,7 @@ bool
 map<T1, T2>::_has_black_children(t_node *node) const
 {
 	return ((!(node->child[LEFT]) || node->child[LEFT]->color == BLACK)
-			&& (!(node->child[LEFT]) || node->child[LEFT]->color == BLACK));
+			&& (!(node->child[RIGHT]) || node->child[RIGHT]->color == BLACK));
 }
 
 template <typename T1, typename T2>
