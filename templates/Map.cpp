@@ -145,6 +145,18 @@ map<T1, T2>::_number_child(t_node *node) const
 
 template <typename T1, typename T2>
 typename map<T1, T2>::t_node *
+map<T1, T2>::_get_predecessor(t_node *node) const
+{
+	t_node *predecessor(node->child[LEFT]);
+
+	while (predecessor->child[RIGHT])
+		predecessor = predecessor->child[RIGHT];
+
+	return predecessor;
+}
+
+template <typename T1, typename T2>
+typename map<T1, T2>::t_node *
 map<T1, T2>::_get_child(t_node *node) const
 {
 	if (node->child[LEFT])
