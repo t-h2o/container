@@ -27,8 +27,21 @@ map  --> rbt
 ....
 
 
-
 == Red black
+
+=== deletation
+
+[plantuml, target=rbt_delete, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono
+
+start
+:erase;
+end
+
+@enduml
+....
 
 === A simple node
 

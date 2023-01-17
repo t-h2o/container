@@ -208,6 +208,10 @@ image::assets/map_usecase.svg[map usecase]
 
 === Red black tree
 
+==== Deletation
+
+image::assets/rbt_delete.svg[redblack delete]
+
 ==== Rules
 
 * The root is always black
