@@ -42,6 +42,9 @@ template <typename T1, typename T2>
 void
 map<T1, T2>::erase(T1 const &key)
 {
+	if (RBT_LOG_ERASE)
+		print_tree();
+
 	_erase(key);
 }
 
@@ -82,6 +85,9 @@ map<T1, T2>::_erase(const T1 &key)
 
 	if (_size == 1)
 	{
+		if (RBT_LOG_ERASE)
+			std::cout << "node (" << node->dual.first << ") is alone and is the root" << std::endl;
+
 		delete node;
 		_root = 0;
 		_size = 0;
@@ -89,7 +95,7 @@ map<T1, T2>::_erase(const T1 &key)
 	}
 	if (_is_leaf(node) && node->color == RED)
 	{
-		if (RBT_LOG)
+		if (RBT_LOG_ERASE)
 			std::cout << "node (" << node->dual.first << ") is leaf and red" << std::endl;
 
 		node->parent->child[_get_side(node)] = 0;
@@ -98,7 +104,7 @@ map<T1, T2>::_erase(const T1 &key)
 	}
 	else
 	{
-		if (RBT_LOG)
+		if (RBT_LOG_ERASE)
 			std::cout << "node (" << node->dual.first << ") isn't leaf" << std::endl;
 
 		t_node *largestLeft(node->child[LEFT]);
@@ -106,29 +112,29 @@ map<T1, T2>::_erase(const T1 &key)
 		while (largestLeft->child[RIGHT])
 			largestLeft = largestLeft->child[RIGHT];
 
-		if (RBT_LOG)
+		if (RBT_LOG_ERASE)
 			std::cout << "Find the largest in the left branch: " << largestLeft->dual.first << std::endl;
 
 		node->dual = largestLeft->dual;
 
-		if (RBT_LOG)
+		if (RBT_LOG_ERASE)
 			print_tree();
-		if (RBT_LOG)
+		if (RBT_LOG_ERASE)
 			std::cout << "copy the largest into the node" << largestLeft->dual.first << std::endl;
 
 		delete largestLeft;
 		node->child[LEFT] = 0;
 
-		if (RBT_LOG)
+		if (RBT_LOG_ERASE)
 			print_tree();
-		if (RBT_LOG)
+		if (RBT_LOG_ERASE)
 			std::cout << "delete the node" << largestLeft->dual.first << std::endl;
 
 		// black sibling
 		if (((!node->child[RIGHT]) || node->child[RIGHT]->color == BLACK)
 			&& ((!node->child[LEFT]) || node->child[LEFT]->color == BLACK))
 		{
-			if (RBT_LOG)
+			if (RBT_LOG_ERASE)
 				std::cout << "black sibling" << std::endl;
 		}
 

@@ -1,7 +1,8 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
-#define RBT_LOG 1
+#define RBT_LOG 0
+#define RBT_LOG_ERASE 1
 
 #include "Pair.hpp"
 
