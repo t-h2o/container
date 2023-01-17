@@ -564,7 +564,7 @@ map<T1, T2>::_flip_side(enum e_side &side)
 
 template <typename T1, typename T2>
 typename map<T1, T2>::e_side
-map<T1, T2>::_get_side(t_node *node)
+map<T1, T2>::_get_side(t_node *node) const
 {
 	if (node->parent == 0)
 		std::cout << "Not a side" << std::endl;
