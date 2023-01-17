@@ -65,6 +65,7 @@ template <typename T1, typename T2> class map
 	t_node *_get_pointer(T1 const &) const;
 	t_node *_get_child(t_node *) const;
 	t_node *_get_predecessor(t_node *) const;
+	t_node *_get_sibling(t_node *) const;
 
 	void _rebalanceTree(t_node *);
 	void _flip_color(t_node *);

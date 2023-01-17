@@ -157,6 +157,13 @@ map<T1, T2>::_number_child(t_node *node) const
 
 template <typename T1, typename T2>
 typename map<T1, T2>::t_node *
+map<T1, T2>::_get_sibling(t_node *node) const
+{
+	return node->parent->child[_flip_side_s(_get_side(node))];
+}
+
+template <typename T1, typename T2>
+typename map<T1, T2>::t_node *
 map<T1, T2>::_get_predecessor(t_node *node) const
 {
 	t_node *predecessor(node->child[LEFT]);
