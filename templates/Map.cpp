@@ -822,6 +822,8 @@ map<T1, T2>::_rbt_checker(void) const
 		if (node->right() && !is_backing)
 		{
 			std::cout << " -> ";
+			if (node->is_red() && node->right()->is_red())
+				throw(std::logic_error("two following red"));
 			node = node->right();
 			side = RIGHT;
 			is_backing = 0;
@@ -829,6 +831,8 @@ map<T1, T2>::_rbt_checker(void) const
 		else if (node->left() && (!is_backing || (is_backing && side == RIGHT)))
 		{
 			std::cout << " -> ";
+			if (node->is_red() && node->left()->is_red())
+				throw(std::logic_error("two following red"));
 			node = node->left();
 			side = LEFT;
 			is_backing = 0;
