@@ -41,6 +41,8 @@ template <typename T1, typename T2> class map
 		bool is_black() const;
 
 		Node *right() const;
+
+		T1 &key();
 	};
 
   public:

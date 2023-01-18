@@ -740,6 +740,13 @@ map<T1, T2>::Node::right(void) const
 	return child[RIGHT];
 }
 
+template <typename T1, typename T2>
+T1 &
+map<T1, T2>::Node::key(void)
+{
+	return dual.first;
+}
+
 /**
  * Red black tree checker
  */
