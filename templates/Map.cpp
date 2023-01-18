@@ -726,6 +726,13 @@ map<T1, T2>::Node::is_leaf(void) const
 	return !(child[LEFT] || child[RIGHT]);
 }
 
+template <typename T1, typename T2>
+bool
+map<T1, T2>::Node::is_black(void) const
+{
+	return (color == BLACK);
+}
+
 /**
  * Red black tree checker
  */

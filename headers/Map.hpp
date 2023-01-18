@@ -38,6 +38,7 @@ template <typename T1, typename T2> class map
 		void flip_color(void);
 
 		bool is_leaf() const;
+		bool is_black() const;
 	};
 
   public:
