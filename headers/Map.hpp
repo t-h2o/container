@@ -39,6 +39,8 @@ template <typename T1, typename T2> class map
 
 		bool is_leaf() const;
 		bool is_black() const;
+
+		Node *right() const;
 	};
 
   public:
