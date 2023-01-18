@@ -4,6 +4,8 @@
 #define RBT_LOG 0
 #define RBT_LOG_ERASE 0
 
+#define RBT_CHECKER 1
+
 #include "Pair.hpp"
 
 namespace ft
@@ -78,6 +80,7 @@ template <typename T1, typename T2> class map
 	void _rotate(Node *);
 	void _erase(Node *);
 	void _resolve_double_black(Node *, Node *);
+	void _rbt_checker(void) const;
 
 	enum e_side _get_side(Node *) const;
 	enum e_side _flip_side_s(enum e_side) const;

@@ -46,6 +46,8 @@ map<T1, T2>::erase(T1 const &key)
 		print_tree();
 
 	_erase(_get_pointer(key));
+	if (RBT_CHECKER)
+		_rbt_checker();
 }
 
 template <typename T1, typename T2>
@@ -318,6 +320,10 @@ map<T1, T2>::_get_reference(const T1 &key)
 		section("print_tree()");
 	if (RBT_LOG)
 		print_tree();
+
+	if (RBT_CHECKER)
+		_rbt_checker();
+
 	return node->dual;
 }
 
@@ -718,4 +724,16 @@ bool
 map<T1, T2>::Node::is_leaf(void) const
 {
 	return !(child[LEFT] || child[RIGHT]);
+}
+
+/**
+ * Red black tree checker
+ */
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::_rbt_checker(void) const
+{
+	if (_root->color == BLACK)
+		throw(std::logic_error("Root is black"));
 }
