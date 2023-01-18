@@ -35,91 +35,20 @@ insert_map(int n, std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 }
 
 void
-map_one(void)
-{
-	section("default constructor int, int");
-	std::map<int, std::string> map_std;
-	ft::map<int, std::string>  map_ft;
-
-	section("Init new pair 3 => ");
-	insert_map(3, map_std, map_ft);
-
-	section("Init new pair 1 => ");
-	insert_map(1, map_std, map_ft);
-
-	section("Init new pair 5 => ");
-	insert_map(5, map_std, map_ft);
-
-	section("(Two red) Init new pair 7 => ");
-	insert_map(7, map_std, map_ft);
-
-	section("(Two red) Init new pair 6 => ");
-	insert_map(6, map_std, map_ft);
-
-	section("(Two red) Init new pair 8 => ");
-	insert_map(8, map_std, map_ft);
-
-	section("(Two red) Init new pair 9 => ");
-	insert_map(9, map_std, map_ft);
-
-	section("(Two red) Init new pair 10 => ");
-	insert_map(10, map_std, map_ft);
-}
-
-void
 map_left(void)
 {
 	section("default constructor int, int");
 	std::map<int, std::string> map_std;
 	ft::map<int, std::string>  map_ft;
 
-	section("Init new pair 16 => ");
-	insert_map(16, map_std, map_ft);
+	for (int insert = 20; insert > 0; --insert)
+	{
+		std::string message = "insert: " + std::to_string(insert);
+		section(message);
+		insert_map(insert, map_std, map_ft);
+	}
 
-	section("Init new pair 15 => ");
-	insert_map(15, map_std, map_ft);
-
-	section("Init new pair 14 => ");
-	insert_map(14, map_std, map_ft);
-
-	section("Init new pair 13 => ");
-	insert_map(13, map_std, map_ft);
-
-	section("Init new pair 12 => ");
-	insert_map(12, map_std, map_ft);
-
-	section("Init new pair 11 => ");
-	insert_map(11, map_std, map_ft);
-
-	section("Init new pair 10 => ");
-	insert_map(10, map_std, map_ft);
-
-	section("Init new pair 9 => ");
-	insert_map(9, map_std, map_ft);
-
-	section("Init new pair 8 => ");
-	insert_map(8, map_std, map_ft);
-
-	section("Init new pair 7 => ");
-	insert_map(7, map_std, map_ft);
-
-	section("Init new pair 6 => ");
-	insert_map(6, map_std, map_ft);
-
-	section("Init new pair 5 => ");
-	insert_map(5, map_std, map_ft);
-
-	section("Init new pair 4 => ");
-	insert_map(4, map_std, map_ft);
-
-	section("Init new pair 3 => ");
-	insert_map(3, map_std, map_ft);
-
-	section("Init new pair 2 => ");
-	insert_map(2, map_std, map_ft);
-
-	section("Init new pair 1 => ");
-	insert_map(1, map_std, map_ft);
+	map_ft.print_tree();
 }
 
 void
@@ -129,134 +58,49 @@ map_right(void)
 	std::map<int, std::string> map_std;
 	ft::map<int, std::string>  map_ft;
 
-	section("Init new pair 1 => ");
-	insert_map(1, map_std, map_ft);
+	for (int insert = 0; insert < 20; ++insert)
+	{
+		std::string message = "insert: " + std::to_string(insert);
+		section(message);
+		insert_map(insert, map_std, map_ft);
+	}
 
-	section("erase 1");
-	erase_map(1, map_std, map_ft);
-
-	section("Init new pair 1 => ");
-	insert_map(1, map_std, map_ft);
-
-	section("Init new pair 2 => ");
-	insert_map(2, map_std, map_ft);
-
-	section("Init new pair 3 => ");
-	insert_map(3, map_std, map_ft);
-
-	section("Init new pair 4 => ");
-	insert_map(4, map_std, map_ft);
-
-	section("Init new pair 5 => ");
-	insert_map(5, map_std, map_ft);
-
-	section("erase 5");
-	erase_map(5, map_std, map_ft);
-
-	section("erase 4");
-	erase_map(4, map_std, map_ft);
-
-	section("erase 2");
-	erase_map(2, map_std, map_ft);
-
-	section("Init new pair 4 => ");
-	insert_map(4, map_std, map_ft);
-
-	section("Init new pair 6 => ");
-	insert_map(6, map_std, map_ft);
-
-	section("Init new pair 7 => ");
-	insert_map(7, map_std, map_ft);
-
-	section("Init new pair 8 => ");
-	insert_map(8, map_std, map_ft);
-
-	section("erase 4");
-	erase_map(4, map_std, map_ft);
-
-	section("erase 1");
-	erase_map(1, map_std, map_ft);
-
-	section("erase 3");
-	erase_map(3, map_std, map_ft);
-	return;
-
-	section("erase 5");
-	erase_map(5, map_std, map_ft);
-
-	section("Init new pair 9 => ");
-	insert_map(9, map_std, map_ft);
-
-	section("Init new pair 10 => ");
-	insert_map(10, map_std, map_ft);
-
-	section("Init new pair 11 => ");
-	insert_map(11, map_std, map_ft);
-
-	section("Init new pair 12 => ");
-	insert_map(12, map_std, map_ft);
-
-	section("Init new pair 13 => ");
-	insert_map(13, map_std, map_ft);
-
-	section("Init new pair 14 => ");
-	insert_map(14, map_std, map_ft);
-
-	section("Init new pair 15 => ");
-	insert_map(15, map_std, map_ft);
-
-	section("Init new pair 16 => ");
-	insert_map(16, map_std, map_ft);
+	map_ft.print_tree();
 }
+
 void
-map_map(void)
+map_rand(unsigned int seed)
 {
 	section("default constructor int, int");
 	std::map<int, std::string> map_std;
 	ft::map<int, std::string>  map_ft;
 
-	std::pair<int, std::string> pair_std(23, "1234");
-	ft::pair<int, std::string>	pair_ft(23, "1234");
-
-	map_std.insert(pair_std);
-	map_ft.insert(pair_ft);
-
-	erase_map(23, map_std, map_ft);
-
-	pair_std.second = "0987";
-	pair_ft.second = "0987";
-
-	map_std.insert(pair_std);
-	map_ft.insert(pair_ft);
-
-	section("Init new pair 12 => ");
-	insert_map(12, map_std, map_ft);
-
-	section("Init new pair 13 => ");
-	insert_map(13, map_std, map_ft);
-
-	section("Init new pair 14 => ");
-	insert_map(14, map_std, map_ft);
-
-	section("Init new pair 15 => ");
-	insert_map(15, map_std, map_ft);
-
-	section("Init new pair 16 => ");
-	insert_map(16, map_std, map_ft);
+	srand(seed);
+	for (int i = 0; i < 20; ++i)
+	{
+		unsigned int random = rand() % 100;
+		std::string	 a = "insert: " + std::to_string(random);
+		section(a);
+		insert_map(random, map_std, map_ft);
+	}
+	map_ft.print_tree();
 }
 
 void
 test_map(void)
 {
-	//	title("Map one");
-	//	map_one();
-	//
+	title("Map one");
+	map_one();
+
 	title("Map left");
 	map_left();
 
 	title("Map right");
 	map_right();
 
-	//	title("Map map");
-	//	map_map();
+	title("Map random");
+	map_rand(1);
+
+	title("Map random");
+	map_rand(2);
 }
