@@ -32,6 +32,8 @@ template <typename T1, typename T2> class map
 		Node		*child[2];
 		pair		 dual;
 		enum e_color color;
+
+		void flip_color(void);
 	};
 
   public:

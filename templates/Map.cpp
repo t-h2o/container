@@ -657,26 +657,6 @@ map<T1, T2>::_rotate(Node *pivot)
 }
 
 template <typename T1, typename T2>
-void
-map<T1, T2>::_flip_color(Node *node)
-{
-	if (node == 0)
-		return;
-	if (node->color == RED)
-	{
-		if (RBT_LOG)
-			std::cout << "Flip " << node->dual.first << " RED -> BLACK" << std::endl;
-		node->color = BLACK;
-	}
-	else
-	{
-		if (RBT_LOG)
-			std::cout << "Flip " << node->dual.first << " BLACK -> RED" << std::endl;
-		node->color = RED;
-	}
-}
-
-template <typename T1, typename T2>
 typename map<T1, T2>::e_side
 map<T1, T2>::_flip_side_s(enum e_side side) const
 {
@@ -714,14 +694,27 @@ template <typename T1, typename T2>
 void
 map<T1, T2>::_flip_color_grandparent(Node *grandParent)
 {
-	_flip_color(grandParent->child[LEFT]);
-	_flip_color(grandParent->child[RIGHT]);
+	grandParent->child[LEFT]->flip_color();
+	grandParent->child[RIGHT]->flip_color();
 	if (grandParent->parent)
-		_flip_color(grandParent);
+		grandParent->flip_color();
 	else
 	{
 		if (RBT_LOG)
 			std::cout << "Grand parent (" << grandParent->dual.first << ") is the root" << std::endl;
 		grandParent->color = BLACK;
 	}
+}
+
+/**
+ * Node
+ */
+template <typename T1, typename T2>
+void
+map<T1, T2>::Node::flip_color(void)
+{
+	if (color == RED)
+		color = BLACK;
+	else
+		color = RED;
 }
