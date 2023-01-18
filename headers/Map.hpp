@@ -25,13 +25,14 @@ template <typename T1, typename T2> class map
 
 	typedef ft::pair<T1, T2> pair;
 
-	typedef struct s_node
+	class Node
 	{
-		struct s_node *parent;
-		struct s_node *child[2];
-		pair		   dual;
-		enum e_color   color;
-	} t_node;
+	  public:
+		Node		*parent;
+		Node		*child[2];
+		pair		 dual;
+		enum e_color color;
+	};
 
   public:
 	explicit map(void);
@@ -52,38 +53,38 @@ template <typename T1, typename T2> class map
 	void print_tree(void) const;
 
   private:
-	t_node *_root;
-	size_t	_size;
+	Node  *_root;
+	size_t _size;
 
-	void _free_tree(t_node *);
-	void _print_tree(t_node *, size_t) const;
+	void _free_tree(Node *);
+	void _print_tree(Node *, size_t) const;
 
-	t_node *_get_parent(T1 const &, enum e_side &) const;
-	t_node *_new_node(t_node *, enum e_side &);
-	t_node *_get_grandparent(t_node *) const;
-	t_node *_get_uncle(t_node *) const;
-	t_node *_get_pointer(T1 const &) const;
-	t_node *_get_child(t_node *) const;
-	t_node *_get_predecessor(t_node *) const;
-	t_node *_get_sibling(t_node *) const;
+	Node *_get_parent(T1 const &, enum e_side &) const;
+	Node *_new_node(Node *, enum e_side &);
+	Node *_get_grandparent(Node *) const;
+	Node *_get_uncle(Node *) const;
+	Node *_get_pointer(T1 const &) const;
+	Node *_get_child(Node *) const;
+	Node *_get_predecessor(Node *) const;
+	Node *_get_sibling(Node *) const;
 
-	void _rebalanceTree(t_node *);
-	void _flip_color(t_node *);
-	void _flip_color_grandparent(t_node *);
-	void _rotate(t_node *);
-	void _erase(t_node *);
-	void _resolve_double_black(t_node *, t_node *);
+	void _rebalanceTree(Node *);
+	void _flip_color(Node *);
+	void _flip_color_grandparent(Node *);
+	void _rotate(Node *);
+	void _erase(Node *);
+	void _resolve_double_black(Node *, Node *);
 
-	enum e_side _get_side(t_node *) const;
+	enum e_side _get_side(Node *) const;
 	enum e_side _flip_side_s(enum e_side) const;
 
-	unsigned char _number_child(t_node *) const;
+	unsigned char _number_child(Node *) const;
 
 	pair &_get_reference(const T1 &);
 
-	bool _is_leaf(t_node *) const;
-	bool _has_black_children(t_node *) const;
-	bool _has_red_child(t_node *) const;
+	bool _is_leaf(Node *) const;
+	bool _has_black_children(Node *) const;
+	bool _has_red_child(Node *) const;
 };
 
 #include "../templates/Map.cpp"

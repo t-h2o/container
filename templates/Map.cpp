@@ -59,7 +59,7 @@ template <typename T1, typename T2>
 void
 map<T1, T2>::print(void) const
 {
-	t_node *ptr(_root);
+	Node *ptr(_root);
 
 	std::cout << "map: size = " << _size << std::endl;
 
@@ -76,7 +76,7 @@ map<T1, T2>::print(void) const
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_erase(t_node *node)
+map<T1, T2>::_erase(Node *node)
 {
 	if (node == 0)
 		return;
@@ -107,7 +107,7 @@ map<T1, T2>::_erase(t_node *node)
 			if (RBT_LOG_ERASE)
 				std::cout << "node (" << node->dual.first << ") is leaf and black" << std::endl;
 
-			t_node *sibling(_get_sibling(node));
+			Node *sibling(_get_sibling(node));
 
 			if (RBT_LOG_ERASE)
 				std::cout << "node (" << node->dual.first << ") and his sibling(" << sibling->dual.first
@@ -127,7 +127,7 @@ map<T1, T2>::_erase(t_node *node)
 	}
 	else if (_number_child(node) == 1)
 	{
-		t_node *child = _get_child(node);
+		Node *child = _get_child(node);
 
 		if (child->color == RED)
 		{
@@ -151,7 +151,7 @@ map<T1, T2>::_erase(t_node *node)
 		if (RBT_LOG_ERASE)
 			std::cout << "node (" << node->dual.first << ") has two children" << std::endl;
 
-		t_node *predecessor(_get_predecessor(node));
+		Node *predecessor(_get_predecessor(node));
 
 		if (RBT_LOG_ERASE)
 			std::cout << "copy :" << predecessor->dual.first << " into " << node->dual.first << std::endl;
@@ -167,7 +167,7 @@ map<T1, T2>::_erase(t_node *node)
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_resolve_double_black(t_node *sibling, t_node *parent)
+map<T1, T2>::_resolve_double_black(Node *sibling, Node *parent)
 {
 	if (RBT_LOG_ERASE)
 		print_tree();
@@ -227,7 +227,7 @@ map<T1, T2>::_resolve_double_black(t_node *sibling, t_node *parent)
 
 template <typename T1, typename T2>
 bool
-map<T1, T2>::_has_black_children(t_node *node) const
+map<T1, T2>::_has_black_children(Node *node) const
 {
 	return ((!(node->child[LEFT]) || node->child[LEFT]->color == BLACK)
 			&& (!(node->child[RIGHT]) || node->child[RIGHT]->color == BLACK));
@@ -235,7 +235,7 @@ map<T1, T2>::_has_black_children(t_node *node) const
 
 template <typename T1, typename T2>
 bool
-map<T1, T2>::_has_red_child(t_node *node) const
+map<T1, T2>::_has_red_child(Node *node) const
 {
 	return ((node->child[LEFT] && node->child[LEFT]->color == RED)
 			|| (node->child[RIGHT] && node->child[RIGHT]->color == RED));
@@ -243,23 +243,23 @@ map<T1, T2>::_has_red_child(t_node *node) const
 
 template <typename T1, typename T2>
 unsigned char
-map<T1, T2>::_number_child(t_node *node) const
+map<T1, T2>::_number_child(Node *node) const
 {
 	return (!!(node->child[LEFT]) + !!(node->child[RIGHT]));
 }
 
 template <typename T1, typename T2>
-typename map<T1, T2>::t_node *
-map<T1, T2>::_get_sibling(t_node *node) const
+typename map<T1, T2>::Node *
+map<T1, T2>::_get_sibling(Node *node) const
 {
 	return node->parent->child[_flip_side_s(_get_side(node))];
 }
 
 template <typename T1, typename T2>
-typename map<T1, T2>::t_node *
-map<T1, T2>::_get_predecessor(t_node *node) const
+typename map<T1, T2>::Node *
+map<T1, T2>::_get_predecessor(Node *node) const
 {
-	t_node *predecessor(node->child[LEFT]);
+	Node *predecessor(node->child[LEFT]);
 
 	while (predecessor->child[RIGHT])
 		predecessor = predecessor->child[RIGHT];
@@ -268,8 +268,8 @@ map<T1, T2>::_get_predecessor(t_node *node) const
 }
 
 template <typename T1, typename T2>
-typename map<T1, T2>::t_node *
-map<T1, T2>::_get_child(t_node *node) const
+typename map<T1, T2>::Node *
+map<T1, T2>::_get_child(Node *node) const
 {
 	if (node->child[LEFT])
 		return node->child[LEFT];
@@ -278,16 +278,16 @@ map<T1, T2>::_get_child(t_node *node) const
 
 template <typename T1, typename T2>
 bool
-map<T1, T2>::_is_leaf(t_node *node) const
+map<T1, T2>::_is_leaf(Node *node) const
 {
 	return !(node->child[LEFT] || node->child[RIGHT]);
 }
 
 template <typename T1, typename T2>
-typename map<T1, T2>::t_node *
+typename map<T1, T2>::Node *
 map<T1, T2>::_get_pointer(const T1 &key) const
 {
-	t_node *node(_root);
+	Node *node(_root);
 
 	while (node && node->dual.first != key)
 	{
@@ -305,8 +305,8 @@ template <typename T1, typename T2>
 pair<T1, T2> &
 map<T1, T2>::_get_reference(const T1 &key)
 {
-	t_node	   *parent;
-	t_node	   *node;
+	Node	   *parent;
+	Node	   *node;
 	enum e_side side;
 
 	parent = _get_parent(key, side);
@@ -330,7 +330,7 @@ map<T1, T2>::_get_reference(const T1 &key)
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_print_tree(t_node *ptr, size_t level) const
+map<T1, T2>::_print_tree(Node *ptr, size_t level) const
 {
 	if (ptr == 0)
 		return;
@@ -354,7 +354,7 @@ map<T1, T2>::_print_tree(t_node *ptr, size_t level) const
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_free_tree(t_node *ptr)
+map<T1, T2>::_free_tree(Node *ptr)
 {
 	if (ptr == 0)
 		return;
@@ -365,10 +365,10 @@ map<T1, T2>::_free_tree(t_node *ptr)
 }
 
 template <typename T1, typename T2>
-typename map<T1, T2>::t_node *
+typename map<T1, T2>::Node *
 map<T1, T2>::_get_parent(T1 const &key, enum e_side &side) const
 {
-	t_node *parent;
+	Node *parent;
 
 	parent = _root;
 	while (parent)
@@ -410,23 +410,23 @@ map<T1, T2>::_get_parent(T1 const &key, enum e_side &side) const
 }
 
 template <typename T1, typename T2>
-typename map<T1, T2>::t_node *
-map<T1, T2>::_new_node(t_node *parent, enum e_side &side)
+typename map<T1, T2>::Node *
+map<T1, T2>::_new_node(Node *parent, enum e_side &side)
 {
-	t_node *node;
+	Node *node;
 
 	if (parent == 0)
 	{
 		if (RBT_LOG)
 			std::cout << "_root is NULL" << std::endl;
-		node = new t_node;
+		node = new Node;
 		node->color = BLACK;
 		node->parent = 0;
 		_root = node;
 	}
 	else
 	{
-		node = new t_node;
+		node = new Node;
 		parent->child[side] = node;
 		node->color = RED;
 		node->parent = parent;
@@ -437,8 +437,8 @@ map<T1, T2>::_new_node(t_node *parent, enum e_side &side)
 }
 
 template <typename T1, typename T2>
-typename map<T1, T2>::t_node *
-map<T1, T2>::_get_grandparent(t_node *node) const
+typename map<T1, T2>::Node *
+map<T1, T2>::_get_grandparent(Node *node) const
 {
 	if (node && node->parent)
 		return node->parent->parent;
@@ -446,10 +446,10 @@ map<T1, T2>::_get_grandparent(t_node *node) const
 }
 
 template <typename T1, typename T2>
-typename map<T1, T2>::t_node *
-map<T1, T2>::_get_uncle(t_node *node) const
+typename map<T1, T2>::Node *
+map<T1, T2>::_get_uncle(Node *node) const
 {
-	t_node *grandParent(_get_grandparent(node));
+	Node *grandParent(_get_grandparent(node));
 
 	if (grandParent == 0)
 		return 0;
@@ -460,14 +460,14 @@ map<T1, T2>::_get_uncle(t_node *node) const
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_rebalanceTree(t_node *node)
+map<T1, T2>::_rebalanceTree(Node *node)
 {
 	// is two following red
 	if (node->color == RED && node->parent && node->parent->color == RED)
 	{
 
-		t_node *uncle(_get_uncle(node));
-		t_node *grandParent(_get_grandparent(node));
+		Node *uncle(_get_uncle(node));
+		Node *grandParent(_get_grandparent(node));
 
 		if (uncle != 0)
 		{
@@ -533,9 +533,9 @@ map<T1, T2>::_rebalanceTree(t_node *node)
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_rotate(t_node *pivot)
+map<T1, T2>::_rotate(Node *pivot)
 {
-	t_node	   *root(pivot->parent);
+	Node	   *root(pivot->parent);
 	enum e_side side(_get_side(pivot));
 	enum e_side oSide(_flip_side_s(side));
 
@@ -658,7 +658,7 @@ map<T1, T2>::_rotate(t_node *pivot)
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_flip_color(t_node *node)
+map<T1, T2>::_flip_color(Node *node)
 {
 	if (node == 0)
 		return;
@@ -688,7 +688,7 @@ map<T1, T2>::_flip_side_s(enum e_side side) const
 
 template <typename T1, typename T2>
 typename map<T1, T2>::e_side
-map<T1, T2>::_get_side(t_node *node) const
+map<T1, T2>::_get_side(Node *node) const
 {
 	if (node->parent == 0)
 		std::cout << "Not a side" << std::endl;
@@ -712,7 +712,7 @@ map<T1, T2>::_get_side(t_node *node) const
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_flip_color_grandparent(t_node *grandParent)
+map<T1, T2>::_flip_color_grandparent(Node *grandParent)
 {
 	_flip_color(grandParent->child[LEFT]);
 	_flip_color(grandParent->child[RIGHT]);
