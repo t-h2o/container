@@ -690,9 +690,16 @@ map<T1, T2>::_get_side(t_node *node) const
 			std::cout << node->dual.first << " is right of " << node->parent->dual.first << std::endl;
 		return RIGHT;
 	}
-	if (RBT_LOG)
-		std::cout << node->dual.first << " is left of " << node->parent->dual.first << std::endl;
-	return LEFT;
+	else if (node->parent->child[LEFT] == node)
+	{
+		if (RBT_LOG)
+			std::cout << node->dual.first << " is left of " << node->parent->dual.first << std::endl;
+		return LEFT;
+	}
+	else
+	{
+		throw(std::logic_error("cannot get the child of the node"));
+	}
 }
 
 template <typename T1, typename T2>
