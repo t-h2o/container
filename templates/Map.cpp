@@ -578,9 +578,15 @@ map<T1, T2>::_rotate(t_node *pivot)
 			pivot->child[LEFT]->color = BLACK;
 			pivot->child[RIGHT]->color = BLACK;
 			if (root->child[LEFT])
+			{
 				root->child[LEFT]->color = RED;
+				root->child[LEFT]->parent = root;
+			}
 			if (root->child[RIGHT])
+			{
 				root->child[RIGHT]->color = RED;
+				root->child[RIGHT]->parent = root;
+			}
 		}
 		else
 		{
