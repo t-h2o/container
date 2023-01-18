@@ -664,12 +664,14 @@ map<T1, T2>::_flip_color(t_node *node)
 		return;
 	if (node->color == RED)
 	{
-		std::cout << "Flip " << node->dual.first << " RED -> BLACK" << std::endl;
+		if (RBT_LOG)
+			std::cout << "Flip " << node->dual.first << " RED -> BLACK" << std::endl;
 		node->color = BLACK;
 	}
 	else
 	{
-		std::cout << "Flip " << node->dual.first << " BLACK -> RED" << std::endl;
+		if (RBT_LOG)
+			std::cout << "Flip " << node->dual.first << " BLACK -> RED" << std::endl;
 		node->color = RED;
 	}
 }

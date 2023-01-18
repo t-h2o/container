@@ -134,7 +134,6 @@ map_right(void)
 
 	section("erase 1");
 	erase_map(1, map_std, map_ft);
-	map_ft.print_tree();
 
 	section("Init new pair 1 => ");
 	insert_map(1, map_std, map_ft);
@@ -151,19 +150,14 @@ map_right(void)
 	section("Init new pair 5 => ");
 	insert_map(5, map_std, map_ft);
 
-	map_ft.print_tree();
-
 	section("erase 5");
 	erase_map(5, map_std, map_ft);
-	map_ft.print_tree();
 
 	section("erase 4");
 	erase_map(4, map_std, map_ft);
-	map_ft.print_tree();
 
 	section("erase 2");
 	erase_map(2, map_std, map_ft);
-	map_ft.print_tree();
 
 	section("Init new pair 4 => ");
 	insert_map(4, map_std, map_ft);
@@ -177,24 +171,18 @@ map_right(void)
 	section("Init new pair 8 => ");
 	insert_map(8, map_std, map_ft);
 
-	map_ft.print_tree();
-
 	section("erase 4");
 	erase_map(4, map_std, map_ft);
-	map_ft.print_tree();
 
 	section("erase 1");
 	erase_map(1, map_std, map_ft);
-	map_ft.print_tree();
 
 	section("erase 3");
 	erase_map(3, map_std, map_ft);
-	map_ft.print_tree();
 	return;
 
 	section("erase 5");
 	erase_map(5, map_std, map_ft);
-	map_ft.print_tree();
 
 	section("Init new pair 9 => ");
 	insert_map(9, map_std, map_ft);
@@ -255,8 +243,6 @@ map_map(void)
 
 	section("Init new pair 16 => ");
 	insert_map(16, map_std, map_ft);
-
-	map_ft.print_tree();
 }
 
 void
