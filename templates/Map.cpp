@@ -569,6 +569,15 @@ map<T1, T2>::_rotate(t_node *pivot)
 		pivot->color = BLACK;
 		pivot->child[LEFT]->color = RED;
 		pivot->child[RIGHT]->color = RED;
+
+		if (RBT_LOG)
+			print_tree();
+		if (RBT_LOG)
+			std::cout << "color black the old root new child" << pivot->child[oSide]->dual.first << std::endl;
+		if (root->child[LEFT])
+			root->child[LEFT]->color = BLACK;
+		if (root->child[RIGHT])
+			root->child[RIGHT]->color = BLACK;
 	}
 	else if (pivot->child[oSide])
 	{
