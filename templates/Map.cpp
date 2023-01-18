@@ -91,7 +91,7 @@ map<T1, T2>::_erase(Node *node)
 		_size = 0;
 		return;
 	}
-	if (_is_leaf(node))
+	if (node->is_leaf())
 	{
 		if (node->color == RED)
 		{
@@ -274,13 +274,6 @@ map<T1, T2>::_get_child(Node *node) const
 	if (node->child[LEFT])
 		return node->child[LEFT];
 	return node->child[RIGHT];
-}
-
-template <typename T1, typename T2>
-bool
-map<T1, T2>::_is_leaf(Node *node) const
-{
-	return !(node->child[LEFT] || node->child[RIGHT]);
 }
 
 template <typename T1, typename T2>
@@ -709,6 +702,7 @@ map<T1, T2>::_flip_color_grandparent(Node *grandParent)
 /**
  * Node
  */
+
 template <typename T1, typename T2>
 void
 map<T1, T2>::Node::flip_color(void)
@@ -717,4 +711,11 @@ map<T1, T2>::Node::flip_color(void)
 		color = BLACK;
 	else
 		color = RED;
+}
+
+template <typename T1, typename T2>
+bool
+map<T1, T2>::Node::is_leaf(void) const
+{
+	return !(child[LEFT] || child[RIGHT]);
 }

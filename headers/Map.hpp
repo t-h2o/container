@@ -34,6 +34,8 @@ template <typename T1, typename T2> class map
 		enum e_color color;
 
 		void flip_color(void);
+
+		bool is_leaf() const;
 	};
 
   public:
@@ -84,7 +86,6 @@ template <typename T1, typename T2> class map
 
 	pair &_get_reference(const T1 &);
 
-	bool _is_leaf(Node *) const;
 	bool _has_black_children(Node *) const;
 	bool _has_red_child(Node *) const;
 };
