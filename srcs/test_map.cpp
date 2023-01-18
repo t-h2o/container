@@ -186,6 +186,10 @@ map_right(void)
 	section("erase 1");
 	erase_map(1, map_std, map_ft);
 	map_ft.print_tree();
+
+	section("erase 3");
+	erase_map(3, map_std, map_ft);
+	map_ft.print_tree();
 	return;
 
 	section("erase 5");
