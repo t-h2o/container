@@ -769,6 +769,69 @@ template <typename T1, typename T2>
 void
 map<T1, T2>::_rbt_checker(void) const
 {
-	if (_root->color == BLACK)
-		throw(std::logic_error("Root is black"));
+	Node		*node(_root);
+	unsigned int black_node;
+	unsigned int total_black_node;
+
+	if (_root == 0)
+		return;
+
+	if (_root->color == RED)
+		throw(std::logic_error("Root is red"));
+
+	print_tree();
+
+	black_node = 0;
+
+	bool is_backing(0);
+	bool reach_end(0);
+
+	enum e_side side;
+	while (true)
+	{
+		std::cout << node->key();
+		if (node->is_black() && !is_backing)
+			++black_node;
+		if (node->right() && !is_backing)
+		{
+			std::cout << " -> ";
+			node = node->right();
+			side = RIGHT;
+			is_backing = 0;
+		}
+		else if (node->left() && (!is_backing || (is_backing && side == RIGHT)))
+		{
+			std::cout << " -> ";
+			node = node->left();
+			side = LEFT;
+			is_backing = 0;
+		}
+		else if (node->parent)
+		{
+			if (!reach_end && node->is_leaf())
+			{
+				reach_end = 1;
+				total_black_node = black_node;
+				std::cout << " : " << total_black_node << " black node" << std::endl;
+			}
+			else if (node->is_leaf())
+			{
+				std::cout << " : " << black_node << " black node" << std::endl;
+				if (black_node != total_black_node)
+					throw(std::logic_error("Not same number of black"));
+			}
+			else
+			{
+				std::cout << " <- ";
+			}
+			side = _get_side(node);
+			if (node->is_black())
+				--black_node;
+			node = node->parent;
+			is_backing = 1;
+		}
+		else
+			break;
+	}
+	std::cout << std::endl;
 }
