@@ -734,10 +734,24 @@ map<T1, T2>::Node::is_black(void) const
 }
 
 template <typename T1, typename T2>
+bool
+map<T1, T2>::Node::is_red(void) const
+{
+	return (color == RED);
+}
+
+template <typename T1, typename T2>
 typename map<T1, T2>::Node *
 map<T1, T2>::Node::right(void) const
 {
 	return child[RIGHT];
+}
+
+template <typename T1, typename T2>
+typename map<T1, T2>::Node *
+map<T1, T2>::Node::left(void) const
+{
+	return child[LEFT];
 }
 
 template <typename T1, typename T2>
