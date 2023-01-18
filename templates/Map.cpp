@@ -720,6 +720,26 @@ map<T1, T2>::Node::flip_color(void)
 }
 
 template <typename T1, typename T2>
+void
+map<T1, T2>::Node::color_children(enum e_color color)
+{
+	if (left())
+		left()->color = color;
+	if (right())
+		right()->color = color;
+}
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::Node::reset_parent(void)
+{
+	if (left())
+		left()->parent = this;
+	if (right())
+		right()->parent = this;
+}
+
+template <typename T1, typename T2>
 bool
 map<T1, T2>::Node::is_leaf(void) const
 {
@@ -738,6 +758,13 @@ bool
 map<T1, T2>::Node::is_red(void) const
 {
 	return (color == RED);
+}
+
+template <typename T1, typename T2>
+bool
+map<T1, T2>::Node::has_red_child(void) const
+{
+	return ((left() && left()->is_red()) || (right() && right()->is_red()));
 }
 
 template <typename T1, typename T2>

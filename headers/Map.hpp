@@ -36,10 +36,13 @@ template <typename T1, typename T2> class map
 		enum e_color color;
 
 		void flip_color(void);
+		void color_children(enum e_color);
+		void reset_parent(void);
 
 		bool is_leaf() const;
 		bool is_black() const;
 		bool is_red() const;
+		bool has_red_child() const;
 
 		Node *right() const;
 		Node *left() const;
