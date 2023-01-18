@@ -251,8 +251,8 @@ test_map(void)
 	//	title("Map one");
 	//	map_one();
 	//
-	//	title("Map left");
-	//	map_left();
+	title("Map left");
+	map_left();
 
 	title("Map right");
 	map_right();
