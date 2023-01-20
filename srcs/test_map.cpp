@@ -89,18 +89,16 @@ map_rand(unsigned int seed)
 void
 test_map(void)
 {
-	title("Map one");
-	map_one();
-
 	title("Map left");
 	map_left();
 
 	title("Map right");
 	map_right();
 
-	title("Map random");
-	map_rand(1);
-
-	title("Map random");
-	map_rand(2);
+	for (int i = 0; i < 100; ++i)
+	{
+		std::string message = "Map random: " + std::to_string(i);
+		title(message);
+		map_rand(i);
+	}
 }
