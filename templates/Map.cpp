@@ -715,8 +715,10 @@ map<T1, T2>::_rbt_checker(void) const
 	if (_root->color == RED)
 		throw(std::logic_error("Root is red"));
 
-	std::cout << " == Red black tree checker ==" << std::endl;
-	print_tree();
+	if (RBT_LOG_CHECKER)
+		std::cout << " == Red black tree checker ==" << std::endl;
+	if (RBT_LOG_CHECKER)
+		print_tree();
 
 	black_node = 0;
 
@@ -726,12 +728,14 @@ map<T1, T2>::_rbt_checker(void) const
 	enum e_side side;
 	while (true)
 	{
-		std::cout << node->key();
+		if (RBT_LOG_CHECKER)
+			std::cout << node->key();
 		if (node->is_black() && !is_backing)
 			++black_node;
 		if (node->right() && !is_backing)
 		{
-			std::cout << " -> ";
+			if (RBT_LOG_CHECKER)
+				std::cout << " -> ";
 			if (node->is_red() && node->right()->is_red())
 				throw(std::logic_error("two following red"));
 			node = node->right();
@@ -740,7 +744,8 @@ map<T1, T2>::_rbt_checker(void) const
 		}
 		else if (node->left() && (!is_backing || (is_backing && side == RIGHT)))
 		{
-			std::cout << " -> ";
+			if (RBT_LOG_CHECKER)
+				std::cout << " -> ";
 			if (node->is_red() && node->left()->is_red())
 				throw(std::logic_error("two following red"));
 			node = node->left();
@@ -753,17 +758,20 @@ map<T1, T2>::_rbt_checker(void) const
 			{
 				reach_end = 1;
 				total_black_node = black_node;
-				std::cout << " : " << total_black_node << " black node" << std::endl;
+				if (RBT_LOG_CHECKER)
+					std::cout << " : " << total_black_node << " black node" << std::endl;
 			}
 			else if (node->is_leaf())
 			{
-				std::cout << " : " << black_node << " black node" << std::endl;
+				if (RBT_LOG_CHECKER)
+					std::cout << " : " << black_node << " black node" << std::endl;
 				if (black_node != total_black_node)
 					throw(std::logic_error("Not same number of black"));
 			}
 			else
 			{
-				std::cout << " <- ";
+				if (RBT_LOG_CHECKER)
+					std::cout << " <- ";
 			}
 			side = _get_side(node);
 			if (node->is_black())
@@ -774,5 +782,6 @@ map<T1, T2>::_rbt_checker(void) const
 		else
 			break;
 	}
-	std::cout << std::endl;
+	if (RBT_LOG_CHECKER)
+		std::cout << std::endl;
 }

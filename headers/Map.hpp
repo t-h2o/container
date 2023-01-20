@@ -3,6 +3,7 @@
 
 #define RBT_LOG 0
 #define RBT_LOG_ERASE 0
+#define RBT_LOG_CHECKER 0
 
 #define RBT_CHECKER 1
 
