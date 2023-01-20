@@ -47,8 +47,6 @@ map_left(void)
 		section(message);
 		insert_map(insert, map_std, map_ft);
 	}
-
-	map_ft.print_tree();
 }
 
 void
@@ -64,8 +62,6 @@ map_right(void)
 		section(message);
 		insert_map(insert, map_std, map_ft);
 	}
-
-	map_ft.print_tree();
 }
 
 void
@@ -76,14 +72,13 @@ map_rand(unsigned int seed)
 	ft::map<int, std::string>  map_ft;
 
 	srand(seed);
-	for (int i = 0; i < 20; ++i)
+	for (int i = 0; i < 100; ++i)
 	{
 		unsigned int random = rand() % 100;
 		std::string	 a = "insert: " + std::to_string(random);
 		section(a);
 		insert_map(random, map_std, map_ft);
 	}
-	map_ft.print_tree();
 }
 
 void
