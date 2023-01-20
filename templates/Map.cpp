@@ -579,16 +579,21 @@ map<T1, T2>::_rotate(Node *pivot)
 		if (RBT_LOG)
 			std::cout << "recolor" << std::endl;
 
-		if (pivot->is_red())
+		pivot->color_children(RED);
+		if (pivot == _root)
 		{
-			pivot->color_children(RED);
+			if (RBT_LOG)
+				std::cout << pivot->key() << ": is root" << std::endl;
+			pivot->color = BLACK;
 		}
 		else
 		{
-			pivot->color_children(BLACK);
+			if (RBT_LOG)
+				std::cout << pivot->key() << ": isn't root" << std::endl;
+			pivot->color = BLACK;
 		}
 		root->reset_parent();
-		pivot->color = BLACK;
+		return pivot;
 	}
 	else if (pivot->child[oSide])
 	{
@@ -627,6 +632,8 @@ map<T1, T2>::_rotate(Node *pivot)
 		root->child[LEFT] = 0;
 		pivot->child[RIGHT] = 0;
 		pivot->child[LEFT] = 0;
+		pivot->parent->color_children(RED);
+		pivot->parent->color = BLACK;
 		return pivot->parent;
 	}
 	else
