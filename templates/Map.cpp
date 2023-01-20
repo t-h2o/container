@@ -805,6 +805,7 @@ map<T1, T2>::_rbt_checker(void) const
 	if (_root->color == RED)
 		throw(std::logic_error("Root is red"));
 
+	std::cout << " == Red black tree checker ==" << std::endl;
 	print_tree();
 
 	black_node = 0;
