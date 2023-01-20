@@ -83,11 +83,11 @@ template <typename T1, typename T2> class map
 	Node *_get_child(Node *) const;
 	Node *_get_predecessor(Node *) const;
 	Node *_get_sibling(Node *) const;
+	Node *_rotate(Node *);
 
 	void _rebalanceTree(Node *);
 	void _flip_color(Node *);
 	void _flip_color_grandparent(Node *);
-	void _rotate(Node *);
 	void _erase(Node *);
 	void _resolve_double_black(Node *, Node *);
 	void _rbt_checker(void) const;

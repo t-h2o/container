@@ -461,6 +461,8 @@ template <typename T1, typename T2>
 void
 map<T1, T2>::_rebalanceTree(Node *node)
 {
+	if (node == 0)
+		return;
 	// is two following red
 	if (node->color == RED && node->parent && node->parent->color == RED)
 	{
@@ -525,19 +527,25 @@ map<T1, T2>::_rebalanceTree(Node *node)
 		{
 			if (RBT_LOG)
 				std::cout << node->dual.first << " hasn't uncle" << std::endl;
-			_rotate(node->parent);
+
+			Node *root = _rotate(node->parent);
+			if (RBT_LOG && root)
+				std::cout << "_rebalanceTree(" << root->key() << ")" << std::endl;
+			_rebalanceTree(root);
 		}
 	}
 }
 
 template <typename T1, typename T2>
-void
+typename map<T1, T2>::Node *
 map<T1, T2>::_rotate(Node *pivot)
 {
 	Node	   *root(pivot->parent);
 	enum e_side side(_get_side(pivot));
 	enum e_side oSide(_flip_side_s(side));
 
+	if (RBT_LOG)
+		std::cout << " == Red black tree rotate ==" << std::endl;
 	if (RBT_LOG)
 		print_tree();
 
@@ -571,27 +579,16 @@ map<T1, T2>::_rotate(Node *pivot)
 		if (RBT_LOG)
 			std::cout << "recolor" << std::endl;
 
-		pivot->color = BLACK;
-		if (root->child[LEFT] || root->child[RIGHT])
+		if (pivot->is_red())
 		{
-			pivot->child[LEFT]->color = BLACK;
-			pivot->child[RIGHT]->color = BLACK;
-			if (root->child[LEFT])
-			{
-				root->child[LEFT]->color = RED;
-				root->child[LEFT]->parent = root;
-			}
-			if (root->child[RIGHT])
-			{
-				root->child[RIGHT]->color = RED;
-				root->child[RIGHT]->parent = root;
-			}
+			pivot->color_children(RED);
 		}
 		else
 		{
-			pivot->child[LEFT]->color = RED;
-			pivot->child[RIGHT]->color = RED;
+			pivot->color_children(BLACK);
 		}
+		root->reset_parent();
+		pivot->color = BLACK;
 	}
 	else if (pivot->child[oSide])
 	{
@@ -630,6 +627,7 @@ map<T1, T2>::_rotate(Node *pivot)
 		root->child[LEFT] = 0;
 		pivot->child[RIGHT] = 0;
 		pivot->child[LEFT] = 0;
+		return pivot->parent;
 	}
 	else
 	{
@@ -653,6 +651,7 @@ map<T1, T2>::_rotate(Node *pivot)
 		pivot->child[LEFT]->color = RED;
 		pivot->child[RIGHT]->color = RED;
 	}
+	return 0;
 }
 
 template <typename T1, typename T2>
