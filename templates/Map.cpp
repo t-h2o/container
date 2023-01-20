@@ -463,76 +463,50 @@ map<T1, T2>::_rebalanceTree(Node *node)
 {
 	if (node == 0)
 		return;
-	// is two following red
-	if (node->color == RED && node->parent && node->parent->color == RED)
+
+	if (RBT_LOG)
+		std::cout << " == Red black tree rebalance == with " << node->key() << " as node" << std::endl;
+	if (RBT_LOG)
+		print_tree();
+
+	if (node == _root)
 	{
+		node->color = BLACK;
+		return;
+	}
 
-		Node *uncle(_get_uncle(node));
-		Node *grandParent(_get_grandparent(node));
+	if (node->is_black() || node->parent->is_black())
+		return;
 
-		if (uncle != 0)
-		{
-			while (node->parent->color == RED && uncle->color == RED)
-			{
-				if (RBT_LOG)
-					print_tree();
-				if (RBT_LOG)
-					std::cout << grandParent->dual.first << " => " << uncle->dual.first << " & "
-							  << node->parent->dual.first << " -> " << node->dual.first << std::endl
-							  << "uncle and parent are RED" << std::endl;
+	Node *grandParent(_get_grandparent(node));
+	Node *uncle(_get_uncle(node));
 
-				_flip_color_grandparent(grandParent);
-				if (RBT_LOG)
-					print_tree();
+	if (uncle && uncle->is_red())
+	{
+		if (RBT_LOG)
+			std::cout << "uncle is red" << std::endl;
+		grandParent->color_children(BLACK);
+		grandParent->color = RED;
+		_rebalanceTree(grandParent);
+		return;
+	}
 
-				if (RBT_LOG)
-					std::cout << "change node value: " << grandParent->dual.first << " <- "
-							  << node->dual.first << std::endl;
-				node = grandParent;
-				grandParent = _get_grandparent(node);
-				uncle = _get_uncle(node);
-				if (grandParent == 0)
-				{
-					if (RBT_LOG)
-						std::cout << "grandparent = 0" << std::endl;
-					break;
-				}
-				if (node->parent == 0)
-				{
-					if (RBT_LOG)
-						std::cout << "node->parent = 0" << std::endl;
-					break;
-				}
-				if (uncle == 0)
-				{
-					if (RBT_LOG)
-						std::cout << "uncle = 0" << std::endl;
-					break;
-				}
-			}
+	Node *sibling(_get_sibling(node));
 
-			if (node->parent == 0)
-				return;
-			if (RBT_LOG)
-				std::cout << "(end of while) parent: " << node->parent->dual.first << std::endl;
-			if (node->color == RED && node->parent->color == RED)
-			{
-				if (RBT_LOG)
-					std::cout << "node and parent are RED" << std::endl;
+	if (sibling == 0)
+	{
+		if (RBT_LOG)
+			std::cout << "node hasn't sibling" << std::endl;
+		_rebalanceTree(_rotate(node->parent));
+		return;
+	}
 
-				_rotate(node->parent);
-			}
-		}
-		else
-		{
-			if (RBT_LOG)
-				std::cout << node->dual.first << " hasn't uncle" << std::endl;
-
-			Node *root = _rotate(node->parent);
-			if (RBT_LOG && root)
-				std::cout << "_rebalanceTree(" << root->key() << ")" << std::endl;
-			_rebalanceTree(root);
-		}
+	if (sibling->is_black())
+	{
+		if (RBT_LOG)
+			std::cout << "node has a black sibling" << std::endl;
+		_rebalanceTree(_rotate(node->parent));
+		return;
 	}
 }
 
