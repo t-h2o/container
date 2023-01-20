@@ -519,118 +519,47 @@ map<T1, T2>::_rotate(Node *pivot)
 	enum e_side oSide(_flip_side_s(side));
 
 	if (RBT_LOG)
-		std::cout << " == Red black tree rotate ==" << std::endl;
+		std::cout << " == Red black tree rotate == with " << pivot->key() << " as pivot" << std::endl;
 	if (RBT_LOG)
 		print_tree();
 
-	if (RBT_LOG)
-		std::cout << "pivot: " << pivot->dual.first << std::endl;
-
-	if (pivot->child[LEFT] && pivot->child[RIGHT])
+	if (pivot->child[oSide] && pivot->child[oSide]->is_red())
 	{
 		if (RBT_LOG)
-			std::cout << "pivot has two child" << std::endl;
-		if (RBT_LOG)
-			std::cout << "pivot -> child oposite side: " << pivot->child[oSide]->dual.first << std::endl;
+			std::cout << "opposite side" << std::endl;
 
 		root->child[side] = pivot->child[oSide];
-		pivot->child[oSide] = root;
-		if (root->parent == 0)
-		{
-			_root = pivot;
-			pivot->parent = 0;
-			root->parent = pivot;
-		}
-		else
-		{
-			root->parent->child[_get_side(root)] = pivot;
-			pivot->parent = root->parent;
-			root->parent = pivot;
-		}
 
-		if (RBT_LOG)
-			print_tree();
-		if (RBT_LOG)
-			std::cout << "recolor" << std::endl;
+		pivot->child[oSide] = root->child[side]->child[side];
+		if (pivot->child[oSide])
+			pivot->child[oSide]->parent = pivot;
+		root->child[side]->child[side] = pivot;
 
-		pivot->color_children(RED);
-		if (pivot == _root)
-		{
-			if (RBT_LOG)
-				std::cout << pivot->key() << ": is root" << std::endl;
-			pivot->color = BLACK;
-		}
-		else
-		{
-			if (RBT_LOG)
-				std::cout << pivot->key() << ": isn't root" << std::endl;
-			pivot->color = BLACK;
-		}
-		root->reset_parent();
-		return pivot;
+		pivot->parent = root->child[side];
+		root->child[side]->parent = root;
+
+		_rotate(root->child[side]);
 	}
-	else if (pivot->child[oSide])
-	{
-		if (RBT_LOG)
-			std::cout << "oposite side" << std::endl;
-
-		std::cout << "pivot child oposite: " << pivot->child[oSide]->dual.first << std::endl;
-		pivot->child[oSide]->child[side] = pivot;
-		pivot->child[oSide]->child[oSide] = root;
-
-		if (root->parent == 0)
-		{
-			if (RBT_LOG)
-				std::cout << "is root" << std::endl;
-			_root = pivot->child[oSide];
-			pivot->child[oSide]->parent = 0;
-			root->parent = pivot->child[oSide];
-			pivot->parent = pivot->child[oSide];
-			pivot->child[oSide]->color = BLACK;
-		}
-		else
-		{
-			if (RBT_LOG)
-				std::cout << "isn't root" << std::endl;
-			root->parent->child[_get_side(root)] = pivot->child[oSide];
-			pivot->child[oSide]->parent = root->parent;
-			root->parent = pivot->child[oSide];
-			pivot->parent = pivot->child[oSide];
-			pivot->child[oSide]->color = RED;
-		}
-
-		pivot->color = BLACK;
-		root->color = BLACK;
-
-		root->child[RIGHT] = 0;
-		root->child[LEFT] = 0;
-		pivot->child[RIGHT] = 0;
-		pivot->child[LEFT] = 0;
-		pivot->parent->color_children(RED);
-		pivot->parent->color = BLACK;
-		return pivot->parent;
-	}
-	else
+	else if (pivot->child[side] && pivot->child[side]->is_red())
 	{
 		if (RBT_LOG)
 			std::cout << "same side" << std::endl;
+
+		root->child[side] = pivot->child[oSide];
 		pivot->child[oSide] = root;
-		if (root->parent == 0)
-		{
+		pivot->parent = root->parent;
+		if (pivot->parent == 0)
 			_root = pivot;
-			pivot->parent = 0;
-			root->parent = pivot;
-		}
 		else
 		{
 			root->parent->child[_get_side(root)] = pivot;
-			pivot->parent = root->parent;
-			root->parent = pivot;
 		}
-		root->child[side] = 0;
+		root->parent = pivot;
+		if (root->child[side])
+			root->child[side]->parent = root;
+		pivot->color_children(RED);
 		pivot->color = BLACK;
-		pivot->child[LEFT]->color = RED;
-		pivot->child[RIGHT]->color = RED;
+		return pivot;
 	}
 	return 0;
 }
