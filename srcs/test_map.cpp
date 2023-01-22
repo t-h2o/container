@@ -5,6 +5,9 @@
 #include <gtest/gtest.h>
 #include <iostream>
 #include <map>
+#include <vector>
+
+#define TREE_SIZE 8
 
 template <typename T1, typename T2>
 static void
@@ -71,13 +74,26 @@ map_rand(unsigned int seed)
 	std::map<int, std::string> map_std;
 	ft::map<int, std::string>  map_ft;
 
+	std::vector<int> key_list;
+
 	srand(seed);
-	for (int i = 0; i < 100; ++i)
+	for (int i = 0; i < TREE_SIZE; ++i)
 	{
 		unsigned int random = rand() % 100;
 		std::string	 a = "insert: " + std::to_string(random);
 		section(a);
 		insert_map(random, map_std, map_ft);
+		key_list.push_back(random);
+	}
+	while (!key_list.empty())
+	{
+		unsigned int random = rand() % 100;
+		unsigned int position = random % key_list.size();
+		int			 remove = key_list.at(position);
+		std::string	 a = "remove: " + std::to_string(remove);
+		section(a);
+		erase_map(remove, map_std, map_ft);
+		key_list.erase(key_list.begin() + position);
 	}
 }
 
