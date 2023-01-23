@@ -599,7 +599,7 @@ typename map<T1, T2>::e_side
 map<T1, T2>::Node::get_side() const
 {
 	if (this->parent == 0)
-		std::cout << "Not a side" << std::endl;
+		throw(std::logic_error("get_side: this hasn't parent"));
 	if (this->parent->right() == this)
 	{
 		if (RBT_LOG)
@@ -613,9 +613,7 @@ map<T1, T2>::Node::get_side() const
 		return LEFT;
 	}
 	else
-	{
-		throw(std::logic_error("cannot get the child of the this"));
-	}
+		throw(std::logic_error("get_side: \"this\" hasn't the good parent"));
 }
 
 template <typename T1, typename T2>
