@@ -437,18 +437,9 @@ map<T1, T2>::_new_node(Node *parent, enum e_side &side)
 
 template <typename T1, typename T2>
 typename map<T1, T2>::Node *
-map<T1, T2>::_get_grandparent(Node *node) const
-{
-	if (node && node->parent)
-		return node->parent->parent;
-	return 0;
-}
-
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *
 map<T1, T2>::_get_uncle(Node *node) const
 {
-	Node *grandParent(_get_grandparent(node));
+	Node *grandParent(node->get_grandparent());
 
 	if (grandParent == 0)
 		return 0;
@@ -478,7 +469,7 @@ map<T1, T2>::_rebalanceTree(Node *node)
 	if (node->is_black() || node->parent->is_black())
 		return;
 
-	Node *grandParent(_get_grandparent(node));
+	Node *grandParent(node->get_grandparent());
 	Node *uncle(_get_uncle(node));
 
 	if (uncle && uncle->is_red())
@@ -754,6 +745,15 @@ typename map<T1, T2>::Node *
 map<T1, T2>::Node::left(void) const
 {
 	return child[LEFT];
+}
+
+template <typename T1, typename T2>
+typename map<T1, T2>::Node *
+map<T1, T2>::Node::get_grandparent() const
+{
+	if (this->parent)
+		return this->parent->parent;
+	return 0;
 }
 
 template <typename T1, typename T2>
