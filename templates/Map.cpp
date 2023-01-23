@@ -263,6 +263,79 @@ map<T1, T2>::_new_node(Node *parent, enum e_side &side)
 
 template <typename T1, typename T2>
 void
+map<T1, T2>::_swap(Node *one, Node *two)
+{
+	Node	   *onechild[2]{ one->child[0], one->child[1] };
+	Node	   *oneparent(one->parent);
+	enum e_side oneside;
+	if (one != _root)
+		oneside = one->get_side();
+	Color onecolor(one->color);
+
+	Node	   *twochild[2]{ two->child[0], two->child[1] };
+	Node	   *twoparent(two->parent);
+	enum e_side twoside;
+	if (two != _root)
+		twoside = two->get_side();
+	Color twocolor(two->color);
+
+	if (onechild[0] == two || onechild[1] == two)
+	{
+		if (RBT_LOG)
+			std::cout << "two is a child of one" << std::endl;
+
+		// Swap parent of one's children
+		if (onechild[0])
+			onechild[0]->parent = two;
+		if (onechild[1])
+			onechild[1]->parent = two;
+
+		// Swap parent of two's children
+		if (twochild[0])
+			twochild[0]->parent = one;
+		if (twochild[1])
+			twochild[1]->parent = one;
+
+		one->left() = twochild[LEFT];
+		one->right() = twochild[RIGHT];
+
+		two->left() = onechild[LEFT];
+		two->right() = onechild[RIGHT];
+		two->child[twoside] = one;
+		if (_root == one)
+		{
+			std::cout << one->key() << ": is root" << std::endl;
+			_root = two;
+			two->parent = 0;
+		}
+		else
+		{
+			oneparent->child[oneside] = two;
+			twoparent->child[twoside] = one;
+		}
+		one->parent = two;
+		one->color = twocolor;
+		two->color = onecolor;
+	}
+	else if (twochild[0] == one || twochild[1] == one)
+	{
+		if (RBT_LOG)
+			std::cout << "one is a child of two" << std::endl;
+	}
+	else
+	{
+		if (RBT_LOG)
+			std::cout << "one and two aren't parent<->child" << std::endl;
+	}
+
+	if (RBT_LOG)
+		std::cout << "after swap" << std::endl;
+	if (RBT_LOG)
+		print_tree();
+}
+
+template <typename T1, typename T2>
+void
 map<T1, T2>::_rebalanceTree(Node *node)
 {
 	if (node == 0)
