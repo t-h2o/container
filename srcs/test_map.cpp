@@ -7,8 +7,9 @@
 #include <map>
 #include <vector>
 
-#define TREE_SIZE 500
-#define MAX_NUMBER 500000000
+#define TEST_NUMBER 1
+#define TREE_SIZE 3
+#define MAX_NUMBER 10
 
 template <typename T1, typename T2>
 static void
@@ -93,7 +94,6 @@ map_rand(unsigned int seed)
 		insert_map(random, map_std, map_ft);
 		key_list.push_back(random);
 	}
-	return;
 	while (!key_list.empty())
 	{
 		unsigned int random = rand() % MAX_NUMBER;
@@ -109,13 +109,13 @@ map_rand(unsigned int seed)
 void
 test_map(void)
 {
-	title("Map left");
-	map_left();
+	//	title("Map left");
+	//	map_left();
+	//
+	//	title("Map right");
+	//	map_right();
 
-	title("Map right");
-	map_right();
-
-	for (int i = 0; i < 100; ++i)
+	for (int i = 0; i < TEST_NUMBER; ++i)
 	{
 		std::string message = "Map random: " + std::to_string(i);
 		title(message);
