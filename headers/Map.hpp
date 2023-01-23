@@ -60,6 +60,7 @@ template <typename T1, typename T2> class map
 		bool is_black() const;
 		bool is_red() const;
 		bool has_red_child() const;
+		bool has_black_children() const;
 
 		Node *&right();
 		Node  *right() const;
@@ -121,7 +122,6 @@ template <typename T1, typename T2> class map
 
 	pair &_get_reference(const T1 &);
 
-	bool _has_black_children(Node *) const;
 	bool _has_red_child(Node *) const;
 };
 

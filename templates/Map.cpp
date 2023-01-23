@@ -174,7 +174,7 @@ map<T1, T2>::_resolve_double_black(Node *sibling, Node *parent)
 	if (RBT_LOG_ERASE)
 		print_tree();
 
-	if (sibling->color.is_black() && _has_black_children(sibling))
+	if (sibling->color.is_black() && sibling->has_black_children())
 	{
 		if (RBT_LOG_ERASE)
 			std::cout << "sibling is black and has two black children" << std::endl;
@@ -225,14 +225,6 @@ map<T1, T2>::_resolve_double_black(Node *sibling, Node *parent)
 
 		_rotate(sibling);
 	}
-}
-
-template <typename T1, typename T2>
-bool
-map<T1, T2>::_has_black_children(Node *node) const
-{
-	return ((!(node->left()) || node->left()->color.is_black())
-			&& (!(node->right()) || node->right()->color.is_black()));
 }
 
 template <typename T1, typename T2>
@@ -673,6 +665,14 @@ bool
 map<T1, T2>::Node::has_red_child(void) const
 {
 	return ((left() && left()->is_red()) || (right() && right()->is_red()));
+}
+
+template <typename T1, typename T2>
+bool
+map<T1, T2>::Node::has_black_children() const
+{
+	return ((!(this->left()) || this->left()->color.is_black())
+			&& (!(this->right()) || this->right()->color.is_black()));
 }
 
 template <typename T1, typename T2>
