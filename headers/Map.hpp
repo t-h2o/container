@@ -120,8 +120,6 @@ template <typename T1, typename T2> class map
 	unsigned char _number_child(Node *) const;
 
 	pair &_get_reference(const T1 &);
-
-	bool _has_red_child(Node *) const;
 };
 
 #include "../templates/Map.cpp"
