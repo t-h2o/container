@@ -121,6 +121,22 @@ map<T1, T2>::_erase(Node *node)
 		return;
 	}
 
+	Node *sibling(node->get_sibling());
+	if (sibling)
+	{
+		if (node->is_black() && sibling->is_black() && sibling->has_black_children())
+		{
+			if (RBT_LOG_ERASE)
+				std::cout << "node is black; sibling is black; sibling has two black children" << std::endl;
+
+			node->parent->child[node->get_side()] = 0;
+			sibling->color.set_red();
+			delete node;
+			--_size;
+			return;
+		}
+	}
+
 	Node *child(node->get_child());
 
 	if (RBT_LOG_ERASE)
