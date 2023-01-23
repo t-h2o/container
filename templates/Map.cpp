@@ -121,6 +121,22 @@ map<T1, T2>::_erase(Node *node)
 		return;
 	}
 
+	Node *child(node->get_child());
+
+	if (child)
+	{
+		if (child->is_leaf())
+		{
+			if (RBT_LOG_ERASE)
+				std::cout << "swap the node with " << child->key() << std::endl;
+
+			_swap(node, child);
+
+			_erase(node);
+			return;
+		}
+	}
+
 	Node *sibling(node->get_sibling());
 	if (sibling)
 	{
@@ -136,14 +152,6 @@ map<T1, T2>::_erase(Node *node)
 			return;
 		}
 	}
-
-	Node *child(node->get_child());
-
-	if (RBT_LOG_ERASE)
-		std::cout << "swap the node with " << child->key() << std::endl;
-
-	_swap(node, child);
-	_erase(node);
 
 	return;
 }
@@ -319,8 +327,7 @@ map<T1, T2>::_swap(Node *one, Node *two)
 		oneside = one->get_side();
 	Color onecolor(one->color);
 
-	Node	   *twochild[2]{ two->child[0], two->child[1] };
-	Node	   *twoparent(two->parent);
+	Node *twochild[2]{ two->child[0], two->child[1] };
 	enum e_side twoside;
 	if (two != _root)
 		twoside = two->get_side();
@@ -357,8 +364,8 @@ map<T1, T2>::_swap(Node *one, Node *two)
 		}
 		else
 		{
+			two->parent = one->parent;
 			oneparent->child[oneside] = two;
-			twoparent->child[twoside] = one;
 		}
 		one->parent = two;
 		one->color = twocolor;
