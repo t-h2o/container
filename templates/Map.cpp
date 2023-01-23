@@ -757,6 +757,30 @@ map<T1, T2>::Node::get_uncle() const
 }
 
 template <typename T1, typename T2>
+typename map<T1, T2>::e_side
+map<T1, T2>::Node::get_side() const
+{
+	if (this->parent == 0)
+		std::cout << "Not a side" << std::endl;
+	if (this->parent->right() == this)
+	{
+		if (RBT_LOG)
+			std::cout << this->key() << " is right of " << this->parent->key() << std::endl;
+		return RIGHT;
+	}
+	else if (this->parent->left() == this)
+	{
+		if (RBT_LOG)
+			std::cout << this->key() << " is left of " << this->parent->key() << std::endl;
+		return LEFT;
+	}
+	else
+	{
+		throw(std::logic_error("cannot get the child of the this"));
+	}
+}
+
+template <typename T1, typename T2>
 T1 &
 map<T1, T2>::Node::key(void)
 {

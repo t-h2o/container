@@ -69,6 +69,8 @@ template <typename T1, typename T2> class map
 		Node *get_grandparent() const;
 		Node *get_uncle() const;
 
+		enum e_side get_side() const;
+
 		T1 &key();
 		T1	key() const;
 	};
