@@ -45,7 +45,10 @@ map<T1, T2>::erase(T1 const &key)
 	if (RBT_LOG_ERASE)
 		print_tree();
 
-	_erase(_get_pointer(key));
+	Node *node(_binary_search(key));
+	if (node->key() != key)
+		return;
+	_erase(node);
 	if (RBT_CHECKER)
 		_rbt_checker();
 }
@@ -241,24 +244,6 @@ map<T1, T2>::_get_child(Node *node) const
 	if (node->left())
 		return node->left();
 	return node->right();
-}
-
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *
-map<T1, T2>::_get_pointer(const T1 &key) const
-{
-	Node *node(_root);
-
-	while (node && node->key() != key)
-	{
-		if (node->key() < key)
-			node = node->right();
-		else
-			node = node->left();
-	}
-	if (node && node->key() == key)
-		return node;
-	return 0;
 }
 
 template <typename T1, typename T2>
