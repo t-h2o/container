@@ -109,15 +109,6 @@ map<T1, T2>::_number_child(Node *node) const
 }
 
 template <typename T1, typename T2>
-typename map<T1, T2>::Node *
-map<T1, T2>::_get_child(Node *node) const
-{
-	if (node->left())
-		return node->left();
-	return node->right();
-}
-
-template <typename T1, typename T2>
 pair<T1, T2> &
 map<T1, T2>::_get_reference(const T1 &key)
 {
@@ -545,6 +536,15 @@ typename map<T1, T2>::Node *
 map<T1, T2>::Node::left(void) const
 {
 	return child[LEFT];
+}
+
+template <typename T1, typename T2>
+typename map<T1, T2>::Node *
+map<T1, T2>::Node::get_child() const
+{
+	if (this->left())
+		return this->left();
+	return this->right();
 }
 
 template <typename T1, typename T2>
