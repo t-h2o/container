@@ -763,6 +763,13 @@ map<T1, T2>::Node::key(void)
 	return dual.first;
 }
 
+template <typename T1, typename T2>
+T1
+map<T1, T2>::Node::key(void) const
+{
+	return dual.first;
+}
+
 /**
  * Red black tree checker
  */

@@ -70,6 +70,7 @@ template <typename T1, typename T2> class map
 		Node *get_uncle() const;
 
 		T1 &key();
+		T1	key() const;
 	};
 
   public:
