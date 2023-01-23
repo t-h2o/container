@@ -87,6 +87,17 @@ template <typename T1, typename T2>
 void
 map<T1, T2>::_erase(Node *node)
 {
+	if (node == 0)
+		return;
+
+	if (node->is_red() && node->is_leaf())
+	{
+		node->parent->child[node->get_side()] = 0;
+		delete node;
+		--_size;
+		return;
+	}
+
 	return;
 }
 
