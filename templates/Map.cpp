@@ -86,7 +86,7 @@ map<T1, T2>::_erase(Node *node)
 	if (_size == 1)
 	{
 		if (RBT_LOG_ERASE)
-			std::cout << "node (" << node->dual.first << ") is alone and is the root" << std::endl;
+			std::cout << "node (" << node->key() << ") is alone and is the root" << std::endl;
 
 		delete node;
 		_root = 0;
@@ -98,7 +98,7 @@ map<T1, T2>::_erase(Node *node)
 		if (node->color.is_red())
 		{
 			if (RBT_LOG_ERASE)
-				std::cout << "node (" << node->dual.first << ") is leaf and red" << std::endl;
+				std::cout << "node (" << node->key() << ") is leaf and red" << std::endl;
 
 			node->parent->child[_get_side(node)] = 0;
 			delete node;
@@ -107,17 +107,17 @@ map<T1, T2>::_erase(Node *node)
 		else if (node->color.is_black())
 		{
 			if (RBT_LOG_ERASE)
-				std::cout << "node (" << node->dual.first << ") is leaf and black" << std::endl;
+				std::cout << "node (" << node->key() << ") is leaf and black" << std::endl;
 
 			Node *sibling(_get_sibling(node));
 
 			if (RBT_LOG_ERASE)
-				std::cout << "node (" << node->dual.first << ") and his sibling(" << sibling->dual.first
-						  << ")" << std::endl;
+				std::cout << "node (" << node->key() << ") and his sibling(" << sibling->key() << ")"
+						  << std::endl;
 
 			if (RBT_LOG_ERASE)
-				std::cout << "_resolve_double_black(" << sibling->dual.first << ", "
-						  << node->parent->dual.first << ")" << std::endl;
+				std::cout << "_resolve_double_black(" << sibling->key() << ", " << node->parent->key() << ")"
+						  << std::endl;
 
 			node->parent->child[_get_side(node)] = 0;
 
@@ -134,8 +134,8 @@ map<T1, T2>::_erase(Node *node)
 		if (child->color.is_red())
 		{
 			if (RBT_LOG_ERASE)
-				std::cout << "node (" << node->dual.first << ") has one red child (" << child->dual.first
-						  << ")" << std::endl;
+				std::cout << "node (" << node->key() << ") has one red child (" << child->key() << ")"
+						  << std::endl;
 
 			node->dual = child->dual;
 			node->child[_get_side(child)] = 0;
@@ -145,23 +145,23 @@ map<T1, T2>::_erase(Node *node)
 		else if (child->color.is_black())
 		{
 			if (RBT_LOG_ERASE)
-				std::cout << "node (" << node->dual.first << ") has one black child ()" << std::endl;
+				std::cout << "node (" << node->key() << ") has one black child ()" << std::endl;
 		}
 	}
 	else
 	{
 		if (RBT_LOG_ERASE)
-			std::cout << "node (" << node->dual.first << ") has two children" << std::endl;
+			std::cout << "node (" << node->key() << ") has two children" << std::endl;
 
 		Node *predecessor(_get_predecessor(node));
 
 		if (RBT_LOG_ERASE)
-			std::cout << "copy :" << predecessor->dual.first << " into " << node->dual.first << std::endl;
+			std::cout << "copy :" << predecessor->key() << " into " << node->key() << std::endl;
 
 		node->dual = predecessor->dual;
 
 		if (RBT_LOG_ERASE)
-			std::cout << "_erase(" << predecessor->dual.first << ");" << std::endl;
+			std::cout << "_erase(" << predecessor->key() << ");" << std::endl;
 
 		_erase(predecessor);
 	}
@@ -196,8 +196,8 @@ map<T1, T2>::_resolve_double_black(Node *sibling, Node *parent)
 				sibling = _get_sibling(parent);
 				parent = sibling->parent;
 				if (RBT_LOG_ERASE)
-					std::cout << "_resolve_double_black(" << sibling->dual.first << ", " << parent->dual.first
-							  << ")" << std::endl;
+					std::cout << "_resolve_double_black(" << sibling->key() << ", " << parent->key() << ")"
+							  << std::endl;
 
 				_resolve_double_black(sibling, parent);
 			}
@@ -221,7 +221,7 @@ map<T1, T2>::_resolve_double_black(Node *sibling, Node *parent)
 		if (RBT_LOG_ERASE)
 			std::cout << "sibling is black and has red child" << std::endl;
 		if (RBT_LOG_ERASE)
-			std::cout << "_rotate(" << sibling->dual.first << ")" << std::endl;
+			std::cout << "_rotate(" << sibling->key() << ")" << std::endl;
 
 		_rotate(sibling);
 	}
@@ -284,14 +284,14 @@ map<T1, T2>::_get_pointer(const T1 &key) const
 {
 	Node *node(_root);
 
-	while (node && node->dual.first != key)
+	while (node && node->key() != key)
 	{
-		if (node->dual.first < key)
+		if (node->key() < key)
 			node = node->right();
 		else
 			node = node->left();
 	}
-	if (node && node->dual.first == key)
+	if (node && node->key() == key)
 		return node;
 	return 0;
 }
@@ -305,14 +305,14 @@ map<T1, T2>::_get_reference(const T1 &key)
 	enum e_side side;
 
 	parent = _get_parent(key, side);
-	if (parent && parent->dual.first == key)
+	if (parent && parent->key() == key)
 		return parent->dual;
 
 	node = _new_node(parent, side);
 
 	++_size;
 
-	node->dual.first = key;
+	node->key() = key;
 
 	_rebalanceTree(node);
 
@@ -372,36 +372,36 @@ map<T1, T2>::_get_parent(T1 const &key, enum e_side &side) const
 	parent = _root;
 	while (parent)
 	{
-		if (key > parent->dual.first)
+		if (key > parent->key())
 		{
 			if (RBT_LOG)
-				std::cout << key << " > " << parent->dual.first << " => Right" << std::endl;
+				std::cout << key << " > " << parent->key() << " => Right" << std::endl;
 			if (parent->right() == 0)
 			{
 				if (RBT_LOG)
-					std::cout << key << " will be the right child of " << parent->dual.first << std::endl;
+					std::cout << key << " will be the right child of " << parent->key() << std::endl;
 				side = RIGHT;
 				break;
 			}
 			parent = parent->right();
 		}
-		else if (key < parent->dual.first)
+		else if (key < parent->key())
 		{
 			if (RBT_LOG)
-				std::cout << key << " < " << parent->dual.first << " => Left" << std::endl;
+				std::cout << key << " < " << parent->key() << " => Left" << std::endl;
 			if (parent->left() == 0)
 			{
 				if (RBT_LOG)
-					std::cout << key << " will be the left child of " << parent->dual.first << std::endl;
+					std::cout << key << " will be the left child of " << parent->key() << std::endl;
 				side = LEFT;
 				break;
 			}
 			parent = parent->left();
 		}
-		else if (key == parent->dual.first)
+		else if (key == parent->key())
 		{
 			if (RBT_LOG)
-				std::cout << key << " = " << parent->dual.first << " => find the same key" << std::endl;
+				std::cout << key << " = " << parent->key() << " => find the same key" << std::endl;
 			return parent;
 		}
 	}
@@ -583,13 +583,13 @@ map<T1, T2>::_get_side(Node *node) const
 	if (node->parent->right() == node)
 	{
 		if (RBT_LOG)
-			std::cout << node->dual.first << " is right of " << node->parent->dual.first << std::endl;
+			std::cout << node->key() << " is right of " << node->parent->key() << std::endl;
 		return RIGHT;
 	}
 	else if (node->parent->left() == node)
 	{
 		if (RBT_LOG)
-			std::cout << node->dual.first << " is left of " << node->parent->dual.first << std::endl;
+			std::cout << node->key() << " is left of " << node->parent->key() << std::endl;
 		return LEFT;
 	}
 	else
@@ -609,7 +609,7 @@ map<T1, T2>::_flip_color_grandparent(Node *grandParent)
 	else
 	{
 		if (RBT_LOG)
-			std::cout << "Grand parent (" << grandParent->dual.first << ") is the root" << std::endl;
+			std::cout << "Grand parent (" << grandParent->key() << ") is the root" << std::endl;
 		grandParent->color.set_black();
 	}
 }

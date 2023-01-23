@@ -85,6 +85,7 @@ map_rand(unsigned int seed)
 		insert_map(random, map_std, map_ft);
 		key_list.push_back(random);
 	}
+	return;
 	while (!key_list.empty())
 	{
 		unsigned int random = rand() % 100;
