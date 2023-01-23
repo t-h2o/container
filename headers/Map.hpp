@@ -70,6 +70,7 @@ template <typename T1, typename T2> class map
 		Node *get_grandparent() const;
 		Node *get_uncle() const;
 		Node *get_sibling() const;
+		Node *get_predecessor() const;
 
 		enum e_side get_side() const;
 
@@ -106,7 +107,6 @@ template <typename T1, typename T2> class map
 	Node *_new_node(Node *, enum e_side &);
 	Node *_get_pointer(T1 const &) const;
 	Node *_get_child(Node *) const;
-	Node *_get_predecessor(Node *) const;
 	Node *_rotate(Node *);
 
 	void _rebalanceTree(Node *);

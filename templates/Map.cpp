@@ -153,7 +153,7 @@ map<T1, T2>::_erase(Node *node)
 		if (RBT_LOG_ERASE)
 			std::cout << "node (" << node->key() << ") has two children" << std::endl;
 
-		Node *predecessor(_get_predecessor(node));
+		Node *predecessor(node->get_predecessor());
 
 		if (RBT_LOG_ERASE)
 			std::cout << "copy :" << predecessor->key() << " into " << node->key() << std::endl;
@@ -240,18 +240,6 @@ unsigned char
 map<T1, T2>::_number_child(Node *node) const
 {
 	return (!!(node->left()) + !!(node->right()));
-}
-
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *
-map<T1, T2>::_get_predecessor(Node *node) const
-{
-	Node *predecessor(node->left());
-
-	while (predecessor->right())
-		predecessor = predecessor->right();
-
-	return predecessor;
 }
 
 template <typename T1, typename T2>
@@ -736,6 +724,18 @@ map<T1, T2>::Node::get_sibling() const
 		side = LEFT;
 
 	return this->parent->child[side];
+}
+
+template <typename T1, typename T2>
+typename map<T1, T2>::Node *
+map<T1, T2>::Node::get_predecessor() const
+{
+	Node *predecessor(this->left());
+
+	while (predecessor->right())
+		predecessor = predecessor->right();
+
+	return predecessor;
 }
 
 template <typename T1, typename T2>
