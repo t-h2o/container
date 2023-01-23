@@ -51,6 +51,13 @@ map_left(void)
 		section(message);
 		insert_map(insert, map_std, map_ft);
 	}
+
+	for (int remove = 20; remove > 0; --remove)
+	{
+		std::string a = "remove: " + std::to_string(remove);
+		section(a);
+		erase_map(remove, map_std, map_ft);
+	}
 }
 
 void
