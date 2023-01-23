@@ -8,7 +8,7 @@
 #include <vector>
 
 #define TEST_NUMBER 1
-#define TREE_SIZE 4
+#define TREE_SIZE 5
 #define MAX_NUMBER 10
 
 template <typename T1, typename T2>
