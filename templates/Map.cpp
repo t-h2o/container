@@ -88,15 +88,46 @@ void
 map<T1, T2>::_erase(Node *node)
 {
 	if (node == 0)
+	{
+		if (RBT_LOG_ERASE)
+			std::cout << "_erase(NULL POINTER)" << std::endl;
 		return;
+	}
+
+	if (RBT_LOG_ERASE)
+		std::cout << "_erase(" << node->key() << ")" << std::endl;
+	if (RBT_LOG_ERASE)
+		print_tree();
+
+	if (_size == 1)
+	{
+		if (RBT_LOG_ERASE)
+			std::cout << "node is alone and the root" << std::endl;
+
+		delete node;
+		--_size;
+		_root = 0;
+		return;
+	}
 
 	if (node->is_red() && node->is_leaf())
 	{
+		if (RBT_LOG_ERASE)
+			std::cout << "node is red & leaf" << std::endl;
+
 		node->parent->child[node->get_side()] = 0;
 		delete node;
 		--_size;
 		return;
 	}
+
+	Node *child(node->get_child());
+
+	if (RBT_LOG_ERASE)
+		std::cout << "swap the node with " << child->key() << std::endl;
+
+	_swap(node, child);
+	_erase(node);
 
 	return;
 }
