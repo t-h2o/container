@@ -430,8 +430,8 @@ map<T1, T2>::_new_node(Node *parent, enum e_side &side)
 		node->color.set_red();
 		node->parent = parent;
 	}
-	node->child[LEFT] = 0;
-	node->child[RIGHT] = 0;
+	node->left() = 0;
+	node->right() = 0;
 	return node;
 }
 
@@ -729,10 +729,24 @@ map<T1, T2>::Node::has_red_child(void) const
 }
 
 template <typename T1, typename T2>
+typename map<T1, T2>::Node *&
+map<T1, T2>::Node::right(void)
+{
+	return child[RIGHT];
+}
+
+template <typename T1, typename T2>
 typename map<T1, T2>::Node *
 map<T1, T2>::Node::right(void) const
 {
 	return child[RIGHT];
+}
+
+template <typename T1, typename T2>
+typename map<T1, T2>::Node *&
+map<T1, T2>::Node::left(void)
+{
+	return child[LEFT];
 }
 
 template <typename T1, typename T2>

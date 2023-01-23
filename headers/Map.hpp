@@ -61,8 +61,10 @@ template <typename T1, typename T2> class map
 		bool is_red() const;
 		bool has_red_child() const;
 
-		Node *right() const;
-		Node *left() const;
+		Node *&right();
+		Node  *right() const;
+		Node *&left();
+		Node  *left() const;
 
 		T1 &key();
 	};
