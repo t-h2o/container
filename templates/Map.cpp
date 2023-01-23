@@ -269,9 +269,16 @@ map<T1, T2>::_get_reference(const T1 &key)
 	Node	   *node;
 	enum e_side side;
 
-	parent = _get_parent(key, side);
-	if (parent && parent->key() == key)
-		return parent->dual;
+	parent = _binary_search(key);
+	if (parent)
+	{
+		if (parent->key() == key)
+			return parent->dual;
+		else if (parent->key() > key)
+			side = LEFT;
+		else if (parent->key() < key)
+			side = RIGHT;
+	}
 
 	node = _new_node(parent, side);
 
@@ -328,9 +335,17 @@ map<T1, T2>::_free_tree(Node *ptr)
 	delete ptr;
 }
 
+/**
+ *  @brief  Search into a binary tree.
+ *  @param  The value to search.
+ *
+ *  Search the value into a binary tree.
+ *  If the value is equal to a node, return a pointer on the node,
+ *  else return a pointer on the parent for this value.
+ */
 template <typename T1, typename T2>
 typename map<T1, T2>::Node *
-map<T1, T2>::_get_parent(T1 const &key, enum e_side &side) const
+map<T1, T2>::_binary_search(T1 const &key) const
 {
 	Node *parent;
 
@@ -345,7 +360,6 @@ map<T1, T2>::_get_parent(T1 const &key, enum e_side &side) const
 			{
 				if (RBT_LOG)
 					std::cout << key << " will be the right child of " << parent->key() << std::endl;
-				side = RIGHT;
 				break;
 			}
 			parent = parent->right();
@@ -358,7 +372,6 @@ map<T1, T2>::_get_parent(T1 const &key, enum e_side &side) const
 			{
 				if (RBT_LOG)
 					std::cout << key << " will be the left child of " << parent->key() << std::endl;
-				side = LEFT;
 				break;
 			}
 			parent = parent->left();

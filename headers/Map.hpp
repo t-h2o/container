@@ -104,7 +104,7 @@ template <typename T1, typename T2> class map
 	void _free_tree(Node *);
 	void _print_tree(Node *, size_t) const;
 
-	Node *_get_parent(T1 const &, enum e_side &) const;
+	Node *_binary_search(T1 const &) const;
 	Node *_new_node(Node *, enum e_side &);
 	Node *_get_pointer(T1 const &) const;
 	Node *_get_child(Node *) const;
