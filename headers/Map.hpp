@@ -46,6 +46,7 @@ template <typename T1, typename T2> class map
 	class Node
 	{
 	  public:
+		Node(Node *);
 		Node *parent;
 		Node *child[2];
 		pair  dual;
