@@ -95,7 +95,7 @@ map<T1, T2>::_erase(Node *node)
 	}
 	if (node->is_leaf())
 	{
-		if (node->color == RED)
+		if (node->color.is_red())
 		{
 			if (RBT_LOG_ERASE)
 				std::cout << "node (" << node->dual.first << ") is leaf and red" << std::endl;
@@ -104,7 +104,7 @@ map<T1, T2>::_erase(Node *node)
 			delete node;
 			_size--;
 		}
-		else if (node->color == BLACK)
+		else if (node->color.is_black())
 		{
 			if (RBT_LOG_ERASE)
 				std::cout << "node (" << node->dual.first << ") is leaf and black" << std::endl;
@@ -131,7 +131,7 @@ map<T1, T2>::_erase(Node *node)
 	{
 		Node *child = _get_child(node);
 
-		if (child->color == RED)
+		if (child->color.is_red())
 		{
 			if (RBT_LOG_ERASE)
 				std::cout << "node (" << node->dual.first << ") has one red child (" << child->dual.first
@@ -142,7 +142,7 @@ map<T1, T2>::_erase(Node *node)
 			delete child;
 			_size--;
 		}
-		else if (child->color == BLACK)
+		else if (child->color.is_black())
 		{
 			if (RBT_LOG_ERASE)
 				std::cout << "node (" << node->dual.first << ") has one black child ()" << std::endl;
@@ -174,16 +174,16 @@ map<T1, T2>::_resolve_double_black(Node *sibling, Node *parent)
 	if (RBT_LOG_ERASE)
 		print_tree();
 
-	if (sibling->color == BLACK && _has_black_children(sibling))
+	if (sibling->color.is_black() && _has_black_children(sibling))
 	{
 		if (RBT_LOG_ERASE)
 			std::cout << "sibling is black and has two black children" << std::endl;
 
 		if (RBT_LOG_ERASE)
 			std::cout << "color red sibling; color black parent" << std::endl;
-		sibling->color = RED;
+		sibling->color.set_red();
 
-		if (parent->color == BLACK)
+		if (parent->color.is_black())
 		{
 			if (RBT_LOG_ERASE)
 				std::cout << "parent is already black, so parent become double-black" << std::endl;
@@ -206,17 +206,17 @@ map<T1, T2>::_resolve_double_black(Node *sibling, Node *parent)
 				if (RBT_LOG_ERASE)
 					std::cout << "parent is root => end" << std::endl;
 			}
-			parent->color = BLACK;
+			parent->color.set_black();
 		}
-		else if (parent->color == RED)
+		else if (parent->color.is_red())
 		{
 			if (RBT_LOG_ERASE)
 				std::cout << "parent is red, so parent become black" << std::endl;
 
-			parent->color = BLACK;
+			parent->color.set_black();
 		}
 	}
-	else if (sibling->color == BLACK && _has_red_child(sibling))
+	else if (sibling->color.is_black() && _has_red_child(sibling))
 	{
 		if (RBT_LOG_ERASE)
 			std::cout << "sibling is black and has red child" << std::endl;
@@ -231,16 +231,16 @@ template <typename T1, typename T2>
 bool
 map<T1, T2>::_has_black_children(Node *node) const
 {
-	return ((!(node->child[LEFT]) || node->child[LEFT]->color == BLACK)
-			&& (!(node->child[RIGHT]) || node->child[RIGHT]->color == BLACK));
+	return ((!(node->child[LEFT]) || node->child[LEFT]->color.is_black())
+			&& (!(node->child[RIGHT]) || node->child[RIGHT]->color.is_black()));
 }
 
 template <typename T1, typename T2>
 bool
 map<T1, T2>::_has_red_child(Node *node) const
 {
-	return ((node->child[LEFT] && node->child[LEFT]->color == RED)
-			|| (node->child[RIGHT] && node->child[RIGHT]->color == RED));
+	return ((node->child[LEFT] && node->child[LEFT]->color.is_red())
+			|| (node->child[RIGHT] && node->child[RIGHT]->color.is_red()));
 }
 
 template <typename T1, typename T2>
@@ -341,7 +341,7 @@ map<T1, T2>::_print_tree(Node *ptr, size_t level) const
 	for (size_t i = 0; i < level; ++i)
 		std::cout << "    ";
 
-	if (ptr->color == RED)
+	if (ptr->color.is_red())
 		std::cout << COL_RED;
 	else
 		std::cout << COL_YEL;
@@ -419,7 +419,7 @@ map<T1, T2>::_new_node(Node *parent, enum e_side &side)
 		if (RBT_LOG)
 			std::cout << "_root is NULL" << std::endl;
 		node = new Node;
-		node->color = BLACK;
+		node->color.set_black();
 		node->parent = 0;
 		_root = node;
 	}
@@ -427,7 +427,7 @@ map<T1, T2>::_new_node(Node *parent, enum e_side &side)
 	{
 		node = new Node;
 		parent->child[side] = node;
-		node->color = RED;
+		node->color.set_red();
 		node->parent = parent;
 	}
 	node->child[LEFT] = 0;
@@ -471,7 +471,7 @@ map<T1, T2>::_rebalanceTree(Node *node)
 
 	if (node == _root)
 	{
-		node->color = BLACK;
+		node->color.set_black();
 		return;
 	}
 
@@ -485,8 +485,8 @@ map<T1, T2>::_rebalanceTree(Node *node)
 	{
 		if (RBT_LOG)
 			std::cout << "uncle is red" << std::endl;
-		grandParent->color_children(BLACK);
-		grandParent->color = RED;
+		grandParent->color_children_black();
+		grandParent->color.set_red();
 		_rebalanceTree(grandParent);
 		return;
 	}
@@ -557,8 +557,8 @@ map<T1, T2>::_rotate(Node *pivot)
 		root->parent = pivot;
 		if (root->child[side])
 			root->child[side]->parent = root;
-		pivot->color_children(RED);
-		pivot->color = BLACK;
+		pivot->color_children_red();
+		pivot->color.set_black();
 		return pivot;
 	}
 	return 0;
@@ -610,8 +610,50 @@ map<T1, T2>::_flip_color_grandparent(Node *grandParent)
 	{
 		if (RBT_LOG)
 			std::cout << "Grand parent (" << grandParent->dual.first << ") is the root" << std::endl;
-		grandParent->color = BLACK;
+		grandParent->color.set_black();
 	}
+}
+
+/**
+ * Color
+ */
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::Color::flip(void)
+{
+	if (this->is_red())
+		this->set_black();
+	else
+		this->set_red();
+}
+
+template <typename T1, typename T2>
+bool
+map<T1, T2>::Color::is_red(void) const
+{
+	return (this->_color == RED);
+}
+
+template <typename T1, typename T2>
+bool
+map<T1, T2>::Color::is_black(void) const
+{
+	return (this->_color == BLACK);
+}
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::Color::set_red(void)
+{
+	this->_color = RED;
+}
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::Color::set_black(void)
+{
+	this->_color = BLACK;
 }
 
 /**
@@ -622,20 +664,30 @@ template <typename T1, typename T2>
 void
 map<T1, T2>::Node::flip_color(void)
 {
-	if (color == RED)
-		color = BLACK;
+	if (color.is_red())
+		color.set_black();
 	else
-		color = RED;
+		color.set_red();
 }
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::Node::color_children(enum e_color color)
+map<T1, T2>::Node::color_children_red(void)
 {
 	if (left())
-		left()->color = color;
+		left()->color.set_red();
 	if (right())
-		right()->color = color;
+		right()->color.set_red();
+}
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::Node::color_children_black(void)
+{
+	if (left())
+		left()->color.set_black();
+	if (right())
+		right()->color.set_black();
 }
 
 template <typename T1, typename T2>
@@ -659,14 +711,14 @@ template <typename T1, typename T2>
 bool
 map<T1, T2>::Node::is_black(void) const
 {
-	return (color == BLACK);
+	return (color.is_black());
 }
 
 template <typename T1, typename T2>
 bool
 map<T1, T2>::Node::is_red(void) const
 {
-	return (color == RED);
+	return (color.is_red());
 }
 
 template <typename T1, typename T2>
@@ -712,7 +764,7 @@ map<T1, T2>::_rbt_checker(void) const
 	if (_root == 0)
 		return;
 
-	if (_root->color == RED)
+	if (_root->color.is_red())
 		throw(std::logic_error("Root is red"));
 
 	if (RBT_LOG_CHECKER)

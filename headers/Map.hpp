@@ -20,24 +20,40 @@ template <typename T1, typename T2> class map
 		RIGHT
 	};
 
-	enum e_color
-	{
-		BLACK,
-		RED
-	};
-
 	typedef ft::pair<T1, T2> pair;
+
+	class Color
+	{
+	  public:
+		enum e_color
+		{
+			BLACK,
+			RED
+		};
+
+		void flip();
+
+		bool is_red() const;
+		bool is_black() const;
+
+		void set_red();
+		void set_black();
+
+	  private:
+		enum e_color _color;
+	};
 
 	class Node
 	{
 	  public:
-		Node		*parent;
-		Node		*child[2];
-		pair		 dual;
-		enum e_color color;
+		Node *parent;
+		Node *child[2];
+		pair  dual;
+		Color color;
 
 		void flip_color(void);
-		void color_children(enum e_color);
+		void color_children_red();
+		void color_children_black();
 		void reset_parent(void);
 
 		bool is_leaf() const;
