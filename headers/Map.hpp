@@ -112,7 +112,6 @@ template <typename T1, typename T2> class map
 
 	void _rebalanceTree(Node *);
 	void _erase(Node *);
-	void _resolve_double_black(Node *, Node *);
 	void _rbt_checker(void) const;
 
 	enum e_side _flip_side(enum e_side) const;
