@@ -387,24 +387,13 @@ map<T1, T2>::_new_node(Node *parent, enum e_side &side)
 {
 	Node *node;
 
-	if (parent == 0)
-	{
-		if (RBT_LOG)
-			std::cout << "_root is NULL" << std::endl;
-		node = new Node;
-		node->color.set_black();
-		node->parent = 0;
-		_root = node;
-	}
-	else
-	{
-		node = new Node;
+	node = new Node(parent);
+
+	if (parent)
 		parent->child[side] = node;
-		node->color.set_red();
-		node->parent = parent;
-	}
-	node->left() = 0;
-	node->right() = 0;
+	else
+		_root = node;
+
 	return node;
 }
 
