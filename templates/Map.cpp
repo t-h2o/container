@@ -525,22 +525,6 @@ map<T1, T2>::_flip_side_s(enum e_side side) const
 		return LEFT;
 }
 
-template <typename T1, typename T2>
-void
-map<T1, T2>::_flip_color_grandparent(Node *grandParent)
-{
-	grandParent->left()->flip_color();
-	grandParent->right()->flip_color();
-	if (grandParent->parent)
-		grandParent->flip_color();
-	else
-	{
-		if (RBT_LOG)
-			std::cout << "Grand parent (" << grandParent->key() << ") is the root" << std::endl;
-		grandParent->color.set_black();
-	}
-}
-
 /**
  * Color
  */
