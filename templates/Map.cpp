@@ -100,7 +100,7 @@ map<T1, T2>::_erase(Node *node)
 			if (RBT_LOG_ERASE)
 				std::cout << "node (" << node->key() << ") is leaf and red" << std::endl;
 
-			node->parent->child[_get_side(node)] = 0;
+			node->parent->child[node->get_side()] = 0;
 			delete node;
 			_size--;
 		}
@@ -119,7 +119,7 @@ map<T1, T2>::_erase(Node *node)
 				std::cout << "_resolve_double_black(" << sibling->key() << ", " << node->parent->key() << ")"
 						  << std::endl;
 
-			node->parent->child[_get_side(node)] = 0;
+			node->parent->child[node->get_side()] = 0;
 
 			_resolve_double_black(sibling, node->parent);
 
@@ -138,7 +138,7 @@ map<T1, T2>::_erase(Node *node)
 						  << std::endl;
 
 			node->dual = child->dual;
-			node->child[_get_side(child)] = 0;
+			node->child[child->get_side()] = 0;
 			delete child;
 			_size--;
 		}
@@ -486,7 +486,7 @@ typename map<T1, T2>::Node *
 map<T1, T2>::_rotate(Node *pivot)
 {
 	Node	   *root(pivot->parent);
-	enum e_side side(_get_side(pivot));
+	enum e_side side(pivot->get_side());
 	enum e_side oSide(_flip_side_s(side));
 
 	if (RBT_LOG)
@@ -523,7 +523,7 @@ map<T1, T2>::_rotate(Node *pivot)
 			_root = pivot;
 		else
 		{
-			root->parent->child[_get_side(root)] = pivot;
+			root->parent->child[root->get_side()] = pivot;
 		}
 		root->parent = pivot;
 		if (root->child[side])
@@ -543,30 +543,6 @@ map<T1, T2>::_flip_side_s(enum e_side side) const
 		return RIGHT;
 	else
 		return LEFT;
-}
-
-template <typename T1, typename T2>
-typename map<T1, T2>::e_side
-map<T1, T2>::_get_side(Node *node) const
-{
-	if (node->parent == 0)
-		std::cout << "Not a side" << std::endl;
-	if (node->parent->right() == node)
-	{
-		if (RBT_LOG)
-			std::cout << node->key() << " is right of " << node->parent->key() << std::endl;
-		return RIGHT;
-	}
-	else if (node->parent->left() == node)
-	{
-		if (RBT_LOG)
-			std::cout << node->key() << " is left of " << node->parent->key() << std::endl;
-		return LEFT;
-	}
-	else
-	{
-		throw(std::logic_error("cannot get the child of the node"));
-	}
 }
 
 template <typename T1, typename T2>
@@ -876,7 +852,7 @@ map<T1, T2>::_rbt_checker(void) const
 				if (RBT_LOG_CHECKER)
 					std::cout << " <- ";
 			}
-			side = _get_side(node);
+			side = node->get_side();
 			if (node->is_black())
 				--black_node;
 			node = node->parent;
