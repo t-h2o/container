@@ -109,7 +109,7 @@ map<T1, T2>::_erase(Node *node)
 			if (RBT_LOG_ERASE)
 				std::cout << "node (" << node->key() << ") is leaf and black" << std::endl;
 
-			Node *sibling(_get_sibling(node));
+			Node *sibling(node->get_sibling());
 
 			if (RBT_LOG_ERASE)
 				std::cout << "node (" << node->key() << ") and his sibling(" << sibling->key() << ")"
@@ -193,7 +193,7 @@ map<T1, T2>::_resolve_double_black(Node *sibling, Node *parent)
 				if (RBT_LOG_ERASE)
 					std::cout << "parent isn't root" << std::endl;
 
-				sibling = _get_sibling(parent);
+				sibling = parent->get_sibling();
 				parent = sibling->parent;
 				if (RBT_LOG_ERASE)
 					std::cout << "_resolve_double_black(" << sibling->key() << ", " << parent->key() << ")"
@@ -248,13 +248,6 @@ unsigned char
 map<T1, T2>::_number_child(Node *node) const
 {
 	return (!!(node->left()) + !!(node->right()));
-}
-
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *
-map<T1, T2>::_get_sibling(Node *node) const
-{
-	return node->parent->child[_flip_side_s(_get_side(node))];
 }
 
 template <typename T1, typename T2>
@@ -469,7 +462,7 @@ map<T1, T2>::_rebalanceTree(Node *node)
 		return;
 	}
 
-	Node *sibling(_get_sibling(node));
+	Node *sibling(node->get_sibling());
 
 	if (sibling == 0)
 	{
@@ -754,6 +747,19 @@ map<T1, T2>::Node::get_uncle() const
 	if (grandParent->left() == this->parent)
 		return grandParent->right();
 	return grandParent->left();
+}
+
+template <typename T1, typename T2>
+typename map<T1, T2>::Node *
+map<T1, T2>::Node::get_sibling() const
+{
+	enum e_side side(this->get_side());
+	if (side == LEFT)
+		side = RIGHT;
+	else
+		side = LEFT;
+
+	return this->parent->child[side];
 }
 
 template <typename T1, typename T2>
