@@ -53,6 +53,10 @@ map<T1, T2>::erase(T1 const &key)
 		_rbt_checker();
 }
 
+/**
+ * Extra
+ */
+
 template <typename T1, typename T2>
 void
 map<T1, T2>::print_tree(void) const
@@ -284,6 +288,12 @@ map<T1, T2>::_get_reference(const T1 &key)
 	return node->dual;
 }
 
+/**
+ *  @brief  Print the tree (Ascii art).
+ *  @param  The parent pointer, the level indentation.
+ *
+ *  It's a recursive function for printing left child, parent and right child.
+ */
 template <typename T1, typename T2>
 void
 map<T1, T2>::_print_tree(Node *ptr, size_t level) const
@@ -308,6 +318,12 @@ map<T1, T2>::_print_tree(Node *ptr, size_t level) const
 	_print_tree(ptr->left(), level + 1);
 }
 
+/**
+ *  @brief  Free the entire tree.
+ *  @param  The parent pointer to free.
+ *
+ *  It's a recursive function for freeing children first and parent second.
+ */
 template <typename T1, typename T2>
 void
 map<T1, T2>::_free_tree(Node *ptr)
