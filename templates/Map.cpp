@@ -446,7 +446,7 @@ map<T1, T2>::_rotate(Node *pivot)
 {
 	Node	   *root(pivot->parent);
 	enum e_side side(pivot->get_side());
-	enum e_side oSide(_flip_side_s(side));
+	enum e_side oSide(_flip_side(side));
 
 	if (RBT_LOG)
 		std::cout << " == Red black tree rotate == with " << pivot->key() << " as pivot" << std::endl;
@@ -494,9 +494,13 @@ map<T1, T2>::_rotate(Node *pivot)
 	return 0;
 }
 
+/**
+ * Side
+ */
+
 template <typename T1, typename T2>
 typename map<T1, T2>::e_side
-map<T1, T2>::_flip_side_s(enum e_side side) const
+map<T1, T2>::_flip_side(enum e_side side) const
 {
 	if (side == LEFT)
 		return RIGHT;

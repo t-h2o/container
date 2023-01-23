@@ -115,7 +115,7 @@ template <typename T1, typename T2> class map
 	void _resolve_double_black(Node *, Node *);
 	void _rbt_checker(void) const;
 
-	enum e_side _flip_side_s(enum e_side) const;
+	enum e_side _flip_side(enum e_side) const;
 
 	unsigned char _number_child(Node *) const;
 
