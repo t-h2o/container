@@ -542,7 +542,6 @@ map<T1, T2>::_swap(Node *one, Node *two)
 		two->child[twoside] = one;
 		if (_root == one)
 		{
-			std::cout << one->key() << ": is root" << std::endl;
 			_root = two;
 			two->parent = 0;
 		}
@@ -593,13 +592,11 @@ map<T1, T2>::_swap(Node *one, Node *two)
 
 		if (_root == one)
 		{
-			std::cout << one->key() << ": is root" << std::endl;
 			_root = two;
 			twoparent->child[twoside] = one;
 		}
 		else if (_root == two)
 		{
-			std::cout << two->key() << ": is root" << std::endl;
 			_root = one;
 			oneparent->child[oneside] = two;
 		}
