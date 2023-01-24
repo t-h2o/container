@@ -156,6 +156,9 @@ image::assets/map_usecase.svg[map usecase]
 * https://youtu.be/JwgeECkckRo[Insertion for Red-Black Trees ( incl. Examples )]
 * https://youtu.be/_c30ot0Kcis[Deletion for Red-Black Trees ( incl. Examples )]
 
+.YouTube @alenachang8071
+* https://youtu.be/eoQpRtMpA9I[Red-black tree deletion: steps + 10 examples]
+
 .other
 * https://www.cs.usfca.edu/~galles/visualization/RedBlack.html[red black tree visualization]
 
