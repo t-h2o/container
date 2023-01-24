@@ -46,9 +46,12 @@ map<T1, T2>::erase(T1 const &key)
 		print_tree();
 
 	Node *node(_binary_search(key));
-	if (node->key() != key)
+
+	if (node == 0 || node->key() != key)
 		return;
+
 	_erase(node);
+
 	if (RBT_CHECKER)
 		_rbt_checker();
 }
