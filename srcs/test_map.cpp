@@ -7,9 +7,9 @@
 #include <map>
 #include <vector>
 
-#define TEST_NUMBER 1
-#define TREE_SIZE 5
-#define MAX_NUMBER 10
+#define TEST_NUMBER 10
+#define TREE_SIZE 30
+#define MAX_NUMBER 100
 
 template <typename T1, typename T2>
 static void
