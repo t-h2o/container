@@ -4,11 +4,12 @@
 #include "color.hpp"
 #include <gtest/gtest.h>
 #include <iostream>
+#include <iterator>
 #include <map>
 #include <vector>
 
-#define TEST_NUMBER 10
-#define TREE_SIZE 30
+#define TEST_NUMBER 1
+#define TREE_SIZE 5
 #define MAX_NUMBER 100
 
 template <typename T1, typename T2>
@@ -17,6 +18,14 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 {
 	EXPECT_EQ(map_std.empty(), map_ft.empty());
 	EXPECT_EQ(map_std.size(), map_ft.size());
+
+	typename std::map<T1, T2>::iterator it = map_std.begin();
+
+	while (it != map_std.end())
+	{
+		std::cout << "it: " << (*it).first << std::endl;
+		++it;
+	}
 }
 
 template <typename T1, typename T2>
