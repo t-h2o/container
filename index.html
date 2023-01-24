@@ -457,6 +457,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_resources_2">4.1. Resources</a></li>
 </ul>
 </li>
+<li><a href="#_pair">5. Pair</a>
+<ul class="sectlevel2">
+<li><a href="#_resources_3">5.1. Resources</a></li>
+<li><a href="#_check_list_2">5.2. Check-list</a></li>
+</ul>
+</li>
+<li><a href="#_map">6. Map</a>
+<ul class="sectlevel2">
+<li><a href="#_resources_4">6.1. Resources</a></li>
+<li><a href="#_check_list_3">6.2. Check-list</a></li>
+<li><a href="#_red_black_tree">6.3. Red black tree</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -731,6 +744,396 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="https://cplusplus.com/reference/iterator/iterator_traits/"><code>std::iterator_traits</code></a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pair">5. Pair</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_resources_3">5.1. Resources</h3>
+<div class="ulist">
+<div class="title">cplusplus.com</div>
+<ul>
+<li>
+<p><a href="https://cplusplus.com/reference/utility/pair/"><code>std::pair</code></a></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">The STL: on GNU/Linux</div>
+<ul>
+<li>
+<p><code>/usr/include/c++/12.2.0/bits/stl_pair.h</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_check_list_2">5.2. Check-list</h3>
+<div class="ulist checklist">
+<div class="title">Member functions</div>
+<ul class="checklist">
+<li>
+<p>&#10003; <a href="https://cplusplus.com/reference/utility/pair/pair/"><code>constructor</code></a></p>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p>&#10003; default</p>
+</li>
+<li>
+<p>&#10003; copy</p>
+</li>
+<li>
+<p>&#10003; initialization</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/utility/pair/operator=/"><code>operator=</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/utility/pair/swap/"><code>swap</code></a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_map">6. Map</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="assets/map_usecase.svg" alt="map usecase">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resources_4">6.1. Resources</h3>
+<div class="ulist">
+<div class="title">cplusplus.com</div>
+<ul>
+<li>
+<p><a href="https://cplusplus.com/reference/map/map/"><code>std::map</code></a></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">wikipedia</div>
+<ul>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Binary_search_tree">Binary search tree</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Nodes can have 2 subtrees</p>
+</li>
+<li>
+<p>Items to the left of a given node are smaller</p>
+</li>
+<li>
+<p>Items to the right of a given node are larger</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Red%E2%80%93black_tree">Red–black tree</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>A node is either red or black</p>
+</li>
+<li>
+<p>The root adn leaves (NULL) are balck</p>
+</li>
+<li>
+<p>If a node is red, then its children are black</p>
+</li>
+<li>
+<p>All path from a node to its NULL descendants contain the same number of black nodes</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Tree_rotation">Tree rotation</a></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">YouTube @MisterCode</div>
+<ul>
+<li>
+<p><a href="https://youtu.be/AN0axYeLue0">Red-Black Trees - Data Structures</a></p>
+</li>
+<li>
+<p><a href="https://youtu.be/JwgeECkckRo">Insertion for Red-Black Trees ( incl. Examples )</a></p>
+</li>
+<li>
+<p><a href="https://youtu.be/_c30ot0Kcis">Deletion for Red-Black Trees ( incl. Examples )</a></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">YouTube @alenachang8071</div>
+<ul>
+<li>
+<p><a href="https://youtu.be/eoQpRtMpA9I">Red-black tree deletion: steps + 10 examples</a></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">other</div>
+<ul>
+<li>
+<p><a href="https://www.cs.usfca.edu/~galles/visualization/RedBlack.html">red black tree visualization</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_check_list_3">6.2. Check-list</h3>
+<div class="ulist checklist">
+<div class="title">Member functions</div>
+<ul class="checklist">
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/map/"><code>constructor</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/~map/"><code>destructor</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/operator=/"><code>operator=</code></a></p>
+</li>
+</ul>
+</div>
+<div class="ulist checklist">
+<div class="title">Iterators:</div>
+<ul class="checklist">
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/begin"><code>begin</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/end"><code>end</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/rbegin"><code>rbegin</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/rend"><code>rend</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/cbegin"><code>cbegin</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/cend"><code>cend</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/crbegin"><code>crbegin</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/crend"><code>crend</code></a></p>
+</li>
+</ul>
+</div>
+<div class="ulist checklist">
+<div class="title">Capacity:</div>
+<ul class="checklist">
+<li>
+<p>&#10003; <a href="https://cplusplus.com/reference/map/map/empty"><code>empty</code></a></p>
+</li>
+<li>
+<p>&#10003; <a href="https://cplusplus.com/reference/map/map/size"><code>size</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/max_size"><code>max_size</code></a></p>
+</li>
+</ul>
+</div>
+<div class="ulist checklist">
+<div class="title">Element access:</div>
+<ul class="checklist">
+<li>
+<p>&#10063; <code>operator[]</code></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/at"><code>at</code></a></p>
+</li>
+</ul>
+</div>
+<div class="ulist checklist">
+<div class="title">Modifiers:</div>
+<ul class="checklist">
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/insert"><code>insert</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/erase"><code>erase</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/swap"><code>swap</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/clear"><code>clear</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/emplace"><code>emplace</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/emplace_hint"><code>emplace_hint</code></a></p>
+</li>
+</ul>
+</div>
+<div class="ulist checklist">
+<div class="title">Observers:</div>
+<ul class="checklist">
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/key_comp"><code>key_comp</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/value_comp"><code>value_comp</code></a></p>
+</li>
+</ul>
+</div>
+<div class="ulist checklist">
+<div class="title">Operations:</div>
+<ul class="checklist">
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/find"><code>find</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/count"><code>count</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/lower_bound"><code>lower_bound</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/upper_bound"><code>upper_bound</code></a></p>
+</li>
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/equal_range"><code>equal_range</code></a></p>
+</li>
+</ul>
+</div>
+<div class="ulist checklist">
+<div class="title">Allocator:</div>
+<ul class="checklist">
+<li>
+<p>&#10063; <a href="https://cplusplus.com/reference/map/map/get_allocator"><code>get_allocator</code></a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_red_black_tree">6.3. Red black tree</h3>
+<div class="sect3">
+<h4 id="_deletion">6.3.1. Deletion</h4>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt_delete.svg" alt="redblack delete">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_resolve_double_black">6.3.2. resolve double black</h4>
+<div class="imageblock">
+<div class="content">
+<img src="assets/resolve_double_black.svg" alt="redblack delete">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rules">6.3.3. Rules</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>The root is always black</p>
+</li>
+<li>
+<p>Not two consecutives node can be red</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For a node:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/node.svg" alt="redblack">
+</div>
+</div>
+<div class="paragraph">
+<p>Here an example of a red black tree</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Case 0: Init, the first node is black</p>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt00.svg" alt="redblack">
+</div>
+</div>
+</li>
+<li>
+<p>Insert: Add a second node</p>
+<div class="paragraph">
+<p>The key (5) is smaller than the node key (15), so we set it into the left</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt10.svg" alt="redblack">
+</div>
+</div>
+<div class="paragraph">
+<p>We recolor the new node (5) to red</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt11.svg" alt="redblack">
+</div>
+</div>
+</li>
+<li>
+<p>Add a third node</p>
+<div class="paragraph">
+<p>The key (1) is smaller than the node key (15): go to the left. The key (1) is smaller than (5), so we set it into the left.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt20.svg" alt="redblack">
+</div>
+</div>
+<div class="paragraph">
+<p>The uncle of the new node is NULL</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt21.svg" alt="redblack">
+</div>
+</div>
+<div class="paragraph">
+<p>We rotate</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt22.svg" alt="redblack">
+</div>
+</div>
+<div class="paragraph">
+<p>We recolor</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/rbt23.svg" alt="redblack">
+</div>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>

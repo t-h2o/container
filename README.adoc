@@ -109,3 +109,156 @@ image::assets/gnuplot.svg[gnuplot]
 * https://cplusplus.com/reference/iterator/[`<iterator>`]
 * https://cplusplus.com/reference/iterator/iterator/[`std::iterator`]
 * https://cplusplus.com/reference/iterator/iterator_traits/[`std::iterator_traits`]
+
+== Pair
+
+=== Resources
+
+.cplusplus.com
+* https://cplusplus.com/reference/utility/pair/[`std::pair`]
+
+.The STL: on GNU/Linux
+* `/usr/include/c++/12.2.0/bits/stl_pair.h`
+
+=== Check-list
+
+.Member functions
+* [x] https://cplusplus.com/reference/utility/pair/pair/[`constructor`]
+** [x] default
+** [x] copy
+** [x] initialization
+* [ ] https://cplusplus.com/reference/utility/pair/operator=/[`operator=`]
+* [ ] https://cplusplus.com/reference/utility/pair/swap/[`swap`]
+
+== Map
+
+image::assets/map_usecase.svg[map usecase]
+
+=== Resources
+
+.cplusplus.com
+* https://cplusplus.com/reference/map/map/[`std::map`]
+
+.wikipedia
+* https://en.wikipedia.org/wiki/Binary_search_tree[Binary search tree]
+** Nodes can have 2 subtrees
+** Items to the left of a given node are smaller
+** Items to the right of a given node are larger
+* https://en.wikipedia.org/wiki/Red%E2%80%93black_tree[Red–black tree]
+** A node is either red or black
+** The root adn leaves (NULL) are balck
+** If a node is red, then its children are black
+** All path from a node to its NULL descendants contain the same number of black nodes
+* https://en.wikipedia.org/wiki/Tree_rotation[Tree rotation]
+
+.YouTube @MisterCode
+* https://youtu.be/AN0axYeLue0[Red-Black Trees - Data Structures]
+* https://youtu.be/JwgeECkckRo[Insertion for Red-Black Trees ( incl. Examples )]
+* https://youtu.be/_c30ot0Kcis[Deletion for Red-Black Trees ( incl. Examples )]
+
+.YouTube @alenachang8071
+* https://youtu.be/eoQpRtMpA9I[Red-black tree deletion: steps + 10 examples]
+
+.other
+* https://www.cs.usfca.edu/~galles/visualization/RedBlack.html[red black tree visualization]
+
+=== Check-list
+
+.Member functions
+* [ ] https://cplusplus.com/reference/map/map/map/[`constructor`]
+* [ ] https://cplusplus.com/reference/map/map/~map/[`destructor`]
+* [ ] https://cplusplus.com/reference/map/map/operator=/[`operator=`]
+
+.Iterators:
+* [ ] https://cplusplus.com/reference/map/map/begin[`begin`]
+* [ ] https://cplusplus.com/reference/map/map/end[`end`]
+* [ ] https://cplusplus.com/reference/map/map/rbegin[`rbegin`]
+* [ ] https://cplusplus.com/reference/map/map/rend[`rend`]
+* [ ] https://cplusplus.com/reference/map/map/cbegin[`cbegin`]
+* [ ] https://cplusplus.com/reference/map/map/cend[`cend`]
+* [ ] https://cplusplus.com/reference/map/map/crbegin[`crbegin`]
+* [ ] https://cplusplus.com/reference/map/map/crend[`crend`]
+
+.Capacity:
+* [x] https://cplusplus.com/reference/map/map/empty[`empty`]
+* [x] https://cplusplus.com/reference/map/map/size[`size`]
+* [ ] https://cplusplus.com/reference/map/map/max_size[`max_size`]
+
+.Element access:
+* [ ] `operator[]`
+* [ ] https://cplusplus.com/reference/map/map/at[`at`]
+
+.Modifiers:
+* [ ] https://cplusplus.com/reference/map/map/insert[`insert`]
+* [ ] https://cplusplus.com/reference/map/map/erase[`erase`]
+* [ ] https://cplusplus.com/reference/map/map/swap[`swap`]
+* [ ] https://cplusplus.com/reference/map/map/clear[`clear`]
+* [ ] https://cplusplus.com/reference/map/map/emplace[`emplace`]
+* [ ] https://cplusplus.com/reference/map/map/emplace_hint[`emplace_hint`]
+
+.Observers:
+* [ ] https://cplusplus.com/reference/map/map/key_comp[`key_comp`]
+* [ ] https://cplusplus.com/reference/map/map/value_comp[`value_comp`]
+
+.Operations:
+* [ ] https://cplusplus.com/reference/map/map/find[`find`]
+* [ ] https://cplusplus.com/reference/map/map/count[`count`]
+* [ ] https://cplusplus.com/reference/map/map/lower_bound[`lower_bound`]
+* [ ] https://cplusplus.com/reference/map/map/upper_bound[`upper_bound`]
+* [ ] https://cplusplus.com/reference/map/map/equal_range[`equal_range`]
+
+.Allocator:
+* [ ] https://cplusplus.com/reference/map/map/get_allocator[`get_allocator`]
+
+=== Red black tree
+
+==== Deletion
+
+image::assets/rbt_delete.svg[redblack delete]
+
+==== resolve double black
+
+image::assets/resolve_double_black.svg[redblack delete]
+
+==== Rules
+
+* The root is always black
+* Not two consecutives node can be red
+
+For a node:
+
+image::assets/node.svg[redblack]
+
+Here an example of a red black tree
+
+. Case 0: Init, the first node is black
++
+image::assets/rbt00.svg[redblack]
+
+. Insert: Add a second node
++
+The key (5) is smaller than the node key (15), so we set it into the left
++
+image::assets/rbt10.svg[redblack]
++
+We recolor the new node (5) to red
++
+image::assets/rbt11.svg[redblack]
+
+. Add a third node
++
+The key (1) is smaller than the node key (15): go to the left. The key (1) is smaller than (5), so we set it into the left.
++
+image::assets/rbt20.svg[redblack]
++
+The uncle of the new node is NULL
++
+image::assets/rbt21.svg[redblack]
++
+We rotate
++
+image::assets/rbt22.svg[redblack]
++
+We recolor
++
+image::assets/rbt23.svg[redblack]

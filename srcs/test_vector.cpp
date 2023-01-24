@@ -45,10 +45,8 @@ expect_equal(std::vector<T> &vec_std, ft::vector<T> &vec_ft)
 
 	EXPECT_EQ(vec_ft.begin() > vec_ft.end(), vec_std.begin() > vec_std.end());
 	EXPECT_EQ(vec_ft.begin() < vec_ft.end(), vec_std.begin() < vec_std.end());
-	EXPECT_EQ(vec_ft.begin() >= vec_ft.end(),
-			  vec_std.begin() >= vec_std.end());
-	EXPECT_EQ(vec_ft.begin() <= vec_ft.end(),
-			  vec_std.begin() <= vec_std.end());
+	EXPECT_EQ(vec_ft.begin() >= vec_ft.end(), vec_std.begin() >= vec_std.end());
+	EXPECT_EQ(vec_ft.begin() <= vec_ft.end(), vec_std.begin() <= vec_std.end());
 
 	EXPECT_EQ(vec_ft.end() > vec_ft.end(), vec_std.end() > vec_std.end());
 	EXPECT_EQ(vec_ft.end() < vec_ft.end(), vec_std.end() < vec_std.end());
@@ -549,10 +547,8 @@ scenario_eleven(void)
 
 		section("insert(vec_ft_copy.begin + 1, vec_ft.begin(), vec_ft.begin + "
 				"3);");
-		vec_ft_copy.insert(vec_ft_copy.begin() + 1, vec_ft.begin(),
-						   vec_ft.begin() + 3);
-		vec_std_copy.insert(vec_std_copy.begin() + 1, vec_std.begin(),
-							vec_std.begin() + 3);
+		vec_ft_copy.insert(vec_ft_copy.begin() + 1, vec_ft.begin(), vec_ft.begin() + 3);
+		vec_std_copy.insert(vec_std_copy.begin() + 1, vec_std.begin(), vec_std.begin() + 3);
 		test_copy_equal(vec_std, vec_ft);
 	}
 
@@ -563,10 +559,8 @@ scenario_eleven(void)
 
 		section("insert(vec_ft_copy.begin + 1, vec_ft.begin(), vec_ft.begin + "
 				"3);");
-		vec_ft_copy.insert(vec_ft_copy.begin() + 1, vec_ft.begin(),
-						   vec_ft.begin() + 3);
-		vec_std_copy.insert(vec_std_copy.begin() + 1, vec_std.begin(),
-							vec_std.begin() + 3);
+		vec_ft_copy.insert(vec_ft_copy.begin() + 1, vec_ft.begin(), vec_ft.begin() + 3);
+		vec_std_copy.insert(vec_std_copy.begin() + 1, vec_std.begin(), vec_std.begin() + 3);
 		test_copy_equal(vec_std, vec_ft);
 	}
 }

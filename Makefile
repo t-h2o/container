@@ -24,6 +24,8 @@ SRCS	+=	$(SRCD)/color.cpp
 SRCS	+=	$(SRCD)/Awesome.cpp
 
 SRCS	+=	$(SRCD)/test_vector.cpp
+SRCS	+=	$(SRCD)/test_pair.cpp
+SRCS	+=	$(SRCD)/test_map.cpp
 
 
 #	Headers
@@ -34,6 +36,7 @@ INCS	=	$(INCD)/color.hpp
 INCS	+=	$(INCD)/Awesome.hpp
 
 INCS	+=	$(INCD)/Iterator.hpp
+INCS	+=	$(INCD)/Map.hpp
 INCS	+=	$(INCD)/Vector.hpp
 
 INCS	+=	$(INCD)/test.hpp
@@ -44,6 +47,8 @@ INCS	+=	$(INCD)/test.hpp
 TMPD	=	templates
 
 TMPS	=	$(TMPD)/Iterator.cpp
+TMPS	+=	$(TMPD)/Map.cpp
+TMPS	+=	$(TMPD)/Pair.cpp
 TMPS	+=	$(TMPD)/Vector.cpp
 
 
@@ -61,7 +66,7 @@ all : $(NAME)
 
 $(NAME):	$(OBJS)
 	@printf "$(YELLOW)Creating executable..$(DEFAULT)\n"
-	@$(CC) $(OBJS) $(OFLAGS) $(CLIB) -o $(NAME)
+	@$(CC) $(OBJS) $(OFLAGS) -o $(NAME)
 	@printf "$(GREEN)---> $(NAME) is ready$(DEFAULT)\n"
 
 $(OBJD)/%.o : %.cpp | $(OBJD)
