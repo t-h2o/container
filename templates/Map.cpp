@@ -158,8 +158,8 @@ map<T1, T2>::_case_1(Node *node, Node *sibling, bool deletion)
 		if (RBT_LOG_ERASE)
 			std::cout << "Case 1: node is black; sibling is red;" << std::endl;
 
-		sibling->color.set_black();
-		node->parent->color.set_red();
+		sibling->set_black();
+		node->parent->set_red();
 
 		_rotate_del(sibling);
 
@@ -185,7 +185,7 @@ map<T1, T2>::_case_2(Node *node, Node *sibling, bool deletion)
 			std::cout << "Case 2: node is black; sibling is black; sibling has two black children"
 					  << std::endl;
 
-		sibling->color.set_red();
+		sibling->set_red();
 		Node *nodeP(node->parent);
 
 		if (deletion)
@@ -199,7 +199,7 @@ map<T1, T2>::_case_2(Node *node, Node *sibling, bool deletion)
 
 		if (nodeP->is_red())
 		{
-			nodeP->color.set_black();
+			nodeP->set_black();
 			return 1;
 		}
 		if (_root == nodeP)
@@ -226,8 +226,8 @@ map<T1, T2>::_case_3(Node *node, Node *sibling, bool deletion)
 					  << std::endl;
 
 		if (sibling->child[side])
-			sibling->child[side]->color.set_black();
-		sibling->color.set_red();
+			sibling->child[side]->set_black();
+		sibling->set_red();
 		_rotate_del(sibling->child[side]);
 		_case_4(node, node->parent->child[oside], deletion);
 
@@ -250,8 +250,8 @@ map<T1, T2>::_case_4(Node *node, Node *sibling, bool deletion)
 					  << std::endl;
 
 		sibling->color = node->parent->color;
-		node->parent->color.set_black();
-		sibling->child[oside]->color.set_black();
+		node->parent->set_black();
+		sibling->child[oside]->set_black();
 		_rotate_del(sibling);
 
 		if (!deletion)
@@ -629,7 +629,7 @@ map<T1, T2>::_rebalance_tree(Node *node)
 
 	if (node == _root)
 	{
-		node->color.set_black();
+		node->set_black();
 		return;
 	}
 
@@ -644,7 +644,7 @@ map<T1, T2>::_rebalance_tree(Node *node)
 		if (RBT_LOG)
 			std::cout << "uncle is red" << std::endl;
 		grandParent->color_children_black();
-		grandParent->color.set_red();
+		grandParent->set_red();
 		_rebalance_tree(grandParent);
 		return;
 	}
@@ -716,7 +716,7 @@ map<T1, T2>::_rotate(Node *pivot)
 		if (root->child[side])
 			root->child[side]->parent = root;
 		pivot->color_children_red();
-		pivot->color.set_black();
+		pivot->set_black();
 		return pivot;
 	}
 	return 0;
@@ -785,7 +785,7 @@ map<T1, T2>::Color::set_black(void)
 template <typename T1, typename T2>
 map<T1, T2>::Node::Node(Node *newparent) : parent(newparent), child{ 0, 0 }
 {
-	this->color.set_red();
+	this->set_red();
 }
 
 template <typename T1, typename T2>
@@ -807,9 +807,9 @@ void
 map<T1, T2>::Node::flip_color(void)
 {
 	if (color.is_red())
-		color.set_black();
+		this->set_black();
 	else
-		color.set_red();
+		this->set_red();
 }
 
 template <typename T1, typename T2>
@@ -817,9 +817,9 @@ void
 map<T1, T2>::Node::color_children_red(void)
 {
 	if (left())
-		left()->color.set_red();
+		left()->set_red();
 	if (right())
-		right()->color.set_red();
+		right()->set_red();
 }
 
 template <typename T1, typename T2>
@@ -827,9 +827,9 @@ void
 map<T1, T2>::Node::color_children_black(void)
 {
 	if (left())
-		left()->color.set_black();
+		left()->set_black();
 	if (right())
-		right()->color.set_black();
+		right()->set_black();
 }
 
 template <typename T1, typename T2>
