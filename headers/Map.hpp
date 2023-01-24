@@ -113,6 +113,10 @@ template <typename T1, typename T2> class map
 	Node *_rotate(Node *);
 
 	int _case_0(Node *);
+	int _case_1(Node *, Node *);
+	int _case_2(Node *, Node *);
+	int _case_3(Node *, Node *);
+	int _case_4(Node *, Node *);
 
 	void _swap(Node *, Node *);
 	void _rebalanceTree(Node *);

@@ -104,6 +104,76 @@ map<T1, T2>::_case_0(Node *node)
 }
 
 template <typename T1, typename T2>
+int
+map<T1, T2>::_case_1(Node *node, Node *sibling)
+{
+	if (node->is_black() && sibling->is_red())
+	{
+		if (RBT_LOG_ERASE)
+			std::cout << "node is black; sibling is red;" << std::endl;
+
+		return 1;
+	}
+	return 0;
+}
+
+template <typename T1, typename T2>
+int
+map<T1, T2>::_case_2(Node *node, Node *sibling)
+{
+	if (node->is_black() && sibling->is_black() && sibling->has_black_children())
+	{
+		if (RBT_LOG_ERASE)
+			std::cout << "node is black; sibling is black; sibling has two black children" << std::endl;
+
+		node->parent->child[node->get_side()] = 0;
+		sibling->color.set_red();
+		delete node;
+		--_size;
+		return 1;
+	}
+	return 0;
+}
+
+template <typename T1, typename T2>
+int
+map<T1, T2>::_case_3(Node *node, Node *sibling)
+{
+	enum e_side side(node->get_side());
+	enum e_side oside(_flip_side(side));
+
+	if (node->is_black() && sibling->is_black() && sibling->child[side]->is_red()
+		&& !sibling->child[oside]->is_red())
+	{
+		if (RBT_LOG_ERASE)
+			std::cout << "node is black; sibling is black; nephew side is red; nephew oside is black"
+					  << std::endl;
+
+		return 1;
+	}
+	return 0;
+}
+
+template <typename T1, typename T2>
+int
+map<T1, T2>::_case_4(Node *node, Node *sibling)
+{
+	enum e_side side(node->get_side());
+	enum e_side oside(_flip_side(side));
+
+	if (node->is_black() && sibling->is_black() && !sibling->child[side]->is_red()
+		&& sibling->child[oside]->is_red())
+	{
+		if (RBT_LOG_ERASE)
+			std::cout << "node is black; sibling is black; nephew side is black; nephew oside is red"
+					  << std::endl;
+
+		return 1;
+	}
+	return 0;
+}
+
+template <typename T1, typename T2>
 void
 map<T1, T2>::_erase(Node *node)
 {
@@ -133,6 +203,19 @@ map<T1, T2>::_erase(Node *node)
 	if (_case_0(node))
 		return;
 
+	Node *sibling(node->get_sibling());
+	if (sibling)
+	{
+		if (_case_1(node, sibling))
+			return;
+		if (_case_2(node, sibling))
+			return;
+		if (_case_3(node, sibling))
+			return;
+		if (_case_4(node, sibling))
+			return;
+	}
+
 	Node *child(node->get_child());
 
 	if (child)
@@ -145,22 +228,6 @@ map<T1, T2>::_erase(Node *node)
 			_swap(node, child);
 
 			_erase(node);
-			return;
-		}
-	}
-
-	Node *sibling(node->get_sibling());
-	if (sibling)
-	{
-		if (node->is_black() && sibling->is_black() && sibling->has_black_children())
-		{
-			if (RBT_LOG_ERASE)
-				std::cout << "node is black; sibling is black; sibling has two black children" << std::endl;
-
-			node->parent->child[node->get_side()] = 0;
-			sibling->color.set_red();
-			delete node;
-			--_size;
 			return;
 		}
 	}
