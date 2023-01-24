@@ -87,6 +87,23 @@ map<T1, T2>::print(void) const
  */
 
 template <typename T1, typename T2>
+int
+map<T1, T2>::_case_0(Node *node)
+{
+	if (node->is_red() && node->is_leaf())
+	{
+		if (RBT_LOG_ERASE)
+			std::cout << "node is red & leaf" << std::endl;
+
+		node->parent->child[node->get_side()] = 0;
+		delete node;
+		--_size;
+		return 1;
+	}
+	return 0;
+}
+
+template <typename T1, typename T2>
 void
 map<T1, T2>::_erase(Node *node)
 {
@@ -113,16 +130,8 @@ map<T1, T2>::_erase(Node *node)
 		return;
 	}
 
-	if (node->is_red() && node->is_leaf())
-	{
-		if (RBT_LOG_ERASE)
-			std::cout << "node is red & leaf" << std::endl;
-
-		node->parent->child[node->get_side()] = 0;
-		delete node;
-		--_size;
+	if (_case_0(node))
 		return;
-	}
 
 	Node *child(node->get_child());
 

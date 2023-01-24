@@ -112,6 +112,8 @@ template <typename T1, typename T2> class map
 	Node *_get_pointer(T1 const &) const;
 	Node *_rotate(Node *);
 
+	int _case_0(Node *);
+
 	void _swap(Node *, Node *);
 	void _rebalanceTree(Node *);
 	void _erase(Node *);
