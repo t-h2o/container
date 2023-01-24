@@ -332,11 +332,14 @@ map<T1, T2>::_swap(Node *one, Node *two)
 		oneside = one->get_side();
 	Color onecolor(one->color);
 
-	Node *twochild[2]{ two->child[0], two->child[1] };
+	Node	   *twochild[2]{ two->child[0], two->child[1] };
 	enum e_side twoside;
 	if (two != _root)
 		twoside = two->get_side();
 	Color twocolor(two->color);
+
+	if (RBT_LOG)
+		std::cout << "Swap one: " << one->key() << " with two: " << two->key() << std::endl;
 
 	if (onechild[0] == two || onechild[1] == two)
 	{
