@@ -368,7 +368,7 @@ map<T1, T2>::_get_reference(const T1 &key)
 
 	node->key() = key;
 
-	_rebalanceTree(node);
+	_rebalance_tree(node);
 
 	if (RBT_LOG)
 		section("print_tree()");
@@ -617,7 +617,7 @@ map<T1, T2>::_swap(Node *one, Node *two)
 
 template <typename T1, typename T2>
 void
-map<T1, T2>::_rebalanceTree(Node *node)
+map<T1, T2>::_rebalance_tree(Node *node)
 {
 	if (node == 0)
 		return;
@@ -645,7 +645,7 @@ map<T1, T2>::_rebalanceTree(Node *node)
 			std::cout << "uncle is red" << std::endl;
 		grandParent->color_children_black();
 		grandParent->color.set_red();
-		_rebalanceTree(grandParent);
+		_rebalance_tree(grandParent);
 		return;
 	}
 
@@ -655,7 +655,7 @@ map<T1, T2>::_rebalanceTree(Node *node)
 	{
 		if (RBT_LOG)
 			std::cout << "node hasn't sibling" << std::endl;
-		_rebalanceTree(_rotate(node->parent));
+		_rebalance_tree(_rotate(node->parent));
 		return;
 	}
 
@@ -663,7 +663,7 @@ map<T1, T2>::_rebalanceTree(Node *node)
 	{
 		if (RBT_LOG)
 			std::cout << "node has a black sibling" << std::endl;
-		_rebalanceTree(_rotate(node->parent));
+		_rebalance_tree(_rotate(node->parent));
 		return;
 	}
 }

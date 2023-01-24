@@ -122,7 +122,7 @@ template <typename T1, typename T2> class map
 	int _case_4(Node *, Node *, bool);
 
 	void _swap(Node *, Node *);
-	void _rebalanceTree(Node *);
+	void _rebalance_tree(Node *);
 	void _erase(Node *);
 	void _rbt_checker(void) const;
 
