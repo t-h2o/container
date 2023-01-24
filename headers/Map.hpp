@@ -63,6 +63,8 @@ template <typename T1, typename T2> class map
 		bool has_red_child() const;
 		bool has_black_children() const;
 
+		unsigned char number_child() const;
+
 		Node *&right();
 		Node  *right() const;
 		Node *&left();
@@ -116,8 +118,6 @@ template <typename T1, typename T2> class map
 	void _rbt_checker(void) const;
 
 	enum e_side _flip_side(enum e_side) const;
-
-	unsigned char _number_child(Node *) const;
 
 	pair &_get_reference(const T1 &);
 };

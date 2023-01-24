@@ -157,13 +157,6 @@ map<T1, T2>::_erase(Node *node)
 }
 
 template <typename T1, typename T2>
-unsigned char
-map<T1, T2>::_number_child(Node *node) const
-{
-	return (!!(node->left()) + !!(node->right()));
-}
-
-template <typename T1, typename T2>
 pair<T1, T2> &
 map<T1, T2>::_get_reference(const T1 &key)
 {
@@ -635,6 +628,13 @@ map<T1, T2>::Node::has_black_children() const
 {
 	return ((!(this->left()) || this->left()->color.is_black())
 			&& (!(this->right()) || this->right()->color.is_black()));
+}
+
+template <typename T1, typename T2>
+unsigned char
+map<T1, T2>::Node::number_child() const
+{
+	return (!!(this->left()) + !!(this->right()));
 }
 
 template <typename T1, typename T2>
