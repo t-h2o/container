@@ -1,5 +1,111 @@
 = Containers
+:nofooter:
+:toc: left
+:sectnums:
+:stylesheet: assets/my-stylesheet.css
+:stem:
+
+GitHub: https://github.com/t-h2o/containers[t-h2o/containers]
 
 == Subject
 
 42: https://cdn.intra.42.fr/pdf/pdf/60315/en.subject.pdf[subject]
+
+== Google test
+
+In this project, I want inclure https://en.wikipedia.org/wiki/Unit_testing[unit testing] with the https://google.github.io/googletest/[Google test] framework.
+
+== Vector
+
+image::assets/vector.svg[example]
+
+=== Resources
+
+.cplusplus.com
+* https://cplusplus.com/reference/vector/vector[`std::vector`]
+* https://cplusplus.com/reference/memory/allocator/[`std::allocator`]
+
+.The STL: on GNU/Linux
+* `/usr/include/c++/12.2.0/bits/stl_vector.h`
+
+=== Check list
+
+.Member functions
+* [x] https://cplusplus.com/reference/vector/vector/vector/[`constructor`]
+** [x] default
+** [x] fill
+** [x] range
+** [x] copy
+* [x] https://cplusplus.com/reference/vector/vector/~vector/[`destructor`]
+* [x] https://cplusplus.com/reference/vector/vector/operator=/[`operator=`]
+
+.Iterators
+
+* [x] https://cplusplus.com/reference/vector/vector/begin/[`begin`]
+* [x] https://cplusplus.com/reference/vector/vector/end/[`end`]
+* [ ] https://cplusplus.com/reference/vector/vector/rbegin/[`rbegin`]
+* [ ] https://cplusplus.com/reference/vector/vector/rend/[`rend`]
+* [ ] https://cplusplus.com/reference/vector/vector/cbegin/[`cbegin`]
+* [ ] https://cplusplus.com/reference/vector/vector/cend/[`cend`]
+* [ ] https://cplusplus.com/reference/vector/vector/crbegin/[`crbegin`]
+* [ ] https://cplusplus.com/reference/vector/vector/crend/[`crend`]
+
+.Capacity
+* [x] https://cplusplus.com/reference/vector/vector/size/[`size`]
+* [x] https://cplusplus.com/reference/vector/vector/max_size/[`max_size`]
+* [x] https://cplusplus.com/reference/vector/vector/resize/[`resize`]
+* [x] https://cplusplus.com/reference/vector/vector/capacity/[`capacity`]
+* [x] https://cplusplus.com/reference/vector/vector/empty/[`empty`]
+* [x] https://cplusplus.com/reference/vector/vector/reserve/[`reserve`]
+* [x] https://cplusplus.com/reference/vector/vector/shrink_to_fit/[`shrink_to_fit`]
+
+.Element access
+* [x] `operator[]`
+* [x] https://cplusplus.com/reference/vector/vector/at/[`at`]
+* [x] https://cplusplus.com/reference/vector/vector/front/[`front`]
+* [x] https://cplusplus.com/reference/vector/vector/back/[`back`]
+* [x] https://cplusplus.com/reference/vector/vector/data/[`data`]
+
+.Modifiers
+* [x] https://cplusplus.com/reference/vector/vector/assign/[`assign`]
+** [x] range
+** [x] fill
+* [x] https://cplusplus.com/reference/vector/vector/push_back/[`push_back`]
+* [x] https://cplusplus.com/reference/vector/vector/pop_back/[`pop_back`]
+* [x] https://cplusplus.com/reference/vector/vector/insert/[`insert`]
+** [x] single element
+** [x] fill
+** [x] range
+* [x] https://cplusplus.com/reference/vector/vector/erase/[`erase`]
+* [x] https://cplusplus.com/reference/vector/vector/swap/[`swap`]
+* [x] https://cplusplus.com/reference/vector/vector/clear/[`clear`]
+* [ ] https://cplusplus.com/reference/vector/vector/emplace/[`emplace`]
+* [ ] https://cplusplus.com/reference/vector/vector/emplace_back/[`emplace_back`]
+
+.Allocator
+* [ ] https://cplusplus.com/reference/vector/vector/get_allocator/[`get_allocator`]
+
+=== Reallocation
+
+[blockquote, cplusplus.com]
+____
+Internally, vectors use a dynamically allocated array to store their elements. This array may need to be reallocated in order to grow in size when new elements are inserted, which implies allocating a new array and moving all elements to it. This is a relatively expensive task in terms of processing time, and thus, vectors do not reallocate each time an element is added to the container.
+
+Instead, vector containers may allocate some extra storage to accommodate for possible growth, and thus the container may have an actual capacity greater than the storage strictly needed to contain its elements (i.e., its size). Libraries can implement different strategies for growth to balance between memory usage and reallocations, but in any case, reallocations should only happen at logarithmically growing intervals of size so that the insertion of individual elements at the end of the vector can be provided with amortized constant time complexity (see push_back).
+____
+
+[stem]
+++++
+z(x, y) = x * 2 ^ y
+++++
+
+image::assets/gnuplot.svg[gnuplot]
+
+== Iterator
+
+=== Resources
+
+.cplusplus.com
+* https://cplusplus.com/reference/iterator/[`<iterator>`]
+* https://cplusplus.com/reference/iterator/iterator/[`std::iterator`]
+* https://cplusplus.com/reference/iterator/iterator_traits/[`std::iterator_traits`]
