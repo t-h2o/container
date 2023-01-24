@@ -401,7 +401,7 @@ map<T1, T2>::_print_tree(Node *ptr, size_t level) const
 	for (size_t i = 0; i < level; ++i)
 		std::cout << "    ";
 
-	if (ptr->color.is_red())
+	if (ptr->is_red())
 		std::cout << COL_RED;
 	else
 		std::cout << COL_YEL;
@@ -860,8 +860,7 @@ template <typename T1, typename T2>
 bool
 map<T1, T2>::Node::has_black_children() const
 {
-	return ((!(this->left()) || this->left()->color.is_black())
-			&& (!(this->right()) || this->right()->color.is_black()));
+	return ((!(this->left()) || this->left()->is_black()) && (!(this->right()) || this->right()->is_black()));
 }
 
 template <typename T1, typename T2>
@@ -1006,7 +1005,7 @@ map<T1, T2>::_rbt_checker(void) const
 	if (_root == 0)
 		return;
 
-	if (_root->color.is_red())
+	if (_root->is_red())
 		throw(std::logic_error("Root is red"));
 
 	if (RBT_LOG_CHECKER)
