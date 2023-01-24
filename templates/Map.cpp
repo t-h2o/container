@@ -790,6 +790,20 @@ map<T1, T2>::Node::Node(Node *newparent) : parent(newparent), child{ 0, 0 }
 
 template <typename T1, typename T2>
 void
+map<T1, T2>::Node::set_red(void)
+{
+	color.set_red();
+}
+
+template <typename T1, typename T2>
+void
+map<T1, T2>::Node::set_black(void)
+{
+	color.set_black();
+}
+
+template <typename T1, typename T2>
+void
 map<T1, T2>::Node::flip_color(void)
 {
 	if (color.is_red())

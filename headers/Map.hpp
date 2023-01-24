@@ -57,9 +57,13 @@ template <typename T1, typename T2> class map
 		void color_children_black();
 		void reset_parent(void);
 
-		bool is_leaf() const;
+		void set_black();
+		void set_red();
+
 		bool is_black() const;
 		bool is_red() const;
+
+		bool is_leaf() const;
 		bool has_red_child() const;
 		bool has_black_children() const;
 
