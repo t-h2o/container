@@ -22,7 +22,7 @@ SRCD	=	srcs
 SRCS	=	$(SRCD)/main.cpp
 SRCS	+=	$(SRCD)/color.cpp
 
-SRCS	+=	$(SRCD)/SimpleString.cpp
+SRCS	+=	$(SRCD)/string.cpp
 SRCS	+=	$(SRCD)/SimpleStringIterator.cpp
 
 
@@ -32,7 +32,7 @@ INCD	=	headers
 
 INCS	=	$(INCD)/color.hpp
 
-INCS	+=	$(INCD)/SimpleString.hpp
+INCS	+=	$(INCD)/string.hpp
 INCS	+=	$(INCD)/SimpleStringIterator.hpp
 
 INCS	+=	$(INCD)/TemplateIterator.hpp

@@ -1,5 +1,5 @@
-#include "SimpleString.hpp"
 #include "color.hpp"
+#include "string.hpp"
 
 int
 main(void)
@@ -8,8 +8,8 @@ main(void)
 
 	title("Simple string");
 
-	ft::SimpleString str("hello world");
-	ft::SimpleString str_empty;
+	ft::string str("hello world");
+	ft::string str_empty;
 
 	std::cout << str << std::endl;
 

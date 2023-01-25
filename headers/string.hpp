@@ -10,12 +10,12 @@
 namespace ft
 {
 
-class SimpleString
+class string
 {
   public:
-	SimpleString(void);
-	SimpleString(char const *);
-	~SimpleString(void);
+	string(void);
+	string(char const *);
+	~string(void);
 
 	SimpleStringIterator   begin(void);
 	TemplateIterator<char> end(void);
@@ -30,6 +30,6 @@ class SimpleString
 
 } /* namespace: ft */
 
-std::ostream &operator<<(std::ostream &output, ft::SimpleString const &object);
+std::ostream &operator<<(std::ostream &output, ft::string const &object);
 
 #endif /* SIMPLE_STRING_HPP */
