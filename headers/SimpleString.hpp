@@ -7,6 +7,9 @@
 #include "SimpleStringIterator.hpp"
 #include "TemplateIterator.hpp"
 
+namespace ft
+{
+
 class SimpleString
 {
   public:
@@ -25,6 +28,8 @@ class SimpleString
 	char  *_str;
 };
 
-std::ostream &operator<<(std::ostream &output, SimpleString const &object);
+} /* namespace: ft */
+
+std::ostream &operator<<(std::ostream &output, ft::SimpleString const &object);
 
 #endif /* SIMPLE_STRING_HPP */

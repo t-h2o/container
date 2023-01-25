@@ -8,8 +8,8 @@ main(void)
 
 	title("Simple string");
 
-	SimpleString str("hello world");
-	SimpleString str_empty;
+	ft::SimpleString str("hello world");
+	ft::SimpleString str_empty;
 
 	std::cout << str << std::endl;
 

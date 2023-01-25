@@ -1,8 +1,8 @@
 #include "SimpleString.hpp"
 
-SimpleString::SimpleString(void) : _size(0), _str(0) {}
+ft::SimpleString::SimpleString(void) : _size(0), _str(0) {}
 
-SimpleString::SimpleString(char const *str)
+ft::SimpleString::SimpleString(char const *str)
 {
 	_size = strlen(str) + 1;
 	_str = new char[_size];
@@ -10,34 +10,34 @@ SimpleString::SimpleString(char const *str)
 	strcpy(_str, str);
 }
 
-SimpleString::~SimpleString(void) { delete[] _str; }
+ft::SimpleString::~SimpleString(void) { delete[] _str; }
 
 SimpleStringIterator
-SimpleString::begin(void)
+ft::SimpleString::begin(void)
 {
 	return SimpleStringIterator(_str, 0);
 }
 
 TemplateIterator<char>
-SimpleString::end(void)
+ft::SimpleString::end(void)
 {
 	return TemplateIterator<char>(_str, _size);
 }
 
 char &
-SimpleString::operator[](size_t position)
+ft::SimpleString::operator[](size_t position)
 {
 	return _str[position];
 }
 
 char &
-SimpleString::operator[](size_t position) const
+ft::SimpleString::operator[](size_t position) const
 {
 	return _str[position];
 }
 
 std::ostream &
-operator<<(std::ostream &output, SimpleString const &object)
+operator<<(std::ostream &output, ft::SimpleString const &object)
 {
 	for (size_t i = 0; object[i]; ++i)
 		output << object[i];
