@@ -3,6 +3,22 @@ template <typename T1, typename T2> map<T1, T2>::map(void) : _root(0), _size(0) 
 template <typename T1, typename T2> map<T1, T2>::~map(void) { _free_tree(_root); }
 
 /**
+ * Iterator
+ */
+
+template <typename T1, typename T2>
+typename map<T1, T2>::iterator
+map<T1, T2>::begin(void) const
+{
+	Node *less(_root);
+
+	while (less->left())
+		less = less->left();
+
+	return iterator(less);
+}
+
+/**
  * Capacity
  */
 

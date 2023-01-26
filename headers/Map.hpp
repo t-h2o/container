@@ -87,8 +87,23 @@ template <typename T1, typename T2> class map
 	};
 
   public:
+	class iterator
+	{
+	  public:
+		iterator(void);
+		iterator(Node *);
+
+		pair &operator*(void);
+
+	  private:
+		Node *_actual;
+	};
+
 	explicit map(void);
 	~map(void);
+
+	/* Iterators */
+	iterator begin() const;
 
 	/* Capacity */
 	bool   empty(void) const;
@@ -136,6 +151,7 @@ template <typename T1, typename T2> class map
 };
 
 #include "../templates/Color.cpp"
+#include "../templates/IteratorMap.cpp"
 #include "../templates/Map.cpp"
 #include "../templates/Node.cpp"
 #include "../templates/RBTchecker.cpp"

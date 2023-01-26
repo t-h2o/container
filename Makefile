@@ -47,6 +47,7 @@ INCS	+=	$(INCD)/test.hpp
 TMPD	=	templates
 
 TMPS	=	$(TMPD)/IteratorVector.cpp
+TMPS	=	$(TMPD)/IteratorMap.cpp
 TMPS	+=	$(TMPD)/Map.cpp
 TMPS	+=	$(TMPD)/RBTchecker.cpp
 TMPS	+=	$(TMPD)/Color.cpp
