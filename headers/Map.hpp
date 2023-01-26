@@ -136,6 +136,7 @@ template <typename T1, typename T2> class map
 };
 
 #include "../templates/Map.cpp"
+#include "../templates/Node.cpp"
 
 } /* namespace ft */
 
