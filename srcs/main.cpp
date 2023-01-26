@@ -6,7 +6,7 @@ main(void)
 {
 	title("Main");
 
-	test_map();
+	test_vector();
 
 	return 0;
 }
