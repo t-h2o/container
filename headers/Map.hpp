@@ -90,15 +90,20 @@ template <typename T1, typename T2> class map
 	class iterator
 	{
 	  public:
-		iterator(void);
 		iterator(Node *);
+		iterator(Node *, Node *);
 
 		pair &operator*(void);
 
 		iterator &operator++(void);
 
+		bool operator!=(iterator const &) const;
+
+		T1 &_bigger(Node *) const;
+
 	  private:
 		Node *_actual;
+		Node *_end;
 	};
 
 	explicit map(void);
@@ -125,6 +130,7 @@ template <typename T1, typename T2> class map
   private:
 	Node  *_root;
 	size_t _size;
+	Node  *_end;
 
 	void _free_tree(Node *);
 	void _print_tree(Node *, size_t) const;

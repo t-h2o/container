@@ -1,6 +1,10 @@
-template <typename T1, typename T2> map<T1, T2>::map(void) : _root(0), _size(0) {}
+template <typename T1, typename T2> map<T1, T2>::map(void) : _root(0), _size(0) { _end = new Node(0); }
 
-template <typename T1, typename T2> map<T1, T2>::~map(void) { _free_tree(_root); }
+template <typename T1, typename T2> map<T1, T2>::~map(void)
+{
+	_free_tree(_root);
+	delete _end;
+}
 
 /**
  * Iterator
@@ -15,19 +19,14 @@ map<T1, T2>::begin(void) const
 	while (less->left())
 		less = less->left();
 
-	return iterator(less);
+	return iterator(less, _end);
 }
 
 template <typename T1, typename T2>
 typename map<T1, T2>::iterator
 map<T1, T2>::end(void) const
 {
-	Node *more(_root);
-
-	while (more->right())
-		more = more->right();
-
-	return iterator(more);
+	return iterator(_end);
 }
 
 /**

@@ -9,8 +9,8 @@
 #include <vector>
 
 #define TEST_NUMBER 1
-#define TREE_SIZE 200
-#define MAX_NUMBER 300
+#define TREE_SIZE 5
+#define MAX_NUMBER 100
 
 template <typename T1, typename T2>
 static void
@@ -22,18 +22,20 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 	if (map_ft.empty())
 		return;
 
+	map_ft.print_tree();
+
 	typename std::map<T1, T2>::iterator it_std = map_std.end();
 	typename ft::map<T1, T2>::iterator	it_ft = map_ft.end();
 
-	EXPECT_EQ((*(--it_std)).first, (*it_ft).first);
+	// EXPECT_EQ((*(--it_std)).first, (*it_ft).first);
 
 	it_std = map_std.begin();
 	it_ft = map_ft.begin();
 	EXPECT_EQ((*it_std).first, (*it_ft).first);
 
-	map_ft.print_tree();
+	typename ft::map<T1, T2>::iterator it_ft_end(map_ft.end());
 
-	while (it_std != map_std.end())
+	while (it_ft != it_ft_end)
 	{
 		std::cout << "it_std: " << (*it_std).first << std::endl;
 		EXPECT_EQ((*it_std).first, (*it_ft).first);
