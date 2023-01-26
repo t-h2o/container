@@ -22,8 +22,13 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 	if (map_ft.empty())
 		return;
 
-	typename std::map<T1, T2>::iterator it_std = map_std.begin();
-	typename ft::map<T1, T2>::iterator	it_ft = map_ft.begin();
+	typename std::map<T1, T2>::iterator it_std = map_std.end();
+	typename ft::map<T1, T2>::iterator	it_ft = map_ft.end();
+
+	EXPECT_EQ((*(--it_std)).first, (*it_ft).first);
+
+	it_std = map_std.begin();
+	it_ft = map_ft.begin();
 
 	EXPECT_EQ((*it_std).first, (*it_ft).first);
 

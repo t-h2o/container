@@ -18,6 +18,18 @@ map<T1, T2>::begin(void) const
 	return iterator(less);
 }
 
+template <typename T1, typename T2>
+typename map<T1, T2>::iterator
+map<T1, T2>::end(void) const
+{
+	Node *more(_root);
+
+	while (more->right())
+		more = more->right();
+
+	return iterator(more);
+}
+
 /**
  * Capacity
  */

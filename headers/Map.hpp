@@ -104,6 +104,7 @@ template <typename T1, typename T2> class map
 
 	/* Iterators */
 	iterator begin() const;
+	iterator end() const;
 
 	/* Capacity */
 	bool   empty(void) const;
