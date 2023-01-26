@@ -12,7 +12,7 @@ ft::string::string(char const *str)
 
 ft::string::~string(void) { delete[] _str; }
 
-SimpleStringIterator
+ft::SimpleStringIterator
 ft::string::begin(void)
 {
 	return SimpleStringIterator(_str, 0);

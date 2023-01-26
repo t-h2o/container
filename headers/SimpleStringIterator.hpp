@@ -3,6 +3,9 @@
 
 #include <iostream>
 
+namespace ft
+{
+
 class SimpleStringIterator
 {
   public:
@@ -21,5 +24,7 @@ class SimpleStringIterator
 	char  *_pointer;
 	size_t _position;
 };
+
+} /* namespace: ft */
 
 #endif /* SIMPLE_STRING_ITERATOR_HPP */
