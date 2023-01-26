@@ -48,6 +48,7 @@ TMPD	=	templates
 
 TMPS	=	$(TMPD)/IteratorVector.cpp
 TMPS	+=	$(TMPD)/Map.cpp
+TMPS	+=	$(TMPD)/Color.cpp
 TMPS	+=	$(TMPD)/Node.cpp
 TMPS	+=	$(TMPD)/Pair.cpp
 TMPS	+=	$(TMPD)/Vector.cpp
