@@ -99,7 +99,7 @@ template <typename T1, typename T2> class map
 
 		bool operator!=(iterator const &) const;
 
-		T1 &_bigger(Node *) const;
+		Node *_bigger(Node *) const;
 
 	  private:
 		Node *_actual;

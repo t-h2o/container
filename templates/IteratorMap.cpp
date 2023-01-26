@@ -16,7 +16,7 @@ template <typename T1, typename T2>
 typename map<T1, T2>::iterator &
 map<T1, T2>::iterator::operator++(void)
 {
-	if (_actual->key() == _bigger(_actual))
+	if (_actual->key() == _bigger(_actual)->key())
 	{
 		_actual = _end;
 		return *this;
@@ -66,7 +66,7 @@ map<T1, T2>::iterator::operator!=(iterator const &other) const
  */
 
 template <typename T1, typename T2>
-T1 &
+typename map<T1, T2>::Node *
 map<T1, T2>::iterator::_bigger(Node *big) const
 {
 	while (big->parent)
@@ -75,5 +75,5 @@ map<T1, T2>::iterator::_bigger(Node *big) const
 	while (big->right())
 		big = big->right();
 
-	return big->key();
+	return big;
 }
