@@ -121,7 +121,7 @@ template <typename T> class vector
 /* Extra... */
 template <typename T> std::ostream &operator<<(std::ostream &output, vector<T> const &);
 
-#include "../templates/Iterator.cpp"
+#include "../templates/IteratorVector.cpp"
 #include "../templates/Vector.cpp"
 
 } /* namespace ft */
