@@ -29,8 +29,12 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 
 	it_std = map_std.begin();
 	it_ft = map_ft.begin();
-
 	EXPECT_EQ((*it_std).first, (*it_ft).first);
+
+	if (map_ft.size() < 2)
+		return;
+
+	EXPECT_EQ((*++it_std).first, (*++it_ft).first);
 
 	while (it_std != map_std.end())
 	{

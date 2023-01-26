@@ -95,6 +95,8 @@ template <typename T1, typename T2> class map
 
 		pair &operator*(void);
 
+		iterator &operator++(void);
+
 	  private:
 		Node *_actual;
 	};
