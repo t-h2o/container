@@ -6,19 +6,19 @@
 namespace ft
 {
 
-class SimpleStringIterator
+class iterator
 {
   public:
-	SimpleStringIterator(void);
-	SimpleStringIterator(char *, size_t);
+	iterator(void);
+	iterator(char *, size_t);
 
 	char &operator*(void) const;
 
-	SimpleStringIterator &operator++(void);
-	SimpleStringIterator  operator++(int);
+	iterator &operator++(void);
+	iterator  operator++(int);
 
-	SimpleStringIterator &operator--(void);
-	SimpleStringIterator  operator--(int);
+	iterator &operator--(void);
+	iterator  operator--(int);
 
   private:
 	char  *_pointer;

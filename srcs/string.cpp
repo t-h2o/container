@@ -12,10 +12,10 @@ ft::string::string(char const *str)
 
 ft::string::~string(void) { delete[] _str; }
 
-ft::SimpleStringIterator
+ft::iterator
 ft::string::begin(void)
 {
-	return SimpleStringIterator(_str, 0);
+	return iterator(_str, 0);
 }
 
 TemplateIterator<char>

@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string.h>
 
-#include "SimpleStringIterator.hpp"
 #include "TemplateIterator.hpp"
+#include "iterator.hpp"
 
 namespace ft
 {
@@ -17,7 +17,7 @@ class string
 	string(char const *);
 	~string(void);
 
-	SimpleStringIterator   begin(void);
+	iterator			   begin(void);
 	TemplateIterator<char> end(void);
 
 	char &operator[](size_t);

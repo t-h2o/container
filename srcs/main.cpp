@@ -4,7 +4,7 @@
 int
 main(void)
 {
-	ft::SimpleStringIterator it;
+	ft::iterator it;
 
 	title("Simple string");
 
