@@ -96,6 +96,7 @@ template <typename T1, typename T2> class map
 		pair &operator*(void);
 
 		iterator &operator++(void);
+		iterator &operator--(void);
 
 		bool operator!=(iterator const &) const;
 
