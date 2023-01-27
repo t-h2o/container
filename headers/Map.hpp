@@ -98,6 +98,9 @@ template <typename T1, typename T2> class map
 		iterator &operator++(void);
 		iterator &operator--(void);
 
+		iterator operator++(int);
+		iterator operator--(int);
+
 		bool operator==(iterator const &) const;
 		bool operator!=(iterator const &) const;
 

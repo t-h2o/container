@@ -100,6 +100,28 @@ map<T1, T2>::iterator::operator--(void)
 }
 
 template <typename T1, typename T2>
+typename map<T1, T2>::iterator
+map<T1, T2>::iterator::operator++(int)
+{
+	iterator ret(*this);
+
+	++(*this);
+
+	return ret;
+}
+
+template <typename T1, typename T2>
+typename map<T1, T2>::iterator
+map<T1, T2>::iterator::operator--(int)
+{
+	iterator ret(*this);
+
+	--(*this);
+
+	return ret;
+}
+
+template <typename T1, typename T2>
 bool
 map<T1, T2>::iterator::operator==(iterator const &other) const
 {
