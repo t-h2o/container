@@ -1,6 +1,14 @@
-template <typename T1, typename T2> map<T1, T2>::map(void) : _root(0), _size(0) {}
+template <typename T1, typename T2> map<T1, T2>::map(void) : _root(0), _size(0)
+{
+	_root = new Node *;
+	*_root = 0;
+}
 
-template <typename T1, typename T2> map<T1, T2>::~map(void) { _free_tree(_root); }
+template <typename T1, typename T2> map<T1, T2>::~map(void)
+{
+	_free_tree(*_root);
+	delete _root;
+}
 
 /**
  * Capacity
@@ -64,14 +72,14 @@ template <typename T1, typename T2>
 void
 map<T1, T2>::print_tree(void) const
 {
-	_print_tree(_root, 0);
+	_print_tree(*_root, 0);
 }
 
 template <typename T1, typename T2>
 void
 map<T1, T2>::print(void) const
 {
-	Node *ptr(_root);
+	Node *ptr(*_root);
 
 	std::cout << "map: size = " << _size << std::endl;
 
@@ -117,7 +125,7 @@ map<T1, T2>::_rotate_del(Node *node)
 	}
 	else
 	{
-		_root = node;
+		*_root = node;
 		node->parent = 0;
 	}
 	parent->parent = node;
@@ -202,7 +210,7 @@ map<T1, T2>::_case_2(Node *node, Node *sibling, bool deletion)
 			nodeP->set_black();
 			return 1;
 		}
-		if (_root == nodeP)
+		if (*_root == nodeP)
 			return 1;
 
 		_solve(nodeP, false);
@@ -316,7 +324,7 @@ map<T1, T2>::_erase(Node *node)
 
 		delete node;
 		--_size;
-		_root = 0;
+		*_root = 0;
 		return;
 	}
 
@@ -443,7 +451,7 @@ map<T1, T2>::_binary_search(T1 const &key) const
 {
 	Node *parent;
 
-	parent = _root;
+	parent = *_root;
 	while (parent)
 	{
 		if (key > parent->key())
@@ -491,7 +499,7 @@ map<T1, T2>::_new_node(Node *parent, enum e_side &side)
 	if (parent)
 		parent->child[side] = node;
 	else
-		_root = node;
+		*_root = node;
 
 	return node;
 }
@@ -507,7 +515,7 @@ map<T1, T2>::_swap(Node *one, Node *two)
 	onechild[0] = one->child[0];
 	onechild[1] = one->child[1];
 
-	if (one != _root)
+	if (one != *_root)
 		oneside = one->get_side();
 	Color onecolor(one->color);
 
@@ -518,7 +526,7 @@ map<T1, T2>::_swap(Node *one, Node *two)
 	twochild[0] = two->child[0];
 	twochild[1] = two->child[1];
 
-	if (two != _root)
+	if (two != *_root)
 		twoside = two->get_side();
 	Color twocolor(two->color);
 
@@ -548,9 +556,9 @@ map<T1, T2>::_swap(Node *one, Node *two)
 		two->left() = onechild[LEFT];
 		two->right() = onechild[RIGHT];
 		two->child[twoside] = one;
-		if (_root == one)
+		if (*_root == one)
 		{
-			_root = two;
+			*_root = two;
 			two->parent = 0;
 		}
 		else
@@ -598,14 +606,14 @@ map<T1, T2>::_swap(Node *one, Node *two)
 		// swap two parent
 		two->parent = oneparent;
 
-		if (_root == one)
+		if (*_root == one)
 		{
-			_root = two;
+			*_root = two;
 			twoparent->child[twoside] = one;
 		}
-		else if (_root == two)
+		else if (*_root == two)
 		{
-			_root = one;
+			*_root = one;
 			oneparent->child[oneside] = two;
 		}
 		else
@@ -635,7 +643,7 @@ map<T1, T2>::_rebalance_tree(Node *node)
 	if (RBT_LOG)
 		print_tree();
 
-	if (node == _root)
+	if (node == *_root)
 	{
 		node->set_black();
 		return;
@@ -715,7 +723,7 @@ map<T1, T2>::_rotate(Node *pivot)
 		pivot->child[oSide] = root;
 		pivot->parent = root->parent;
 		if (pivot->parent == 0)
-			_root = pivot;
+			*_root = pivot;
 		else
 		{
 			root->parent->child[root->get_side()] = pivot;
