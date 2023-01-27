@@ -6,10 +6,15 @@
 namespace ft
 {
 
-template <typename T> class stack : public vector<T>
+template <typename T> class stack
 {
   public:
+	/* Member functions */
 	void push(T const &);
+	T	&top(void);
+
+  private:
+	vector<T> _container;
 };
 
 #include "../templates/Stack.cpp"

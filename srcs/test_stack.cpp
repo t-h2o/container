@@ -13,6 +13,8 @@ scenario_one(void)
 	ft::stack<T> asdf;
 
 	asdf.push(42);
+
+	std::cout << "top: " << asdf.top() << std::endl;
 }
 
 void
