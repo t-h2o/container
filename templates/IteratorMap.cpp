@@ -19,7 +19,7 @@ template <typename T1, typename T2>
 typename map<T1, T2>::iterator &
 map<T1, T2>::iterator::operator++(void)
 {
-	if (_actual->key() == _bigger(_actual)->key())
+	if (_actual->dual == _bigger(_actual)->dual)
 	{
 		_actual = _end;
 		return *this;
