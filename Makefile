@@ -37,6 +37,7 @@ INCS	+=	$(INCD)/Awesome.hpp
 
 INCS	+=	$(INCD)/Iterator.hpp
 INCS	+=	$(INCD)/Map.hpp
+INCS	+=	$(INCD)/Pair.hpp
 INCS	+=	$(INCD)/Vector.hpp
 
 INCS	+=	$(INCD)/test.hpp
