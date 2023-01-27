@@ -3,7 +3,7 @@
 NAME	=	program
 
 CC		=	g++
-DB		=	lldb
+DB		=	gdb
 
 CFLAGS	=	-Wall
 CFLAGS	+=	-Wextra
