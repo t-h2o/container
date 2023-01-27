@@ -15,6 +15,12 @@ scenario_one(void)
 	asdf.push(42);
 
 	std::cout << "top: " << asdf.top() << std::endl;
+	std::cout << "size: " << asdf.size() << std::endl;
+
+	asdf.push(422);
+
+	std::cout << "top: " << asdf.top() << std::endl;
+	std::cout << "size: " << asdf.size() << std::endl;
 }
 
 void

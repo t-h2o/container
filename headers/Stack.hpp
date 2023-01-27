@@ -10,8 +10,9 @@ template <typename T> class stack
 {
   public:
 	/* Member functions */
-	void push(T const &);
-	T	&top(void);
+	size_t size(void) const;
+	T	  &top(void) const;
+	void   push(T const &);
 
   private:
 	vector<T> _container;
