@@ -37,6 +37,12 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 	{
 		std::cout << "it_std: " << (*it_std).first << std::endl;
 		EXPECT_EQ((*it_std).first, (*it_ft).first);
+
+		typename ft::map<T1, T2>::iterator it_ft_find = map_ft.find((*it_ft).first);
+		EXPECT_EQ((*it_ft_find).first, (*it_ft).first);
+
+		EXPECT_EQ(map_ft.count((*it_ft).first), map_std.count((*it_std).first));
+
 		it_std++;
 		it_ft++;
 	}
