@@ -17,17 +17,17 @@ template <typename T1, typename T2> class pair
 	pair &operator=(const pair &);
 	pair &operator=(const T2 &);
 
-bool operator==(const pair<T1,T2>& );
+	bool operator==(const pair &);
+	bool operator!=(const pair &);
 
 	void swap(pair &);
 
-	T1	  first;
-	T2	  second;
+	T1 first;
+	T2 second;
 };
 
 /* Extra... */
-template <typename T1, typename T2>
-std::ostream &operator<<(std::ostream &output, pair<T1, T2> const &);
+template <typename T1, typename T2> std::ostream &operator<<(std::ostream &output, pair<T1, T2> const &);
 
 #include "../templates/Pair.cpp"
 

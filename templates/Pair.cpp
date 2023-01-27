@@ -31,9 +31,16 @@ pair<T1, T2>::operator=(T2 const &value)
 
 template <class T1, class T2>
 bool
-pair<T1, T2>::operator==(const pair<T1, T2> &rhs)
+pair<T1, T2>::operator==(const pair<T1, T2> &other)
 {
-	return this->first == rhs.first;
+	return this->first == other.first;
+}
+
+template <class T1, class T2>
+bool
+pair<T1, T2>::operator!=(const pair<T1, T2> &other)
+{
+	return this->first != other.first;
 }
 
 template <typename T1, typename T2>
