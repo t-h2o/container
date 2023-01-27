@@ -42,6 +42,15 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 		++it_std;
 		++it_ft;
 	}
+	--it_std;
+	--it_ft;
+
+	while (it_ft != map_ft.begin())
+	{
+		EXPECT_EQ((*it_std).first, (*it_ft).first);
+		--it_std;
+		--it_ft;
+	}
 }
 
 template <typename T1, typename T2>
