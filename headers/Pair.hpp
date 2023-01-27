@@ -19,6 +19,10 @@ template <typename T1, typename T2> class pair
 
 	bool operator==(const pair &);
 	bool operator!=(const pair &);
+	bool operator<(const pair &);
+	bool operator<=(const pair &);
+	bool operator>(const pair &);
+	bool operator>=(const pair &);
 
 	void swap(pair &);
 

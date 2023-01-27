@@ -43,6 +43,34 @@ pair<T1, T2>::operator!=(const pair<T1, T2> &other)
 	return this->first != other.first;
 }
 
+template <class T1, class T2>
+bool
+pair<T1, T2>::operator<(const pair<T1, T2> &other)
+{
+	return this->first < other.first;
+}
+
+template <class T1, class T2>
+bool
+pair<T1, T2>::operator<=(const pair<T1, T2> &other)
+{
+	return this->first <= other.first;
+}
+
+template <class T1, class T2>
+bool
+pair<T1, T2>::operator>(const pair<T1, T2> &other)
+{
+	return this->first > other.first;
+}
+
+template <class T1, class T2>
+bool
+pair<T1, T2>::operator>=(const pair<T1, T2> &other)
+{
+	return this->first >= other.first;
+}
+
 template <typename T1, typename T2>
 void
 pair<T1, T2>::swap(pair &other)
