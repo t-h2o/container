@@ -128,7 +128,7 @@ template <typename T1, typename T2> class map
 	void print_tree(void) const;
 
   private:
-	Node  *_root;
+	Node **_root;
 	size_t _size;
 	Node  *_end;
 

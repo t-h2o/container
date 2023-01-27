@@ -6,14 +6,14 @@ template <typename T1, typename T2>
 void
 map<T1, T2>::_rbt_checker(void) const
 {
-	Node		*node(_root);
+	Node		*node(*_root);
 	unsigned int black_node;
 	unsigned int total_black_node;
 
-	if (_root == 0)
+	if (*_root == 0)
 		return;
 
-	if (_root->is_red())
+	if ((*_root)->is_red())
 		throw(std::logic_error("Root is red"));
 
 	if (RBT_LOG_CHECKER)
