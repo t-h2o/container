@@ -130,6 +130,10 @@ template <typename T1, typename T2> class map
 	void insert(pair const &);
 	void erase(T1 const &);
 
+	/* Operations */
+	iterator find(T1 const &) const;
+
+	/* Extra */
 	void print(void) const;
 	void print_tree(void) const;
 

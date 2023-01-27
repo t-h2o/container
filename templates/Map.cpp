@@ -90,6 +90,21 @@ map<T1, T2>::erase(T1 const &key)
 }
 
 /**
+ * Operations
+ */
+
+template <typename T1, typename T2>
+typename map<T1, T2>::iterator
+map<T1, T2>::find(T1 const &key) const
+{
+	Node *node(_binary_search(key));
+
+	if (node->key() == key)
+		return iterator(_root, node, _end);
+	return iterator(_root, _end);
+}
+
+/**
  * Extra
  */
 
