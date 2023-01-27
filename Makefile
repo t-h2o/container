@@ -24,6 +24,7 @@ SRCS	+=	$(SRCD)/color.cpp
 SRCS	+=	$(SRCD)/Awesome.cpp
 
 SRCS	+=	$(SRCD)/test_vector.cpp
+SRCS	+=	$(SRCD)/test_stack.cpp
 SRCS	+=	$(SRCD)/test_pair.cpp
 SRCS	+=	$(SRCD)/test_map.cpp
 
@@ -38,6 +39,7 @@ INCS	+=	$(INCD)/Awesome.hpp
 INCS	+=	$(INCD)/Iterator.hpp
 INCS	+=	$(INCD)/Map.hpp
 INCS	+=	$(INCD)/Vector.hpp
+INCS	+=	$(INCD)/Stack.hpp
 
 INCS	+=	$(INCD)/test.hpp
 
@@ -50,6 +52,7 @@ TMPS	=	$(TMPD)/IteratorVector.cpp
 TMPS	+=	$(TMPD)/Map.cpp
 TMPS	+=	$(TMPD)/Pair.cpp
 TMPS	+=	$(TMPD)/Vector.cpp
+TMPS	+=	$(TMPD)/Stack.cpp
 
 
 #	Objets
