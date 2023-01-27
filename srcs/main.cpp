@@ -6,7 +6,7 @@ main(void)
 {
 	title("Main");
 
-	test_vector();
+	test_subject(52);
 
 	return 0;
 }
