@@ -90,8 +90,8 @@ template <typename T1, typename T2> class map
 	class iterator
 	{
 	  public:
-		iterator(Node *);
-		iterator(Node *, Node *);
+		iterator(Node **, Node *);
+		iterator(Node **, Node *, Node *);
 
 		pair &operator*(void);
 
@@ -102,8 +102,9 @@ template <typename T1, typename T2> class map
 		Node *_bigger(Node *) const;
 
 	  private:
-		Node *_actual;
-		Node *_end;
+		Node **_root;
+		Node  *_actual;
+		Node  *_end;
 	};
 
 	explicit map(void);

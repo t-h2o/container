@@ -25,14 +25,14 @@ map<T1, T2>::begin(void) const
 	while (less->left())
 		less = less->left();
 
-	return iterator(less, _end);
+	return iterator(_root, less, _end);
 }
 
 template <typename T1, typename T2>
 typename map<T1, T2>::iterator
 map<T1, T2>::end(void) const
 {
-	return iterator(_end);
+	return iterator(_root, _end);
 }
 
 /**

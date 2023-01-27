@@ -1,7 +1,10 @@
-template <typename T1, typename T2> map<T1, T2>::iterator::iterator(Node *end) : _actual(end), _end(end) {}
+template <typename T1, typename T2>
+map<T1, T2>::iterator::iterator(Node **root, Node *end) : _root(root), _actual(end), _end(end)
+{
+}
 
 template <typename T1, typename T2>
-map<T1, T2>::iterator::iterator(Node *node, Node *end) : _actual(node), _end(end)
+map<T1, T2>::iterator::iterator(Node **root, Node *node, Node *end) : _root(root), _actual(node), _end(end)
 {
 }
 
