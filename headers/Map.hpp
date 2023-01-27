@@ -132,6 +132,7 @@ template <typename T1, typename T2> class map
 
 	/* Operations */
 	iterator find(T1 const &) const;
+	size_t	 count(T1 const &) const;
 
 	/* Extra */
 	void print(void) const;

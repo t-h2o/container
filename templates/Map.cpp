@@ -104,6 +104,17 @@ map<T1, T2>::find(T1 const &key) const
 	return iterator(_root, _end);
 }
 
+template <typename T1, typename T2>
+size_t
+map<T1, T2>::count(T1 const &key) const
+{
+	Node *node(_binary_search(key));
+
+	if (node->key() == key)
+		return 1;
+	return 0;
+}
+
 /**
  * Extra
  */
