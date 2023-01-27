@@ -101,6 +101,13 @@ map<T1, T2>::iterator::operator--(void)
 
 template <typename T1, typename T2>
 bool
+map<T1, T2>::iterator::operator==(iterator const &other) const
+{
+	return this->_actual == other._actual;
+}
+
+template <typename T1, typename T2>
+bool
 map<T1, T2>::iterator::operator!=(iterator const &other) const
 {
 	return !(this->_actual == other._actual);

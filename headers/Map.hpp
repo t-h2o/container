@@ -98,6 +98,7 @@ template <typename T1, typename T2> class map
 		iterator &operator++(void);
 		iterator &operator--(void);
 
+		bool operator==(iterator const &) const;
 		bool operator!=(iterator const &) const;
 
 		Node *_bigger(Node *) const;
