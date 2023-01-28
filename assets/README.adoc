@@ -10,6 +10,8 @@
 @startuml
 skinparam defaultFontName JetBrains Mono
 
+struct iterator
+
 class vector
 
 class map
@@ -22,11 +24,8 @@ class stack {
 	vector _container
 }
 
-struct iterator
-
-iteratorMap <-- iterator
-iteratorVector <-- iterator
-
+iterator <-- iteratorMap
+iterator <-- iteratorVector
 ....
 
 
