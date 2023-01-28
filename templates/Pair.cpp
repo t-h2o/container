@@ -46,6 +46,13 @@ pair<T1, T2>::swap(pair &other)
 	other.second = tmp2;
 }
 
+template <class T1, class T2>
+pair<T1, T2>
+make_pair(T1 x, T2 y)
+{
+	return (pair<T1, T2>(x, y));
+}
+
 template <typename T1, typename T2>
 std::ostream &
 operator<<(std::ostream &output, pair<T1, T2> const &pair)

@@ -23,6 +23,8 @@ template <typename T1, typename T2> class pair
 	T2	  second;
 };
 
+template <class T1, class T2>  pair<T1,T2> make_pair (T1 x, T2 y);
+
 /* Extra... */
 template <typename T1, typename T2>
 std::ostream &operator<<(std::ostream &output, pair<T1, T2> const &);
