@@ -17,6 +17,8 @@ In this project, I want inclure https://en.wikipedia.org/wiki/Unit_testing[unit 
 
 == Global
 
+`std::iterator_trait`:: is a kind of aliase/defitions. For example `T *` become pointer.
+
 === Class
 
 image::assets/global_class.svg[global view]
