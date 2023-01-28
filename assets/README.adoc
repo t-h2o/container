@@ -1,6 +1,18 @@
 = Assets
 :nofooter:
 
+== Global
+
+[plantuml, target=global, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono
+
+package "Standard template library" as stl
+
+@enduml
+....
+
 == Map
 
 [plantuml, target=map_usecase, format=svg, width=100%]
@@ -25,6 +37,8 @@ map  --> rbt
 
 @enduml
 ....
+
+== Vector
 
 [plantuml, target=vector, format=svg, width=100%]
 ....

@@ -15,6 +15,10 @@ GitHub: https://github.com/t-h2o/containers[t-h2o/containers]
 
 In this project, I want inclure https://en.wikipedia.org/wiki/Unit_testing[unit testing] with the https://google.github.io/googletest/[Google test] framework.
 
+== Global
+
+image::assets/global.svg[global view]
+
 == Vector
 
 image::assets/vector.svg[example]
