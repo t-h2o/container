@@ -3,12 +3,67 @@
 
 == Global
 
-[plantuml, target=global, format=svg, width=100%]
+=== Class
+
+[plantuml, target=global_class, format=svg, width=100%]
 ....
 @startuml
 skinparam defaultFontName JetBrains Mono
 
-package "Standard template library" as stl
+class vector
+
+class map
+
+class iteratorMap
+
+class iteratorVector
+
+class stack {
+	vector _container
+}
+
+struct iterator
+
+iteratorMap <-- iterator
+iteratorVector <-- iterator
+
+....
+
+
+=== Components
+
+[plantuml, target=global_comp, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono
+
+package "Standard template library" as stl {
+	package "Sequence containers" {
+		package "vector" {
+			[vector iterator]
+		}
+	}
+
+	package "Container adaptors" {
+		package "stack" {
+			[container vector]
+		}
+
+	}
+
+	package "Associative containers" {
+		package "map" {
+			[map iterator]
+		}
+	}
+
+	package "Iterator traits"
+
+	package "Iterator"
+
+	package "Reverse iterator"
+
+}
 
 @enduml
 ....

@@ -17,7 +17,13 @@ In this project, I want inclure https://en.wikipedia.org/wiki/Unit_testing[unit 
 
 == Global
 
-image::assets/global.svg[global view]
+=== Class
+
+image::assets/global_class.svg[global view]
+
+=== Component
+
+image::assets/global_comp.svg[global view]
 
 == Vector
 
