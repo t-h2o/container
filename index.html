@@ -467,7 +467,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_resources_4">6.1. Resources</a></li>
 <li><a href="#_check_list_3">6.2. Check-list</a></li>
-<li><a href="#_red_black_tree">6.3. Red black tree</a></li>
 </ul>
 </li>
 </ul>
@@ -1020,115 +1019,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>&#10063; <a href="https://cplusplus.com/reference/map/map/get_allocator"><code>get_allocator</code></a></p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_red_black_tree">6.3. Red black tree</h3>
-<div class="sect3">
-<h4 id="_deletion">6.3.1. Deletion</h4>
-<div class="imageblock">
-<div class="content">
-<img src="assets/rbt_delete.svg" alt="redblack delete">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_resolve_double_black">6.3.2. resolve double black</h4>
-<div class="imageblock">
-<div class="content">
-<img src="assets/resolve_double_black.svg" alt="redblack delete">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_rules">6.3.3. Rules</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>The root is always black</p>
-</li>
-<li>
-<p>Not two consecutives node can be red</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For a node:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="assets/node.svg" alt="redblack">
-</div>
-</div>
-<div class="paragraph">
-<p>Here an example of a red black tree</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Case 0: Init, the first node is black</p>
-<div class="imageblock">
-<div class="content">
-<img src="assets/rbt00.svg" alt="redblack">
-</div>
-</div>
-</li>
-<li>
-<p>Insert: Add a second node</p>
-<div class="paragraph">
-<p>The key (5) is smaller than the node key (15), so we set it into the left</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="assets/rbt10.svg" alt="redblack">
-</div>
-</div>
-<div class="paragraph">
-<p>We recolor the new node (5) to red</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="assets/rbt11.svg" alt="redblack">
-</div>
-</div>
-</li>
-<li>
-<p>Add a third node</p>
-<div class="paragraph">
-<p>The key (1) is smaller than the node key (15): go to the left. The key (1) is smaller than (5), so we set it into the left.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="assets/rbt20.svg" alt="redblack">
-</div>
-</div>
-<div class="paragraph">
-<p>The uncle of the new node is NULL</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="assets/rbt21.svg" alt="redblack">
-</div>
-</div>
-<div class="paragraph">
-<p>We rotate</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="assets/rbt22.svg" alt="redblack">
-</div>
-</div>
-<div class="paragraph">
-<p>We recolor</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="assets/rbt23.svg" alt="redblack">
-</div>
-</div>
-</li>
-</ol>
-</div>
 </div>
 </div>
 </div>
