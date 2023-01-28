@@ -99,8 +99,6 @@ ____
 z(x, y) = x * 2 ^ y
 ++++
 
-image::assets/gnuplot.svg[gnuplot]
-
 == Iterator
 
 === Resources
