@@ -110,6 +110,9 @@ image::assets/gnuplot.svg[gnuplot]
 * https://cplusplus.com/reference/iterator/iterator/[`std::iterator`]
 * https://cplusplus.com/reference/iterator/iterator_traits/[`std::iterator_traits`]
 
+.The STL: on GNU/Linux
+* `/usr/include/c++/12.2.1/bits/stl_iterator_base_types.h`
+
 == Pair
 
 === Resources
