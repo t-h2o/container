@@ -21,6 +21,22 @@ scenario_one(void)
 
 	std::cout << "top: " << asdf.top() << std::endl;
 	std::cout << "size: " << asdf.size() << std::endl;
+
+	{
+		ft::stack<T> jkl(asdf);
+
+		jkl.pop();
+
+		std::cout << "jkl top: " << jkl.top() << std::endl;
+		std::cout << "jkl size: " << jkl.size() << std::endl;
+
+		jkl.swap(asdf);
+	}
+
+	asdf.pop();
+
+	std::cout << "top: " << asdf.top() << std::endl;
+	std::cout << "size: " << asdf.size() << std::endl;
 }
 
 void
