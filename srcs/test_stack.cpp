@@ -8,35 +8,71 @@
 
 template <typename T>
 static void
+is_equal(ft::stack<T> &stack_ft, std::stack<T> &stack_std)
+{
+	EXPECT_EQ(stack_std.empty(), stack_ft.empty());
+	EXPECT_EQ(stack_std.size(), stack_ft.size());
+	EXPECT_EQ(stack_std.top(), stack_ft.top());
+}
+
+template <typename T>
+static void
+add_ten(ft::stack<T> &stack_ft, std::stack<T> &stack_std)
+{
+	for (int i = 0; i < 10; ++i)
+	{
+		stack_ft.push(static_cast<T>(i));
+		stack_std.push(static_cast<T>(i));
+
+		is_equal(stack_ft, stack_std);
+	}
+}
+
+template <typename T>
+static void
 scenario_one(void)
 {
-	ft::stack<T> asdf;
+	ft::stack<T>  stack_ft;
+	std::stack<T> stack_std;
 
-	asdf.push(42);
+	add_ten(stack_ft, stack_std);
 
-	std::cout << "top: " << asdf.top() << std::endl;
-	std::cout << "size: " << asdf.size() << std::endl;
+	stack_ft.push(42);
+	stack_std.push(42);
+	is_equal(stack_ft, stack_std);
 
-	asdf.push(422);
-
-	std::cout << "top: " << asdf.top() << std::endl;
-	std::cout << "size: " << asdf.size() << std::endl;
+	stack_ft.push(1234);
+	stack_std.push(1234);
+	is_equal(stack_ft, stack_std);
 
 	{
-		ft::stack<T> jkl(asdf);
+		ft::stack<T>  ft_copy(stack_ft);
+		std::stack<T> std_copy(stack_std);
 
-		jkl.pop();
+		ft_copy.pop();
+		std_copy.pop();
+		is_equal(ft_copy, std_copy);
+		is_equal(stack_ft, stack_std);
 
-		std::cout << "jkl top: " << jkl.top() << std::endl;
-		std::cout << "jkl size: " << jkl.size() << std::endl;
+		ft_copy.swap(stack_ft);
+		std_copy.swap(stack_std);
+		is_equal(ft_copy, std_copy);
+		is_equal(stack_ft, stack_std);
 
-		jkl.swap(asdf);
+		ft_copy.pop();
+		std_copy.pop();
+		is_equal(ft_copy, std_copy);
+		is_equal(stack_ft, stack_std);
+
+		ft_copy.swap(stack_ft);
+		std_copy.swap(stack_std);
+		is_equal(ft_copy, std_copy);
+		is_equal(stack_ft, stack_std);
 	}
 
-	asdf.pop();
-
-	std::cout << "top: " << asdf.top() << std::endl;
-	std::cout << "size: " << asdf.size() << std::endl;
+	stack_ft.pop();
+	stack_std.pop();
+	is_equal(stack_ft, stack_std);
 }
 
 void
