@@ -8,5 +8,9 @@ main(void)
 
 	test_vector();
 
+	std::iterator_traits<int *> traits;
+
+	(void)traits;
+
 	return 0;
 }
