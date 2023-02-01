@@ -18,7 +18,7 @@
 namespace ft
 {
 
-template <typename T> class vector
+template <typename T, typename Alloc = std::allocator<T> > class vector
 {
   public:
 	typedef ft::random_access_iterator<T> iterator;

@@ -4,9 +4,10 @@
  * Member Funcion
  */
 
-template <typename T> vector<T>::vector(void) : _list(0), _size(0), _allocated(0) {}
+template <typename T, typename Alloc> vector<T, Alloc>::vector(void) : _list(0), _size(0), _allocated(0) {}
 
-template <typename T> vector<T>::vector(size_t nElements, const T &value) : _list(0), _size(0), _allocated(0)
+template <typename T, typename Alloc>
+vector<T, Alloc>::vector(size_t nElements, const T &value) : _list(0), _size(0), _allocated(0)
 {
 	if (nElements == 0)
 		return;
@@ -16,7 +17,8 @@ template <typename T> vector<T>::vector(size_t nElements, const T &value) : _lis
 	_construct_value(value);
 }
 
-template <typename T> vector<T>::vector(iterator first, iterator last) : _list(0), _size(0), _allocated(0)
+template <typename T, typename Alloc>
+vector<T, Alloc>::vector(iterator first, iterator last) : _list(0), _size(0), _allocated(0)
 {
 	std::ptrdiff_t length;
 
@@ -29,20 +31,21 @@ template <typename T> vector<T>::vector(iterator first, iterator last) : _list(0
 	_construct_range(this->data(), first, last);
 }
 
-template <typename T> vector<T>::vector(vector const &other) : _list(0), _size(0), _allocated(0)
+template <typename T, typename Alloc>
+vector<T, Alloc>::vector(vector const &other) : _list(0), _size(0), _allocated(0)
 {
 	*this = other;
 }
 
-template <typename T> vector<T>::~vector(void)
+template <typename T, typename Alloc> vector<T, Alloc>::~vector(void)
 {
 	this->clear();
 	this->_allocator.deallocate(this->_list, this->_allocated);
 }
 
-template <typename T>
-vector<T> &
-vector<T>::operator=(vector const &other)
+template <typename T, typename Alloc>
+vector<T, Alloc> &
+vector<T, Alloc>::operator=(vector const &other)
 {
 	if (this == &other)
 		return *this;
@@ -64,16 +67,16 @@ vector<T>::operator=(vector const &other)
 	return *this;
 }
 
-template <typename T>
-typename vector<T>::iterator
-vector<T>::begin(void)
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::iterator
+vector<T, Alloc>::begin(void)
 {
 	return iterator(this->_list, 0);
 }
 
-template <typename T>
-typename vector<T>::iterator
-vector<T>::end(void)
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::iterator
+vector<T, Alloc>::end(void)
 {
 	return iterator(this->_list, this->_size);
 }
@@ -82,23 +85,23 @@ vector<T>::end(void)
  * Capacity
  */
 
-template <typename T>
+template <typename T, typename Alloc>
 size_t
-vector<T>::size(void) const
+vector<T, Alloc>::size(void) const
 {
 	return this->_size;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 size_t
-vector<T>::max_size(void) const
+vector<T, Alloc>::max_size(void) const
 {
 	return this->_allocator.max_size();
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::resize(size_t newSize)
+vector<T, Alloc>::resize(size_t newSize)
 {
 	T *newList;
 
@@ -134,9 +137,9 @@ vector<T>::resize(size_t newSize)
 	this->_list = newList;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 size_t
-vector<T>::capacity(void) const
+vector<T, Alloc>::capacity(void) const
 {
 	return this->_allocated;
 }
@@ -145,16 +148,16 @@ vector<T>::capacity(void) const
  *  Returns true if the %vector is empty.  (Thus begin() would
  *  equal end().)
  */
-template <typename T>
+template <typename T, typename Alloc>
 bool
-vector<T>::empty(void) const
+vector<T, Alloc>::empty(void) const
 {
 	return !(this->_size);
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::reserve(size_t newAllocation)
+vector<T, Alloc>::reserve(size_t newAllocation)
 {
 	T *newList;
 
@@ -170,9 +173,9 @@ vector<T>::reserve(size_t newAllocation)
 	this->_list = newList;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::shrink_to_fit(void)
+vector<T, Alloc>::shrink_to_fit(void)
 {
 	size_t newAllocation;
 	T	  *newList;
@@ -192,39 +195,39 @@ vector<T>::shrink_to_fit(void)
  * Element access
  */
 
-template <typename T>
+template <typename T, typename Alloc>
 T &
-vector<T>::operator[](size_t position) const
+vector<T, Alloc>::operator[](size_t position) const
 {
 	return this->_list[position];
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 T &
-vector<T>::at(size_t position) const
+vector<T, Alloc>::at(size_t position) const
 {
 	if (this->size() <= position)
 		throw out_of_range();
 	return (*this)[position];
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 T &
-vector<T>::front(void) const
+vector<T, Alloc>::front(void) const
 {
 	return this->_list[0];
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 T &
-vector<T>::back(void) const
+vector<T, Alloc>::back(void) const
 {
 	return this->_list[this->_size - 1];
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 T *
-vector<T>::data(void) const
+vector<T, Alloc>::data(void) const
 {
 	return this->_list;
 }
@@ -233,9 +236,9 @@ vector<T>::data(void) const
  * Modifiers
  */
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::assign(size_t nElements, T value)
+vector<T, Alloc>::assign(size_t nElements, T value)
 {
 
 	if (this->_list == 0)
@@ -267,9 +270,9 @@ vector<T>::assign(size_t nElements, T value)
 	}
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::assign(iterator first, iterator last)
+vector<T, Alloc>::assign(iterator first, iterator last)
 {
 	std::ptrdiff_t length;
 
@@ -314,9 +317,9 @@ vector<T>::assign(iterator first, iterator last)
  *  done in constant time if the %vector has preallocated space
  *  available.
  */
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::push_back(T const &object)
+vector<T, Alloc>::push_back(T const &object)
 {
 	T	  *newList;
 	size_t newAllocation;
@@ -355,9 +358,9 @@ vector<T>::push_back(T const &object)
  *  data is needed, it should be retrieved before pop_back() is
  *  called.
  */
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::pop_back(void)
+vector<T, Alloc>::pop_back(void)
 {
 	if (this->empty())
 		return;
@@ -366,9 +369,9 @@ vector<T>::pop_back(void)
 	--this->_size;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::insert(iterator position, const T &value)
+vector<T, Alloc>::insert(iterator position, const T &value)
 {
 	T	  *newList;
 	size_t i;
@@ -406,9 +409,9 @@ vector<T>::insert(iterator position, const T &value)
 	this->_size++;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::insert(iterator position, size_t number, const T &value)
+vector<T, Alloc>::insert(iterator position, size_t number, const T &value)
 {
 	size_t i;
 	T	  *newList;
@@ -462,9 +465,9 @@ vector<T>::insert(iterator position, size_t number, const T &value)
 	}
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::insert(iterator position, iterator first, iterator last)
+vector<T, Alloc>::insert(iterator position, iterator first, iterator last)
 {
 	std::ptrdiff_t length;
 	size_t		   i;
@@ -522,9 +525,9 @@ vector<T>::insert(iterator position, iterator first, iterator last)
 	}
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::erase(iterator position)
+vector<T, Alloc>::erase(iterator position)
 {
 	T *newList;
 
@@ -550,9 +553,9 @@ vector<T>::erase(iterator position)
 	this->_list = newList;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::erase(iterator first, iterator last)
+vector<T, Alloc>::erase(iterator first, iterator last)
 {
 	T *newList;
 
@@ -580,9 +583,9 @@ vector<T>::erase(iterator first, iterator last)
 	this->_list = newList;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::swap(vector &other)
+vector<T, Alloc>::swap(vector &other)
 {
 	T	  *tmpList;
 	size_t tmpAllocated;
@@ -601,9 +604,9 @@ vector<T>::swap(vector &other)
 	other._size = tmpSize;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::clear(void)
+vector<T, Alloc>::clear(void)
 {
 	if (this->empty())
 		return;
@@ -617,25 +620,25 @@ vector<T>::clear(void)
  * Extra...
  */
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::_destroy_all(void)
+vector<T, Alloc>::_destroy_all(void)
 {
 	for (size_t i = 0; i < this->_size; ++i)
 		this->_allocator.destroy(&((*this)[i]));
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::_construct_value(const T &value)
+vector<T, Alloc>::_construct_value(const T &value)
 {
 	for (size_t i = 0; i < this->_size; i++)
 		this->_allocator.construct(&(this->_list[i]), value);
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::_construct_range(T *list, iterator first, iterator last)
+vector<T, Alloc>::_construct_range(T *list, iterator first, iterator last)
 {
 	size_t index;
 
@@ -644,9 +647,9 @@ vector<T>::_construct_range(T *list, iterator first, iterator last)
 		this->_allocator.construct(&(list[index++]), *first);
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 T *
-vector<T>::_gen_new_list(size_t newAllocation)
+vector<T, Alloc>::_gen_new_list(size_t newAllocation)
 {
 	T *newList;
 
@@ -659,18 +662,18 @@ vector<T>::_gen_new_list(size_t newAllocation)
 	return newList;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::_first_allocation(size_t newAllocation)
+vector<T, Alloc>::_first_allocation(size_t newAllocation)
 {
 	this->_allocated = newAllocation;
 	this->_size = newAllocation;
 	this->_list = this->_allocator.allocate(this->_allocated);
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 size_t
-vector<T>::_new_size(size_t minimum) const
+vector<T, Alloc>::_new_size(size_t minimum) const
 {
 	if (this->_allocated * 2 > minimum)
 		return this->_allocated * 2;
