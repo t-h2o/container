@@ -33,9 +33,9 @@ template <typename T, typename Alloc = std::allocator<T> > class vector
 	typedef ft::random_access_iterator<T> iterator;
 
 	/* Member Funcion */
-	explicit vector(void);
-	explicit vector(size_type, const_reference);
-	vector(iterator, iterator);
+	explicit vector(const allocator_type &alloc = allocator_type());
+	explicit vector(size_type, const_reference, const allocator_type &alloc = allocator_type());
+	vector(iterator, iterator, const allocator_type &alloc = allocator_type());
 	vector(vector const &);
 	~vector(void);
 	vector &operator=(vector const &);

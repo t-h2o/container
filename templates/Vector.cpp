@@ -4,10 +4,14 @@
  * Member Funcion
  */
 
-template <typename T, typename Alloc> vector<T, Alloc>::vector(void) : _list(0), _size(0), _allocated(0) {}
+template <typename T, typename Alloc>
+vector<T, Alloc>::vector(const allocator_type &alloc) : _list(0), _size(0), _allocated(0), _allocator(alloc)
+{
+}
 
 template <typename T, typename Alloc>
-vector<T, Alloc>::vector(size_type nElements, const_reference value) : _list(0), _size(0), _allocated(0)
+vector<T, Alloc>::vector(size_type nElements, const_reference value, const allocator_type &alloc)
+	: _list(0), _size(0), _allocated(0), _allocator(alloc)
 {
 	if (nElements == 0)
 		return;
@@ -18,7 +22,8 @@ vector<T, Alloc>::vector(size_type nElements, const_reference value) : _list(0),
 }
 
 template <typename T, typename Alloc>
-vector<T, Alloc>::vector(iterator first, iterator last) : _list(0), _size(0), _allocated(0)
+vector<T, Alloc>::vector(iterator first, iterator last, const allocator_type &alloc)
+	: _list(0), _size(0), _allocated(0), _allocator(alloc)
 {
 	std::ptrdiff_t length;
 
