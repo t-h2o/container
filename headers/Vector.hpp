@@ -21,7 +21,10 @@ namespace ft
 template <typename T, typename Alloc = std::allocator<T> > class vector
 {
   public:
-	typedef Alloc						  allocator_type;
+	typedef Alloc allocator_type;
+
+	typedef typename allocator_type::pointer pointer;
+
 	typedef ft::random_access_iterator<T> iterator;
 
 	/* Member Funcion */
@@ -46,11 +49,11 @@ template <typename T, typename Alloc = std::allocator<T> > class vector
 	void   shrink_to_fit(void);
 
 	/* Element access */
-	T &operator[](size_t) const;
-	T &at(size_t) const;
-	T &front(void) const;
-	T &back(void) const;
-	T *data(void) const;
+	T	   &operator[](size_t) const;
+	T	   &at(size_t) const;
+	T	   &front(void) const;
+	T	   &back(void) const;
+	pointer data(void) const;
 
 	/* Modifiers */
 	void assign(size_t, T);
@@ -84,12 +87,12 @@ template <typename T, typename Alloc = std::allocator<T> > class vector
 
 	void _destroy_all(void);
 	void _construct_value(const T &);
-	void _construct_range(T *, iterator first, iterator last);
+	void _construct_range(pointer, iterator first, iterator last);
 	void _first_allocation(size_t);
 
 	size_t _new_size(size_t) const;
 
-	T *_gen_new_list(size_t);
+	pointer _gen_new_list(size_t);
 };
 
 /* Extra... */

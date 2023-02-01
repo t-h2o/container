@@ -103,7 +103,7 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::resize(size_t newSize)
 {
-	T *newList;
+	pointer newList;
 
 	size_t newAllocation;
 
@@ -159,7 +159,7 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::reserve(size_t newAllocation)
 {
-	T *newList;
+	pointer newList;
 
 	if (newAllocation <= this->_allocated)
 		return;
@@ -226,7 +226,7 @@ vector<T, Alloc>::back(void) const
 }
 
 template <typename T, typename Alloc>
-T *
+typename vector<T, Alloc>::pointer
 vector<T, Alloc>::data(void) const
 {
 	return this->_list;
@@ -529,7 +529,7 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::erase(iterator position)
 {
-	T *newList;
+	pointer newList;
 
 	if (position == this->end() - 1)
 	{
@@ -557,7 +557,7 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::erase(iterator first, iterator last)
 {
-	T *newList;
+	pointer newList;
 
 	if (last == this->end())
 	{
@@ -638,7 +638,7 @@ vector<T, Alloc>::_construct_value(const T &value)
 
 template <typename T, typename Alloc>
 void
-vector<T, Alloc>::_construct_range(T *list, iterator first, iterator last)
+vector<T, Alloc>::_construct_range(pointer list, iterator first, iterator last)
 {
 	size_t index;
 
@@ -648,10 +648,10 @@ vector<T, Alloc>::_construct_range(T *list, iterator first, iterator last)
 }
 
 template <typename T, typename Alloc>
-T *
+typename vector<T, Alloc>::pointer
 vector<T, Alloc>::_gen_new_list(size_t newAllocation)
 {
-	T *newList;
+	pointer newList;
 
 	newList = this->_allocator.allocate(newAllocation);
 	for (size_t i = 0; i < this->_size; ++i)
