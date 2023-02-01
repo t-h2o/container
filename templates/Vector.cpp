@@ -178,7 +178,7 @@ void
 vector<T, Alloc>::shrink_to_fit(void)
 {
 	size_type newAllocation;
-	T		 *newList;
+	pointer	  newList;
 
 	if (this->_allocated == this->_size)
 		return;
@@ -321,7 +321,7 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::push_back(T const &object)
 {
-	T		 *newList;
+	pointer	  newList;
 	size_type newAllocation;
 
 	if (this->_list == 0)
@@ -373,7 +373,7 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::insert(iterator position, const_reference value)
 {
-	T		 *newList;
+	pointer	  newList;
 	size_type i;
 	size_type newAllocation;
 
@@ -414,7 +414,7 @@ void
 vector<T, Alloc>::insert(iterator position, size_type number, const_reference value)
 {
 	size_type i;
-	T		 *newList;
+	pointer	  newList;
 	size_type newAllocation;
 
 	if (this->_size + number < this->_allocated)
@@ -471,7 +471,7 @@ vector<T, Alloc>::insert(iterator position, iterator first, iterator last)
 {
 	std::ptrdiff_t length;
 	size_type	   i;
-	T			  *newList;
+	pointer		   newList;
 	size_type	   newAllocation;
 
 	length = last - first;
@@ -587,7 +587,7 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::swap(vector &other)
 {
-	T		 *tmpList;
+	pointer	  tmpList;
 	size_type tmpAllocated;
 	size_type tmpSize;
 

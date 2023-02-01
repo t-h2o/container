@@ -82,7 +82,7 @@ template <typename T, typename Alloc = std::allocator<T> > class vector
 	};
 
   private:
-	T		 *_list;
+	pointer	  _list;
 	size_type _size;
 	size_type _allocated;
 
