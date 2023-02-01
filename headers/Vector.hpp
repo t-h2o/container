@@ -23,14 +23,15 @@ template <typename T, typename Alloc = std::allocator<T> > class vector
   public:
 	typedef Alloc allocator_type;
 
-	typedef typename allocator_type::pointer   pointer;
-	typedef typename allocator_type::reference reference;
+	typedef typename allocator_type::pointer		 pointer;
+	typedef typename allocator_type::reference		 reference;
+	typedef typename allocator_type::const_reference const_reference;
 
 	typedef ft::random_access_iterator<T> iterator;
 
 	/* Member Funcion */
 	explicit vector(void);
-	explicit vector(size_t, const T &);
+	explicit vector(size_t, const_reference);
 	vector(iterator, iterator);
 	vector(vector const &);
 	~vector(void);
@@ -61,8 +62,8 @@ template <typename T, typename Alloc = std::allocator<T> > class vector
 	void assign(iterator, iterator);
 	void push_back(T const &);
 	void pop_back(void);
-	void insert(iterator, const T &);
-	void insert(iterator, size_t, const T &);
+	void insert(iterator, const_reference);
+	void insert(iterator, size_t, const_reference);
 	void insert(iterator, iterator, iterator);
 	void erase(iterator);
 	void erase(iterator, iterator);
@@ -87,7 +88,7 @@ template <typename T, typename Alloc = std::allocator<T> > class vector
 	allocator_type _allocator;
 
 	void _destroy_all(void);
-	void _construct_value(const T &);
+	void _construct_value(const_reference);
 	void _construct_range(pointer, iterator first, iterator last);
 	void _first_allocation(size_t);
 

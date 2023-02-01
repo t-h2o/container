@@ -7,7 +7,7 @@
 template <typename T, typename Alloc> vector<T, Alloc>::vector(void) : _list(0), _size(0), _allocated(0) {}
 
 template <typename T, typename Alloc>
-vector<T, Alloc>::vector(size_t nElements, const T &value) : _list(0), _size(0), _allocated(0)
+vector<T, Alloc>::vector(size_t nElements, const_reference value) : _list(0), _size(0), _allocated(0)
 {
 	if (nElements == 0)
 		return;
@@ -371,7 +371,7 @@ vector<T, Alloc>::pop_back(void)
 
 template <typename T, typename Alloc>
 void
-vector<T, Alloc>::insert(iterator position, const T &value)
+vector<T, Alloc>::insert(iterator position, const_reference value)
 {
 	T	  *newList;
 	size_t i;
@@ -411,7 +411,7 @@ vector<T, Alloc>::insert(iterator position, const T &value)
 
 template <typename T, typename Alloc>
 void
-vector<T, Alloc>::insert(iterator position, size_t number, const T &value)
+vector<T, Alloc>::insert(iterator position, size_t number, const_reference value)
 {
 	size_t i;
 	T	  *newList;
@@ -630,7 +630,7 @@ vector<T, Alloc>::_destroy_all(void)
 
 template <typename T, typename Alloc>
 void
-vector<T, Alloc>::_construct_value(const T &value)
+vector<T, Alloc>::_construct_value(const_reference value)
 {
 	for (size_t i = 0; i < this->_size; i++)
 		this->_allocator.construct(&(this->_list[i]), value);
