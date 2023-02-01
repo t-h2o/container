@@ -1,20 +1,20 @@
 template <typename T> random_access_iterator<T>::random_access_iterator(void) : _pointer(0), _position(0) {}
 
 template <typename T>
-random_access_iterator<T>::random_access_iterator(T *pointer, size_t position)
+random_access_iterator<T>::random_access_iterator(pointer pointer, size_t position)
 	: _pointer(pointer), _position(position)
 {
 }
 
 template <typename T>
-T &
+typename random_access_iterator<T>::reference
 random_access_iterator<T>::operator*(void)
 {
 	return this->_pointer[_position];
 }
 
 template <typename T>
-T &
+typename random_access_iterator<T>::reference
 random_access_iterator<T>::operator[](size_t position)
 {
 	return this->_pointer[_position + position];
@@ -117,7 +117,7 @@ random_access_iterator<T>::operator-(const long remove)
 }
 
 template <typename T>
-std::ptrdiff_t
+typename random_access_iterator<T>::difference_type
 random_access_iterator<T>::operator-(random_access_iterator const &other)
 {
 	return this->_position - other._position;
