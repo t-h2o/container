@@ -61,6 +61,23 @@ struct iterator
 	typedef _Reference reference;
 };
 
+/**
+ *  @brief  Traits class for iterators.
+ *
+ *  This class does nothing but define nested typedefs.  The general
+ *  version simply @a forwards the nested typedefs from the Iterator
+ *  argument.  Specialized versions for pointers and pointers-to-const
+ *  provide tighter, more correct semantics.
+ */
+template <typename _Iterator> struct iterator_traits
+{
+	typedef typename _Iterator::iterator_category iterator_category;
+	typedef typename _Iterator::value_type		  value_type;
+	typedef typename _Iterator::difference_type	  difference_type;
+	typedef typename _Iterator::pointer			  pointer;
+	typedef typename _Iterator::reference		  reference;
+};
+
 } /* namespace ft */
 
 #endif /* ITERATOR_HPP */

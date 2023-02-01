@@ -4,9 +4,14 @@
  * Member Funcion
  */
 
-template <typename T> vector<T>::vector(void) : _list(0), _size(0), _allocated(0) {}
+template <typename T, typename Alloc>
+vector<T, Alloc>::vector(const allocator_type &alloc) : _list(0), _size(0), _allocated(0), _allocator(alloc)
+{
+}
 
-template <typename T> vector<T>::vector(size_t nElements, const T &value) : _list(0), _size(0), _allocated(0)
+template <typename T, typename Alloc>
+vector<T, Alloc>::vector(size_type nElements, const_reference value, const allocator_type &alloc)
+	: _list(0), _size(0), _allocated(0), _allocator(alloc)
 {
 	if (nElements == 0)
 		return;
@@ -16,9 +21,11 @@ template <typename T> vector<T>::vector(size_t nElements, const T &value) : _lis
 	_construct_value(value);
 }
 
-template <typename T> vector<T>::vector(iterator first, iterator last) : _list(0), _size(0), _allocated(0)
+template <typename T, typename Alloc>
+vector<T, Alloc>::vector(iterator first, iterator last, const allocator_type &alloc)
+	: _list(0), _size(0), _allocated(0), _allocator(alloc)
 {
-	std::ptrdiff_t length;
+	difference_type length;
 
 	length = last - first;
 	if (length == 0)
@@ -29,20 +36,21 @@ template <typename T> vector<T>::vector(iterator first, iterator last) : _list(0
 	_construct_range(this->data(), first, last);
 }
 
-template <typename T> vector<T>::vector(vector const &other) : _list(0), _size(0), _allocated(0)
+template <typename T, typename Alloc>
+vector<T, Alloc>::vector(vector const &other) : _list(0), _size(0), _allocated(0)
 {
 	*this = other;
 }
 
-template <typename T> vector<T>::~vector(void)
+template <typename T, typename Alloc> vector<T, Alloc>::~vector(void)
 {
 	this->clear();
 	this->_allocator.deallocate(this->_list, this->_allocated);
 }
 
-template <typename T>
-vector<T> &
-vector<T>::operator=(vector const &other)
+template <typename T, typename Alloc>
+vector<T, Alloc> &
+vector<T, Alloc>::operator=(vector const &other)
 {
 	if (this == &other)
 		return *this;
@@ -56,7 +64,7 @@ vector<T>::operator=(vector const &other)
 	this->_size = other._size;
 	this->_allocated = other._size;
 
-	for (size_t i = 0; i < other._size; ++i)
+	for (size_type i = 0; i < other._size; ++i)
 	{
 		this->_allocator.construct(&(*this)[i], other[i]);
 	}
@@ -64,16 +72,16 @@ vector<T>::operator=(vector const &other)
 	return *this;
 }
 
-template <typename T>
-typename vector<T>::iterator
-vector<T>::begin(void)
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::iterator
+vector<T, Alloc>::begin(void)
 {
 	return iterator(this->_list, 0);
 }
 
-template <typename T>
-typename vector<T>::iterator
-vector<T>::end(void)
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::iterator
+vector<T, Alloc>::end(void)
 {
 	return iterator(this->_list, this->_size);
 }
@@ -82,31 +90,31 @@ vector<T>::end(void)
  * Capacity
  */
 
-template <typename T>
-size_t
-vector<T>::size(void) const
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::size_type
+vector<T, Alloc>::size(void) const
 {
 	return this->_size;
 }
 
-template <typename T>
-size_t
-vector<T>::max_size(void) const
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::size_type
+vector<T, Alloc>::max_size(void) const
 {
 	return this->_allocator.max_size();
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::resize(size_t newSize)
+vector<T, Alloc>::resize(size_type newSize)
 {
-	T *newList;
+	pointer newList;
 
-	size_t newAllocation;
+	size_type newAllocation;
 
 	if (newSize < this->_allocated)
 	{
-		size_t i = this->_size;
+		size_type i = this->_size;
 		while (i >= newSize)
 		{
 			this->_allocator.destroy(&(this->_list[i--]));
@@ -118,7 +126,7 @@ vector<T>::resize(size_t newSize)
 
 	newList = this->_allocator.allocate(newAllocation);
 
-	for (size_t i = 0; i < newSize; i++)
+	for (size_type i = 0; i < newSize; i++)
 	{
 		if (i < this->_size)
 			this->_allocator.construct(&(newList[i]), (*this)[i]);
@@ -134,9 +142,9 @@ vector<T>::resize(size_t newSize)
 	this->_list = newList;
 }
 
-template <typename T>
-size_t
-vector<T>::capacity(void) const
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::size_type
+vector<T, Alloc>::capacity(void) const
 {
 	return this->_allocated;
 }
@@ -145,18 +153,18 @@ vector<T>::capacity(void) const
  *  Returns true if the %vector is empty.  (Thus begin() would
  *  equal end().)
  */
-template <typename T>
+template <typename T, typename Alloc>
 bool
-vector<T>::empty(void) const
+vector<T, Alloc>::empty(void) const
 {
 	return !(this->_size);
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::reserve(size_t newAllocation)
+vector<T, Alloc>::reserve(size_type newAllocation)
 {
-	T *newList;
+	pointer newList;
 
 	if (newAllocation <= this->_allocated)
 		return;
@@ -170,12 +178,12 @@ vector<T>::reserve(size_t newAllocation)
 	this->_list = newList;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::shrink_to_fit(void)
+vector<T, Alloc>::shrink_to_fit(void)
 {
-	size_t newAllocation;
-	T	  *newList;
+	size_type newAllocation;
+	pointer	  newList;
 
 	if (this->_allocated == this->_size)
 		return;
@@ -192,39 +200,39 @@ vector<T>::shrink_to_fit(void)
  * Element access
  */
 
-template <typename T>
-T &
-vector<T>::operator[](size_t position) const
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::reference
+vector<T, Alloc>::operator[](size_type position) const
 {
 	return this->_list[position];
 }
 
-template <typename T>
-T &
-vector<T>::at(size_t position) const
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::reference
+vector<T, Alloc>::at(size_type position) const
 {
 	if (this->size() <= position)
 		throw out_of_range();
 	return (*this)[position];
 }
 
-template <typename T>
-T &
-vector<T>::front(void) const
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::reference
+vector<T, Alloc>::front(void) const
 {
 	return this->_list[0];
 }
 
-template <typename T>
-T &
-vector<T>::back(void) const
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::reference
+vector<T, Alloc>::back(void) const
 {
 	return this->_list[this->_size - 1];
 }
 
-template <typename T>
-T *
-vector<T>::data(void) const
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::pointer
+vector<T, Alloc>::data(void) const
 {
 	return this->_list;
 }
@@ -233,9 +241,9 @@ vector<T>::data(void) const
  * Modifiers
  */
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::assign(size_t nElements, T value)
+vector<T, Alloc>::assign(size_type nElements, T value)
 {
 
 	if (this->_list == 0)
@@ -267,11 +275,11 @@ vector<T>::assign(size_t nElements, T value)
 	}
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::assign(iterator first, iterator last)
+vector<T, Alloc>::assign(iterator first, iterator last)
 {
-	std::ptrdiff_t length;
+	difference_type length;
 
 	length = last - first;
 	if (length == 0)
@@ -283,7 +291,7 @@ vector<T>::assign(iterator first, iterator last)
 
 		_construct_range(this->_list, first, last);
 	}
-	else if (static_cast<size_t>(length) >= this->_size)
+	else if (static_cast<size_type>(length) >= this->_size)
 	{
 		// reallocation
 		this->_destroy_all();
@@ -293,7 +301,7 @@ vector<T>::assign(iterator first, iterator last)
 
 		_construct_range(this->_list, first, last);
 	}
-	else if (static_cast<size_t>(length) < this->_size)
+	else if (static_cast<size_type>(length) < this->_size)
 	{
 		// destroy and construct
 
@@ -314,12 +322,12 @@ vector<T>::assign(iterator first, iterator last)
  *  done in constant time if the %vector has preallocated space
  *  available.
  */
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::push_back(T const &object)
+vector<T, Alloc>::push_back(T const &object)
 {
-	T	  *newList;
-	size_t newAllocation;
+	pointer	  newList;
+	size_type newAllocation;
 
 	if (this->_list == 0)
 	{
@@ -355,9 +363,9 @@ vector<T>::push_back(T const &object)
  *  data is needed, it should be retrieved before pop_back() is
  *  called.
  */
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::pop_back(void)
+vector<T, Alloc>::pop_back(void)
 {
 	if (this->empty())
 		return;
@@ -366,13 +374,13 @@ vector<T>::pop_back(void)
 	--this->_size;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::insert(iterator position, const T &value)
+vector<T, Alloc>::insert(iterator position, const_reference value)
 {
-	T	  *newList;
-	size_t i;
-	size_t newAllocation;
+	pointer	  newList;
+	size_type i;
+	size_type newAllocation;
 
 	if (this->_size + 1 <= this->_allocated)
 	{
@@ -406,13 +414,13 @@ vector<T>::insert(iterator position, const T &value)
 	this->_size++;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::insert(iterator position, size_t number, const T &value)
+vector<T, Alloc>::insert(iterator position, size_type number, const_reference value)
 {
-	size_t i;
-	T	  *newList;
-	size_t newAllocation;
+	size_type i;
+	pointer	  newList;
+	size_type newAllocation;
 
 	if (this->_size + number < this->_allocated)
 	{
@@ -446,7 +454,7 @@ vector<T>::insert(iterator position, size_t number, const T &value)
 			this->_allocator.destroy(&(it[0]));
 		}
 
-		for (size_t j = number; j; --j)
+		for (size_type j = number; j; --j)
 			this->_allocator.construct(&(newList[i++]), value);
 
 		for (iterator it = position; it != this->end(); it++)
@@ -462,14 +470,14 @@ vector<T>::insert(iterator position, size_t number, const T &value)
 	}
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::insert(iterator position, iterator first, iterator last)
+vector<T, Alloc>::insert(iterator position, iterator first, iterator last)
 {
-	std::ptrdiff_t length;
-	size_t		   i;
-	T			  *newList;
-	size_t		   newAllocation;
+	difference_type length;
+	size_type		i;
+	pointer			newList;
+	size_type		newAllocation;
 
 	length = last - first;
 
@@ -522,11 +530,11 @@ vector<T>::insert(iterator position, iterator first, iterator last)
 	}
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::erase(iterator position)
+vector<T, Alloc>::erase(iterator position)
 {
-	T *newList;
+	pointer newList;
 
 	if (position == this->end() - 1)
 	{
@@ -536,7 +544,7 @@ vector<T>::erase(iterator position)
 	}
 
 	newList = this->_allocator.allocate(this->_allocated);
-	for (size_t i = 0, j = 0; i < this->_size; ++i)
+	for (size_type i = 0, j = 0; i < this->_size; ++i)
 	{
 		if (&((*this)[i]) != &(position[0]))
 		{
@@ -550,11 +558,11 @@ vector<T>::erase(iterator position)
 	this->_list = newList;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::erase(iterator first, iterator last)
+vector<T, Alloc>::erase(iterator first, iterator last)
 {
-	T *newList;
+	pointer newList;
 
 	if (last == this->end())
 	{
@@ -566,7 +574,7 @@ vector<T>::erase(iterator first, iterator last)
 	}
 
 	newList = this->_allocator.allocate(this->_allocated);
-	for (size_t i = 0, j = 0; i < this->_size; ++i)
+	for (size_type i = 0, j = 0; i < this->_size; ++i)
 	{
 		if (&((*this)[i]) < &(first[0]) || &(last[0]) <= &((*this)[i]))
 		{
@@ -580,13 +588,13 @@ vector<T>::erase(iterator first, iterator last)
 	this->_list = newList;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::swap(vector &other)
+vector<T, Alloc>::swap(vector &other)
 {
-	T	  *tmpList;
-	size_t tmpAllocated;
-	size_t tmpSize;
+	pointer	  tmpList;
+	size_type tmpAllocated;
+	size_type tmpSize;
 
 	tmpList = this->_list;
 	tmpAllocated = this->_allocated;
@@ -601,9 +609,9 @@ vector<T>::swap(vector &other)
 	other._size = tmpSize;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::clear(void)
+vector<T, Alloc>::clear(void)
 {
 	if (this->empty())
 		return;
@@ -617,41 +625,41 @@ vector<T>::clear(void)
  * Extra...
  */
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::_destroy_all(void)
+vector<T, Alloc>::_destroy_all(void)
 {
-	for (size_t i = 0; i < this->_size; ++i)
+	for (size_type i = 0; i < this->_size; ++i)
 		this->_allocator.destroy(&((*this)[i]));
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::_construct_value(const T &value)
+vector<T, Alloc>::_construct_value(const_reference value)
 {
-	for (size_t i = 0; i < this->_size; i++)
+	for (size_type i = 0; i < this->_size; i++)
 		this->_allocator.construct(&(this->_list[i]), value);
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::_construct_range(T *list, iterator first, iterator last)
+vector<T, Alloc>::_construct_range(pointer list, iterator first, iterator last)
 {
-	size_t index;
+	size_type index;
 
 	index = 0;
 	for (; first != last; ++first)
 		this->_allocator.construct(&(list[index++]), *first);
 }
 
-template <typename T>
-T *
-vector<T>::_gen_new_list(size_t newAllocation)
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::pointer
+vector<T, Alloc>::_gen_new_list(size_type newAllocation)
 {
-	T *newList;
+	pointer newList;
 
 	newList = this->_allocator.allocate(newAllocation);
-	for (size_t i = 0; i < this->_size; ++i)
+	for (size_type i = 0; i < this->_size; ++i)
 	{
 		this->_allocator.construct(&(newList[i]), (*this)[i]);
 	}
@@ -659,18 +667,18 @@ vector<T>::_gen_new_list(size_t newAllocation)
 	return newList;
 }
 
-template <typename T>
+template <typename T, typename Alloc>
 void
-vector<T>::_first_allocation(size_t newAllocation)
+vector<T, Alloc>::_first_allocation(size_type newAllocation)
 {
 	this->_allocated = newAllocation;
 	this->_size = newAllocation;
 	this->_list = this->_allocator.allocate(this->_allocated);
 }
 
-template <typename T>
-size_t
-vector<T>::_new_size(size_t minimum) const
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::size_type
+vector<T, Alloc>::_new_size(size_type minimum) const
 {
 	if (this->_allocated * 2 > minimum)
 		return this->_allocated * 2;
