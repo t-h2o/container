@@ -30,23 +30,6 @@ pair<T1, T2>::operator=(T2 const &value)
 }
 
 template <typename T1, typename T2>
-void
-pair<T1, T2>::swap(pair &other)
-{
-	T1 tmp1;
-	T2 tmp2;
-
-	tmp1 = this->first;
-	tmp2 = this->second;
-
-	this->first = other.first;
-	this->second = other.second;
-
-	other.first = tmp1;
-	other.second = tmp2;
-}
-
-template <typename T1, typename T2>
 std::ostream &
 operator<<(std::ostream &output, pair<T1, T2> const &pair)
 {

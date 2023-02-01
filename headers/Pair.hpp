@@ -17,8 +17,6 @@ template <typename T1, typename T2> class pair
 	pair &operator=(const pair &);
 	pair &operator=(const T2 &);
 
-	void swap(pair &);
-
 	T1	  first;
 	T2	  second;
 };
