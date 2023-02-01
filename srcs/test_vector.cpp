@@ -141,11 +141,6 @@ scenario_two(void)
 
 	test_copy_equal(vec_std, vec_ft);
 
-	section("shrink_to_fit();");
-	vec_ft.shrink_to_fit();
-	vec_std.shrink_to_fit();
-	test_copy_equal(vec_std, vec_ft);
-
 	section("push_back(12);");
 	vec_ft.push_back(12);
 	vec_std.push_back(12);
@@ -171,19 +166,9 @@ scenario_two(void)
 	vec_std.erase(vec_std.begin() + 3);
 	test_copy_equal(vec_std, vec_ft);
 
-	section("shrink_to_fit();");
-	vec_ft.shrink_to_fit();
-	vec_std.shrink_to_fit();
-	test_copy_equal(vec_std, vec_ft);
-
 	section("pop_back;");
 	vec_ft.pop_back();
 	vec_std.pop_back();
-	test_copy_equal(vec_std, vec_ft);
-
-	section("shrink_to_fit();");
-	vec_ft.shrink_to_fit();
-	vec_std.shrink_to_fit();
 	test_copy_equal(vec_std, vec_ft);
 }
 
@@ -369,11 +354,6 @@ scenario_eight(void)
 	vec_std.insert(vec_std.begin(), -1);
 	test_copy_equal(vec_std, vec_ft);
 
-	section("shrink_to_fit();");
-	vec_ft.shrink_to_fit();
-	vec_std.shrink_to_fit();
-	test_copy_equal(vec_std, vec_ft);
-
 	section("insert(vec_ft.begin() + 1, 777);");
 	vec_ft.insert(vec_ft.begin() + 1, 777);
 	vec_std.insert(vec_std.begin() + 1, 777);
@@ -382,11 +362,6 @@ scenario_eight(void)
 	section("insert(vec_ft.begin() + 5, 3, 333);");
 	vec_ft.insert(vec_ft.begin() + 5, 3, 333);
 	vec_std.insert(vec_std.begin() + 5, 3, 333);
-	test_copy_equal(vec_std, vec_ft);
-
-	section("shrink_to_fit();");
-	vec_ft.shrink_to_fit();
-	vec_std.shrink_to_fit();
 	test_copy_equal(vec_std, vec_ft);
 
 	section("insert(vec_ft.begin() + 10, 2, -999);");

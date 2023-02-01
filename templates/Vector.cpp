@@ -178,24 +178,6 @@ vector<T, Alloc>::reserve(size_type newAllocation)
 	this->_list = newList;
 }
 
-template <typename T, typename Alloc>
-void
-vector<T, Alloc>::shrink_to_fit(void)
-{
-	size_type newAllocation;
-	pointer	  newList;
-
-	if (this->_allocated == this->_size)
-		return;
-
-	newAllocation = this->_size;
-	newList = this->_gen_new_list(newAllocation);
-	this->_destroy_all();
-	this->_allocator.deallocate(this->_list, this->_allocated);
-	this->_allocated = this->_size;
-	this->_list = newList;
-}
-
 /**
  * Element access
  */

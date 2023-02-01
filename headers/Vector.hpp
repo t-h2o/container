@@ -51,7 +51,6 @@ template <typename T, typename Alloc = std::allocator<T> > class vector
 	size_type capacity(void) const;
 	bool	  empty(void) const;
 	void	  reserve(size_type);
-	void	  shrink_to_fit(void);
 
 	/* Element access */
 	reference operator[](size_type) const;
