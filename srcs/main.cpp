@@ -1,5 +1,6 @@
 #include "Iterator.hpp"
 #include "color.hpp"
+#include "random_access_iterator.hpp"
 #include "test.hpp"
 
 namespace ft
@@ -25,6 +26,10 @@ main(void)
 	ft::asdf ss;
 
 	ss.a = 12;
+
+	int tint[2];
+
+	ft::random_access_iterator rai(tint);
 
 	(void)ss;
 	(void)traits;
