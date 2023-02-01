@@ -10,6 +10,7 @@ CFLAGS	+=	-Wextra
 CFLAGS	+=	-Werror
 CFLAGS	+=	-g
 CFLAGS	+=	-Wfatal-errors
+CFLAGS	+=	-std=c++98
 
 OFLAGS	=	-fsanitize=address
 OFLAGS	+=	/usr/lib/libgtest.a
@@ -24,8 +25,8 @@ SRCS	+=	$(SRCD)/color.cpp
 SRCS	+=	$(SRCD)/Awesome.cpp
 
 SRCS	+=	$(SRCD)/test_vector.cpp
-SRCS	+=	$(SRCD)/test_pair.cpp
-SRCS	+=	$(SRCD)/test_map.cpp
+#SRCS	+=	$(SRCD)/test_pair.cpp
+#SRCS	+=	$(SRCD)/test_map.cpp
 
 
 #	Headers

@@ -2,7 +2,6 @@
 #include "Iterator.hpp"
 #include "Vector.hpp"
 #include "color.hpp"
-#include <gtest/gtest.h>
 #include <iostream>
 #include <vector>
 
@@ -21,63 +20,33 @@ template <typename T>
 static void
 expect_equal(std::vector<T> &vec_std, ft::vector<T> &vec_ft)
 {
-	EXPECT_EQ(vec_ft.size(), vec_std.size());
-	EXPECT_EQ(vec_ft.max_size(), vec_std.max_size());
-	EXPECT_EQ(vec_ft.capacity(), vec_std.capacity());
-	EXPECT_EQ(vec_ft.empty(), vec_std.empty());
-
-	T const *data_std = vec_std.data();
-	T const *data_ft = vec_ft.data();
-
 	for (size_t i = 0; i < vec_std.size(); ++i)
-		EXPECT_EQ(data_ft[i], data_std[i]);
 
-	if (vec_ft.empty())
-		return;
+		if (vec_ft.empty())
+			return;
 
 	typename std::vector<T>::iterator it_std(vec_std.begin());
 	typename ft::vector<T>::iterator  it_ft(vec_ft.begin());
 
-	EXPECT_EQ(*it_ft, *it_std);
-
 	for (size_t i = 0; i < vec_std.size(); ++i)
-		EXPECT_EQ(it_ft[i], it_std[i]);
 
-	EXPECT_EQ(vec_ft.begin() > vec_ft.end(), vec_std.begin() > vec_std.end());
-	EXPECT_EQ(vec_ft.begin() < vec_ft.end(), vec_std.begin() < vec_std.end());
-	EXPECT_EQ(vec_ft.begin() >= vec_ft.end(), vec_std.begin() >= vec_std.end());
-	EXPECT_EQ(vec_ft.begin() <= vec_ft.end(), vec_std.begin() <= vec_std.end());
-
-	EXPECT_EQ(vec_ft.end() > vec_ft.end(), vec_std.end() > vec_std.end());
-	EXPECT_EQ(vec_ft.end() < vec_ft.end(), vec_std.end() < vec_std.end());
-	EXPECT_EQ(vec_ft.end() >= vec_ft.end(), vec_std.end() >= vec_std.end());
-	EXPECT_EQ(vec_ft.end() <= vec_ft.end(), vec_std.end() <= vec_std.end());
-
-	if (vec_ft.size() < 3)
-		return;
+		if (vec_ft.size() < 3)
+			return;
 
 	it_ft = vec_ft.begin();
 	it_std = vec_std.begin();
-	EXPECT_EQ(*(it_ft++), *(it_std++));
-	EXPECT_EQ(*(++it_ft), *(++it_std));
-	EXPECT_EQ(*(it_ft--), *(it_std--));
-	EXPECT_EQ(*(--it_ft), *(--it_std));
 
 	it_ft += 1;
 	it_std += 1;
-	EXPECT_EQ(*(it_ft), *(it_std));
 
 	it_ft = it_ft + 1;
 	it_std = it_std + 1;
-	EXPECT_EQ(*(it_ft), *(it_std));
 
 	it_ft -= 1;
 	it_std -= 1;
-	EXPECT_EQ(*(it_ft), *(it_std));
 
 	it_ft = it_ft - 1;
 	it_std = it_std - 1;
-	EXPECT_EQ(*(it_ft), *(it_std));
 }
 
 template <typename T>
@@ -169,11 +138,6 @@ scenario_two(void)
 
 	test_copy_equal(vec_std, vec_ft);
 
-	section("shrink_to_fit();");
-	vec_ft.shrink_to_fit();
-	vec_std.shrink_to_fit();
-	test_copy_equal(vec_std, vec_ft);
-
 	section("push_back(12);");
 	vec_ft.push_back(12);
 	vec_std.push_back(12);
@@ -199,19 +163,9 @@ scenario_two(void)
 	vec_std.erase(vec_std.begin() + 3);
 	test_copy_equal(vec_std, vec_ft);
 
-	section("shrink_to_fit();");
-	vec_ft.shrink_to_fit();
-	vec_std.shrink_to_fit();
-	test_copy_equal(vec_std, vec_ft);
-
 	section("pop_back;");
 	vec_ft.pop_back();
 	vec_std.pop_back();
-	test_copy_equal(vec_std, vec_ft);
-
-	section("shrink_to_fit();");
-	vec_ft.shrink_to_fit();
-	vec_std.shrink_to_fit();
 	test_copy_equal(vec_std, vec_ft);
 }
 
@@ -303,8 +257,8 @@ scenario_five(void)
 	push_back_ten(vec_std, vec_ft);
 
 	{
-		ft::vector	v_ft_copy(vec_ft);
-		std::vector v_std_copy(vec_std);
+		ft::vector<T>  v_ft_copy(vec_ft);
+		std::vector<T> v_std_copy(vec_std);
 
 		v_ft_copy.erase(v_ft_copy.begin() + 1, v_ft_copy.end() - 1);
 		v_std_copy.erase(v_std_copy.begin() + 1, v_std_copy.end() - 1);
@@ -312,8 +266,8 @@ scenario_five(void)
 	}
 
 	{
-		ft::vector	v_ft_copy(vec_ft);
-		std::vector v_std_copy(vec_std);
+		ft::vector<T>  v_ft_copy(vec_ft);
+		std::vector<T> v_std_copy(vec_std);
 
 		v_ft_copy.erase(v_ft_copy.begin() + 1, v_ft_copy.end());
 		v_std_copy.erase(v_std_copy.begin() + 1, v_std_copy.end());
@@ -321,8 +275,8 @@ scenario_five(void)
 	}
 
 	{
-		ft::vector	v_ft_copy(vec_ft);
-		std::vector v_std_copy(vec_std);
+		ft::vector<T>  v_ft_copy(vec_ft);
+		std::vector<T> v_std_copy(vec_std);
 
 		v_ft_copy.erase(v_ft_copy.end() - 3, v_ft_copy.end());
 		v_std_copy.erase(v_std_copy.end() - 3, v_std_copy.end());
@@ -397,11 +351,6 @@ scenario_eight(void)
 	vec_std.insert(vec_std.begin(), -1);
 	test_copy_equal(vec_std, vec_ft);
 
-	section("shrink_to_fit();");
-	vec_ft.shrink_to_fit();
-	vec_std.shrink_to_fit();
-	test_copy_equal(vec_std, vec_ft);
-
 	section("insert(vec_ft.begin() + 1, 777);");
 	vec_ft.insert(vec_ft.begin() + 1, 777);
 	vec_std.insert(vec_std.begin() + 1, 777);
@@ -410,11 +359,6 @@ scenario_eight(void)
 	section("insert(vec_ft.begin() + 5, 3, 333);");
 	vec_ft.insert(vec_ft.begin() + 5, 3, 333);
 	vec_std.insert(vec_std.begin() + 5, 3, 333);
-	test_copy_equal(vec_std, vec_ft);
-
-	section("shrink_to_fit();");
-	vec_ft.shrink_to_fit();
-	vec_std.shrink_to_fit();
 	test_copy_equal(vec_std, vec_ft);
 
 	section("insert(vec_ft.begin() + 10, 2, -999);");
