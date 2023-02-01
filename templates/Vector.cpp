@@ -7,7 +7,7 @@
 template <typename T, typename Alloc> vector<T, Alloc>::vector(void) : _list(0), _size(0), _allocated(0) {}
 
 template <typename T, typename Alloc>
-vector<T, Alloc>::vector(size_t nElements, const_reference value) : _list(0), _size(0), _allocated(0)
+vector<T, Alloc>::vector(size_type nElements, const_reference value) : _list(0), _size(0), _allocated(0)
 {
 	if (nElements == 0)
 		return;
@@ -59,7 +59,7 @@ vector<T, Alloc>::operator=(vector const &other)
 	this->_size = other._size;
 	this->_allocated = other._size;
 
-	for (size_t i = 0; i < other._size; ++i)
+	for (size_type i = 0; i < other._size; ++i)
 	{
 		this->_allocator.construct(&(*this)[i], other[i]);
 	}
@@ -86,14 +86,14 @@ vector<T, Alloc>::end(void)
  */
 
 template <typename T, typename Alloc>
-size_t
+typename vector<T, Alloc>::size_type
 vector<T, Alloc>::size(void) const
 {
 	return this->_size;
 }
 
 template <typename T, typename Alloc>
-size_t
+typename vector<T, Alloc>::size_type
 vector<T, Alloc>::max_size(void) const
 {
 	return this->_allocator.max_size();
@@ -101,15 +101,15 @@ vector<T, Alloc>::max_size(void) const
 
 template <typename T, typename Alloc>
 void
-vector<T, Alloc>::resize(size_t newSize)
+vector<T, Alloc>::resize(size_type newSize)
 {
 	pointer newList;
 
-	size_t newAllocation;
+	size_type newAllocation;
 
 	if (newSize < this->_allocated)
 	{
-		size_t i = this->_size;
+		size_type i = this->_size;
 		while (i >= newSize)
 		{
 			this->_allocator.destroy(&(this->_list[i--]));
@@ -121,7 +121,7 @@ vector<T, Alloc>::resize(size_t newSize)
 
 	newList = this->_allocator.allocate(newAllocation);
 
-	for (size_t i = 0; i < newSize; i++)
+	for (size_type i = 0; i < newSize; i++)
 	{
 		if (i < this->_size)
 			this->_allocator.construct(&(newList[i]), (*this)[i]);
@@ -138,7 +138,7 @@ vector<T, Alloc>::resize(size_t newSize)
 }
 
 template <typename T, typename Alloc>
-size_t
+typename vector<T, Alloc>::size_type
 vector<T, Alloc>::capacity(void) const
 {
 	return this->_allocated;
@@ -157,7 +157,7 @@ vector<T, Alloc>::empty(void) const
 
 template <typename T, typename Alloc>
 void
-vector<T, Alloc>::reserve(size_t newAllocation)
+vector<T, Alloc>::reserve(size_type newAllocation)
 {
 	pointer newList;
 
@@ -177,8 +177,8 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::shrink_to_fit(void)
 {
-	size_t newAllocation;
-	T	  *newList;
+	size_type newAllocation;
+	T		 *newList;
 
 	if (this->_allocated == this->_size)
 		return;
@@ -197,14 +197,14 @@ vector<T, Alloc>::shrink_to_fit(void)
 
 template <typename T, typename Alloc>
 typename vector<T, Alloc>::reference
-vector<T, Alloc>::operator[](size_t position) const
+vector<T, Alloc>::operator[](size_type position) const
 {
 	return this->_list[position];
 }
 
 template <typename T, typename Alloc>
 typename vector<T, Alloc>::reference
-vector<T, Alloc>::at(size_t position) const
+vector<T, Alloc>::at(size_type position) const
 {
 	if (this->size() <= position)
 		throw out_of_range();
@@ -238,7 +238,7 @@ vector<T, Alloc>::data(void) const
 
 template <typename T, typename Alloc>
 void
-vector<T, Alloc>::assign(size_t nElements, T value)
+vector<T, Alloc>::assign(size_type nElements, T value)
 {
 
 	if (this->_list == 0)
@@ -286,7 +286,7 @@ vector<T, Alloc>::assign(iterator first, iterator last)
 
 		_construct_range(this->_list, first, last);
 	}
-	else if (static_cast<size_t>(length) >= this->_size)
+	else if (static_cast<size_type>(length) >= this->_size)
 	{
 		// reallocation
 		this->_destroy_all();
@@ -296,7 +296,7 @@ vector<T, Alloc>::assign(iterator first, iterator last)
 
 		_construct_range(this->_list, first, last);
 	}
-	else if (static_cast<size_t>(length) < this->_size)
+	else if (static_cast<size_type>(length) < this->_size)
 	{
 		// destroy and construct
 
@@ -321,8 +321,8 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::push_back(T const &object)
 {
-	T	  *newList;
-	size_t newAllocation;
+	T		 *newList;
+	size_type newAllocation;
 
 	if (this->_list == 0)
 	{
@@ -373,9 +373,9 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::insert(iterator position, const_reference value)
 {
-	T	  *newList;
-	size_t i;
-	size_t newAllocation;
+	T		 *newList;
+	size_type i;
+	size_type newAllocation;
 
 	if (this->_size + 1 <= this->_allocated)
 	{
@@ -411,11 +411,11 @@ vector<T, Alloc>::insert(iterator position, const_reference value)
 
 template <typename T, typename Alloc>
 void
-vector<T, Alloc>::insert(iterator position, size_t number, const_reference value)
+vector<T, Alloc>::insert(iterator position, size_type number, const_reference value)
 {
-	size_t i;
-	T	  *newList;
-	size_t newAllocation;
+	size_type i;
+	T		 *newList;
+	size_type newAllocation;
 
 	if (this->_size + number < this->_allocated)
 	{
@@ -449,7 +449,7 @@ vector<T, Alloc>::insert(iterator position, size_t number, const_reference value
 			this->_allocator.destroy(&(it[0]));
 		}
 
-		for (size_t j = number; j; --j)
+		for (size_type j = number; j; --j)
 			this->_allocator.construct(&(newList[i++]), value);
 
 		for (iterator it = position; it != this->end(); it++)
@@ -470,9 +470,9 @@ void
 vector<T, Alloc>::insert(iterator position, iterator first, iterator last)
 {
 	std::ptrdiff_t length;
-	size_t		   i;
+	size_type	   i;
 	T			  *newList;
-	size_t		   newAllocation;
+	size_type	   newAllocation;
 
 	length = last - first;
 
@@ -539,7 +539,7 @@ vector<T, Alloc>::erase(iterator position)
 	}
 
 	newList = this->_allocator.allocate(this->_allocated);
-	for (size_t i = 0, j = 0; i < this->_size; ++i)
+	for (size_type i = 0, j = 0; i < this->_size; ++i)
 	{
 		if (&((*this)[i]) != &(position[0]))
 		{
@@ -569,7 +569,7 @@ vector<T, Alloc>::erase(iterator first, iterator last)
 	}
 
 	newList = this->_allocator.allocate(this->_allocated);
-	for (size_t i = 0, j = 0; i < this->_size; ++i)
+	for (size_type i = 0, j = 0; i < this->_size; ++i)
 	{
 		if (&((*this)[i]) < &(first[0]) || &(last[0]) <= &((*this)[i]))
 		{
@@ -587,9 +587,9 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::swap(vector &other)
 {
-	T	  *tmpList;
-	size_t tmpAllocated;
-	size_t tmpSize;
+	T		 *tmpList;
+	size_type tmpAllocated;
+	size_type tmpSize;
 
 	tmpList = this->_list;
 	tmpAllocated = this->_allocated;
@@ -624,7 +624,7 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::_destroy_all(void)
 {
-	for (size_t i = 0; i < this->_size; ++i)
+	for (size_type i = 0; i < this->_size; ++i)
 		this->_allocator.destroy(&((*this)[i]));
 }
 
@@ -632,7 +632,7 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::_construct_value(const_reference value)
 {
-	for (size_t i = 0; i < this->_size; i++)
+	for (size_type i = 0; i < this->_size; i++)
 		this->_allocator.construct(&(this->_list[i]), value);
 }
 
@@ -640,7 +640,7 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::_construct_range(pointer list, iterator first, iterator last)
 {
-	size_t index;
+	size_type index;
 
 	index = 0;
 	for (; first != last; ++first)
@@ -649,12 +649,12 @@ vector<T, Alloc>::_construct_range(pointer list, iterator first, iterator last)
 
 template <typename T, typename Alloc>
 typename vector<T, Alloc>::pointer
-vector<T, Alloc>::_gen_new_list(size_t newAllocation)
+vector<T, Alloc>::_gen_new_list(size_type newAllocation)
 {
 	pointer newList;
 
 	newList = this->_allocator.allocate(newAllocation);
-	for (size_t i = 0; i < this->_size; ++i)
+	for (size_type i = 0; i < this->_size; ++i)
 	{
 		this->_allocator.construct(&(newList[i]), (*this)[i]);
 	}
@@ -664,7 +664,7 @@ vector<T, Alloc>::_gen_new_list(size_t newAllocation)
 
 template <typename T, typename Alloc>
 void
-vector<T, Alloc>::_first_allocation(size_t newAllocation)
+vector<T, Alloc>::_first_allocation(size_type newAllocation)
 {
 	this->_allocated = newAllocation;
 	this->_size = newAllocation;
@@ -672,8 +672,8 @@ vector<T, Alloc>::_first_allocation(size_t newAllocation)
 }
 
 template <typename T, typename Alloc>
-size_t
-vector<T, Alloc>::_new_size(size_t minimum) const
+typename vector<T, Alloc>::size_type
+vector<T, Alloc>::_new_size(size_type minimum) const
 {
 	if (this->_allocated * 2 > minimum)
 		return this->_allocated * 2;
