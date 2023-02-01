@@ -4,13 +4,13 @@
 namespace ft
 {
 
-class random_access_iterator : public iterator<random_access_iterator_tag, int>
+template <typename T> class random_access_iterator : public iterator<random_access_iterator_tag, T>
 {
   public:
-	random_access_iterator(pointer);
+	random_access_iterator(T *);
 
   private:
-	pointer _data;
+	T *_data;
 };
 
 #include "../templates/random_access_iterator.cpp"

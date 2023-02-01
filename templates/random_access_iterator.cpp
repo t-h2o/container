@@ -1,1 +1,1 @@
-random_access_iterator::random_access_iterator(pointer p) : _data(p) {}
+template <typename T> random_access_iterator<T>::random_access_iterator(T *p) : _data(p) {}
