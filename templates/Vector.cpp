@@ -131,7 +131,7 @@ vector<T, Alloc>::resize(size_type newSize)
 		if (i < this->_size)
 			this->_allocator.construct(&(newList[i]), (*this)[i]);
 		else
-			this->_allocator.construct(&(newList[i]));
+			this->_allocator.construct(&(newList[i]), T());
 	}
 
 	this->_destroy_all();
