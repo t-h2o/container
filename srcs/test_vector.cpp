@@ -275,8 +275,8 @@ scenario_five(void)
 	push_back_ten(vec_std, vec_ft);
 
 	{
-		ft::vector	v_ft_copy(vec_ft);
-		std::vector v_std_copy(vec_std);
+		ft::vector<T>  v_ft_copy(vec_ft);
+		std::vector<T> v_std_copy(vec_std);
 
 		v_ft_copy.erase(v_ft_copy.begin() + 1, v_ft_copy.end() - 1);
 		v_std_copy.erase(v_std_copy.begin() + 1, v_std_copy.end() - 1);
@@ -284,8 +284,8 @@ scenario_five(void)
 	}
 
 	{
-		ft::vector	v_ft_copy(vec_ft);
-		std::vector v_std_copy(vec_std);
+		ft::vector<T>  v_ft_copy(vec_ft);
+		std::vector<T> v_std_copy(vec_std);
 
 		v_ft_copy.erase(v_ft_copy.begin() + 1, v_ft_copy.end());
 		v_std_copy.erase(v_std_copy.begin() + 1, v_std_copy.end());
@@ -293,8 +293,8 @@ scenario_five(void)
 	}
 
 	{
-		ft::vector	v_ft_copy(vec_ft);
-		std::vector v_std_copy(vec_std);
+		ft::vector<T>  v_ft_copy(vec_ft);
+		std::vector<T> v_std_copy(vec_std);
 
 		v_ft_copy.erase(v_ft_copy.end() - 3, v_ft_copy.end());
 		v_std_copy.erase(v_std_copy.end() - 3, v_std_copy.end());
