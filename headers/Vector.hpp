@@ -21,6 +21,7 @@ namespace ft
 template <typename T, typename Alloc = std::allocator<T> > class vector
 {
   public:
+	typedef Alloc						  allocator_type;
 	typedef ft::random_access_iterator<T> iterator;
 
 	/* Member Funcion */
@@ -79,7 +80,7 @@ template <typename T, typename Alloc = std::allocator<T> > class vector
 	size_t _size;
 	size_t _allocated;
 
-	std::allocator<T> _allocator;
+	allocator_type _allocator;
 
 	void _destroy_all(void);
 	void _construct_value(const T &);
