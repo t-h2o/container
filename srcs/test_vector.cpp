@@ -20,9 +20,6 @@ template <typename T>
 static void
 expect_equal(std::vector<T> &vec_std, ft::vector<T> &vec_ft)
 {
-	T const *data_std = vec_std.data();
-	T const *data_ft = vec_ft.data();
-
 	for (size_t i = 0; i < vec_std.size(); ++i)
 
 		if (vec_ft.empty())
