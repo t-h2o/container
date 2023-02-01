@@ -36,6 +36,7 @@ INCS	=	$(INCD)/color.hpp
 INCS	+=	$(INCD)/Awesome.hpp
 
 INCS	+=	$(INCD)/Iterator.hpp
+INCS	+=	$(INCD)/random_access_iterator.hpp
 INCS	+=	$(INCD)/Map.hpp
 INCS	+=	$(INCD)/Vector.hpp
 
@@ -47,6 +48,7 @@ INCS	+=	$(INCD)/test.hpp
 TMPD	=	templates
 
 TMPS	=	$(TMPD)/IteratorVector.cpp
+TMPS	=	$(TMPD)/random_access_iterator.cpp
 TMPS	+=	$(TMPD)/Map.cpp
 TMPS	+=	$(TMPD)/Pair.cpp
 TMPS	+=	$(TMPD)/Vector.cpp
