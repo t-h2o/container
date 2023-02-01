@@ -13,42 +13,15 @@
  *  also provided as with C-style arrays.
  */
 
+#include "random_access_iterator.hpp"
+
 namespace ft
 {
 
 template <typename T> class vector
 {
   public:
-	class iterator
-	{
-	  public:
-		iterator(void);
-		iterator(T *, size_t);
-
-		T		 &operator*(void);
-		T		 &operator[](size_t);
-		iterator &operator++(void);
-		iterator  operator++(int);
-		iterator &operator--(void);
-		iterator  operator--(int);
-		iterator  operator+(const long);
-		iterator  operator-(const long);
-		iterator &operator+=(const long);
-		iterator &operator-=(const long);
-
-		std::ptrdiff_t operator-(iterator const &);
-
-		bool operator==(iterator const &other);
-		bool operator!=(iterator const &other);
-		bool operator>(iterator const &other);
-		bool operator<(iterator const &other);
-		bool operator>=(iterator const &other);
-		bool operator<=(iterator const &other);
-
-	  private:
-		T	  *_pointer;
-		size_t _position;
-	};
+	typedef ft::random_access_iterator<T> iterator;
 
 	/* Member Funcion */
 	explicit vector(void);
@@ -121,7 +94,6 @@ template <typename T> class vector
 /* Extra... */
 template <typename T> std::ostream &operator<<(std::ostream &output, vector<T> const &);
 
-#include "../templates/IteratorVector.cpp"
 #include "../templates/Vector.cpp"
 
 } /* namespace ft */
