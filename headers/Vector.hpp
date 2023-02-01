@@ -23,7 +23,8 @@ template <typename T, typename Alloc = std::allocator<T> > class vector
   public:
 	typedef Alloc allocator_type;
 
-	typedef typename allocator_type::pointer pointer;
+	typedef typename allocator_type::pointer   pointer;
+	typedef typename allocator_type::reference reference;
 
 	typedef ft::random_access_iterator<T> iterator;
 
@@ -49,11 +50,11 @@ template <typename T, typename Alloc = std::allocator<T> > class vector
 	void   shrink_to_fit(void);
 
 	/* Element access */
-	T	   &operator[](size_t) const;
-	T	   &at(size_t) const;
-	T	   &front(void) const;
-	T	   &back(void) const;
-	pointer data(void) const;
+	reference operator[](size_t) const;
+	reference at(size_t) const;
+	reference front(void) const;
+	reference back(void) const;
+	pointer	  data(void) const;
 
 	/* Modifiers */
 	void assign(size_t, T);

@@ -196,14 +196,14 @@ vector<T, Alloc>::shrink_to_fit(void)
  */
 
 template <typename T, typename Alloc>
-T &
+typename vector<T, Alloc>::reference
 vector<T, Alloc>::operator[](size_t position) const
 {
 	return this->_list[position];
 }
 
 template <typename T, typename Alloc>
-T &
+typename vector<T, Alloc>::reference
 vector<T, Alloc>::at(size_t position) const
 {
 	if (this->size() <= position)
@@ -212,14 +212,14 @@ vector<T, Alloc>::at(size_t position) const
 }
 
 template <typename T, typename Alloc>
-T &
+typename vector<T, Alloc>::reference
 vector<T, Alloc>::front(void) const
 {
 	return this->_list[0];
 }
 
 template <typename T, typename Alloc>
-T &
+typename vector<T, Alloc>::reference
 vector<T, Alloc>::back(void) const
 {
 	return this->_list[this->_size - 1];
