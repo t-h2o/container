@@ -790,9 +790,10 @@ map<T1, T2>::Color::set_black(void)
  * Node
  */
 
-template <typename T1, typename T2>
-map<T1, T2>::Node::Node(Node *newparent) : parent(newparent), child{ 0, 0 }
+template <typename T1, typename T2> map<T1, T2>::Node::Node(Node *newparent) : parent(newparent)
 {
+	child[0] = 0;
+	child[1] = 0;
 	this->set_red();
 }
 
