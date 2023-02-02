@@ -500,16 +500,24 @@ template <typename T1, typename T2>
 void
 map<T1, T2>::_swap(Node *one, Node *two)
 {
-	Node	   *onechild[2]{ one->child[0], one->child[1] };
+	Node	   *onechild[2];
 	Node	   *oneparent(one->parent);
 	enum e_side oneside;
+
+	onechild[0] = one->child[0];
+	onechild[1] = one->child[1];
+
 	if (one != _root)
 		oneside = one->get_side();
 	Color onecolor(one->color);
 
-	Node	   *twochild[2]{ two->child[0], two->child[1] };
+	Node	   *twochild[2];
 	Node	   *twoparent(two->parent);
 	enum e_side twoside;
+
+	twochild[0] = two->child[0];
+	twochild[1] = two->child[1];
+
 	if (two != _root)
 		twoside = two->get_side();
 	Color twocolor(two->color);
@@ -782,9 +790,10 @@ map<T1, T2>::Color::set_black(void)
  * Node
  */
 
-template <typename T1, typename T2>
-map<T1, T2>::Node::Node(Node *newparent) : parent(newparent), child{ 0, 0 }
+template <typename T1, typename T2> map<T1, T2>::Node::Node(Node *newparent) : parent(newparent)
 {
+	child[0] = 0;
+	child[1] = 0;
 	this->set_red();
 }
 

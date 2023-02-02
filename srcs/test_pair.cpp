@@ -10,9 +10,6 @@ pair_two(void)
 
 	ft::pair<int, int>	pair_ft_2(1234, 777);
 	std::pair<int, int> pair_std_2(1234, 777);
-
-	pair_ft_2.swap(pair_ft_1);
-	pair_std_2.swap(pair_std_1);
 }
 
 static void
