@@ -8,6 +8,7 @@
 #define RBT_CHECKER 0
 
 #include "Pair.hpp"
+#include "bidirectional_iterator.hpp"
 
 namespace ft
 {
@@ -85,6 +86,8 @@ template <typename T1, typename T2> class map
 		T1 &key();
 		T1	key() const;
 	};
+
+	typedef ft::bidirectional_iterator<Node> iterator;
 
   public:
 	explicit map(void);

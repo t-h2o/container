@@ -40,6 +40,7 @@ INCS	+=	$(INCD)/to_string.hpp
 INCS	+=	$(INCD)/Tdd.hpp
 
 INCS	+=	$(INCD)/Iterator.hpp
+INCS	+=	$(INCD)/bidirectional_iterator.hpp
 INCS	+=	$(INCD)/random_access_iterator.hpp
 INCS	+=	$(INCD)/Map.hpp
 INCS	+=	$(INCD)/Vector.hpp
@@ -52,6 +53,7 @@ INCS	+=	$(INCD)/test.hpp
 TMPD	=	templates
 
 TMPS	=	$(TMPD)/IteratorVector.cpp
+TMPS	=	$(TMPD)/bidirectional_iterator.cpp
 TMPS	=	$(TMPD)/random_access_iterator.cpp
 TMPS	+=	$(TMPD)/Tdd.cpp
 TMPS	+=	$(TMPD)/Map.cpp
