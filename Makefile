@@ -23,6 +23,7 @@ SRCD	=	srcs
 SRCS	=	$(SRCD)/main.cpp
 SRCS	+=	$(SRCD)/color.cpp
 SRCS	+=	$(SRCD)/Awesome.cpp
+SRCS	+=	$(SRCD)/to_string.cpp
 
 SRCS	+=	$(SRCD)/test_vector.cpp
 SRCS	+=	$(SRCD)/test_pair.cpp
@@ -35,6 +36,7 @@ INCD	=	headers
 
 INCS	=	$(INCD)/color.hpp
 INCS	+=	$(INCD)/Awesome.hpp
+INCS	+=	$(INCD)/to_string.hpp
 INCS	+=	$(INCD)/Tdd.hpp
 
 INCS	+=	$(INCD)/Iterator.hpp

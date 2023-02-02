@@ -3,6 +3,7 @@
 #include "Map.hpp"
 #include "Tdd.hpp"
 #include "color.hpp"
+#include "to_string.hpp"
 #include <iostream>
 #include <map>
 #include <vector>
@@ -48,14 +49,14 @@ map_left(void)
 
 	for (int insert = 20; insert > 0; --insert)
 	{
-		std::string message = "insert: " + std::to_string(insert);
+		std::string message = "insert: " + ft::to_string(insert);
 		section(message);
 		insert_map(insert, map_std, map_ft);
 	}
 
 	for (int remove = 20; remove > 0; --remove)
 	{
-		std::string a = "remove: " + std::to_string(remove);
+		std::string a = "remove: " + ft::to_string(remove);
 		section(a);
 		erase_map(remove, map_std, map_ft);
 	}
@@ -70,14 +71,14 @@ map_right(void)
 
 	for (int insert = 0; insert < 20; ++insert)
 	{
-		std::string message = "insert: " + std::to_string(insert);
+		std::string message = "insert: " + ft::to_string(insert);
 		section(message);
 		insert_map(insert, map_std, map_ft);
 	}
 
 	for (int remove = 20; remove > 0; --remove)
 	{
-		std::string a = "remove: " + std::to_string(remove);
+		std::string a = "remove: " + ft::to_string(remove);
 		section(a);
 		erase_map(remove, map_std, map_ft);
 	}
@@ -96,7 +97,7 @@ map_rand(unsigned int seed)
 	for (int i = 0; i < TREE_SIZE; ++i)
 	{
 		unsigned int random = rand() % MAX_NUMBER;
-		std::string	 a = "insert: " + std::to_string(random);
+		std::string	 a = "insert: " + ft::to_string(random);
 		section(a);
 		insert_map(random, map_std, map_ft);
 		key_list.push_back(random);
@@ -106,7 +107,7 @@ map_rand(unsigned int seed)
 		unsigned int random = rand() % MAX_NUMBER;
 		unsigned int position = random % key_list.size();
 		int			 remove = key_list.at(position);
-		std::string	 a = "remove: " + std::to_string(remove);
+		std::string	 a = "remove: " + ft::to_string(remove);
 		section(a);
 		erase_map(remove, map_std, map_ft);
 		key_list.erase(key_list.begin() + position);
@@ -124,7 +125,7 @@ test_map(void)
 
 	for (int i = 0; i < TEST_NUMBER; ++i)
 	{
-		std::string message = "Map random: " + std::to_string(i);
+		std::string message = "Map random: " + ft::to_string(i);
 		title(message);
 		map_rand(i);
 	}
