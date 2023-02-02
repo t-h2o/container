@@ -7,9 +7,9 @@ main(void)
 {
 	title("Main");
 
-	Tdd::expected<int>(1, 2);
-	test_vector();
-	test_pair();
+	//	Tdd::expected<int>(1, 2);
+	//	test_vector();
+	//	test_pair();
 	test_map();
 
 	return 0;

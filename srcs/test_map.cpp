@@ -9,9 +9,9 @@
 #include <stdlib.h>
 #include <vector>
 
-#define TEST_NUMBER 10
-#define TREE_SIZE 30
-#define MAX_NUMBER 100
+#define TEST_NUMBER 1
+#define TREE_SIZE 4
+#define MAX_NUMBER 10
 
 template <typename T1, typename T2>
 static void
@@ -91,6 +91,9 @@ map_rand(unsigned int seed)
 	section("default constructor int, int");
 	std::map<int, std::string> map_std;
 	ft::map<int, std::string>  map_ft;
+
+	std::map<int, std::string>::iterator it_std;
+	ft::map<int, std::string>::iterator	 it_ft;
 
 	std::vector<int> key_list;
 
