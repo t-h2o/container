@@ -6,6 +6,7 @@
 #include "to_string.hpp"
 #include <iostream>
 #include <map>
+#include <stdlib.h>
 #include <vector>
 
 #define TEST_NUMBER 10
