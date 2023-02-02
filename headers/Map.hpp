@@ -135,7 +135,10 @@ template <typename T1, typename T2> class map
 	pair &_get_reference(const T1 &);
 };
 
+#include "../templates/Color.cpp"
 #include "../templates/Map.cpp"
+#include "../templates/Node.cpp"
+#include "../templates/RBTchecker.cpp"
 
 } /* namespace ft */
 
