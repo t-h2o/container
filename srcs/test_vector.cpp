@@ -1,5 +1,6 @@
 #include "Awesome.hpp"
 #include "Iterator.hpp"
+#include "Tdd.hpp"
 #include "Vector.hpp"
 #include "color.hpp"
 #include <iostream>
@@ -20,33 +21,63 @@ template <typename T>
 static void
 expect_equal(std::vector<T> &vec_std, ft::vector<T> &vec_ft)
 {
-	for (size_t i = 0; i < vec_std.size(); ++i)
+	Tdd::expected(vec_ft.size(), vec_std.size());
+	Tdd::expected(vec_ft.max_size(), vec_std.max_size());
+	Tdd::expected(vec_ft.capacity(), vec_std.capacity());
+	Tdd::expected(vec_ft.empty(), vec_std.empty());
 
-		if (vec_ft.empty())
-			return;
+	T const *data_std = vec_std.data();
+	T const *data_ft = vec_ft.data();
+
+	for (size_t i = 0; i < vec_std.size(); ++i)
+		Tdd::expected(data_ft[i], data_std[i]);
+
+	if (vec_ft.empty())
+		return;
 
 	typename std::vector<T>::iterator it_std(vec_std.begin());
 	typename ft::vector<T>::iterator  it_ft(vec_ft.begin());
 
-	for (size_t i = 0; i < vec_std.size(); ++i)
+	Tdd::expected(*it_ft, *it_std);
 
-		if (vec_ft.size() < 3)
-			return;
+	for (size_t i = 0; i < vec_std.size(); ++i)
+		Tdd::expected(it_ft[i], it_std[i]);
+
+	Tdd::expected(vec_ft.begin() > vec_ft.end(), vec_std.begin() > vec_std.end());
+	Tdd::expected(vec_ft.begin() < vec_ft.end(), vec_std.begin() < vec_std.end());
+	Tdd::expected(vec_ft.begin() >= vec_ft.end(), vec_std.begin() >= vec_std.end());
+	Tdd::expected(vec_ft.begin() <= vec_ft.end(), vec_std.begin() <= vec_std.end());
+
+	Tdd::expected(vec_ft.end() > vec_ft.end(), vec_std.end() > vec_std.end());
+	Tdd::expected(vec_ft.end() < vec_ft.end(), vec_std.end() < vec_std.end());
+	Tdd::expected(vec_ft.end() >= vec_ft.end(), vec_std.end() >= vec_std.end());
+	Tdd::expected(vec_ft.end() <= vec_ft.end(), vec_std.end() <= vec_std.end());
+
+	if (vec_ft.size() < 3)
+		return;
 
 	it_ft = vec_ft.begin();
 	it_std = vec_std.begin();
+	Tdd::expected(*(it_ft++), *(it_std++));
+	Tdd::expected(*(++it_ft), *(++it_std));
+	Tdd::expected(*(it_ft--), *(it_std--));
+	Tdd::expected(*(--it_ft), *(--it_std));
 
 	it_ft += 1;
 	it_std += 1;
+	Tdd::expected(*(it_ft), *(it_std));
 
 	it_ft = it_ft + 1;
 	it_std = it_std + 1;
+	Tdd::expected(*(it_ft), *(it_std));
 
 	it_ft -= 1;
 	it_std -= 1;
+	Tdd::expected(*(it_ft), *(it_std));
 
 	it_ft = it_ft - 1;
 	it_std = it_std - 1;
+	Tdd::expected(*(it_ft), *(it_std));
 }
 
 template <typename T>
