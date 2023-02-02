@@ -87,9 +87,9 @@ template <typename T1, typename T2> class map
 		T1	key() const;
 	};
 
+  public:
 	typedef ft::bidirectional_iterator<Node> iterator;
 
-  public:
 	explicit map(void);
 	~map(void);
 

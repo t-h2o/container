@@ -14,6 +14,7 @@ class bidirectional_iterator : public ft::iterator_traits<ft::iterator<ft::bidir
 	typedef typename iterator<ft::bidirectional_iterator_tag, T>::reference			reference;
 
   public:
+	bidirectional_iterator();
 	bidirectional_iterator(pointer);
 
   private:
