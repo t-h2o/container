@@ -41,7 +41,7 @@ map<T1, Type, Alloc>::operator[](const T1 &key)
 
 template <typename T1, typename Type, typename Alloc>
 void
-map<T1, Type, Alloc>::insert(pair const &pair)
+map<T1, Type, Alloc>::insert(value_type const &pair)
 {
 	_get_reference(pair.first).second = pair.second;
 }
