@@ -107,7 +107,7 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 	size_t size(void) const;
 
 	/* Element access */
-	pair &operator[](const Key &);
+	reference operator[](const Key &);
 
 	/* Modifiers */
 	void insert(pair const &);
@@ -144,7 +144,7 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 
 	enum e_side _flip_side(enum e_side) const;
 
-	pair &_get_reference(const Key &);
+	reference _get_reference(const Key &);
 };
 
 #include "../templates/Color.cpp"

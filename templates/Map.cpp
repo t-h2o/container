@@ -29,7 +29,7 @@ map<T1, Type, Alloc>::size(void) const
 }
 
 template <typename T1, typename Type, typename Alloc>
-pair<T1, Type> &
+typename map<T1, Type, Alloc>::reference
 map<T1, Type, Alloc>::operator[](const T1 &key)
 {
 	return _get_reference(key);
@@ -352,7 +352,7 @@ map<T1, Type, Alloc>::_erase(Node *node)
 }
 
 template <typename T1, typename Type, typename Alloc>
-pair<T1, Type> &
+typename map<T1, Type, Alloc>::reference
 map<T1, Type, Alloc>::_get_reference(const T1 &key)
 {
 	Node	   *parent;
