@@ -2,30 +2,31 @@
  * Node
  */
 
-template <typename T1, typename T2> map<T1, T2>::Node::Node(Node *newparent) : parent(newparent)
+template <typename T1, typename T2, typename Alloc>
+map<T1, T2, Alloc>::Node::Node(Node *newparent) : parent(newparent)
 {
 	child[0] = 0;
 	child[1] = 0;
 	this->set_red();
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename T2, typename Alloc>
 void
-map<T1, T2>::Node::set_red(void)
+map<T1, T2, Alloc>::Node::set_red(void)
 {
 	color.set_red();
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename T2, typename Alloc>
 void
-map<T1, T2>::Node::set_black(void)
+map<T1, T2, Alloc>::Node::set_black(void)
 {
 	color.set_black();
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename T2, typename Alloc>
 void
-map<T1, T2>::Node::flip_color(void)
+map<T1, T2, Alloc>::Node::flip_color(void)
 {
 	if (color.is_red())
 		this->set_black();
@@ -33,9 +34,9 @@ map<T1, T2>::Node::flip_color(void)
 		this->set_red();
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename T2, typename Alloc>
 void
-map<T1, T2>::Node::color_children_red(void)
+map<T1, T2, Alloc>::Node::color_children_red(void)
 {
 	if (left())
 		left()->set_red();
@@ -43,9 +44,9 @@ map<T1, T2>::Node::color_children_red(void)
 		right()->set_red();
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename T2, typename Alloc>
 void
-map<T1, T2>::Node::color_children_black(void)
+map<T1, T2, Alloc>::Node::color_children_black(void)
 {
 	if (left())
 		left()->set_black();
@@ -53,9 +54,9 @@ map<T1, T2>::Node::color_children_black(void)
 		right()->set_black();
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename T2, typename Alloc>
 void
-map<T1, T2>::Node::reset_parent(void)
+map<T1, T2, Alloc>::Node::reset_parent(void)
 {
 	if (left())
 		left()->parent = this;
@@ -63,97 +64,97 @@ map<T1, T2>::Node::reset_parent(void)
 		right()->parent = this;
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename T2, typename Alloc>
 bool
-map<T1, T2>::Node::is_leaf(void) const
+map<T1, T2, Alloc>::Node::is_leaf(void) const
 {
 	return !(left() || right());
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename T2, typename Alloc>
 bool
-map<T1, T2>::Node::is_black(void) const
+map<T1, T2, Alloc>::Node::is_black(void) const
 {
 	return (color.is_black());
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename T2, typename Alloc>
 bool
-map<T1, T2>::Node::is_red(void) const
+map<T1, T2, Alloc>::Node::is_red(void) const
 {
 	return (color.is_red());
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename T2, typename Alloc>
 bool
-map<T1, T2>::Node::has_red_child(void) const
+map<T1, T2, Alloc>::Node::has_red_child(void) const
 {
 	return ((left() && left()->is_red()) || (right() && right()->is_red()));
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename T2, typename Alloc>
 bool
-map<T1, T2>::Node::has_black_children() const
+map<T1, T2, Alloc>::Node::has_black_children() const
 {
 	return ((!(this->left()) || this->left()->is_black()) && (!(this->right()) || this->right()->is_black()));
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename T2, typename Alloc>
 unsigned char
-map<T1, T2>::Node::number_child() const
+map<T1, T2, Alloc>::Node::number_child() const
 {
 	return (!!(this->left()) + !!(this->right()));
 }
 
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *&
-map<T1, T2>::Node::right(void)
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::Node *&
+map<T1, T2, Alloc>::Node::right(void)
 {
 	return child[RIGHT];
 }
 
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *
-map<T1, T2>::Node::right(void) const
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::Node *
+map<T1, T2, Alloc>::Node::right(void) const
 {
 	return child[RIGHT];
 }
 
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *&
-map<T1, T2>::Node::left(void)
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::Node *&
+map<T1, T2, Alloc>::Node::left(void)
 {
 	return child[LEFT];
 }
 
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *
-map<T1, T2>::Node::left(void) const
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::Node *
+map<T1, T2, Alloc>::Node::left(void) const
 {
 	return child[LEFT];
 }
 
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *
-map<T1, T2>::Node::get_child() const
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::Node *
+map<T1, T2, Alloc>::Node::get_child() const
 {
 	if (this->left())
 		return this->left();
 	return this->right();
 }
 
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *
-map<T1, T2>::Node::get_grandparent() const
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::Node *
+map<T1, T2, Alloc>::Node::get_grandparent() const
 {
 	if (this->parent)
 		return this->parent->parent;
 	return 0;
 }
 
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *
-map<T1, T2>::Node::get_uncle() const
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::Node *
+map<T1, T2, Alloc>::Node::get_uncle() const
 {
 	Node *grandParent(this->get_grandparent());
 
@@ -164,9 +165,9 @@ map<T1, T2>::Node::get_uncle() const
 	return grandParent->left();
 }
 
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *
-map<T1, T2>::Node::get_sibling() const
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::Node *
+map<T1, T2, Alloc>::Node::get_sibling() const
 {
 	enum e_side side(this->get_side());
 	if (side == LEFT)
@@ -177,9 +178,9 @@ map<T1, T2>::Node::get_sibling() const
 	return this->parent->child[side];
 }
 
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *
-map<T1, T2>::Node::get_predecessor() const
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::Node *
+map<T1, T2, Alloc>::Node::get_predecessor() const
 {
 	Node *predecessor(this->left());
 
@@ -189,9 +190,9 @@ map<T1, T2>::Node::get_predecessor() const
 	return predecessor;
 }
 
-template <typename T1, typename T2>
-typename map<T1, T2>::e_side
-map<T1, T2>::Node::get_side() const
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::e_side
+map<T1, T2, Alloc>::Node::get_side() const
 {
 	if (this->parent == 0)
 		throw(std::logic_error("get_side: this hasn't parent"));
@@ -211,16 +212,16 @@ map<T1, T2>::Node::get_side() const
 		throw(std::logic_error("get_side: \"this\" hasn't the good parent"));
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename T2, typename Alloc>
 T1 &
-map<T1, T2>::Node::key(void)
+map<T1, T2, Alloc>::Node::key(void)
 {
 	return dual.first;
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename T2, typename Alloc>
 T1
-map<T1, T2>::Node::key(void) const
+map<T1, T2, Alloc>::Node::key(void) const
 {
 	return dual.first;
 }
