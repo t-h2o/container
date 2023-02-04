@@ -2,9 +2,9 @@
  * Red black tree checker
  */
 
-template <typename T1, typename T2>
+template <typename Key, typename Type, typename Alloc>
 void
-map<T1, T2>::_rbt_checker(void) const
+map<Key, Type, Alloc>::_rbt_checker(void) const
 {
 	Node		*node(*_root);
 	unsigned int black_node;

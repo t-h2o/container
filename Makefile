@@ -13,7 +13,6 @@ CFLAGS	+=	-Wfatal-errors
 CFLAGS	+=	-std=c++98
 
 OFLAGS	=	-fsanitize=address
-OFLAGS	+=	/usr/lib/libgtest.a
 
 
 #	Sources

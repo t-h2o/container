@@ -1,10 +1,10 @@
-template <typename T1, typename T2> map<T1, T2>::map(void) : _root(0), _size(0)
+template <typename T1, typename Type, typename Alloc> map<T1, Type, Alloc>::map(void) : _root(0), _size(0)
 {
 	_root = new Node *;
 	*_root = 0;
 }
 
-template <typename T1, typename T2> map<T1, T2>::~map(void)
+template <typename T1, typename Type, typename Alloc> map<T1, Type, Alloc>::~map(void)
 {
 	_free_tree(*_root);
 	delete _root;
@@ -14,23 +14,23 @@ template <typename T1, typename T2> map<T1, T2>::~map(void)
  * Capacity
  */
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 bool
-map<T1, T2>::empty(void) const
+map<T1, Type, Alloc>::empty(void) const
 {
 	return !_size;
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 size_t
-map<T1, T2>::size(void) const
+map<T1, Type, Alloc>::size(void) const
 {
 	return _size;
 }
 
-template <typename T1, typename T2>
-pair<T1, T2> &
-map<T1, T2>::operator[](const T1 &key)
+template <typename T1, typename Type, typename Alloc>
+typename map<T1, Type, Alloc>::reference
+map<T1, Type, Alloc>::operator[](const T1 &key)
 {
 	return _get_reference(key);
 }
@@ -39,16 +39,16 @@ map<T1, T2>::operator[](const T1 &key)
  * Modifiers
  */
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 void
-map<T1, T2>::insert(pair const &pair)
+map<T1, Type, Alloc>::insert(value_type const &pair)
 {
 	_get_reference(pair.first).second = pair.second;
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 void
-map<T1, T2>::erase(T1 const &key)
+map<T1, Type, Alloc>::erase(T1 const &key)
 {
 	if (RBT_LOG_ERASE)
 		print_tree();
@@ -68,16 +68,16 @@ map<T1, T2>::erase(T1 const &key)
  * Extra
  */
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 void
-map<T1, T2>::print_tree(void) const
+map<T1, Type, Alloc>::print_tree(void) const
 {
 	_print_tree(*_root, 0);
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 void
-map<T1, T2>::print(void) const
+map<T1, Type, Alloc>::print(void) const
 {
 	Node *ptr(*_root);
 
@@ -103,9 +103,9 @@ map<T1, T2>::print(void) const
  *     C   D    S   C
  */
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 void
-map<T1, T2>::_rotate_del(Node *node)
+map<T1, Type, Alloc>::_rotate_del(Node *node)
 {
 	enum e_side side(node->get_side());
 	enum e_side oside(_flip_side(side));
@@ -138,9 +138,9 @@ map<T1, T2>::_rotate_del(Node *node)
 		print_tree();
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 int
-map<T1, T2>::_case_0(Node *node, bool deletion)
+map<T1, Type, Alloc>::_case_0(Node *node, bool deletion)
 {
 	if (node->is_red() && node->is_leaf())
 	{
@@ -157,9 +157,9 @@ map<T1, T2>::_case_0(Node *node, bool deletion)
 	return 0;
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 int
-map<T1, T2>::_case_1(Node *node, Node *sibling, bool deletion)
+map<T1, Type, Alloc>::_case_1(Node *node, Node *sibling, bool deletion)
 {
 	if (node->is_black() && sibling->is_red())
 	{
@@ -183,9 +183,9 @@ map<T1, T2>::_case_1(Node *node, Node *sibling, bool deletion)
 	return 0;
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 int
-map<T1, T2>::_case_2(Node *node, Node *sibling, bool deletion)
+map<T1, Type, Alloc>::_case_2(Node *node, Node *sibling, bool deletion)
 {
 	if (node->is_black() && sibling->is_black() && sibling->has_black_children())
 	{
@@ -219,9 +219,9 @@ map<T1, T2>::_case_2(Node *node, Node *sibling, bool deletion)
 	return 0;
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 int
-map<T1, T2>::_case_3(Node *node, Node *sibling, bool deletion)
+map<T1, Type, Alloc>::_case_3(Node *node, Node *sibling, bool deletion)
 {
 	enum e_side side(node->get_side());
 	enum e_side oside(_flip_side(side));
@@ -244,9 +244,9 @@ map<T1, T2>::_case_3(Node *node, Node *sibling, bool deletion)
 	return 0;
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 int
-map<T1, T2>::_case_4(Node *node, Node *sibling, bool deletion)
+map<T1, Type, Alloc>::_case_4(Node *node, Node *sibling, bool deletion)
 {
 	enum e_side side(node->get_side());
 	enum e_side oside(_flip_side(side));
@@ -273,9 +273,9 @@ map<T1, T2>::_case_4(Node *node, Node *sibling, bool deletion)
 	return 0;
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 void
-map<T1, T2>::_solve(Node *node, bool deletion)
+map<T1, Type, Alloc>::_solve(Node *node, bool deletion)
 {
 	if (RBT_LOG_ERASE)
 		std::cout << "_solve(" << node->key() << ", " << deletion << ")" << std::endl;
@@ -301,9 +301,9 @@ map<T1, T2>::_solve(Node *node, bool deletion)
 	return;
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 void
-map<T1, T2>::_erase(Node *node)
+map<T1, Type, Alloc>::_erase(Node *node)
 {
 	if (node == 0)
 	{
@@ -351,9 +351,9 @@ map<T1, T2>::_erase(Node *node)
 	return;
 }
 
-template <typename T1, typename T2>
-pair<T1, T2> &
-map<T1, T2>::_get_reference(const T1 &key)
+template <typename T1, typename Type, typename Alloc>
+typename map<T1, Type, Alloc>::reference
+map<T1, Type, Alloc>::_get_reference(const T1 &key)
 {
 	Node	   *parent;
 	Node	   *node;
@@ -395,9 +395,9 @@ map<T1, T2>::_get_reference(const T1 &key)
  *
  *  It's a recursive function for printing left child, parent and right child.
  */
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 void
-map<T1, T2>::_print_tree(Node *ptr, size_t level) const
+map<T1, Type, Alloc>::_print_tree(Node *ptr, size_t level) const
 {
 	if (ptr == 0)
 		return;
@@ -425,9 +425,9 @@ map<T1, T2>::_print_tree(Node *ptr, size_t level) const
  *
  *  It's a recursive function for freeing children first and parent second.
  */
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 void
-map<T1, T2>::_free_tree(Node *ptr)
+map<T1, Type, Alloc>::_free_tree(Node *ptr)
 {
 	if (ptr == 0)
 		return;
@@ -445,9 +445,9 @@ map<T1, T2>::_free_tree(Node *ptr)
  *  If the value is equal to a node, return a pointer on the node,
  *  else return a pointer on the parent for this value.
  */
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *
-map<T1, T2>::_binary_search(T1 const &key) const
+template <typename T1, typename Type, typename Alloc>
+typename map<T1, Type, Alloc>::Node *
+map<T1, Type, Alloc>::_binary_search(T1 const &key) const
 {
 	Node *parent;
 
@@ -488,9 +488,9 @@ map<T1, T2>::_binary_search(T1 const &key) const
 	return parent;
 }
 
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *
-map<T1, T2>::_new_node(Node *parent, enum e_side &side)
+template <typename T1, typename Type, typename Alloc>
+typename map<T1, Type, Alloc>::Node *
+map<T1, Type, Alloc>::_new_node(Node *parent, enum e_side &side)
 {
 	Node *node;
 
@@ -504,9 +504,9 @@ map<T1, T2>::_new_node(Node *parent, enum e_side &side)
 	return node;
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 void
-map<T1, T2>::_swap(Node *one, Node *two)
+map<T1, Type, Alloc>::_swap(Node *one, Node *two)
 {
 	Node	   *onechild[2];
 	Node	   *oneparent(one->parent);
@@ -631,9 +631,9 @@ map<T1, T2>::_swap(Node *one, Node *two)
 		print_tree();
 }
 
-template <typename T1, typename T2>
+template <typename T1, typename Type, typename Alloc>
 void
-map<T1, T2>::_rebalance_tree(Node *node)
+map<T1, Type, Alloc>::_rebalance_tree(Node *node)
 {
 	if (node == 0)
 		return;
@@ -684,9 +684,9 @@ map<T1, T2>::_rebalance_tree(Node *node)
 	}
 }
 
-template <typename T1, typename T2>
-typename map<T1, T2>::Node *
-map<T1, T2>::_rotate(Node *pivot)
+template <typename T1, typename Type, typename Alloc>
+typename map<T1, Type, Alloc>::Node *
+map<T1, Type, Alloc>::_rotate(Node *pivot)
 {
 	Node	   *root(pivot->parent);
 	enum e_side side(pivot->get_side());
@@ -742,9 +742,9 @@ map<T1, T2>::_rotate(Node *pivot)
  * Side
  */
 
-template <typename T1, typename T2>
-typename map<T1, T2>::e_side
-map<T1, T2>::_flip_side(enum e_side side) const
+template <typename T1, typename Type, typename Alloc>
+typename map<T1, Type, Alloc>::e_side
+map<T1, Type, Alloc>::_flip_side(enum e_side side) const
 {
 	if (side == LEFT)
 		return RIGHT;
