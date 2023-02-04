@@ -6,24 +6,24 @@
 namespace ft
 {
 
-template <typename Key, typename T2> class pair
+template <typename Key, typename Type> class pair
 {
   public:
 	/* Member Funcion */
 	pair(void);
 	pair(const pair &);
-	pair(Key const &, const T2 &);
+	pair(Key const &, const Type &);
 
 	pair &operator=(const pair &);
-	pair &operator=(const T2 &);
+	pair &operator=(const Type &);
 
 	Key	  first;
-	T2	  second;
+	Type	  second;
 };
 
 /* Extra... */
-template <typename Key, typename T2>
-std::ostream &operator<<(std::ostream &output, pair<Key, T2> const &);
+template <typename Key, typename Type>
+std::ostream &operator<<(std::ostream &output, pair<Key, Type> const &);
 
 #include "../templates/Pair.cpp"
 

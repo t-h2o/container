@@ -15,7 +15,7 @@ namespace ft
 // template < class Key,  map::key_type class T,  map::mapped_type class Compare = less<Key>, map::key_compare
 // class Alloc = allocator<pair<const Key,T> >  map::allocator_type > class map;
 
-template <typename Key, typename T2, typename Alloc = std::allocator<ft::pair<Key, T2> > > class map
+template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<Key, Type> > > class map
 {
 	enum e_side
 	{
@@ -32,7 +32,7 @@ template <typename Key, typename T2, typename Alloc = std::allocator<ft::pair<Ke
 	typedef typename allocator_type::difference_type difference_type;
 	typedef typename allocator_type::size_type		 size_type;
 
-	typedef ft::pair<Key, T2> pair;
+	typedef ft::pair<Key, Type> pair;
 
 	class Color
 	{
