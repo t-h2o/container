@@ -1,15 +1,15 @@
-template <typename T1, typename T2> pair<T1, T2>::pair(void) {}
+template <typename Key, typename T2> pair<Key, T2>::pair(void) {}
 
-template <typename T1, typename T2>
-pair<T1, T2>::pair(const pair &other) : first(other.first), second(other.second)
+template <typename Key, typename T2>
+pair<Key, T2>::pair(const pair &other) : first(other.first), second(other.second)
 {
 }
 
-template <typename T1, typename T2> pair<T1, T2>::pair(T1 const &f, T2 const &s) : first(f), second(s) {}
+template <typename Key, typename T2> pair<Key, T2>::pair(Key const &f, T2 const &s) : first(f), second(s) {}
 
-template <typename T1, typename T2>
-pair<T1, T2> &
-pair<T1, T2>::operator=(pair const &other)
+template <typename Key, typename T2>
+pair<Key, T2> &
+pair<Key, T2>::operator=(pair const &other)
 {
 	if (this == &other)
 		return *this;
@@ -20,18 +20,18 @@ pair<T1, T2>::operator=(pair const &other)
 	return *this;
 }
 
-template <typename T1, typename T2>
-pair<T1, T2> &
-pair<T1, T2>::operator=(T2 const &value)
+template <typename Key, typename T2>
+pair<Key, T2> &
+pair<Key, T2>::operator=(T2 const &value)
 {
 	this->second = value;
 
 	return *this;
 }
 
-template <typename T1, typename T2>
+template <typename Key, typename T2>
 std::ostream &
-operator<<(std::ostream &output, pair<T1, T2> const &pair)
+operator<<(std::ostream &output, pair<Key, T2> const &pair)
 {
 	output << "[" << pair.first << "] = " << pair.second;
 

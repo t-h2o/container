@@ -15,7 +15,7 @@ namespace ft
 // template < class Key,  map::key_type class T,  map::mapped_type class Compare = less<Key>, map::key_compare
 // class Alloc = allocator<pair<const Key,T> >  map::allocator_type > class map;
 
-template <typename T1, typename T2, typename Alloc = std::allocator<ft::pair<T1, T2> > > class map
+template <typename Key, typename T2, typename Alloc = std::allocator<ft::pair<Key, T2> > > class map
 {
 	enum e_side
 	{
@@ -32,7 +32,7 @@ template <typename T1, typename T2, typename Alloc = std::allocator<ft::pair<T1,
 	typedef typename allocator_type::difference_type difference_type;
 	typedef typename allocator_type::size_type		 size_type;
 
-	typedef ft::pair<T1, T2> pair;
+	typedef ft::pair<Key, T2> pair;
 
 	class Color
 	{
@@ -94,8 +94,8 @@ template <typename T1, typename T2, typename Alloc = std::allocator<ft::pair<T1,
 
 		enum e_side get_side() const;
 
-		T1 &key();
-		T1	key() const;
+		Key &key();
+		Key	 key() const;
 	};
 
   public:
@@ -107,11 +107,11 @@ template <typename T1, typename T2, typename Alloc = std::allocator<ft::pair<T1,
 	size_t size(void) const;
 
 	/* Element access */
-	pair &operator[](const T1 &);
+	pair &operator[](const Key &);
 
 	/* Modifiers */
 	void insert(pair const &);
-	void erase(T1 const &);
+	void erase(Key const &);
 
 	void print(void) const;
 	void print_tree(void) const;
@@ -123,9 +123,9 @@ template <typename T1, typename T2, typename Alloc = std::allocator<ft::pair<T1,
 	void _free_tree(Node *);
 	void _print_tree(Node *, size_t) const;
 
-	Node *_binary_search(T1 const &) const;
+	Node *_binary_search(Key const &) const;
 	Node *_new_node(Node *, enum e_side &);
-	Node *_get_pointer(T1 const &) const;
+	Node *_get_pointer(Key const &) const;
 	Node *_rotate(Node *);
 
 	void _rotate_del(Node *);
@@ -144,7 +144,7 @@ template <typename T1, typename T2, typename Alloc = std::allocator<ft::pair<T1,
 
 	enum e_side _flip_side(enum e_side) const;
 
-	pair &_get_reference(const T1 &);
+	pair &_get_reference(const Key &);
 };
 
 #include "../templates/Color.cpp"
