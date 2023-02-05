@@ -18,9 +18,17 @@ template <typename _Val> struct _node : _node_base
 
 template <typename T, typename Alloc = std::allocator<T> > class chain_list
 {
+	typedef ft::_node<T> node;
+	typedef node		*node_ptr;
+
+  public:
+	chain_list(void);
+
   private:
-	ft::_node<T> *start;
+	node_ptr _start;
 };
+
+#include "../templates/chain_list.cpp"
 
 }
 

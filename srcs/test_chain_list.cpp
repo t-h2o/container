@@ -10,4 +10,5 @@ test_chain_list(void)
 	title("Chain list");
 
 	ft::chain_list<int> a;
+	(void)a;
 }

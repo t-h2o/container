@@ -56,6 +56,7 @@ TMPS	=	$(TMPD)/IteratorVector.cpp
 TMPS	=	$(TMPD)/random_access_iterator.cpp
 TMPS	+=	$(TMPD)/Tdd.cpp
 TMPS	+=	$(TMPD)/Map.cpp
+TMPS	+=	$(TMPD)/chain_list.cpp
 TMPS	+=	$(TMPD)/RBTchecker.cpp
 TMPS	+=	$(TMPD)/Color.cpp
 TMPS	+=	$(TMPD)/Node.cpp
