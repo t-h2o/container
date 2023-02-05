@@ -37,6 +37,7 @@ template <typename T, typename Alloc = std::allocator<T> > class chain_list
 
   public:
 	chain_list(void);
+	~chain_list(void);
 
 	void put(const_reference);
 
