@@ -31,13 +31,16 @@ template <typename T, typename Alloc = std::allocator<T> > class chain_list
 	typedef typename allocator_type::difference_type difference_type;
 	typedef typename allocator_type::size_type		 size_type;
 
+	typedef typename allocator_type::template rebind<node>::other node_allocator;
+
   public:
 	chain_list(void);
 
 	void put(const_reference);
 
   private:
-	node_ptr _start;
+	node_ptr	   _start;
+	node_allocator _alloc_node;
 };
 
 #include "../templates/chain_list.cpp"
