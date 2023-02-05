@@ -8,6 +8,8 @@ struct _node_base
 {
 	typedef _node_base *_Base_ptr;
 
+	_node_base(void);
+
 	_Base_ptr next;
 };
 
