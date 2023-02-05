@@ -16,3 +16,10 @@ chain_list<T, Alloc>::put(const_reference item)
 	_start = _alloc_node.allocate(1);
 	_alloc_node.construct(_start, item);
 }
+
+template <typename T, typename Alloc>
+void
+chain_list<T, Alloc>::last(void)
+{
+	std::cout << "last: " << _start->_last_node(_start) << std::endl;
+}

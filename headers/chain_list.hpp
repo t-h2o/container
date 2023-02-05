@@ -11,6 +11,14 @@ struct _node_base
 	_node_base(void);
 
 	_Base_ptr next;
+
+	static _Base_ptr
+	_last_node(_Base_ptr ptr)
+	{
+		while (ptr->next)
+			ptr = ptr->next;
+		return ptr;
+	}
 };
 
 template <typename _Val> struct _node : _node_base
@@ -42,6 +50,7 @@ template <typename T, typename Alloc = std::allocator<T> > class chain_list
 	~chain_list(void);
 
 	void put(const_reference);
+	void last(void);
 
   private:
 	node_ptr	   _start;

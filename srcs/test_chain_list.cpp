@@ -11,4 +11,5 @@ test_chain_list(void)
 
 	ft::chain_list<int> a;
 	a.put(42);
+	a.last();
 }
