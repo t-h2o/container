@@ -25,6 +25,7 @@ SRCS	+=	$(SRCD)/Awesome.cpp
 SRCS	+=	$(SRCD)/to_string.cpp
 
 SRCS	+=	$(SRCD)/test_vector.cpp
+SRCS	+=	$(SRCD)/test_chain_list.cpp
 SRCS	+=	$(SRCD)/test_pair.cpp
 SRCS	+=	$(SRCD)/test_map.cpp
 
@@ -41,6 +42,7 @@ INCS	+=	$(INCD)/Tdd.hpp
 INCS	+=	$(INCD)/Iterator.hpp
 INCS	+=	$(INCD)/random_access_iterator.hpp
 INCS	+=	$(INCD)/Map.hpp
+INCS	+=	$(INCD)/chain_list.hpp
 INCS	+=	$(INCD)/Vector.hpp
 
 INCS	+=	$(INCD)/test.hpp
