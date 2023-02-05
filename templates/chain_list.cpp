@@ -1,3 +1,5 @@
+template <typename _Val> _node<_Val>::_node(const _Val &item) : value_field(item) {}
+
 template <typename T, typename Alloc> chain_list<T, Alloc>::chain_list(void) : _start(), _alloc_node() {}
 
 template <typename T, typename Alloc>

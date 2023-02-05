@@ -13,6 +13,8 @@ struct _node_base
 
 template <typename _Val> struct _node : _node_base
 {
+	_node(const _Val &);
+
 	_Val value_field;
 };
 
