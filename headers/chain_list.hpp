@@ -57,6 +57,21 @@ template <typename _Tp> struct _chain_list_iterator
 		return static_cast<node_ptr>(_node_ptr)->valptr();
 	}
 
+	_self &
+	operator++(void)
+	{
+		this->_node_ptr = this->_node_ptr->next;
+		return *this;
+	}
+
+	_self
+	operator++(int)
+	{
+		_self _tmp(*this);
+		this->_node_ptr = this->_node_ptr->next;
+		return _tmp;
+	}
+
 	_Base_ptr _node_ptr;
 };
 

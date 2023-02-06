@@ -22,9 +22,21 @@ test(void)
 	std::cout << "size: " << a.size() << std::endl;
 	a.last();
 
-	typename ft::chain_list<T>::iterator it(a.begin());
+	{
+		typename ft::chain_list<T>::iterator it(a.begin());
 
-	std::cout << "iterator begin: " << *it << std::endl;
+		std::cout << "iterator begin:        : " << *it << std::endl;
+		std::cout << "iterator begin: *(it++): " << *(it++) << std::endl;
+		std::cout << "iterator begin:        : " << *it << std::endl;
+	}
+
+	{
+		typename ft::chain_list<T>::iterator it(a.begin());
+
+		std::cout << "iterator begin:        : " << *it << std::endl;
+		std::cout << "iterator begin: *(++it): " << *(++it) << std::endl;
+		std::cout << "iterator begin:        : " << *it << std::endl;
+	}
 }
 
 void
