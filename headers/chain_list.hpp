@@ -1,6 +1,8 @@
 #ifndef CHAIN_LIST_HPP
 #define CHAIN_LIST_HPP
 
+#include <Iterator.hpp>
+
 namespace ft
 {
 
@@ -45,6 +47,9 @@ template <typename _Tp> struct _chain_list_iterator
 	typedef _chain_list_iterator<_Tp> _self;
 	typedef _node_base::_Base_ptr	  _Base_ptr;
 	typedef _node<_Tp>				 *node_ptr;
+
+	typedef bidirectional_iterator_tag iterator_category;
+	typedef std::ptrdiff_t			   difference_type;
 
 	_chain_list_iterator(_Base_ptr ptr) : _node_ptr(ptr) {}
 
@@ -104,6 +109,9 @@ template <typename _Tp> struct _chain_list_const_iterator
 	typedef _chain_list_const_iterator<_Tp> _self;
 	typedef _node_base::_Const_Base_ptr		_Base_ptr;
 	typedef const _node<_Tp>			   *node_ptr;
+
+	typedef bidirectional_iterator_tag iterator_category;
+	typedef std::ptrdiff_t			   difference_type;
 
 	_chain_list_const_iterator(_Base_ptr ptr) : _node_ptr(ptr) {}
 
