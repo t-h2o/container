@@ -71,7 +71,17 @@ test(void)
 		std::cout << "const iterator begin: *(++it): " << *(++it) << std::endl;
 		std::cout << "const iterator begin: *it    : " << *it << std::endl;
 		std::cout << "const iterator begin: *(--it): " << *(--it) << std::endl;
-		std::cout << "const iterator begin: *it    : " << *it << std::endl;
+		std::cout << "const iterator begin: *it    : " << *it << std::endl << std::endl;
+	}
+
+	{
+		typename ft::chain_list<T>::reverse_iterator it(a.rend());
+
+		std::cout << "reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "reverse iterator begin: *(it--): " << *(it--) << std::endl;
+		std::cout << "reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "reverse iterator begin: *(it++): " << *(it++) << std::endl;
+		std::cout << "reverse iterator begin: *it    : " << *it << std::endl;
 	}
 }
 

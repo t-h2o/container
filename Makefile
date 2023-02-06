@@ -40,6 +40,7 @@ INCS	+=	$(INCD)/to_string.hpp
 INCS	+=	$(INCD)/Tdd.hpp
 
 INCS	+=	$(INCD)/Iterator.hpp
+INCS	+=	$(INCD)/rev_bidirectional.hpp
 INCS	+=	$(INCD)/random_access_iterator.hpp
 INCS	+=	$(INCD)/Map.hpp
 INCS	+=	$(INCD)/chain_list.hpp

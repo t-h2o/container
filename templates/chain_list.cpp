@@ -66,6 +66,13 @@ chain_list<T, Alloc>::cbegin(void)
 }
 
 template <typename T, typename Alloc>
+typename chain_list<T, Alloc>::reverse_iterator
+chain_list<T, Alloc>::rend(void)
+{
+	return reverse_iterator(this->begin());
+}
+
+template <typename T, typename Alloc>
 void
 chain_list<T, Alloc>::put(const_reference item)
 {
