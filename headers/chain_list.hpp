@@ -49,12 +49,14 @@ template <typename T, typename Alloc = std::allocator<T> > class chain_list
 	chain_list(void);
 	~chain_list(void);
 
-	void put(const_reference);
-	void last(void);
+	void	  put(const_reference);
+	void	  last(void);
+	size_type size(void);
 
   private:
 	node_ptr	   _start;
 	node_allocator _alloc_node;
+	size_type	   _size;
 };
 
 #include "../templates/chain_list.cpp"
