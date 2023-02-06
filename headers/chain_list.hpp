@@ -74,6 +74,21 @@ template <typename _Tp> struct _chain_list_iterator
 		return _tmp;
 	}
 
+	_self &
+	operator--(void)
+	{
+		this->_node_ptr = this->_node_ptr->back;
+		return *this;
+	}
+
+	_self
+	operator--(int)
+	{
+		_self _tmp(*this);
+		this->_node_ptr = this->_node_ptr->back;
+		return _tmp;
+	}
+
 	_Base_ptr _node_ptr;
 };
 
