@@ -51,6 +51,12 @@ template <typename _Tp> struct _chain_list_iterator
 		return *static_cast<node_ptr>(_node_ptr)->valptr();
 	}
 
+	pointer
+	operator->(void) const
+	{
+		return static_cast<node_ptr>(_node_ptr)->valptr();
+	}
+
 	_Base_ptr _node_ptr;
 };
 
