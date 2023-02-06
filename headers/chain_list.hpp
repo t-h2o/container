@@ -10,9 +10,11 @@ struct _node_base
 
 	_node_base(void);
 
+	_Base_ptr back;
 	_Base_ptr next;
 
 	static _Base_ptr
+
 	_last_node(_Base_ptr ptr)
 	{
 		while (ptr->next)

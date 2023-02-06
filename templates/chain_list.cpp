@@ -1,4 +1,4 @@
-_node_base::_node_base(void) : next(0) {}
+_node_base::_node_base(void) : back(0), next(0) {}
 
 template <typename _Val> _node<_Val>::_node(const _Val &item) : _node_base(), value_field(item) {}
 
@@ -41,12 +41,14 @@ chain_list<T, Alloc>::put(const_reference item)
 	{
 		_start = _alloc_node.allocate(1);
 		_alloc_node.construct(_start, item);
+		_start->back = 0;
 	}
 	else
 	{
 		node_ptr last = (node_ptr)_start->_last_node(_start);
 		last->next = _alloc_node.allocate(1);
 		_alloc_node.construct((node_ptr)last->next, item);
+		last->next->back = last;
 	}
 	++_size;
 }
