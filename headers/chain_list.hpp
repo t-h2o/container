@@ -28,6 +28,21 @@ template <typename _Val> struct _node : _node_base
 	_Val value_field;
 };
 
+template <typename _Tp> struct _chain_list_iterator
+{
+	typedef _Tp	 value_type;
+	typedef _Tp &reference;
+	typedef _Tp *pointer;
+
+	typedef _chain_list_iterator<_Tp> _self;
+	typedef _node_base::_Base_ptr	  _Base_ptr;
+	typedef _node<_Tp>				 *node_ptr;
+
+	_chain_list_iterator(_Base_ptr ptr) : _node_ptr(ptr) {}
+
+	_Base_ptr _node_ptr;
+};
+
 template <typename T, typename Alloc = std::allocator<T> > class chain_list
 {
 	typedef ft::_node<T> node;
@@ -46,8 +61,12 @@ template <typename T, typename Alloc = std::allocator<T> > class chain_list
 	typedef typename allocator_type::template rebind<node>::other node_allocator;
 
   public:
+	typedef _chain_list_iterator<value_type> iterator;
+
 	chain_list(void);
 	~chain_list(void);
+
+	iterator begin(void);
 
 	void	  put(const_reference);
 	void	  last(void);

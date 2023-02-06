@@ -21,6 +21,9 @@ test(void)
 	a.put(1234);
 	std::cout << "size: " << a.size() << std::endl;
 	a.last();
+
+	typename ft::chain_list<T>::iterator it(a.begin());
+	(void)it;
 }
 
 void

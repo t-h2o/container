@@ -25,6 +25,13 @@ template <typename T, typename Alloc> chain_list<T, Alloc>::~chain_list(void)
 }
 
 template <typename T, typename Alloc>
+typename chain_list<T, Alloc>::iterator
+chain_list<T, Alloc>::begin(void)
+{
+	return iterator(_start);
+}
+
+template <typename T, typename Alloc>
 void
 chain_list<T, Alloc>::put(const_reference item)
 {
