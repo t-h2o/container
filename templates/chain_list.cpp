@@ -19,6 +19,7 @@ template <typename T, typename Alloc> chain_list<T, Alloc>::~chain_list(void)
 		node_ptr parent(ptr);
 
 		ptr = static_cast<node_ptr>(ptr->next);
+		_alloc_node.destroy(parent);
 		_alloc_node.deallocate(parent, 1);
 	}
 }
