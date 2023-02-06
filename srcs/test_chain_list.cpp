@@ -23,7 +23,8 @@ test(void)
 	a.last();
 
 	typename ft::chain_list<T>::iterator it(a.begin());
-	(void)it;
+
+	std::cout << "iterator begin: " << *it << std::endl;
 }
 
 void

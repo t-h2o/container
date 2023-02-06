@@ -25,6 +25,11 @@ template <typename _Val> struct _node : _node_base
 {
 	_node(const _Val &);
 
+	_Val *
+	valptr(void)
+	{
+		return &value_field;
+	}
 	_Val value_field;
 };
 
@@ -39,6 +44,12 @@ template <typename _Tp> struct _chain_list_iterator
 	typedef _node<_Tp>				 *node_ptr;
 
 	_chain_list_iterator(_Base_ptr ptr) : _node_ptr(ptr) {}
+
+	reference
+	operator*(void) const
+	{
+		return *static_cast<node_ptr>(_node_ptr)->valptr();
+	}
 
 	_Base_ptr _node_ptr;
 };
