@@ -32,6 +32,13 @@ chain_list<T, Alloc>::begin(void)
 }
 
 template <typename T, typename Alloc>
+typename chain_list<T, Alloc>::const_iterator
+chain_list<T, Alloc>::cbegin(void)
+{
+	return const_iterator(_start);
+}
+
+template <typename T, typename Alloc>
 void
 chain_list<T, Alloc>::put(const_reference item)
 {
