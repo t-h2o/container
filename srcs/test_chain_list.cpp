@@ -47,6 +47,8 @@ test(void)
 
 		std::cout << "const iterator begin: *it    : " << *it << std::endl;
 		std::cout << "const iterator begin: *(++it): " << *(++it) << std::endl;
+		std::cout << "const iterator begin: *it    : " << *it << std::endl;
+		std::cout << "const iterator begin: *(--it): " << *(--it) << std::endl;
 		std::cout << "const iterator begin: *it    : " << *it << std::endl << std::endl;
 	}
 
@@ -55,6 +57,8 @@ test(void)
 
 		std::cout << "const iterator begin: *it    : " << *it << std::endl;
 		std::cout << "const iterator begin: *(it++): " << *(it++) << std::endl;
+		std::cout << "const iterator begin: *it    : " << *it << std::endl;
+		std::cout << "const iterator begin: *(it--): " << *(it--) << std::endl;
 		std::cout << "const iterator begin: *it    : " << *it << std::endl;
 	}
 }
