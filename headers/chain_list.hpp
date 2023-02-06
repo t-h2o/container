@@ -186,6 +186,6 @@ template <typename T, typename Alloc = std::allocator<T> > class chain_list
 
 #include "../templates/chain_list.cpp"
 
-}
+} /* Namespace */
 
 #endif /* CHAIN_LIST_HPP */
