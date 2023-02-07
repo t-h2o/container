@@ -29,12 +29,6 @@ test(void)
 		std::cout << "iterator begin: *(it++): " << *(it++) << std::endl;
 		std::cout << "iterator begin: *it    : " << *it << std::endl;
 		std::cout << "iterator begin: *(it--): " << *(it--) << std::endl;
-		std::cout << "iterator begin: *it    : " << *it << std::endl << std::endl;
-	}
-
-	{
-		typename ft::chain_list<T>::iterator it(a.begin());
-
 		std::cout << "iterator begin: *it    : " << *it << std::endl;
 		std::cout << "iterator begin: *(++it): " << *(++it) << std::endl;
 		std::cout << "iterator begin: *it    : " << *it << std::endl;
@@ -46,19 +40,13 @@ test(void)
 		typename ft::chain_list<T>::const_iterator it(a.cbegin());
 
 		std::cout << "const iterator begin: *it    : " << *it << std::endl;
-		std::cout << "const iterator begin: *(++it): " << *(++it) << std::endl;
-		std::cout << "const iterator begin: *it    : " << *it << std::endl;
-		std::cout << "const iterator begin: *(--it): " << *(--it) << std::endl;
-		std::cout << "const iterator begin: *it    : " << *it << std::endl << std::endl;
-	}
-
-	{
-		typename ft::chain_list<T>::const_iterator it(a.cbegin());
-
-		std::cout << "const iterator begin: *it    : " << *it << std::endl;
 		std::cout << "const iterator begin: *(it++): " << *(it++) << std::endl;
 		std::cout << "const iterator begin: *it    : " << *it << std::endl;
 		std::cout << "const iterator begin: *(it--): " << *(it--) << std::endl;
+		std::cout << "const iterator begin: *it    : " << *it << std::endl;
+		std::cout << "const iterator begin: *(++it): " << *(++it) << std::endl;
+		std::cout << "const iterator begin: *it    : " << *it << std::endl;
+		std::cout << "const iterator begin: *(--it): " << *(--it) << std::endl;
 		std::cout << "const iterator begin: *it    : " << *it << std::endl;
 	}
 }
