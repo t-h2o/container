@@ -44,18 +44,17 @@ chain_list<T, Alloc>::put(const_reference item)
 {
 	std::cout << "Put: " << item << std::endl;
 
+	node_ptr new_node = _alloc_node.allocate(1);
+	_alloc_node.construct(new_node, item);
 	if (_start == 0)
 	{
-		_start = _alloc_node.allocate(1);
-		_alloc_node.construct(_start, item);
-		_start->back = 0;
+		_start = new_node;
 	}
 	else
 	{
 		node_ptr last = (node_ptr)_start->_last_node(_start);
-		last->next = _alloc_node.allocate(1);
-		_alloc_node.construct((node_ptr)last->next, item);
-		last->next->back = last;
+		new_node->back = last;
+		last->next = new_node;
 	}
 	++_size;
 }
