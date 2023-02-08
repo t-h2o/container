@@ -95,6 +95,12 @@ template <typename _Tp> struct _chain_list_iterator
 		return _tmp;
 	}
 
+	bool
+	operator!=(_chain_list_iterator const &other)
+	{
+		return (this->_node_ptr != other._node_ptr);
+	}
+
 	_Base_ptr _node_ptr;
 };
 
