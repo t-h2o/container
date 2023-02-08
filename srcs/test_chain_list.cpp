@@ -18,9 +18,11 @@ test(void)
 		typename ft::chain_list<T>::iterator it(a.begin());
 
 		while (it != a.end())
-		{
 			std::cout << "iterator ++:  " << *it++ << std::endl;
-		}
+
+		--it;
+		while (it != a.end())
+			std::cout << "iterator --  " << *it-- << std::endl;
 	}
 
 	a.put(42);
@@ -31,9 +33,11 @@ test(void)
 		typename ft::chain_list<T>::iterator it(a.begin());
 
 		while (it != a.end())
-		{
 			std::cout << "iterator ++:  " << *it++ << std::endl;
-		}
+
+		--it;
+		while (it != a.end())
+			std::cout << "iterator --  " << *it-- << std::endl;
 	}
 
 	a.put(1234);
@@ -44,9 +48,11 @@ test(void)
 		typename ft::chain_list<T>::iterator it(a.begin());
 
 		while (it != a.end())
-		{
 			std::cout << "iterator ++:  " << *it++ << std::endl;
-		}
+
+		--it;
+		while (it != a.end())
+			std::cout << "iterator --  " << *it-- << std::endl;
 	}
 
 	{
