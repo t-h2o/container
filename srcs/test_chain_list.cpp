@@ -112,6 +112,40 @@ test(void)
 	}
 }
 
+template <typename T>
+static void
+test_range(void)
+{
+	ft::chain_list<T> a;
+
+	for (int i = 0; i < 100; i += 10)
+		a.put(i);
+
+	section("\tb(a.begin(), a.end())");
+	{
+		ft::chain_list<T> b(a.begin(), a.end());
+		std::cout << "size: " << b.size() << std::endl;
+	}
+
+	section("\tb(a.cbegin(), a.cend())");
+	{
+		ft::chain_list<T> b(a.cbegin(), a.cend());
+		std::cout << "size: " << b.size() << std::endl;
+	}
+
+	section("\tb(a.rbegin(), a.rend())");
+	{
+		ft::chain_list<T> b(a.rbegin(), a.rend());
+		std::cout << "size: " << b.size() << std::endl;
+	}
+
+	section("\tb(a.crbegin(), a.crend())");
+	{
+		ft::chain_list<T> b(a.crbegin(), a.crend());
+		std::cout << "size: " << b.size() << std::endl;
+	}
+}
+
 void
 test_chain_list(void)
 {
@@ -122,4 +156,7 @@ test_chain_list(void)
 
 	section("test Awesome");
 	test<Awesome>();
+
+	section("test_range int");
+	test_range<int>();
 }
