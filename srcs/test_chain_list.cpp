@@ -94,7 +94,21 @@ test(void)
 		std::cout << "reverse iterator begin: *(++it): " << *(it++) << std::endl;
 		std::cout << "reverse iterator begin: *it    : " << *it << std::endl;
 		std::cout << "reverse iterator begin: *(--it): " << *(it--) << std::endl;
-		std::cout << "reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "reverse iterator begin: *it    : " << *it << std::endl << std::endl;
+	}
+
+	{
+		typename ft::chain_list<T>::const_reverse_iterator it(a.crbegin());
+
+		std::cout << "const reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "const reverse iterator begin: *(it++): " << *(it++) << std::endl;
+		std::cout << "const reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "const reverse iterator begin: *(it--): " << *(it--) << std::endl;
+		std::cout << "const reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "const reverse iterator begin: *(++it): " << *(it++) << std::endl;
+		std::cout << "const reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "const reverse iterator begin: *(--it): " << *(it--) << std::endl;
+		std::cout << "const reverse iterator begin: *it    : " << *it << std::endl;
 	}
 }
 
