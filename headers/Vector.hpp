@@ -30,7 +30,7 @@ template <typename T, typename Alloc = std::allocator<T> > class vector
 	typedef typename allocator_type::difference_type difference_type;
 	typedef typename allocator_type::size_type		 size_type;
 
-	typedef ft::random_access_iterator<T> iterator;
+	typedef ft::random_access_iterator<pointer> iterator;
 
 	/* Member Funcion */
 	explicit vector(const allocator_type &alloc = allocator_type());
