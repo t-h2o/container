@@ -15,15 +15,6 @@ struct _node_base
 
 	_Base_ptr back;
 	_Base_ptr next;
-
-	static _Base_ptr
-
-	_last_node(_Base_ptr ptr)
-	{
-		while (ptr->next)
-			ptr = ptr->next;
-		return ptr;
-	}
 };
 
 template <typename _Val> struct _node : _node_base
@@ -177,6 +168,8 @@ template <typename T, typename Alloc = std::allocator<T> > class chain_list
 
 	typedef typename allocator_type::template rebind<node>::other node_allocator;
 
+	node_ptr _last(void);
+
   public:
 	typedef _chain_list_iterator<value_type>	   iterator;
 	typedef _chain_list_const_iterator<value_type> const_iterator;
@@ -185,6 +178,7 @@ template <typename T, typename Alloc = std::allocator<T> > class chain_list
 	~chain_list(void);
 
 	iterator begin(void);
+	iterator end(void);
 
 	const_iterator cbegin(void);
 
