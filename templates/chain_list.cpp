@@ -11,6 +11,22 @@ chain_list<T, Alloc>::chain_list(void) : _start(0), _alloc_node(), _size(0)
 	_start = _end;
 }
 
+template <typename T, typename Alloc>
+template <typename _InputIterator>
+chain_list<T, Alloc>::chain_list(_InputIterator first, _InputIterator last)
+	: _start(0), _alloc_node(), _size(0)
+{
+	_end = _alloc_node.allocate(1);
+	_end->next = _end;
+	_end->back = _end;
+	_start = _end;
+
+	while (first != last)
+	{
+		this->put(*first++);
+	}
+}
+
 template <typename T, typename Alloc> chain_list<T, Alloc>::~chain_list(void)
 {
 	node_ptr  ptr(_start);
