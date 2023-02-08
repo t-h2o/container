@@ -175,7 +175,8 @@ template <typename T, typename Alloc = std::allocator<T> > class chain_list
 	typedef _chain_list_iterator<value_type>	   iterator;
 	typedef _chain_list_const_iterator<value_type> const_iterator;
 
-	typedef ft::rev_bidirectional<iterator> reverse_iterator;
+	typedef ft::rev_bidirectional<iterator>		  reverse_iterator;
+	typedef ft::rev_bidirectional<const_iterator> const_reverse_iterator;
 
 	chain_list(void);
 	~chain_list(void);
@@ -184,9 +185,13 @@ template <typename T, typename Alloc = std::allocator<T> > class chain_list
 	iterator end(void);
 
 	const_iterator cbegin(void);
+	const_iterator cend(void);
 
 	reverse_iterator rbegin(void);
 	reverse_iterator rend(void);
+
+	const_reverse_iterator crbegin(void);
+	const_reverse_iterator crend(void);
 
 	void	  put(const_reference);
 	void	  last(void);

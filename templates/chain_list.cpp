@@ -66,6 +66,13 @@ chain_list<T, Alloc>::cbegin(void)
 }
 
 template <typename T, typename Alloc>
+typename chain_list<T, Alloc>::const_iterator
+chain_list<T, Alloc>::cend(void)
+{
+	return const_iterator(_end);
+}
+
+template <typename T, typename Alloc>
 typename chain_list<T, Alloc>::reverse_iterator
 chain_list<T, Alloc>::rbegin(void)
 {
@@ -77,6 +84,20 @@ typename chain_list<T, Alloc>::reverse_iterator
 chain_list<T, Alloc>::rend(void)
 {
 	return reverse_iterator(this->begin());
+}
+
+template <typename T, typename Alloc>
+typename chain_list<T, Alloc>::const_reverse_iterator
+chain_list<T, Alloc>::crbegin(void)
+{
+	return const_reverse_iterator(this->cend());
+}
+
+template <typename T, typename Alloc>
+typename chain_list<T, Alloc>::const_reverse_iterator
+chain_list<T, Alloc>::crend(void)
+{
+	return const_reverse_iterator(this->cbegin());
 }
 
 template <typename T, typename Alloc>
