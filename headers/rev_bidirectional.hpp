@@ -30,7 +30,8 @@ class rev_bidirectional
 	reference
 	operator*(void) const
 	{
-		return *_it;
+		iterator_type _tmp(_it);
+		return *--_tmp;
 	}
 
 	_self &
@@ -49,7 +50,7 @@ class rev_bidirectional
 	}
 
 	_self &
-	operator--(void) const
+	operator--(void)
 	{
 		++_it;
 		return *this;
@@ -61,6 +62,12 @@ class rev_bidirectional
 		_self _tmp(*this);
 		++_it;
 		return _tmp;
+	}
+
+	bool
+	operator!=(_self const &other)
+	{
+		return _it != other._it;
 	}
 
   private:
