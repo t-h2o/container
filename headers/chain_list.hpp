@@ -188,6 +188,7 @@ template <typename T, typename Alloc = std::allocator<T> > class chain_list
 
   private:
 	node_ptr	   _start;
+	node_ptr	   _end;
 	node_allocator _alloc_node;
 	size_type	   _size;
 };

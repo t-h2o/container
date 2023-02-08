@@ -5,6 +5,9 @@ template <typename _Val> _node<_Val>::_node(const _Val &item) : _node_base(), va
 template <typename T, typename Alloc>
 chain_list<T, Alloc>::chain_list(void) : _start(0), _alloc_node(), _size(0)
 {
+	_end = _alloc_node.allocate(1);
+	_end->next = _end;
+	_end->back = _end;
 }
 
 template <typename T, typename Alloc> chain_list<T, Alloc>::~chain_list(void)
@@ -22,6 +25,7 @@ template <typename T, typename Alloc> chain_list<T, Alloc>::~chain_list(void)
 		_alloc_node.destroy(parent);
 		_alloc_node.deallocate(parent, 1);
 	}
+	_alloc_node.deallocate(_end, 1);
 }
 
 template <typename T, typename Alloc>
