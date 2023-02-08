@@ -17,6 +17,15 @@ test_it(ft::chain_list<T> &a)
 	--it;
 	while (it != a.end())
 		std::cout << "iterator --:  " << *it-- << std::endl;
+
+	typename ft::chain_list<T>::reverse_iterator rev_it(a.rbegin());
+
+	while (rev_it != a.rend())
+		std::cout << "reverse iterator ++:  " << *rev_it++ << std::endl;
+
+	--rev_it;
+	while (rev_it != a.rend())
+		std::cout << "reverse iterator --:  " << *rev_it-- << std::endl;
 }
 
 template <typename T>
@@ -71,7 +80,35 @@ test(void)
 		std::cout << "const iterator begin: *(++it): " << *(++it) << std::endl;
 		std::cout << "const iterator begin: *it    : " << *it << std::endl;
 		std::cout << "const iterator begin: *(--it): " << *(--it) << std::endl;
-		std::cout << "const iterator begin: *it    : " << *it << std::endl;
+		std::cout << "const iterator begin: *it    : " << *it << std::endl << std::endl;
+	}
+
+	{
+		typename ft::chain_list<T>::reverse_iterator it(a.rbegin());
+
+		std::cout << "reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "reverse iterator begin: *(it++): " << *(it++) << std::endl;
+		std::cout << "reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "reverse iterator begin: *(it--): " << *(it--) << std::endl;
+		std::cout << "reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "reverse iterator begin: *(++it): " << *(it++) << std::endl;
+		std::cout << "reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "reverse iterator begin: *(--it): " << *(it--) << std::endl;
+		std::cout << "reverse iterator begin: *it    : " << *it << std::endl << std::endl;
+	}
+
+	{
+		typename ft::chain_list<T>::const_reverse_iterator it(a.crbegin());
+
+		std::cout << "const reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "const reverse iterator begin: *(it++): " << *(it++) << std::endl;
+		std::cout << "const reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "const reverse iterator begin: *(it--): " << *(it--) << std::endl;
+		std::cout << "const reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "const reverse iterator begin: *(++it): " << *(it++) << std::endl;
+		std::cout << "const reverse iterator begin: *it    : " << *it << std::endl;
+		std::cout << "const reverse iterator begin: *(--it): " << *(it--) << std::endl;
+		std::cout << "const reverse iterator begin: *it    : " << *it << std::endl;
 	}
 }
 
