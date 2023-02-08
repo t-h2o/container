@@ -25,6 +25,15 @@ test(void)
 	{
 		typename ft::chain_list<T>::iterator it(a.begin());
 
+		while (it != a.end())
+		{
+			std::cout << "iterator ++:  " << *it++ << std::endl;
+		}
+	}
+
+	{
+		typename ft::chain_list<T>::iterator it(a.begin());
+
 		std::cout << "iterator begin: *it    : " << *it << std::endl;
 		std::cout << "iterator begin: *(it++): " << *(it++) << std::endl;
 		std::cout << "iterator begin: *it    : " << *it << std::endl;
