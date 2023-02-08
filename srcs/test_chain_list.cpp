@@ -7,53 +7,44 @@
 
 template <typename T>
 static void
+test_it(ft::chain_list<T> &a)
+{
+	typename ft::chain_list<T>::iterator it(a.begin());
+
+	while (it != a.end())
+		std::cout << "iterator ++:  " << *it++ << std::endl;
+
+	--it;
+	while (it != a.end())
+		std::cout << "iterator --:  " << *it-- << std::endl;
+}
+
+template <typename T>
+static void
+test_put(ft::chain_list<T> &a, const T &item)
+{
+	a.put(item);
+	std::cout << "size: " << a.size() << std::endl;
+	a.last();
+	test_it(a);
+	std::cout << std::endl;
+}
+
+template <typename T>
+static void
 test(void)
 {
 	ft::chain_list<T> a;
 
 	std::cout << "size: " << a.size() << std::endl;
 	a.last();
+	test_it(a);
+	std::cout << std::endl;
 
-	{
-		typename ft::chain_list<T>::iterator it(a.begin());
-
-		while (it != a.end())
-			std::cout << "iterator ++:  " << *it++ << std::endl;
-
-		--it;
-		while (it != a.end())
-			std::cout << "iterator --  " << *it-- << std::endl;
-	}
-
-	a.put(42);
-	std::cout << "size: " << a.size() << std::endl;
-	a.last();
-
-	{
-		typename ft::chain_list<T>::iterator it(a.begin());
-
-		while (it != a.end())
-			std::cout << "iterator ++:  " << *it++ << std::endl;
-
-		--it;
-		while (it != a.end())
-			std::cout << "iterator --  " << *it-- << std::endl;
-	}
-
-	a.put(1234);
-	std::cout << "size: " << a.size() << std::endl;
-	a.last();
-
-	{
-		typename ft::chain_list<T>::iterator it(a.begin());
-
-		while (it != a.end())
-			std::cout << "iterator ++:  " << *it++ << std::endl;
-
-		--it;
-		while (it != a.end())
-			std::cout << "iterator --  " << *it-- << std::endl;
-	}
+	test_put<T>(a, 42);
+	test_put<T>(a, 50);
+	test_put<T>(a, 60);
+	test_put<T>(a, 70);
 
 	{
 		typename ft::chain_list<T>::iterator it(a.begin());
