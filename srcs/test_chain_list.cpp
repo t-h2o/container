@@ -116,9 +116,10 @@ void
 test_chain_list(void)
 {
 	title("Chain list");
-	section("test int");
 
+	section("test int");
 	test<int>();
+
 	section("test Awesome");
 	test<Awesome>();
 }
