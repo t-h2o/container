@@ -184,14 +184,14 @@ template <typename T, typename Alloc = std::allocator<T> > class chain_list
 	iterator begin(void);
 	iterator end(void);
 
-	const_iterator cbegin(void);
-	const_iterator cend(void);
+	const_iterator cbegin(void) const;
+	const_iterator cend(void) const;
 
 	reverse_iterator rbegin(void);
 	reverse_iterator rend(void);
 
-	const_reverse_iterator crbegin(void);
-	const_reverse_iterator crend(void);
+	const_reverse_iterator crbegin(void) const;
+	const_reverse_iterator crend(void) const;
 
 	void	  put(const_reference);
 	void	  last(void);
