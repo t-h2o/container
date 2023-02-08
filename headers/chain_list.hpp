@@ -181,6 +181,7 @@ template <typename T, typename Alloc = std::allocator<T> > class chain_list
 	iterator end(void);
 
 	const_iterator cbegin(void);
+	const_iterator cend(void);
 
 	void	  put(const_reference);
 	void	  last(void);
