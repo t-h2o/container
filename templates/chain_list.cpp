@@ -8,6 +8,7 @@ chain_list<T, Alloc>::chain_list(void) : _start(0), _alloc_node(), _size(0)
 	_end = _alloc_node.allocate(1);
 	_end->next = _end;
 	_end->back = _end;
+	_start = _end;
 }
 
 template <typename T, typename Alloc> chain_list<T, Alloc>::~chain_list(void)
@@ -37,7 +38,7 @@ chain_list<T, Alloc>::_last(void)
 
 	size_type i(this->size());
 
-	while (--i)
+	while (i-- > 1)
 		++it;
 
 	return static_cast<node_ptr>(it._node_ptr);
@@ -72,7 +73,7 @@ chain_list<T, Alloc>::put(const_reference item)
 
 	node_ptr new_node = _alloc_node.allocate(1);
 	_alloc_node.construct(new_node, item);
-	if (_start == 0)
+	if (_size == 0)
 	{
 		_start = new_node;
 		_start->next = _end;
@@ -97,7 +98,7 @@ template <typename T, typename Alloc>
 void
 chain_list<T, Alloc>::last(void)
 {
-	if (_start == 0)
+	if (_size == 0)
 	{
 		std::cout << "last: no element" << std::endl;
 		return;

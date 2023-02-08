@@ -14,9 +14,27 @@ test(void)
 	std::cout << "size: " << a.size() << std::endl;
 	a.last();
 
+	{
+		typename ft::chain_list<T>::iterator it(a.begin());
+
+		while (it != a.end())
+		{
+			std::cout << "iterator ++:  " << *it++ << std::endl;
+		}
+	}
+
 	a.put(42);
 	std::cout << "size: " << a.size() << std::endl;
 	a.last();
+
+	{
+		typename ft::chain_list<T>::iterator it(a.begin());
+
+		while (it != a.end())
+		{
+			std::cout << "iterator ++:  " << *it++ << std::endl;
+		}
+	}
 
 	a.put(1234);
 	std::cout << "size: " << a.size() << std::endl;
