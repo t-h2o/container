@@ -14,6 +14,8 @@ template <typename _Iter> class random_access_iterator
 	typedef typename iterator_traits<iterator_type>::pointer		   pointer;
 	typedef typename iterator_traits<iterator_type>::reference		   reference;
 
+	typedef random_access_iterator<_Iter> _self;
+
   public:
 	random_access_iterator(void);
 	random_access_iterator(pointer);
@@ -30,10 +32,10 @@ template <typename _Iter> class random_access_iterator
 	bool operator==(random_access_iterator const &other);
 	bool operator!=(random_access_iterator const &other);
 
-	random_access_iterator &operator++(void);
-	random_access_iterator &operator--(void);
-	random_access_iterator	operator++(int);
-	random_access_iterator	operator--(int);
+	_self &operator++(void);
+	_self &operator--(void);
+	_self  operator++(int);
+	_self  operator--(int);
 
 	/* random_access_iterator */
 

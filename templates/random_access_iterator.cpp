@@ -58,7 +58,7 @@ random_access_iterator<T>::operator!=(random_access_iterator<T> const &other)
 }
 
 template <typename T>
-typename ft::random_access_iterator<T> &
+typename random_access_iterator<T>::_self &
 random_access_iterator<T>::operator++(void)
 {
 	++_pointer;
@@ -66,7 +66,7 @@ random_access_iterator<T>::operator++(void)
 }
 
 template <typename T>
-typename ft::random_access_iterator<T> &
+typename random_access_iterator<T>::_self &
 random_access_iterator<T>::operator--(void)
 {
 	_pointer--;
@@ -74,7 +74,7 @@ random_access_iterator<T>::operator--(void)
 }
 
 template <typename T>
-typename ft::random_access_iterator<T>
+typename random_access_iterator<T>::_self
 random_access_iterator<T>::operator++(int)
 {
 	random_access_iterator<T> prev;
@@ -85,7 +85,7 @@ random_access_iterator<T>::operator++(int)
 }
 
 template <typename T>
-typename ft::random_access_iterator<T>
+typename random_access_iterator<T>::_self
 random_access_iterator<T>::operator--(int)
 {
 	random_access_iterator<T> prev;
@@ -105,7 +105,7 @@ random_access_iterator<T>::operator[](size_t position)
 }
 
 template <typename T>
-typename ft::random_access_iterator<T>
+typename random_access_iterator<T>::_self
 random_access_iterator<T>::operator+(difference_type add)
 {
 	random_access_iterator<T> diff(_pointer + add);
@@ -113,7 +113,7 @@ random_access_iterator<T>::operator+(difference_type add)
 }
 
 template <typename T>
-typename ft::random_access_iterator<T>
+typename random_access_iterator<T>::_self
 random_access_iterator<T>::operator-(difference_type remove)
 {
 	random_access_iterator<T> diff(_pointer - remove);
@@ -121,7 +121,7 @@ random_access_iterator<T>::operator-(difference_type remove)
 }
 
 template <typename T>
-typename ft::random_access_iterator<T> &
+typename random_access_iterator<T>::_self &
 random_access_iterator<T>::operator+=(difference_type add)
 {
 	_pointer += add;
@@ -129,7 +129,7 @@ random_access_iterator<T>::operator+=(difference_type add)
 }
 
 template <typename T>
-typename ft::random_access_iterator<T> &
+typename random_access_iterator<T>::_self &
 random_access_iterator<T>::operator-=(difference_type remove)
 {
 	_pointer -= remove;
