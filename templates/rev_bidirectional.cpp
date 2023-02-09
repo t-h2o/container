@@ -1,3 +1,5 @@
+/* bidirectional */
+
 template <typename _Iter>
 typename rev_bidirectional<_Iter>::reference
 rev_bidirectional<_Iter>::operator*(void)
@@ -7,12 +9,34 @@ rev_bidirectional<_Iter>::operator*(void)
 }
 
 template <typename _Iter>
-typename rev_bidirectional<_Iter>::_self
-rev_bidirectional<_Iter>::operator++(int)
+typename rev_bidirectional<_Iter>::pointer
+rev_bidirectional<_Iter>::operator->(void)
 {
-	_self _tmp(*this);
+	iterator_type _tmp(_it);
+	--_tmp;
+	return _tmp.operator->();
+}
+
+template <typename _Iter>
+bool
+rev_bidirectional<_Iter>::operator==(_self const &other)
+{
+	return _it == other._it;
+}
+
+template <typename _Iter>
+bool
+rev_bidirectional<_Iter>::operator!=(_self const &other)
+{
+	return _it != other._it;
+}
+
+template <typename _Iter>
+typename rev_bidirectional<_Iter>::_self &
+rev_bidirectional<_Iter>::operator++(void)
+{
 	--_it;
-	return _tmp;
+	return *this;
 }
 
 template <typename _Iter>
@@ -25,16 +49,18 @@ rev_bidirectional<_Iter>::operator--(void)
 
 template <typename _Iter>
 typename rev_bidirectional<_Iter>::_self
+rev_bidirectional<_Iter>::operator++(int)
+{
+	_self _tmp(*this);
+	--_it;
+	return _tmp;
+}
+
+template <typename _Iter>
+typename rev_bidirectional<_Iter>::_self
 rev_bidirectional<_Iter>::operator--(int)
 {
 	_self _tmp(*this);
 	++_it;
 	return _tmp;
-}
-
-template <typename _Iter>
-bool
-rev_bidirectional<_Iter>::operator!=(_self const &other)
-{
-	return _it != other._it;
 }

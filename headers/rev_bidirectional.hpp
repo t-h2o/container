@@ -27,17 +27,18 @@ class rev_bidirectional
 	rev_bidirectional(void) : _it() {}
 	rev_bidirectional(iterator_type it) : _it(it) {}
 
-	reference operator*(void);
+	/* bidirectional */
 
-	/* ++_self */
+	reference operator*(void);
+	pointer	  operator->(void);
+
+	bool operator==(rev_bidirectional const &other);
+	bool operator!=(rev_bidirectional const &other);
+
 	_self &operator++(void);
 	_self &operator--(void);
-
-	/* _self++ */
-	_self operator++(int);
-	_self operator--(int);
-
-	bool operator!=(_self const &other);
+	_self  operator++(int);
+	_self  operator--(int);
 
   private:
 	iterator_type _it;
