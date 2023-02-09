@@ -24,10 +24,10 @@ template <typename _Iter> class random_access_iterator
 	random_access_iterator	operator++(int);
 	random_access_iterator &operator--(void);
 	random_access_iterator	operator--(int);
-	random_access_iterator	operator+(const long);
-	random_access_iterator	operator-(const long);
-	random_access_iterator &operator+=(const long);
-	random_access_iterator &operator-=(const long);
+	random_access_iterator	operator+(difference_type);
+	random_access_iterator	operator-(difference_type);
+	random_access_iterator &operator+=(difference_type);
+	random_access_iterator &operator-=(difference_type);
 
 	difference_type operator-(random_access_iterator const &);
 
