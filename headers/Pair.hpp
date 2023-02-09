@@ -17,8 +17,8 @@ template <typename Key, typename Type> class pair
 	pair &operator=(const pair &);
 	pair &operator=(const Type &);
 
-	Key	  first;
-	Type	  second;
+	Key	 first;
+	Type second;
 };
 
 /* Extra... */
