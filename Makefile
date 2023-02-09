@@ -25,6 +25,7 @@ SRCS	+=	$(SRCD)/Awesome.cpp
 SRCS	+=	$(SRCD)/to_string.cpp
 
 SRCS	+=	$(SRCD)/test_vector.cpp
+SRCS	+=	$(SRCD)/test_chain_list.cpp
 SRCS	+=	$(SRCD)/test_pair.cpp
 SRCS	+=	$(SRCD)/test_map.cpp
 
@@ -39,8 +40,10 @@ INCS	+=	$(INCD)/to_string.hpp
 INCS	+=	$(INCD)/Tdd.hpp
 
 INCS	+=	$(INCD)/Iterator.hpp
+INCS	+=	$(INCD)/rev_bidirectional.hpp
 INCS	+=	$(INCD)/random_access_iterator.hpp
 INCS	+=	$(INCD)/Map.hpp
+INCS	+=	$(INCD)/chain_list.hpp
 INCS	+=	$(INCD)/Vector.hpp
 
 INCS	+=	$(INCD)/test.hpp
@@ -54,6 +57,7 @@ TMPS	=	$(TMPD)/IteratorVector.cpp
 TMPS	=	$(TMPD)/random_access_iterator.cpp
 TMPS	+=	$(TMPD)/Tdd.cpp
 TMPS	+=	$(TMPD)/Map.cpp
+TMPS	+=	$(TMPD)/chain_list.cpp
 TMPS	+=	$(TMPD)/RBTchecker.cpp
 TMPS	+=	$(TMPD)/Color.cpp
 TMPS	+=	$(TMPD)/Node.cpp

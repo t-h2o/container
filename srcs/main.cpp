@@ -11,6 +11,7 @@ main(void)
 	test_vector();
 	test_pair();
 	test_map();
+	test_chain_list();
 
 	return 0;
 }

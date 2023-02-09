@@ -21,6 +21,7 @@ pair_one(void)
 
 		ft::pair<int, int>	pair_ft_copy(pair_ft);
 		std::pair<int, int> pair_std_copy(pair_std);
+		(void)pair_std_copy;
 	}
 
 	{
@@ -29,6 +30,7 @@ pair_one(void)
 
 		ft::pair<int, int>	pair_ft_copy(pair_ft);
 		std::pair<int, int> pair_std_copy(pair_std);
+		(void)pair_std_copy;
 	}
 
 	{
