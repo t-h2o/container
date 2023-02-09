@@ -27,52 +27,23 @@ class rev_bidirectional
 	rev_bidirectional(void) : _it() {}
 	rev_bidirectional(iterator_type it) : _it(it) {}
 
-	reference
-	operator*(void) const
-	{
-		iterator_type _tmp(_it);
-		return *--_tmp;
-	}
+	reference operator*(void);
 
-	_self &
-	operator++(void) const
-	{
-		--_it;
-		return *this;
-	}
+	/* ++_self */
+	_self &operator++(void);
+	_self &operator--(void);
 
-	_self
-	operator++(int)
-	{
-		_self _tmp(*this);
-		--_it;
-		return _tmp;
-	}
+	/* _self++ */
+	_self operator++(int);
+	_self operator--(int);
 
-	_self &
-	operator--(void)
-	{
-		++_it;
-		return *this;
-	}
-
-	_self
-	operator--(int)
-	{
-		_self _tmp(*this);
-		++_it;
-		return _tmp;
-	}
-
-	bool
-	operator!=(_self const &other)
-	{
-		return _it != other._it;
-	}
+	bool operator!=(_self const &other);
 
   private:
 	iterator_type _it;
 };
+
+#include "../templates/rev_bidirectional.cpp"
 
 } /* Namespace */
 
