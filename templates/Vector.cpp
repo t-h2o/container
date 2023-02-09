@@ -86,6 +86,20 @@ vector<T, Alloc>::end(void)
 	return iterator(&(this->_list[_size]));
 }
 
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::const_iterator
+vector<T, Alloc>::begin(void) const
+{
+	return const_iterator(this->_list);
+}
+
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::const_iterator
+vector<T, Alloc>::end(void) const
+{
+	return const_iterator(&(this->_list[_size]));
+}
+
 /**
  * Capacity
  */
