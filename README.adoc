@@ -103,6 +103,42 @@ image::assets/gnuplot.svg[gnuplot]
 
 == Iterator
 
+.map and vector
+|===
+|Iterator | Map | vector
+
+|`iterator`
+|can change pair.second but not pair.first
+|can change the value
+
+|`const_iterator`
+|cannot change any things
+|cannot change the value
+
+|===
+
+.iterator
+|===
+|Iterator | set with `begin()` | set with `rbegin()`
+
+|`iterator`
+| yes
+| no
+
+|`const_iterator`
+| yes
+| no
+
+|`reverse_iterator`
+| yes
+| yes
+
+|`const_reverse_iterator`
+| yes
+| yes
+
+|===
+
 === Resources
 
 .cplusplus.com
