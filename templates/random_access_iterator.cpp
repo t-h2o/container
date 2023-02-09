@@ -9,7 +9,6 @@ template <typename _It>
 typename random_access_iterator<T>::random_access_iterator &
 random_access_iterator<T>::operator=(const random_access_iterator<_It> &other)
 {
-	std::cout << "operator =" << std::endl;
 	_pointer = other.base();
 	return *this;
 }
@@ -18,7 +17,6 @@ template <typename T>
 template <typename _It>
 random_access_iterator<T>::random_access_iterator(random_access_iterator<_It> const &other)
 {
-	std::cout << "copy conctructor" << std::endl;
 	*this = other;
 }
 
@@ -29,6 +27,8 @@ random_access_iterator<T>::base(void) const
 	return _pointer;
 }
 
+/* bidirectional */
+
 template <typename T>
 typename random_access_iterator<T>::reference
 random_access_iterator<T>::operator*(void)
@@ -37,10 +37,24 @@ random_access_iterator<T>::operator*(void)
 }
 
 template <typename T>
-typename random_access_iterator<T>::reference
-random_access_iterator<T>::operator[](size_t position)
+typename random_access_iterator<T>::pointer
+random_access_iterator<T>::operator->(void)
 {
-	return _pointer[position];
+	return _pointer;
+}
+
+template <typename T>
+bool
+random_access_iterator<T>::operator==(random_access_iterator<T> const &other)
+{
+	return _pointer == other._pointer;
+}
+
+template <typename T>
+bool
+random_access_iterator<T>::operator!=(random_access_iterator<T> const &other)
+{
+	return !(*this == other);
 }
 
 template <typename T>
@@ -48,6 +62,14 @@ typename ft::random_access_iterator<T> &
 random_access_iterator<T>::operator++(void)
 {
 	++_pointer;
+	return *this;
+}
+
+template <typename T>
+typename ft::random_access_iterator<T> &
+random_access_iterator<T>::operator--(void)
+{
+	_pointer--;
 	return *this;
 }
 
@@ -63,14 +85,6 @@ random_access_iterator<T>::operator++(int)
 }
 
 template <typename T>
-typename ft::random_access_iterator<T> &
-random_access_iterator<T>::operator--(void)
-{
-	_pointer--;
-	return *this;
-}
-
-template <typename T>
 typename ft::random_access_iterator<T>
 random_access_iterator<T>::operator--(int)
 {
@@ -81,18 +95,52 @@ random_access_iterator<T>::operator--(int)
 	return prev;
 }
 
+/* random_access_iterator */
+
 template <typename T>
-bool
-random_access_iterator<T>::operator==(random_access_iterator<T> const &other)
+typename random_access_iterator<T>::reference
+random_access_iterator<T>::operator[](size_t position)
 {
-	return _pointer == other._pointer;
+	return _pointer[position];
 }
 
 template <typename T>
-bool
-random_access_iterator<T>::operator!=(random_access_iterator<T> const &other)
+typename ft::random_access_iterator<T>
+random_access_iterator<T>::operator+(difference_type add)
 {
-	return !(*this == other);
+	random_access_iterator<T> diff(_pointer + add);
+	return diff;
+}
+
+template <typename T>
+typename ft::random_access_iterator<T>
+random_access_iterator<T>::operator-(difference_type remove)
+{
+	random_access_iterator<T> diff(_pointer - remove);
+	return diff;
+}
+
+template <typename T>
+typename ft::random_access_iterator<T> &
+random_access_iterator<T>::operator+=(difference_type add)
+{
+	_pointer += add;
+	return *this;
+}
+
+template <typename T>
+typename ft::random_access_iterator<T> &
+random_access_iterator<T>::operator-=(difference_type remove)
+{
+	_pointer -= remove;
+	return *this;
+}
+
+template <typename T>
+typename random_access_iterator<T>::difference_type
+random_access_iterator<T>::operator-(random_access_iterator const &other)
+{
+	return _pointer - other._pointer;
 }
 
 template <typename T>
@@ -121,43 +169,4 @@ bool
 random_access_iterator<T>::operator<=(random_access_iterator<T> const &other)
 {
 	return (!(*this > other));
-}
-
-template <typename T>
-typename ft::random_access_iterator<T>
-random_access_iterator<T>::operator+(difference_type add)
-{
-	random_access_iterator<T> diff(_pointer + add);
-	return diff;
-}
-
-template <typename T>
-typename ft::random_access_iterator<T>
-random_access_iterator<T>::operator-(difference_type remove)
-{
-	random_access_iterator<T> diff(_pointer - remove);
-	return diff;
-}
-
-template <typename T>
-typename random_access_iterator<T>::difference_type
-random_access_iterator<T>::operator-(random_access_iterator const &other)
-{
-	return _pointer - other._pointer;
-}
-
-template <typename T>
-typename ft::random_access_iterator<T> &
-random_access_iterator<T>::operator+=(difference_type add)
-{
-	_pointer += add;
-	return *this;
-}
-
-template <typename T>
-typename ft::random_access_iterator<T> &
-random_access_iterator<T>::operator-=(difference_type remove)
-{
-	_pointer -= remove;
-	return *this;
 }

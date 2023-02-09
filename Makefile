@@ -28,6 +28,7 @@ SRCS	+=	$(SRCD)/test_vector.cpp
 SRCS	+=	$(SRCD)/test_chain_list.cpp
 SRCS	+=	$(SRCD)/test_pair.cpp
 SRCS	+=	$(SRCD)/test_map.cpp
+SRCS	+=	$(SRCD)/test_random_access_iterator.cpp
 
 
 #	Headers

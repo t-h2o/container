@@ -12,6 +12,7 @@ main(void)
 	test_pair();
 	test_map();
 	test_chain_list();
+	test_random_access_iterator();
 
 	return 0;
 }

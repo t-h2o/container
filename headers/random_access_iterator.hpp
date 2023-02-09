@@ -22,12 +22,23 @@ template <typename _Iter> class random_access_iterator
 
 	pointer base(void) const;
 
-	reference				operator*(void);
-	reference				operator[](size_t);
+	/* bidirectional */
+
+	reference operator*(void);
+	pointer	  operator->(void);
+
+	bool operator==(random_access_iterator const &other);
+	bool operator!=(random_access_iterator const &other);
+
 	random_access_iterator &operator++(void);
-	random_access_iterator	operator++(int);
 	random_access_iterator &operator--(void);
+	random_access_iterator	operator++(int);
 	random_access_iterator	operator--(int);
+
+	/* random_access_iterator */
+
+	reference operator[](size_t);
+
 	random_access_iterator	operator+(difference_type);
 	random_access_iterator	operator-(difference_type);
 	random_access_iterator &operator+=(difference_type);
@@ -35,8 +46,6 @@ template <typename _Iter> class random_access_iterator
 
 	difference_type operator-(random_access_iterator const &);
 
-	bool operator==(random_access_iterator const &other);
-	bool operator!=(random_access_iterator const &other);
 	bool operator>(random_access_iterator const &other);
 	bool operator<(random_access_iterator const &other);
 	bool operator>=(random_access_iterator const &other);
