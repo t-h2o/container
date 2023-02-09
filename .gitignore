@@ -2,4 +2,4 @@
 program
 *.swp
 site
-assets/.asciidoctor
+.asciidoctor*

@@ -1,0 +1,93 @@
+= Graph
+
+== 0
+
+[graphviz, target=out_0, format=svg]
+....
+digraph  {
+graph [
+  fontname="JetBrains Mono,Helvetica,Arial,sans-serif"
+]
+edge [
+  arrowsize=0.5
+  fontname="JetBrains Mono,Helvetica,Arial,sans-serif"
+  labeldistance=3
+  labelfontcolor="#00000080"
+  penwidth=2
+]
+  end -> end [label="prev"];
+  end -> end [label="next"];
+}
+....
+
+== 1
+
+[graphviz, target=out_1, format=svg]
+....
+digraph  {
+graph [
+  fontname="JetBrains Mono,Helvetica,Arial,sans-serif"
+]
+edge [
+  arrowsize=0.5
+  fontname="JetBrains Mono,Helvetica,Arial,sans-serif"
+  labeldistance=3
+  labelfontcolor="#00000080"
+  penwidth=2
+]
+  1 -> end [label="prev"];
+  1 -> end [label="next"];
+  end -> 1 [label="prev"];
+  end -> 1 [label="next"];
+}
+....
+
+== 2
+
+[graphviz, target=out_2, format=svg]
+....
+digraph  {
+graph [
+  fontname="JetBrains Mono,Helvetica,Arial,sans-serif"
+]
+edge [
+  arrowsize=0.5
+  fontname="JetBrains Mono,Helvetica,Arial,sans-serif"
+  labeldistance=3
+  labelfontcolor="#00000080"
+  penwidth=2
+]
+  1 -> end [label="prev"];
+  1 -> 2 [label="next"];
+  2 -> 1 [label="prev"];
+  2 -> end [label="next"];
+  end -> 2 [label="prev"];
+  end -> 1 [label="next"];
+}
+....
+
+== 3
+
+[graphviz, target=out_3, format=svg]
+....
+digraph  {
+graph [
+  fontname="JetBrains Mono,Helvetica,Arial,sans-serif"
+]
+edge [
+  arrowsize=0.5
+  fontname="JetBrains Mono,Helvetica,Arial,sans-serif"
+  labeldistance=3
+  labelfontcolor="#00000080"
+  penwidth=2
+]
+  1 -> end [label="prev"];
+  1 -> 2 [label="next"];
+  2 -> 1 [label="prev"];
+  2 -> 3 [label="next"];
+  3 -> 2 [label="prev"];
+  3 -> end [label="next"];
+  end -> 3 [label="prev"];
+  end -> 1 [label="next"];
+}
+....

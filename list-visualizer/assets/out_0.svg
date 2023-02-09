@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='44pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 166.00 44.00' width='166pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
+<g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 40)'>
+<polygon fill='white' points='-4,4 -4,-40 162,-40 162,4 -4,4' stroke='none'/>
+
+<g class='node' id='node1'>
+<title>end</title>
+<ellipse cx='27' cy='-18' fill='none' rx='27' ry='18' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='27' y='-14.3'>end</text>
+</g>
+
+<g class='edge' id='edge1'>
+<title>end&#45;&gt;end</title>
+<path d='M53.79,-21.37C63.78,-21.48 72,-20.36 72,-18 72,-16.31 67.75,-15.25 61.66,-14.83' fill='none' stroke='black' stroke-width='2'/>
+<polygon fill='black' points='61.86,-13.09 56.82,-14.71 61.77,-16.59 61.86,-13.09' stroke='black' stroke-width='2'/>
+<text font-family='JetBrains Mono,Helvetica,Arial,sans-serif' font-size='14.00' text-anchor='middle' x='89' y='-14.3'>prev</text>
+</g>
+
+<g class='edge' id='edge2'>
+<title>end&#45;&gt;end</title>
+<path d='M53,-23.64C77.33,-26.21 106,-24.33 106,-18 106,-12.34 83.06,-10.24 60.8,-11.7' fill='none' stroke='black' stroke-width='2'/>
+<polygon fill='black' points='60.85,-9.94 56.02,-12.11 61.15,-13.43 60.85,-9.94' stroke='black' stroke-width='2'/>
+<text font-family='JetBrains Mono,Helvetica,Arial,sans-serif' font-size='14.00' text-anchor='middle' x='123' y='-14.3'>next</text>
+</g>
+</g>
+</svg>
