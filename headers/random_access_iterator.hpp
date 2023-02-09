@@ -16,7 +16,7 @@ template <typename _Iter> class random_access_iterator
 
   public:
 	random_access_iterator(void);
-	random_access_iterator(pointer, size_t);
+	random_access_iterator(pointer);
 
 	reference				operator*(void);
 	reference				operator[](size_t);
@@ -40,7 +40,6 @@ template <typename _Iter> class random_access_iterator
 
   private:
 	pointer _pointer;
-	size_t	_position;
 };
 
 #include "../templates/random_access_iterator.cpp"

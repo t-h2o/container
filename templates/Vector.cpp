@@ -76,14 +76,14 @@ template <typename T, typename Alloc>
 typename vector<T, Alloc>::iterator
 vector<T, Alloc>::begin(void)
 {
-	return iterator(this->_list, 0);
+	return iterator(this->_list);
 }
 
 template <typename T, typename Alloc>
 typename vector<T, Alloc>::iterator
 vector<T, Alloc>::end(void)
 {
-	return iterator(this->_list, this->_size);
+	return iterator(&(this->_list[_size]));
 }
 
 /**

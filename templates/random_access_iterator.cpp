@@ -1,8 +1,6 @@
-template <typename T> random_access_iterator<T>::random_access_iterator(void) : _pointer(0), _position(0) {}
+template <typename T> random_access_iterator<T>::random_access_iterator(void) : _pointer(0) {}
 
-template <typename T>
-random_access_iterator<T>::random_access_iterator(pointer pointer, size_t position)
-	: _pointer(pointer), _position(position)
+template <typename T> random_access_iterator<T>::random_access_iterator(pointer pointer) : _pointer(pointer)
 {
 }
 
@@ -10,21 +8,21 @@ template <typename T>
 typename random_access_iterator<T>::reference
 random_access_iterator<T>::operator*(void)
 {
-	return this->_pointer[_position];
+	return *this->_pointer;
 }
 
 template <typename T>
 typename random_access_iterator<T>::reference
 random_access_iterator<T>::operator[](size_t position)
 {
-	return this->_pointer[_position + position];
+	return this->_pointer[position];
 }
 
 template <typename T>
 typename ft::random_access_iterator<T> &
 random_access_iterator<T>::operator++(void)
 {
-	this->_position++;
+	++this->_pointer;
 	return *this;
 }
 
@@ -35,7 +33,7 @@ random_access_iterator<T>::operator++(int)
 	random_access_iterator<T> prev;
 
 	prev = *this;
-	this->_position++;
+	this->_pointer++;
 	return prev;
 }
 
@@ -43,7 +41,7 @@ template <typename T>
 typename ft::random_access_iterator<T> &
 random_access_iterator<T>::operator--(void)
 {
-	this->_position--;
+	this->_pointer--;
 	return *this;
 }
 
@@ -54,7 +52,7 @@ random_access_iterator<T>::operator--(int)
 	random_access_iterator<T> prev;
 
 	prev = *this;
-	this->_position--;
+	this->_pointer--;
 	return prev;
 }
 
@@ -62,7 +60,7 @@ template <typename T>
 bool
 random_access_iterator<T>::operator==(random_access_iterator<T> const &other)
 {
-	return (&(this->_pointer[this->_position]) == &(other._pointer[other._position]));
+	return _pointer == other._pointer;
 }
 
 template <typename T>
@@ -76,14 +74,14 @@ template <typename T>
 bool
 random_access_iterator<T>::operator>(random_access_iterator<T> const &other)
 {
-	return (&(this->_pointer[this->_position]) > &(other._pointer[other._position]));
+	return _pointer > other._pointer;
 }
 
 template <typename T>
 bool
 random_access_iterator<T>::operator<(random_access_iterator<T> const &other)
 {
-	return (&(this->_pointer[this->_position]) < &(other._pointer[other._position]));
+	return _pointer < other._pointer;
 }
 
 template <typename T>
@@ -104,7 +102,7 @@ template <typename T>
 typename ft::random_access_iterator<T>
 random_access_iterator<T>::operator+(const long add)
 {
-	random_access_iterator<T> diff(this->_pointer, this->_position + add);
+	random_access_iterator<T> diff(this->_pointer + add);
 	return diff;
 }
 
@@ -112,7 +110,7 @@ template <typename T>
 typename ft::random_access_iterator<T>
 random_access_iterator<T>::operator-(const long remove)
 {
-	random_access_iterator<T> diff(this->_pointer, this->_position - remove);
+	random_access_iterator<T> diff(this->_pointer - remove);
 	return diff;
 }
 
@@ -120,14 +118,14 @@ template <typename T>
 typename random_access_iterator<T>::difference_type
 random_access_iterator<T>::operator-(random_access_iterator const &other)
 {
-	return this->_position - other._position;
+	return this->_pointer - other._pointer;
 }
 
 template <typename T>
 typename ft::random_access_iterator<T> &
 random_access_iterator<T>::operator+=(const long add)
 {
-	this->_position += add;
+	this->_pointer += add;
 	return *this;
 }
 
@@ -135,6 +133,6 @@ template <typename T>
 typename ft::random_access_iterator<T> &
 random_access_iterator<T>::operator-=(const long remove)
 {
-	this->_position -= remove;
+	this->_pointer -= remove;
 	return *this;
 }
