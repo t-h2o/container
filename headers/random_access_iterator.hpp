@@ -4,18 +4,23 @@
 namespace ft
 {
 
-template <typename T>
-class random_access_iterator : public ft::iterator_traits<ft::iterator<ft::random_access_iterator_tag, T> >
+template <typename _Iter> class random_access_iterator
 {
-	typedef typename iterator<ft::random_access_iterator_tag, T>::iterator_category iterator_category;
-	typedef typename iterator<ft::random_access_iterator_tag, T>::value_type		value_type;
-	typedef typename iterator<ft::random_access_iterator_tag, T>::difference_type	difference_type;
-	typedef typename iterator<ft::random_access_iterator_tag, T>::pointer			pointer;
-	typedef typename iterator<ft::random_access_iterator_tag, T>::reference			reference;
+	typedef _Iter iterator_type;
+
+	typedef typename iterator_traits<iterator_type>::iterator_category iterator_category;
+	typedef typename iterator_traits<iterator_type>::value_type		   value_type;
+	typedef typename iterator_traits<iterator_type>::difference_type   difference_type;
+	typedef typename iterator_traits<iterator_type>::pointer		   pointer;
+	typedef typename iterator_traits<iterator_type>::reference		   reference;
 
   public:
 	random_access_iterator(void);
-	random_access_iterator(pointer, size_t);
+	random_access_iterator(pointer);
+	template <typename _It> random_access_iterator(random_access_iterator<_It> const &);
+	template <typename _It> random_access_iterator &operator=(random_access_iterator<_It> const &);
+
+	pointer base(void) const;
 
 	reference				operator*(void);
 	reference				operator[](size_t);
@@ -23,10 +28,10 @@ class random_access_iterator : public ft::iterator_traits<ft::iterator<ft::rando
 	random_access_iterator	operator++(int);
 	random_access_iterator &operator--(void);
 	random_access_iterator	operator--(int);
-	random_access_iterator	operator+(const long);
-	random_access_iterator	operator-(const long);
-	random_access_iterator &operator+=(const long);
-	random_access_iterator &operator-=(const long);
+	random_access_iterator	operator+(difference_type);
+	random_access_iterator	operator-(difference_type);
+	random_access_iterator &operator+=(difference_type);
+	random_access_iterator &operator-=(difference_type);
 
 	difference_type operator-(random_access_iterator const &);
 
@@ -39,7 +44,6 @@ class random_access_iterator : public ft::iterator_traits<ft::iterator<ft::rando
 
   private:
 	pointer _pointer;
-	size_t	_position;
 };
 
 #include "../templates/random_access_iterator.cpp"

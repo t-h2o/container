@@ -540,6 +540,30 @@ scenario_eleven(void)
 	}
 }
 
+template <typename T>
+static void
+scenario_twelve(void)
+{
+	ft::vector<T>  vec_ft;
+	std::vector<T> vec_std;
+
+	section("push_back_ten()");
+	push_back_ten(vec_std, vec_ft);
+	test_copy_equal(vec_std, vec_ft);
+
+	{
+		typename std::vector<T>::const_iterator it_std(vec_std.begin());
+		typename ft::vector<T>::const_iterator	it_ft(vec_ft.begin());
+		Tdd::expected(*it_ft, *it_std);
+	}
+
+	{
+		typename std::vector<T>::const_iterator it_std(vec_std.end());
+		typename ft::vector<T>::const_iterator	it_ft(vec_ft.end());
+		Tdd::expected(*it_ft, *it_std);
+	}
+}
+
 void
 test_vector(void)
 {
@@ -597,4 +621,7 @@ test_vector(void)
 	scenario_eleven<int>();
 	title("Scenario 11: Awesome");
 	scenario_eleven<Awesome>();
+
+	title("Scenario 12: int");
+	scenario_twelve<int>();
 }

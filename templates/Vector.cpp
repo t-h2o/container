@@ -76,14 +76,28 @@ template <typename T, typename Alloc>
 typename vector<T, Alloc>::iterator
 vector<T, Alloc>::begin(void)
 {
-	return iterator(this->_list, 0);
+	return iterator(this->_list);
 }
 
 template <typename T, typename Alloc>
 typename vector<T, Alloc>::iterator
 vector<T, Alloc>::end(void)
 {
-	return iterator(this->_list, this->_size);
+	return iterator(&(this->_list[_size]));
+}
+
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::const_iterator
+vector<T, Alloc>::begin(void) const
+{
+	return const_iterator(this->_list);
+}
+
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::const_iterator
+vector<T, Alloc>::end(void) const
+{
+	return const_iterator(&(this->_list[_size]));
 }
 
 /**
@@ -663,7 +677,7 @@ typename vector<T, Alloc>::size_type
 vector<T, Alloc>::_new_size(size_type minimum) const
 {
 	if (this->_allocated * 2 > minimum)
-		return this->_allocated * 2;
+		return this->_size * 2;
 	else
 		return minimum;
 }
