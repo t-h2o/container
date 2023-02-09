@@ -5,6 +5,31 @@ template <typename T> random_access_iterator<T>::random_access_iterator(pointer 
 }
 
 template <typename T>
+template <typename _It>
+typename random_access_iterator<T>::random_access_iterator &
+random_access_iterator<T>::operator=(const random_access_iterator<_It> &other)
+{
+	std::cout << "operator =" << std::endl;
+	this->_pointer = other.base();
+	return *this;
+}
+
+template <typename T>
+template <typename _It>
+random_access_iterator<T>::random_access_iterator(random_access_iterator<_It> const &other)
+{
+	std::cout << "copy conctructor" << std::endl;
+	*this = other;
+}
+
+template <typename T>
+typename random_access_iterator<T>::pointer
+random_access_iterator<T>::base(void) const
+{
+	return _pointer;
+}
+
+template <typename T>
 typename random_access_iterator<T>::reference
 random_access_iterator<T>::operator*(void)
 {
