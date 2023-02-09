@@ -45,7 +45,7 @@ vector<T, Alloc>::vector(vector const &other) : _list(0), _size(0), _allocated(0
 template <typename T, typename Alloc> vector<T, Alloc>::~vector(void)
 {
 	this->clear();
-	this->_allocator.deallocate(this->_list, this->_allocated);
+	_allocator.deallocate(_list, _allocated);
 }
 
 template <typename T, typename Alloc>
@@ -56,17 +56,17 @@ vector<T, Alloc>::operator=(vector const &other)
 		return *this;
 
 	this->clear();
-	if (this->_allocated < other._allocated)
+	if (_allocated < other._allocated)
 	{
-		this->_allocator.deallocate(this->_list, this->_allocated);
-		this->_list = this->_allocator.allocate(other._size);
+		_allocator.deallocate(_list, _allocated);
+		_list = _allocator.allocate(other._size);
 	}
-	this->_size = other._size;
-	this->_allocated = other._size;
+	_size = other._size;
+	_allocated = other._size;
 
 	for (size_type i = 0; i < other._size; ++i)
 	{
-		this->_allocator.construct(&(*this)[i], other[i]);
+		_allocator.construct(&(*this)[i], other[i]);
 	}
 
 	return *this;
@@ -76,28 +76,28 @@ template <typename T, typename Alloc>
 typename vector<T, Alloc>::iterator
 vector<T, Alloc>::begin(void)
 {
-	return iterator(this->_list);
+	return iterator(_list);
 }
 
 template <typename T, typename Alloc>
 typename vector<T, Alloc>::iterator
 vector<T, Alloc>::end(void)
 {
-	return iterator(&(this->_list[_size]));
+	return iterator(&(_list[_size]));
 }
 
 template <typename T, typename Alloc>
 typename vector<T, Alloc>::const_iterator
 vector<T, Alloc>::begin(void) const
 {
-	return const_iterator(this->_list);
+	return const_iterator(_list);
 }
 
 template <typename T, typename Alloc>
 typename vector<T, Alloc>::const_iterator
 vector<T, Alloc>::end(void) const
 {
-	return const_iterator(&(this->_list[_size]));
+	return const_iterator(&(_list[_size]));
 }
 
 /**
@@ -108,14 +108,14 @@ template <typename T, typename Alloc>
 typename vector<T, Alloc>::size_type
 vector<T, Alloc>::size(void) const
 {
-	return this->_size;
+	return _size;
 }
 
 template <typename T, typename Alloc>
 typename vector<T, Alloc>::size_type
 vector<T, Alloc>::max_size(void) const
 {
-	return this->_allocator.max_size();
+	return _allocator.max_size();
 }
 
 template <typename T, typename Alloc>
@@ -126,41 +126,41 @@ vector<T, Alloc>::resize(size_type newSize)
 
 	size_type newAllocation;
 
-	if (newSize < this->_allocated)
+	if (newSize < _allocated)
 	{
-		size_type i = this->_size;
+		size_type i = _size;
 		while (i >= newSize)
 		{
-			this->_allocator.destroy(&(this->_list[i--]));
+			_allocator.destroy(&(_list[i--]));
 		}
-		this->_size = newSize;
+		_size = newSize;
 		return;
 	}
 	newAllocation = this->_new_size(newSize);
 
-	newList = this->_allocator.allocate(newAllocation);
+	newList = _allocator.allocate(newAllocation);
 
 	for (size_type i = 0; i < newSize; i++)
 	{
-		if (i < this->_size)
-			this->_allocator.construct(&(newList[i]), (*this)[i]);
+		if (i < _size)
+			_allocator.construct(&(newList[i]), (*this)[i]);
 		else
-			this->_allocator.construct(&(newList[i]), T());
+			_allocator.construct(&(newList[i]), T());
 	}
 
 	this->_destroy_all();
 
-	this->_allocator.deallocate(this->_list, this->_allocated);
-	this->_size = newSize;
-	this->_allocated = newAllocation;
-	this->_list = newList;
+	_allocator.deallocate(_list, _allocated);
+	_size = newSize;
+	_allocated = newAllocation;
+	_list = newList;
 }
 
 template <typename T, typename Alloc>
 typename vector<T, Alloc>::size_type
 vector<T, Alloc>::capacity(void) const
 {
-	return this->_allocated;
+	return _allocated;
 }
 
 /**
@@ -171,7 +171,7 @@ template <typename T, typename Alloc>
 bool
 vector<T, Alloc>::empty(void) const
 {
-	return !(this->_size);
+	return !(_size);
 }
 
 template <typename T, typename Alloc>
@@ -180,16 +180,16 @@ vector<T, Alloc>::reserve(size_type newAllocation)
 {
 	pointer newList;
 
-	if (newAllocation <= this->_allocated)
+	if (newAllocation <= _allocated)
 		return;
 
 	newList = this->_gen_new_list(newAllocation);
 
 	this->_destroy_all();
 
-	this->_allocator.deallocate(this->_list, this->_allocated);
-	this->_allocated = newAllocation;
-	this->_list = newList;
+	_allocator.deallocate(_list, _allocated);
+	_allocated = newAllocation;
+	_list = newList;
 }
 
 /**
@@ -200,7 +200,7 @@ template <typename T, typename Alloc>
 typename vector<T, Alloc>::reference
 vector<T, Alloc>::operator[](size_type position) const
 {
-	return this->_list[position];
+	return _list[position];
 }
 
 template <typename T, typename Alloc>
@@ -216,21 +216,21 @@ template <typename T, typename Alloc>
 typename vector<T, Alloc>::reference
 vector<T, Alloc>::front(void) const
 {
-	return this->_list[0];
+	return _list[0];
 }
 
 template <typename T, typename Alloc>
 typename vector<T, Alloc>::reference
 vector<T, Alloc>::back(void) const
 {
-	return this->_list[this->_size - 1];
+	return _list[_size - 1];
 }
 
 template <typename T, typename Alloc>
 typename vector<T, Alloc>::pointer
 vector<T, Alloc>::data(void) const
 {
-	return this->_list;
+	return _list;
 }
 
 /**
@@ -242,30 +242,30 @@ void
 vector<T, Alloc>::assign(size_type nElements, T value)
 {
 
-	if (this->_list == 0)
+	if (_list == 0)
 	{
 		// first allocation
 		_first_allocation(nElements);
 
 		_construct_value(value);
 	}
-	else if (nElements >= this->_size)
+	else if (nElements >= _size)
 	{
 		// reallocation
 		this->_destroy_all();
-		this->_allocator.deallocate(this->_list, this->_allocated);
-		this->_size = nElements;
-		this->_allocated = nElements;
-		this->_list = _allocator.allocate(nElements);
+		_allocator.deallocate(_list, _allocated);
+		_size = nElements;
+		_allocated = nElements;
+		_list = _allocator.allocate(nElements);
 
 		_construct_value(value);
 	}
-	else if (nElements < this->_size)
+	else if (nElements < _size)
 	{
 		// destroy and construct
 
 		_destroy_all();
-		this->_size = nElements;
+		_size = nElements;
 
 		_construct_value(value);
 	}
@@ -281,30 +281,30 @@ vector<T, Alloc>::assign(iterator first, iterator last)
 	if (length == 0)
 		return;
 
-	if (this->_list == 0)
+	if (_list == 0)
 	{
 		_first_allocation(length);
 
-		_construct_range(this->_list, first, last);
+		_construct_range(_list, first, last);
 	}
-	else if (static_cast<size_type>(length) >= this->_size)
+	else if (static_cast<size_type>(length) >= _size)
 	{
 		// reallocation
 		this->_destroy_all();
-		this->_allocator.deallocate(this->_list, this->_allocated);
+		_allocator.deallocate(_list, _allocated);
 
 		_first_allocation(length);
 
-		_construct_range(this->_list, first, last);
+		_construct_range(_list, first, last);
 	}
-	else if (static_cast<size_type>(length) < this->_size)
+	else if (static_cast<size_type>(length) < _size)
 	{
 		// destroy and construct
 
 		_destroy_all();
-		this->_size = length;
+		_size = length;
 
-		_construct_range(this->_list, first, last);
+		_construct_range(_list, first, last);
 	}
 }
 
@@ -325,28 +325,28 @@ vector<T, Alloc>::push_back(T const &object)
 	pointer	  newList;
 	size_type newAllocation;
 
-	if (this->_list == 0)
+	if (_list == 0)
 	{
-		this->_list = this->_allocator.allocate(1);
-		this->_allocator.construct(this->_list, object);
-		this->_allocated = 1;
-		this->_size = 1;
+		_list = _allocator.allocate(1);
+		_allocator.construct(_list, object);
+		_allocated = 1;
+		_size = 1;
 	}
-	else if (this->_allocated == this->_size)
+	else if (_allocated == _size)
 	{
-		newAllocation = this->_new_size(this->_size + 1);
+		newAllocation = this->_new_size(_size + 1);
 		newList = this->_gen_new_list(newAllocation);
 		this->_destroy_all();
-		this->_allocator.construct(&(newList[this->_allocated]), object);
-		this->_allocator.deallocate(this->_list, this->_allocated);
-		this->_list = newList;
-		this->_allocated = newAllocation;
-		++this->_size;
+		_allocator.construct(&(newList[_allocated]), object);
+		_allocator.deallocate(_list, _allocated);
+		_list = newList;
+		_allocated = newAllocation;
+		++_size;
 	}
 	else
 	{
-		this->_allocator.construct(&((*this)[this->_size]), object);
-		++this->_size;
+		_allocator.construct(&((*this)[_size]), object);
+		++_size;
 	}
 }
 
@@ -366,8 +366,8 @@ vector<T, Alloc>::pop_back(void)
 	if (this->empty())
 		return;
 
-	this->_allocator.destroy(&(*this)[this->_size - 1]);
-	--this->_size;
+	_allocator.destroy(&(*this)[_size - 1]);
+	--_size;
 }
 
 template <typename T, typename Alloc>
@@ -378,11 +378,11 @@ vector<T, Alloc>::insert(iterator position, const_reference value)
 	size_type i;
 	size_type newAllocation;
 
-	if (this->_size + 1 <= this->_allocated)
+	if (_size + 1 <= _allocated)
 	{
 		iterator it = this->end();
 
-		this->_allocator.construct(&(it[0]), value);
+		_allocator.construct(&(it[0]), value);
 		for (; it != position; --it)
 			*it = *(it - 1);
 		*position = value;
@@ -390,24 +390,24 @@ vector<T, Alloc>::insert(iterator position, const_reference value)
 	else
 	{
 		i = 0;
-		newAllocation = this->_new_size(this->_size + 1);
-		newList = this->_allocator.allocate(newAllocation);
+		newAllocation = this->_new_size(_size + 1);
+		newList = _allocator.allocate(newAllocation);
 		for (iterator it = this->begin(); it != position; it++)
 		{
-			this->_allocator.construct(&(newList[i++]), *it);
-			this->_allocator.destroy(&(it[0]));
+			_allocator.construct(&(newList[i++]), *it);
+			_allocator.destroy(&(it[0]));
 		}
-		this->_allocator.construct(&(newList[i++]), value);
+		_allocator.construct(&(newList[i++]), value);
 		for (iterator it = position; it != this->end(); it++)
 		{
-			this->_allocator.construct(&(newList[i++]), *it);
-			this->_allocator.destroy(&(it[0]));
+			_allocator.construct(&(newList[i++]), *it);
+			_allocator.destroy(&(it[0]));
 		}
-		this->_allocator.deallocate(this->_list, this->_allocated);
-		this->_allocated = newAllocation;
-		this->_list = newList;
+		_allocator.deallocate(_list, _allocated);
+		_allocated = newAllocation;
+		_list = newList;
 	}
-	this->_size++;
+	_size++;
 }
 
 template <typename T, typename Alloc>
@@ -418,15 +418,15 @@ vector<T, Alloc>::insert(iterator position, size_type number, const_reference va
 	pointer	  newList;
 	size_type newAllocation;
 
-	if (this->_size + number < this->_allocated)
+	if (_size + number < _allocated)
 	{
 		iterator it(this->end());
 
 		for (; it != this->end() + number; ++it)
-			this->_allocator.construct(&(*it), *(it - number));
+			_allocator.construct(&(*it), *(it - number));
 
 		it = this->end() - 1;
-		this->_size += number;
+		_size += number;
 
 		for (; it != position; --it)
 			*it = *(it - number);
@@ -440,29 +440,29 @@ vector<T, Alloc>::insert(iterator position, size_type number, const_reference va
 		i = 0;
 		iterator it(this->begin());
 
-		newAllocation = this->_new_size(this->_size + number);
+		newAllocation = this->_new_size(_size + number);
 
-		newList = this->_allocator.allocate(newAllocation);
+		newList = _allocator.allocate(newAllocation);
 
 		for (; it != position; it++)
 		{
-			this->_allocator.construct(&(newList[i++]), *it);
-			this->_allocator.destroy(&(it[0]));
+			_allocator.construct(&(newList[i++]), *it);
+			_allocator.destroy(&(it[0]));
 		}
 
 		for (size_type j = number; j; --j)
-			this->_allocator.construct(&(newList[i++]), value);
+			_allocator.construct(&(newList[i++]), value);
 
 		for (iterator it = position; it != this->end(); it++)
 		{
-			this->_allocator.construct(&(newList[i++]), *it);
-			this->_allocator.destroy(&(it[0]));
+			_allocator.construct(&(newList[i++]), *it);
+			_allocator.destroy(&(it[0]));
 		}
 
-		this->_allocator.deallocate(this->_list, this->_allocated);
-		this->_allocated = newAllocation;
-		this->_list = newList;
-		this->_size += number;
+		_allocator.deallocate(_list, _allocated);
+		_allocated = newAllocation;
+		_list = newList;
+		_size += number;
 	}
 }
 
@@ -477,15 +477,15 @@ vector<T, Alloc>::insert(iterator position, iterator first, iterator last)
 
 	length = last - first;
 
-	if (this->_size + length < this->_allocated)
+	if (_size + length < _allocated)
 	{
 		iterator it(this->end());
 
 		for (; it != this->end() + length; ++it)
-			this->_allocator.construct(&(*it), *(it - length));
+			_allocator.construct(&(*it), *(it - length));
 
 		it = this->end() - 1;
-		this->_size += length;
+		_size += length;
 
 		for (; it != position && this->begin() != (it - length); --it)
 			*it = *(it - length);
@@ -500,14 +500,14 @@ vector<T, Alloc>::insert(iterator position, iterator first, iterator last)
 		i = 0;
 		iterator it(this->begin());
 
-		newAllocation = this->_new_size(this->_size + length);
+		newAllocation = this->_new_size(_size + length);
 
-		newList = this->_allocator.allocate(newAllocation);
+		newList = _allocator.allocate(newAllocation);
 
 		for (; it != position; it++)
 		{
-			this->_allocator.construct(&(newList[i++]), *it);
-			this->_allocator.destroy(&(it[0]));
+			_allocator.construct(&(newList[i++]), *it);
+			_allocator.destroy(&(it[0]));
 		}
 
 		_construct_range(&(newList[i]), first, last);
@@ -515,14 +515,14 @@ vector<T, Alloc>::insert(iterator position, iterator first, iterator last)
 
 		for (iterator it = position; it != this->end(); it++)
 		{
-			this->_allocator.construct(&(newList[i++]), *it);
-			this->_allocator.destroy(&(it[0]));
+			_allocator.construct(&(newList[i++]), *it);
+			_allocator.destroy(&(it[0]));
 		}
 
-		this->_allocator.deallocate(this->_list, this->_allocated);
-		this->_allocated = newAllocation;
-		this->_list = newList;
-		this->_size += length;
+		_allocator.deallocate(_list, _allocated);
+		_allocated = newAllocation;
+		_list = newList;
+		_size += length;
 	}
 }
 
@@ -534,24 +534,24 @@ vector<T, Alloc>::erase(iterator position)
 
 	if (position == this->end() - 1)
 	{
-		this->_allocator.destroy(&(position[0]));
-		--this->_size;
+		_allocator.destroy(&(position[0]));
+		--_size;
 		return;
 	}
 
-	newList = this->_allocator.allocate(this->_allocated);
-	for (size_type i = 0, j = 0; i < this->_size; ++i)
+	newList = _allocator.allocate(_allocated);
+	for (size_type i = 0, j = 0; i < _size; ++i)
 	{
 		if (&((*this)[i]) != &(position[0]))
 		{
-			this->_allocator.construct(&(newList[j]), ((*this)[i]));
+			_allocator.construct(&(newList[j]), ((*this)[i]));
 			++j;
 		}
-		this->_allocator.destroy(&(*this)[i]);
+		_allocator.destroy(&(*this)[i]);
 	}
-	this->_allocator.deallocate(this->_list, this->_allocated);
-	--this->_size;
-	this->_list = newList;
+	_allocator.deallocate(_list, _allocated);
+	--_size;
+	_list = newList;
 }
 
 template <typename T, typename Alloc>
@@ -563,25 +563,25 @@ vector<T, Alloc>::erase(iterator first, iterator last)
 	if (last == this->end())
 	{
 		for (iterator it = first; it != last; it++)
-			this->_allocator.destroy(&(it[0]));
+			_allocator.destroy(&(it[0]));
 
-		this->_size -= last - first;
+		_size -= last - first;
 		return;
 	}
 
-	newList = this->_allocator.allocate(this->_allocated);
-	for (size_type i = 0, j = 0; i < this->_size; ++i)
+	newList = _allocator.allocate(_allocated);
+	for (size_type i = 0, j = 0; i < _size; ++i)
 	{
 		if (&((*this)[i]) < &(first[0]) || &(last[0]) <= &((*this)[i]))
 		{
-			this->_allocator.construct(&(newList[j]), ((*this)[i]));
+			_allocator.construct(&(newList[j]), ((*this)[i]));
 			++j;
 		}
-		this->_allocator.destroy(&(*this)[i]);
+		_allocator.destroy(&(*this)[i]);
 	}
-	this->_allocator.deallocate(this->_list, this->_allocated);
-	this->_size -= last - first;
-	this->_list = newList;
+	_allocator.deallocate(_list, _allocated);
+	_size -= last - first;
+	_list = newList;
 }
 
 template <typename T, typename Alloc>
@@ -592,13 +592,13 @@ vector<T, Alloc>::swap(vector &other)
 	size_type tmpAllocated;
 	size_type tmpSize;
 
-	tmpList = this->_list;
-	tmpAllocated = this->_allocated;
-	tmpSize = this->_size;
+	tmpList = _list;
+	tmpAllocated = _allocated;
+	tmpSize = _size;
 
-	this->_list = other._list;
-	this->_allocated = other._allocated;
-	this->_size = other._size;
+	_list = other._list;
+	_allocated = other._allocated;
+	_size = other._size;
 
 	other._list = tmpList;
 	other._allocated = tmpAllocated;
@@ -614,7 +614,7 @@ vector<T, Alloc>::clear(void)
 
 	this->_destroy_all();
 
-	this->_size = 0;
+	_size = 0;
 }
 
 /**
@@ -625,16 +625,16 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::_destroy_all(void)
 {
-	for (size_type i = 0; i < this->_size; ++i)
-		this->_allocator.destroy(&((*this)[i]));
+	for (size_type i = 0; i < _size; ++i)
+		_allocator.destroy(&((*this)[i]));
 }
 
 template <typename T, typename Alloc>
 void
 vector<T, Alloc>::_construct_value(const_reference value)
 {
-	for (size_type i = 0; i < this->_size; i++)
-		this->_allocator.construct(&(this->_list[i]), value);
+	for (size_type i = 0; i < _size; i++)
+		_allocator.construct(&(_list[i]), value);
 }
 
 template <typename T, typename Alloc>
@@ -645,7 +645,7 @@ vector<T, Alloc>::_construct_range(pointer list, iterator first, iterator last)
 
 	index = 0;
 	for (; first != last; ++first)
-		this->_allocator.construct(&(list[index++]), *first);
+		_allocator.construct(&(list[index++]), *first);
 }
 
 template <typename T, typename Alloc>
@@ -654,10 +654,10 @@ vector<T, Alloc>::_gen_new_list(size_type newAllocation)
 {
 	pointer newList;
 
-	newList = this->_allocator.allocate(newAllocation);
-	for (size_type i = 0; i < this->_size; ++i)
+	newList = _allocator.allocate(newAllocation);
+	for (size_type i = 0; i < _size; ++i)
 	{
-		this->_allocator.construct(&(newList[i]), (*this)[i]);
+		_allocator.construct(&(newList[i]), (*this)[i]);
 	}
 
 	return newList;
@@ -667,17 +667,17 @@ template <typename T, typename Alloc>
 void
 vector<T, Alloc>::_first_allocation(size_type newAllocation)
 {
-	this->_allocated = newAllocation;
-	this->_size = newAllocation;
-	this->_list = this->_allocator.allocate(this->_allocated);
+	_allocated = newAllocation;
+	_size = newAllocation;
+	_list = _allocator.allocate(_allocated);
 }
 
 template <typename T, typename Alloc>
 typename vector<T, Alloc>::size_type
 vector<T, Alloc>::_new_size(size_type minimum) const
 {
-	if (this->_allocated * 2 > minimum)
-		return this->_size * 2;
+	if (_allocated * 2 > minimum)
+		return _size * 2;
 	else
 		return minimum;
 }
