@@ -13,6 +13,7 @@ main(void)
 	test_map();
 	test_chain_list();
 	test_random_access_iterator();
+	test_rev_random_access_iterator();
 
 	return 0;
 }

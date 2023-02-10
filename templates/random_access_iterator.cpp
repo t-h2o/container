@@ -138,7 +138,7 @@ random_access_iterator<T>::operator-=(difference_type remove)
 
 template <typename T>
 typename random_access_iterator<T>::difference_type
-random_access_iterator<T>::operator-(random_access_iterator const &other)
+random_access_iterator<T>::operator-(random_access_iterator const &other) const
 {
 	return _pointer - other._pointer;
 }

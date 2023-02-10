@@ -14,6 +14,7 @@
  */
 
 #include "random_access_iterator.hpp"
+#include "rev_random_access_iterator.hpp"
 
 namespace ft
 {
@@ -33,6 +34,9 @@ template <typename T, typename Alloc = std::allocator<T> > class vector
 	typedef ft::random_access_iterator<pointer>		  iterator;
 	typedef ft::random_access_iterator<const_pointer> const_iterator;
 
+	typedef ft::rev_random_access_iterator<iterator>	   reverse_iterator;
+	typedef ft::rev_random_access_iterator<const_iterator> const_reverse_iterator;
+
 	/* Member Funcion */
 	explicit vector(const allocator_type &alloc = allocator_type());
 	explicit vector(size_type, const_reference, const allocator_type &alloc = allocator_type());
@@ -48,6 +52,14 @@ template <typename T, typename Alloc = std::allocator<T> > class vector
 	/* const iterator */
 	const_iterator begin(void) const;
 	const_iterator end(void) const;
+
+	/* reverse iterator */
+	reverse_iterator rbegin(void);
+	reverse_iterator rend(void);
+
+	/* reverse iterator */
+	const_reverse_iterator rbegin(void) const;
+	const_reverse_iterator rend(void) const;
 
 	/* Capacity */
 	size_type size(void) const;

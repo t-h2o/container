@@ -100,6 +100,38 @@ vector<T, Alloc>::end(void) const
 	return const_iterator(&(_list[_size]));
 }
 
+/* reverse iterator */
+
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::reverse_iterator
+vector<T, Alloc>::rbegin(void)
+{
+	return reverse_iterator(this->end());
+}
+
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::reverse_iterator
+vector<T, Alloc>::rend(void)
+{
+	return reverse_iterator(this->begin());
+}
+
+/* const reverse iterator */
+
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::const_reverse_iterator
+vector<T, Alloc>::rbegin(void) const
+{
+	return const_reverse_iterator(this->end());
+}
+
+template <typename T, typename Alloc>
+typename vector<T, Alloc>::const_reverse_iterator
+vector<T, Alloc>::rend(void) const
+{
+	return const_reverse_iterator(this->begin());
+}
+
 /**
  * Capacity
  */
