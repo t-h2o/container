@@ -1,8 +1,8 @@
 #include "Awesome.hpp"
 #include "Iterator.hpp"
 #include "Tdd.hpp"
-#include "Vector.hpp"
 #include "color.hpp"
+#include "vector.hpp"
 #include <iostream>
 #include <vector>
 

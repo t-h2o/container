@@ -47,7 +47,7 @@ INCS	+=	$(INCD)/rev_random_access_iterator.hpp
 INCS	+=	$(INCD)/Tdd.hpp
 INCS	+=	$(INCD)/test.hpp
 INCS	+=	$(INCD)/to_string.hpp
-INCS	+=	$(INCD)/Vector.hpp
+INCS	+=	$(INCD)/vector.hpp
 
 
 #	Templates
