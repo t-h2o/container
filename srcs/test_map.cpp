@@ -1,8 +1,8 @@
 #include "Awesome.hpp"
 #include "Iterator.hpp"
-#include "Map.hpp"
 #include "Tdd.hpp"
 #include "color.hpp"
+#include "map.hpp"
 #include "to_string.hpp"
 #include <iostream>
 #include <map>

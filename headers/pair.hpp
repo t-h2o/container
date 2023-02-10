@@ -25,7 +25,7 @@ template <typename Key, typename Type> class pair
 template <typename Key, typename Type>
 std::ostream &operator<<(std::ostream &output, pair<Key, Type> const &);
 
-#include "../templates/Pair.cpp"
+#include "../templates/pair.cpp"
 
 } /* namespace ft */
 

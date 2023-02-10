@@ -39,8 +39,8 @@ INCS	+=	$(INCD)/Awesome.hpp
 INCS	+=	$(INCD)/chain_list.hpp
 INCS	+=	$(INCD)/color.hpp
 INCS	+=	$(INCD)/Iterator.hpp
-INCS	+=	$(INCD)/Map.hpp
-INCS	+=	$(INCD)/Pair.hpp
+INCS	+=	$(INCD)/map.hpp
+INCS	+=	$(INCD)/pair.hpp
 INCS	+=	$(INCD)/random_access_iterator.hpp
 INCS	+=	$(INCD)/rev_bidirectional.hpp
 INCS	+=	$(INCD)/rev_random_access_iterator.hpp
@@ -56,15 +56,15 @@ TMPD	=	templates
 
 TMPS	+=	$(TMPD)/chain_list.cpp
 TMPS	+=	$(TMPD)/Color.cpp
-TMPS	+=	$(TMPD)/Map.cpp
+TMPS	+=	$(TMPD)/map.cpp
 TMPS	+=	$(TMPD)/Node.cpp
-TMPS	+=	$(TMPD)/Pair.cpp
+TMPS	+=	$(TMPD)/pair.cpp
 TMPS	+=	$(TMPD)/random_access_iterator.cpp
 TMPS	+=	$(TMPD)/RBTchecker.cpp
 TMPS	+=	$(TMPD)/rev_bidirectional.cpp
 TMPS	+=	$(TMPD)/rev_random_access_iterator.cpp
 TMPS	+=	$(TMPD)/Tdd.cpp
-TMPS	+=	$(TMPD)/Vector.cpp
+TMPS	+=	$(TMPD)/vector.cpp
 
 
 #	Objets

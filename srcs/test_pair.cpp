@@ -1,5 +1,5 @@
-#include "Pair.hpp"
 #include "color.hpp"
+#include "pair.hpp"
 #include <iostream>
 
 static void

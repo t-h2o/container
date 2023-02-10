@@ -7,7 +7,7 @@
 
 #define RBT_CHECKER 0
 
-#include "Pair.hpp"
+#include "pair.hpp"
 
 namespace ft
 {
@@ -147,9 +147,9 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 };
 
 #include "../templates/Color.cpp"
-#include "../templates/Map.cpp"
 #include "../templates/Node.cpp"
 #include "../templates/RBTchecker.cpp"
+#include "../templates/map.cpp"
 
 } /* namespace ft */
 
