@@ -6,22 +6,30 @@
 #include <iostream>
 #include <vector>
 
-void
-test_push_back(std::vector<int> &vec_std, ft::vector<int> &vec_ft, int number)
+template <typename TYPE>
+static void
+test_push_back(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft, TYPE number)
 {
 	vec_std.push_back(number);
 	vec_ft.push_back(number);
 }
 
+template <typename TYPE>
+static void
+start_test(void)
+{
+	std::vector<TYPE> vec_std;
+	ft::vector<TYPE>  vec_ft;
+
+	void (*f[2])(std::vector<TYPE> &, ft::vector<TYPE> &, TYPE);
+	f[0] = &test_push_back;
+	f[0](vec_std, vec_ft, 0);
+}
+
 void
 test_vector_2(void)
 {
-	std::vector<int> vec_std;
-	ft::vector<int>	 vec_ft;
-
-	void (*f[2])(std::vector<int> &, ft::vector<int> &, int);
-	f[0] = &test_push_back;
-	f[0](vec_std, vec_ft, 0);
-
+	start_test<int>();
+	start_test<Awesome>();
 	return;
 }
