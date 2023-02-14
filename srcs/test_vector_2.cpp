@@ -27,6 +27,12 @@ test_pop_back(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft, int random)
 {
 	section("pop_back()");
 	(void)random;
+
+	/* avoid a segmenation fault
+	 * the std::vector do not check there is a last element before to destroy it
+	 */
+	if (vec_ft.empty())
+		return;
 	vec_std.pop_back();
 	vec_ft.pop_back();
 }
@@ -61,7 +67,7 @@ test_vector_2(void)
 
 	for (int i = 0; i < 10; ++i)
 	{
-		section("new test");
+		title("test vector 2.0 : new test");
 		start_test<int>(i);
 		start_test<Awesome>(i);
 	}

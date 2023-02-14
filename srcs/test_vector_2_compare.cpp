@@ -105,14 +105,14 @@ compare_vector(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft)
 	Tdd::expected(vec_ft.capacity(), vec_std.capacity(), "capacity()");
 	Tdd::expected(vec_ft.empty(), vec_std.empty(), "empty()");
 
+	if (vec_ft.empty())
+		return;
+
 	TYPE const *data_std = vec_std.data();
 	TYPE const *data_ft = vec_ft.data();
 
 	for (size_t i = 0; i < vec_std.size(); ++i)
 		Tdd::expected(data_ft[i], data_std[i]);
-
-	if (vec_ft.empty())
-		return;
 
 	compare_iterator<TYPE>(vec_std, vec_ft);
 	compare_reverse_iterator<TYPE>(vec_std, vec_ft);
