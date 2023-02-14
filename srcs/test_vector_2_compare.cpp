@@ -100,10 +100,10 @@ template <typename TYPE>
 void
 compare_vector(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft)
 {
-	Tdd::expected(vec_ft.size(), vec_std.size());
-	Tdd::expected(vec_ft.max_size(), vec_std.max_size());
-	Tdd::expected(vec_ft.capacity(), vec_std.capacity());
-	Tdd::expected(vec_ft.empty(), vec_std.empty());
+	Tdd::expected(vec_ft.size(), vec_std.size(), "size()");
+	Tdd::expected(vec_ft.max_size(), vec_std.max_size(), "max_size()");
+	Tdd::expected(vec_ft.capacity(), vec_std.capacity(), "capacity()");
+	Tdd::expected(vec_ft.empty(), vec_std.empty(), "empty()");
 
 	TYPE const *data_std = vec_std.data();
 	TYPE const *data_ft = vec_ft.data();
