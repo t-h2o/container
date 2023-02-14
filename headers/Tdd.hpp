@@ -7,6 +7,7 @@ class Tdd
 {
   public:
 	template <typename T> static void expected(T const &, T const &);
+	template <typename T> static void expected(T const &, T const &, std::string const &);
 };
 
 #include "../templates/Tdd.cpp"
