@@ -8,134 +8,25 @@
 
 #include <stdlib.h> /* rand(), srand() */
 
-#define TEST_NUMBER 1
+#include "test_vector_2_compare.cpp"
+
+#define TEST_NUMBER 2
 
 template <typename TYPE>
 static void
-compare_reverse_iterator(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft)
+test_push_back(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft, int random)
 {
-	typename std::vector<TYPE>::reverse_iterator it_std(vec_std.rbegin());
-	typename ft::vector<TYPE>::reverse_iterator	 it_ft(vec_ft.rbegin());
-
-	Tdd::expected(*it_ft, *it_std);
-
-	for (size_t i = 0; i < vec_std.size(); ++i)
-		Tdd::expected(it_ft[i], it_std[i]);
-
-	Tdd::expected(vec_ft.rbegin() > vec_ft.rend(), vec_std.rbegin() > vec_std.rend());
-	Tdd::expected(vec_ft.rbegin() < vec_ft.rend(), vec_std.rbegin() < vec_std.rend());
-	Tdd::expected(vec_ft.rbegin() >= vec_ft.rend(), vec_std.rbegin() >= vec_std.rend());
-	Tdd::expected(vec_ft.rbegin() <= vec_ft.rend(), vec_std.rbegin() <= vec_std.rend());
-
-	Tdd::expected(vec_ft.rend() > vec_ft.rend(), vec_std.rend() > vec_std.rend());
-	Tdd::expected(vec_ft.rend() < vec_ft.rend(), vec_std.rend() < vec_std.rend());
-	Tdd::expected(vec_ft.rend() >= vec_ft.rend(), vec_std.rend() >= vec_std.rend());
-	Tdd::expected(vec_ft.rend() <= vec_ft.rend(), vec_std.rend() <= vec_std.rend());
-
-	if (vec_ft.size() < 3)
-		return;
-
-	it_ft = vec_ft.rbegin();
-	it_std = vec_std.rbegin();
-	Tdd::expected(*(it_ft++), *(it_std++));
-	Tdd::expected(*(++it_ft), *(++it_std));
-	Tdd::expected(*(it_ft--), *(it_std--));
-	Tdd::expected(*(--it_ft), *(--it_std));
-
-	it_ft += 1;
-	it_std += 1;
-	Tdd::expected(*(it_ft), *(it_std));
-
-	it_ft = it_ft + 1;
-	it_std = it_std + 1;
-	Tdd::expected(*(it_ft), *(it_std));
-
-	it_ft -= 1;
-	it_std -= 1;
-	Tdd::expected(*(it_ft), *(it_std));
-
-	it_ft = it_ft - 1;
-	it_std = it_std - 1;
-	Tdd::expected(*(it_ft), *(it_std));
+	vec_std.push_back(random);
+	vec_ft.push_back(random);
 }
 
 template <typename TYPE>
 static void
-compare_iterator(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft)
+test_pop_back(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft, int random)
 {
-	typename std::vector<TYPE>::iterator it_std(vec_std.begin());
-	typename ft::vector<TYPE>::iterator	 it_ft(vec_ft.begin());
-
-	Tdd::expected(*it_ft, *it_std);
-
-	for (size_t i = 0; i < vec_std.size(); ++i)
-		Tdd::expected(it_ft[i], it_std[i]);
-
-	Tdd::expected(vec_ft.begin() > vec_ft.end(), vec_std.begin() > vec_std.end());
-	Tdd::expected(vec_ft.begin() < vec_ft.end(), vec_std.begin() < vec_std.end());
-	Tdd::expected(vec_ft.begin() >= vec_ft.end(), vec_std.begin() >= vec_std.end());
-	Tdd::expected(vec_ft.begin() <= vec_ft.end(), vec_std.begin() <= vec_std.end());
-
-	Tdd::expected(vec_ft.end() > vec_ft.end(), vec_std.end() > vec_std.end());
-	Tdd::expected(vec_ft.end() < vec_ft.end(), vec_std.end() < vec_std.end());
-	Tdd::expected(vec_ft.end() >= vec_ft.end(), vec_std.end() >= vec_std.end());
-	Tdd::expected(vec_ft.end() <= vec_ft.end(), vec_std.end() <= vec_std.end());
-
-	if (vec_ft.size() < 3)
-		return;
-
-	it_ft = vec_ft.begin();
-	it_std = vec_std.begin();
-	Tdd::expected(*(it_ft++), *(it_std++));
-	Tdd::expected(*(++it_ft), *(++it_std));
-	Tdd::expected(*(it_ft--), *(it_std--));
-	Tdd::expected(*(--it_ft), *(--it_std));
-
-	it_ft += 1;
-	it_std += 1;
-	Tdd::expected(*(it_ft), *(it_std));
-
-	it_ft = it_ft + 1;
-	it_std = it_std + 1;
-	Tdd::expected(*(it_ft), *(it_std));
-
-	it_ft -= 1;
-	it_std -= 1;
-	Tdd::expected(*(it_ft), *(it_std));
-
-	it_ft = it_ft - 1;
-	it_std = it_std - 1;
-	Tdd::expected(*(it_ft), *(it_std));
-}
-
-template <typename TYPE>
-static void
-compare_vector(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft)
-{
-	Tdd::expected(vec_ft.size(), vec_std.size());
-	Tdd::expected(vec_ft.max_size(), vec_std.max_size());
-	Tdd::expected(vec_ft.capacity(), vec_std.capacity());
-	Tdd::expected(vec_ft.empty(), vec_std.empty());
-
-	TYPE const *data_std = vec_std.data();
-	TYPE const *data_ft = vec_ft.data();
-
-	for (size_t i = 0; i < vec_std.size(); ++i)
-		Tdd::expected(data_ft[i], data_std[i]);
-
-	if (vec_ft.empty())
-		return;
-
-	compare_iterator<TYPE>(vec_std, vec_ft);
-	compare_reverse_iterator<TYPE>(vec_std, vec_ft);
-}
-
-template <typename TYPE>
-static void
-test_push_back(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft, TYPE number)
-{
-	vec_std.push_back(number);
-	vec_ft.push_back(number);
+	(void) random;
+	vec_std.pop_back();
+	vec_ft.pop_back();
 }
 
 template <typename TYPE>
@@ -146,9 +37,10 @@ start_test(int seed)
 	std::vector<TYPE> vec_std;
 	ft::vector<TYPE>  vec_ft;
 
-	void (*f[TEST_NUMBER])(std::vector<TYPE> &, ft::vector<TYPE> &, TYPE);
+	void (*f[TEST_NUMBER])(std::vector<TYPE> &, ft::vector<TYPE> &, int);
 
 	f[0] = &test_push_back<TYPE>;
+	f[1] = &test_pop_back<TYPE>;
 
 	compare_vector(vec_std, vec_ft);
 
