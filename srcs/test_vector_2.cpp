@@ -26,7 +26,7 @@ static void
 test_pop_back(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft, int random)
 {
 	section("pop_back()");
-	(void) random;
+	(void)random;
 	vec_std.pop_back();
 	vec_ft.pop_back();
 }
