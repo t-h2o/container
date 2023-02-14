@@ -6,6 +6,10 @@
 #include <iostream>
 #include <vector>
 
+#include <stdlib.h> /* rand(), srand() */
+
+#define TEST_NUMBER 1
+
 template <typename TYPE>
 static void
 compare_reverse_iterator(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft)
@@ -132,22 +136,28 @@ test_push_back(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft, TYPE number
 {
 	vec_std.push_back(number);
 	vec_ft.push_back(number);
-
-	compare_vector(vec_std, vec_ft);
 }
 
 template <typename TYPE>
 static void
-start_test(void)
+start_test(int seed)
 {
+	srand(seed);
 	std::vector<TYPE> vec_std;
 	ft::vector<TYPE>  vec_ft;
 
+	void (*f[TEST_NUMBER])(std::vector<TYPE> &, ft::vector<TYPE> &, TYPE);
+
+	f[0] = &test_push_back<TYPE>;
+
 	compare_vector(vec_std, vec_ft);
 
-	void (*f[2])(std::vector<TYPE> &, ft::vector<TYPE> &, TYPE);
-	f[0] = &test_push_back<TYPE>;
-	f[0](vec_std, vec_ft, 0);
+	for (int i = 0; i < 10; ++i)
+	{
+		f[rand() % TEST_NUMBER](vec_std, vec_ft, rand());
+
+		compare_vector(vec_std, vec_ft);
+	}
 }
 
 void
@@ -155,8 +165,12 @@ test_vector_2(void)
 {
 	title("test vector 2.0");
 
-	start_test<int>();
-	start_test<Awesome>();
+	for (int i = 0; i < 10; ++i)
+	{
+		section("new test");
+		start_test<int>(i);
+		start_test<Awesome>(i);
+	}
 
 	return;
 }
