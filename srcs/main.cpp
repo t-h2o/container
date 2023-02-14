@@ -9,12 +9,12 @@ main(void)
 
 	Tdd::expected<int>(1, 2);
 	test_vector();
-	test_vector_2();
 	test_pair();
 	test_map();
 	test_chain_list();
 	test_random_access_iterator();
 	test_rev_random_access_iterator();
+	test_vector_2();
 
 	return 0;
 }
