@@ -16,6 +16,7 @@ template <typename TYPE>
 static void
 test_push_back(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft, int random)
 {
+	section("push_back()");
 	vec_std.push_back(random);
 	vec_ft.push_back(random);
 }
@@ -24,6 +25,7 @@ template <typename TYPE>
 static void
 test_pop_back(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft, int random)
 {
+	section("pop_back()");
 	(void) random;
 	vec_std.pop_back();
 	vec_ft.pop_back();
