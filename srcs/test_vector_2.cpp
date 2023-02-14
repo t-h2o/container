@@ -10,7 +10,7 @@
 
 #include "test_vector_2_compare.cpp"
 
-#define TEST_NUMBER 3
+#define TEST_NUMBER 4
 
 template <typename TYPE>
 static void
@@ -48,6 +48,26 @@ test_at_range_out(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft, int rand
 
 template <typename TYPE>
 static void
+test_insert_1(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft, int random)
+{
+	std::cout << vec_ft;
+	section("insert(): one element");
+
+	typename std::vector<TYPE>::iterator it_std(vec_std.begin());
+	typename ft::vector<TYPE>::iterator	 it_ft(vec_ft.begin());
+
+	for (typename ft::vector<TYPE>::difference_type diff = (vec_ft.end() - it_ft) / 2; diff > 0; --diff)
+	{
+		++it_std;
+		++it_ft;
+	}
+	vec_std.insert(it_std, random);
+	vec_ft.insert(it_ft, random);
+	std::cout << vec_ft;
+}
+
+template <typename TYPE>
+static void
 test_pop_back(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft, int random)
 {
 	section("pop_back()");
@@ -75,6 +95,7 @@ start_test(int seed)
 	f[0] = &test_push_back<TYPE>;
 	f[1] = &test_pop_back<TYPE>;
 	f[2] = &test_at_range_out<TYPE>;
+	f[3] = &test_insert_1<TYPE>;
 
 	compare_vector(vec_std, vec_ft);
 
