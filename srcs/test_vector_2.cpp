@@ -19,9 +19,9 @@ test_vector_2(void)
 	std::vector<int> vec_std;
 	ft::vector<int>	 vec_ft;
 
-	void (*f)(std::vector<int> &, ft::vector<int> &, int) = &test_push_back;
-
-	f(vec_std, vec_ft, 0);
+	void (*f[2])(std::vector<int> &, ft::vector<int> &, int);
+	f[0] = &test_push_back;
+	f[0](vec_std, vec_ft, 0);
 
 	return;
 }
