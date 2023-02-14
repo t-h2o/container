@@ -10,7 +10,7 @@
 
 #include "test_vector_2_compare.cpp"
 
-#define TEST_NUMBER 2
+#define TEST_NUMBER 3
 
 template <typename TYPE>
 static void
@@ -19,6 +19,31 @@ test_push_back(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft, int random)
 	section("push_back()");
 	vec_std.push_back(random);
 	vec_ft.push_back(random);
+}
+
+template <typename TYPE>
+static void
+test_at_range_out(std::vector<TYPE> &vec_std, ft::vector<TYPE> &vec_ft, int random)
+{
+	(void)random;
+	bool ft(0), std(0);
+	try
+	{
+		vec_std.at(vec_ft.size() + 1);
+	}
+	catch (std::exception &e)
+	{
+		std = 1;
+	}
+	try
+	{
+		vec_ft.at(vec_ft.size() + 1);
+	}
+	catch (std::exception &e)
+	{
+		ft = 1;
+	}
+	Tdd::expected(std, ft, "bool at() out of range");
 }
 
 template <typename TYPE>
@@ -49,6 +74,7 @@ start_test(int seed)
 
 	f[0] = &test_push_back<TYPE>;
 	f[1] = &test_pop_back<TYPE>;
+	f[2] = &test_at_range_out<TYPE>;
 
 	compare_vector(vec_std, vec_ft);
 
