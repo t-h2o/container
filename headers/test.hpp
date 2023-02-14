@@ -1,6 +1,7 @@
 #ifndef TEST_HPP
 #define TEST_HPP
 void test_vector(void);
+void test_vector_2(void);
 void test_pair(void);
 void test_map(void);
 void test_chain_list();

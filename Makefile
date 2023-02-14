@@ -28,6 +28,7 @@ SRCS	+=	$(SRCD)/test_pair.cpp
 SRCS	+=	$(SRCD)/test_random_access_iterator.cpp
 SRCS	+=	$(SRCD)/test_rev_random_access_iterator.cpp
 SRCS	+=	$(SRCD)/test_vector.cpp
+SRCS	+=	$(SRCD)/test_vector_2.cpp
 SRCS	+=	$(SRCD)/to_string.cpp
 
 
