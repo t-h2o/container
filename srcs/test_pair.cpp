@@ -1,3 +1,4 @@
+#include "Tdd.hpp"
 #include "color.hpp"
 #include "pair.hpp"
 #include <iostream>
@@ -58,6 +59,21 @@ pair_tree(void)
 	pair_std.second = 42;
 }
 
+static void
+pair_four(void)
+{
+	ft::pair<char, int>	 pair_ft;
+	std::pair<char, int> pair_std;
+
+	char c_ = 'a';
+	int	 i_ = 45;
+
+	pair_ft = ft::make_pair(c_, i_);
+	pair_std = std::make_pair(c_, i_);
+	Tdd::expected(pair_ft.first, pair_std.first, "make pair");
+	Tdd::expected(pair_ft.second, pair_std.second, "make pair");
+}
+
 void
 test_pair(void)
 {
@@ -67,6 +83,9 @@ test_pair(void)
 	title("Pair 2");
 	pair_two();
 
-	title("Pair 3");
+	title("pair 3");
 	pair_tree();
+
+	title("pair 4");
+	pair_four();
 }

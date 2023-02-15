@@ -21,6 +21,13 @@ template <typename Key, typename Type> class pair
 	Type second;
 };
 
+template <typename Key, typename Value>
+typename ft::pair<Key, Value>
+make_pair(Key t, Value u)
+{
+	return pair<Key, Value>(t, u);
+}
+
 /* Extra... */
 template <typename Key, typename Type>
 std::ostream &operator<<(std::ostream &output, pair<Key, Type> const &);
