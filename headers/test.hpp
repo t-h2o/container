@@ -1,5 +1,6 @@
 #ifndef TEST_HPP
 #define TEST_HPP
+void test_algorithm(void);
 void test_vector(void);
 void test_pair(void);
 void test_map(void);

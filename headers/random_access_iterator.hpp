@@ -1,6 +1,8 @@
 #ifndef RANDOM_ACCESS_ITERATOR
 #define RANDOM_ACCESS_ITERATOR
 
+#include "Iterator.hpp"
+
 namespace ft
 {
 
