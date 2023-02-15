@@ -15,6 +15,7 @@ main(void)
 	test_random_access_iterator();
 	test_rev_random_access_iterator();
 	test_algorithm();
+	test_stack();
 
 	return 0;
 }
