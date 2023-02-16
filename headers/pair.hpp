@@ -17,6 +17,15 @@ template <typename Key, typename Type> class pair
 	pair &operator=(const pair &);
 	pair &operator=(const Type &);
 
+	bool operator==(const pair &);
+	bool operator!=(const pair &);
+	bool operator<(const pair &);
+	bool operator<=(const pair &);
+	bool operator>(const pair &);
+	bool operator>=(const pair &);
+
+	void swap(pair &);
+
 	Key	 first;
 	Type second;
 };

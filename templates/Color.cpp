@@ -2,9 +2,8 @@
  * Color
  */
 
-template <typename Key, typename Type, typename Alloc>
 void
-map<Key, Type, Alloc>::Color::flip(void)
+Color::flip(void)
 {
 	if (this->is_red())
 		this->set_black();
@@ -12,30 +11,26 @@ map<Key, Type, Alloc>::Color::flip(void)
 		this->set_red();
 }
 
-template <typename Key, typename Type, typename Alloc>
 bool
-map<Key, Type, Alloc>::Color::is_red(void) const
+Color::is_red(void) const
 {
 	return (this->_color == RED);
 }
 
-template <typename Key, typename Type, typename Alloc>
 bool
-map<Key, Type, Alloc>::Color::is_black(void) const
+Color::is_black(void) const
 {
 	return (this->_color == BLACK);
 }
 
-template <typename Key, typename Type, typename Alloc>
 void
-map<Key, Type, Alloc>::Color::set_red(void)
+Color::set_red(void)
 {
 	this->_color = RED;
 }
 
-template <typename Key, typename Type, typename Alloc>
 void
-map<Key, Type, Alloc>::Color::set_black(void)
+Color::set_black(void)
 {
 	this->_color = BLACK;
 }

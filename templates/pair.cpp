@@ -32,6 +32,65 @@ pair<Key, Type>::operator=(Type const &value)
 	return *this;
 }
 
+template <class Key, class Type>
+bool
+pair<Key, Type>::operator==(const pair<Key, Type> &other)
+{
+	return this->first == other.first;
+}
+
+template <class Key, class Type>
+bool
+pair<Key, Type>::operator!=(const pair<Key, Type> &other)
+{
+	return this->first != other.first;
+}
+
+template <class Key, class Type>
+bool
+pair<Key, Type>::operator<(const pair<Key, Type> &other)
+{
+	return this->first < other.first;
+}
+
+template <class Key, class Type>
+bool
+pair<Key, Type>::operator<=(const pair<Key, Type> &other)
+{
+	return this->first <= other.first;
+}
+
+template <class Key, class Type>
+bool
+pair<Key, Type>::operator>(const pair<Key, Type> &other)
+{
+	return this->first > other.first;
+}
+
+template <class Key, class Type>
+bool
+pair<Key, Type>::operator>=(const pair<Key, Type> &other)
+{
+	return this->first >= other.first;
+}
+
+template <typename Key, typename Type>
+void
+pair<Key, Type>::swap(pair &other)
+{
+	Key	 tmp1;
+	Type tmp2;
+
+	tmp1 = this->first;
+	tmp2 = this->second;
+
+	this->first = other.first;
+	this->second = other.second;
+
+	other.first = tmp1;
+	other.second = tmp2;
+}
+
 template <typename Key, typename Type>
 std::ostream &
 operator<<(std::ostream &output, pair<Key, Type> const &pair)

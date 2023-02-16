@@ -19,6 +19,34 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 {
 	Tdd::expected(map_std.empty(), map_ft.empty());
 	Tdd::expected(map_std.size(), map_ft.size());
+	if (map_ft.empty())
+		return;
+	typename ft::map<T1, T2>::iterator	it_ft = map_ft.begin();
+	typename std::map<T1, T2>::iterator it_std = map_std.begin();
+	Tdd::expected((*it_std).first, (*it_ft).first);
+
+	bool end_ft;
+	bool end_std;
+	do
+	{
+		Tdd::expected((*it_std).first, (*it_ft).first);
+		++it_ft;
+		++it_std;
+		end_ft = it_ft != map_ft.end();
+		end_std = it_std != map_std.end();
+		Tdd::expected(end_std, end_ft, "bool end");
+	} while (end_ft);
+	--it_ft;
+	--it_std;
+	do
+	{
+		Tdd::expected((*it_std).first, (*it_ft).first);
+		--it_ft;
+		--it_std;
+		end_ft = it_ft != map_ft.begin();
+		end_std = it_std != map_std.begin();
+		Tdd::expected(end_std, end_ft, "bool end");
+	} while (end_ft);
 }
 
 template <typename T1, typename T2>

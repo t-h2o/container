@@ -39,10 +39,12 @@ INCD	=	headers
 
 INCS	+=	$(INCD)/Awesome.hpp
 INCS	+=	$(INCD)/algorithm.hpp
+INCS	+=	$(INCD)/bidirectional_iterator.hpp
 INCS	+=	$(INCD)/chain_list.hpp
 INCS	+=	$(INCD)/color.hpp
 INCS	+=	$(INCD)/Iterator.hpp
 INCS	+=	$(INCD)/map.hpp
+INCS	+=	$(INCD)/node.hpp
 INCS	+=	$(INCD)/pair.hpp
 INCS	+=	$(INCD)/random_access_iterator.hpp
 INCS	+=	$(INCD)/rev_bidirectional.hpp
@@ -57,6 +59,7 @@ INCS	+=	$(INCD)/vector.hpp
 
 TMPD	=	templates
 
+TMPS	+=	$(TMPD)/bidirectional_iterator.cpp
 TMPS	+=	$(TMPD)/chain_list.cpp
 TMPS	+=	$(TMPD)/Color.cpp
 TMPS	+=	$(TMPD)/map.cpp

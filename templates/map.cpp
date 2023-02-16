@@ -1,5 +1,6 @@
 template <typename T1, typename Type, typename Alloc> map<T1, Type, Alloc>::map(void) : _root(0), _size(0)
 {
+	_end = new Node(0);
 	_root = new Node *;
 	*_root = 0;
 }
@@ -8,6 +9,30 @@ template <typename T1, typename Type, typename Alloc> map<T1, Type, Alloc>::~map
 {
 	_free_tree(*_root);
 	delete _root;
+	delete _end;
+}
+
+/**
+ * Iterator
+ */
+
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::iterator
+map<T1, T2, Alloc>::begin(void) const
+{
+	Node *less(*_root);
+
+	while (less->left())
+		less = less->left();
+
+	return iterator(_root, less, _end);
+}
+
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::iterator
+map<T1, T2, Alloc>::end(void) const
+{
+	return iterator(_root, _end);
 }
 
 /**
@@ -55,7 +80,7 @@ map<T1, Type, Alloc>::erase(T1 const &key)
 
 	Node *node(_binary_search(key));
 
-	if (node == 0 || node->key() != key)
+	if (node == 0 || node->key().first != key)
 		return;
 
 	_erase(node);
@@ -362,11 +387,11 @@ map<T1, Type, Alloc>::_get_reference(const T1 &key)
 	parent = _binary_search(key);
 	if (parent)
 	{
-		if (parent->key() == key)
+		if (parent->key().first == key)
 			return parent->dual;
-		else if (parent->key() > key)
+		else if (parent->key().first > key)
 			side = LEFT;
-		else if (parent->key() < key)
+		else if (parent->key().first < key)
 			side = RIGHT;
 	}
 
@@ -374,7 +399,7 @@ map<T1, Type, Alloc>::_get_reference(const T1 &key)
 
 	++_size;
 
-	node->key() = key;
+	node->key().first = key;
 
 	_rebalance_tree(node);
 
@@ -454,34 +479,34 @@ map<T1, Type, Alloc>::_binary_search(T1 const &key) const
 	parent = *_root;
 	while (parent)
 	{
-		if (key > parent->key())
+		if (key > parent->key().first)
 		{
 			if (RBT_LOG)
-				std::cout << key << " > " << parent->key() << " => Right" << std::endl;
+				std::cout << key << " > " << parent->key().first << " => Right" << std::endl;
 			if (parent->right() == 0)
 			{
 				if (RBT_LOG)
-					std::cout << key << " will be the right child of " << parent->key() << std::endl;
+					std::cout << key << " will be the right child of " << parent->key().first << std::endl;
 				break;
 			}
 			parent = parent->right();
 		}
-		else if (key < parent->key())
+		else if (key < parent->key().first)
 		{
 			if (RBT_LOG)
-				std::cout << key << " < " << parent->key() << " => Left" << std::endl;
+				std::cout << key << " < " << parent->key().first << " => Left" << std::endl;
 			if (parent->left() == 0)
 			{
 				if (RBT_LOG)
-					std::cout << key << " will be the left child of " << parent->key() << std::endl;
+					std::cout << key << " will be the left child of " << parent->key().first << std::endl;
 				break;
 			}
 			parent = parent->left();
 		}
-		else if (key == parent->key())
+		else if (key == parent->key().first)
 		{
 			if (RBT_LOG)
-				std::cout << key << " = " << parent->key() << " => find the same key" << std::endl;
+				std::cout << key << " = " << parent->key().first << " => find the same key" << std::endl;
 			return parent;
 		}
 	}
@@ -531,7 +556,7 @@ map<T1, Type, Alloc>::_swap(Node *one, Node *two)
 	Color twocolor(two->color);
 
 	if (RBT_LOG)
-		std::cout << "Swap one: " << one->key() << " with two: " << two->key() << std::endl;
+		std::cout << "Swap one: " << one->key().first << " with two: " << two->key().first << std::endl;
 
 	if (onechild[0] == two || onechild[1] == two)
 	{
@@ -639,7 +664,7 @@ map<T1, Type, Alloc>::_rebalance_tree(Node *node)
 		return;
 
 	if (RBT_LOG)
-		std::cout << " == Red black tree rebalance == with " << node->key() << " as node" << std::endl;
+		std::cout << " == Red black tree rebalance == with " << node->key().first << " as node" << std::endl;
 	if (RBT_LOG)
 		print_tree();
 
@@ -693,7 +718,7 @@ map<T1, Type, Alloc>::_rotate(Node *pivot)
 	enum e_side oSide(_flip_side(side));
 
 	if (RBT_LOG)
-		std::cout << " == Red black tree rotate == with " << pivot->key() << " as pivot" << std::endl;
+		std::cout << " == Red black tree rotate == with " << pivot->key().first << " as pivot" << std::endl;
 	if (RBT_LOG)
 		print_tree();
 
@@ -736,18 +761,4 @@ map<T1, Type, Alloc>::_rotate(Node *pivot)
 		return pivot;
 	}
 	return 0;
-}
-
-/**
- * Side
- */
-
-template <typename T1, typename Type, typename Alloc>
-typename map<T1, Type, Alloc>::e_side
-map<T1, Type, Alloc>::_flip_side(enum e_side side) const
-{
-	if (side == LEFT)
-		return RIGHT;
-	else
-		return LEFT;
 }
