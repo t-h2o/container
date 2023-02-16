@@ -33,7 +33,7 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 	typedef typename allocator_type::size_type		 size_type;
 
   public:
-	typedef ft::bidirectional_iterator<Node> iterator;
+	typedef ft::bidirectional_iterator<Node, pointer>		iterator;
 
 	explicit map(void);
 	~map(void);

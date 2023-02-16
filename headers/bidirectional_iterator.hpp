@@ -7,15 +7,20 @@
 namespace ft
 {
 
-template <typename _Node> class bidirectional_iterator
+template <typename _Node, typename _Iter> class bidirectional_iterator
 {
-	typedef _Node						  Node;
-	typedef bidirectional_iterator<_Node> _self;
-	typedef _self						 &_self_reference;
-
-	typedef typename Node::TYPE value_type;
+	typedef _Node								 Node;
+	typedef _Iter								 iterator_type;
+	typedef bidirectional_iterator<_Node, _Iter> _self;
+	typedef _self								&_self_reference;
 
   public:
+	typedef typename iterator_traits<iterator_type>::iterator_category iterator_category;
+	typedef typename iterator_traits<iterator_type>::value_type		   value_type;
+	typedef typename iterator_traits<iterator_type>::difference_type   difference_type;
+	typedef typename iterator_traits<iterator_type>::pointer		   pointer;
+	typedef typename iterator_traits<iterator_type>::reference		   reference;
+
 	bidirectional_iterator(void);
 	bidirectional_iterator(Node **, Node *);
 	bidirectional_iterator(Node **, Node *, Node *);

@@ -1,36 +1,38 @@
-template <typename _Node> bidirectional_iterator<_Node>::bidirectional_iterator(void) {}
+template <typename _Node, typename _Iter> bidirectional_iterator<_Node, _Iter>::bidirectional_iterator(void)
+{
+}
 
-template <typename _Node>
-bidirectional_iterator<_Node>::bidirectional_iterator(Node **root, Node *end)
+template <typename _Node, typename _Iter>
+bidirectional_iterator<_Node, _Iter>::bidirectional_iterator(Node **root, Node *end)
 	: _root(root), _actual(end), _end(end)
 {
 }
 
-template <typename _Node>
-bidirectional_iterator<_Node>::bidirectional_iterator(Node **root, Node *node, Node *end)
+template <typename _Node, typename _Iter>
+bidirectional_iterator<_Node, _Iter>::bidirectional_iterator(Node **root, Node *node, Node *end)
 	: _root(root), _actual(node), _end(end)
 {
 }
 
-template <typename _Node>
-typename bidirectional_iterator<_Node>::_self_reference
-bidirectional_iterator<_Node>::operator=(_self_reference other)
+template <typename _Node, typename _Iter>
+typename bidirectional_iterator<_Node, _Iter>::_self_reference
+bidirectional_iterator<_Node, _Iter>::operator=(_self_reference other)
 {
 	_root = other._root;
 	_actual = other._actual;
 	_end = other._end;
 }
 
-template <typename _Node>
-typename bidirectional_iterator<_Node>::value_type &
-bidirectional_iterator<_Node>::operator*(void)
+template <typename _Node, typename _Iter>
+typename bidirectional_iterator<_Node, _Iter>::value_type &
+bidirectional_iterator<_Node, _Iter>::operator*(void)
 {
 	return _actual->dual;
 }
 
-template <typename _Node>
-typename bidirectional_iterator<_Node>::_self_reference
-bidirectional_iterator<_Node>::operator++(void)
+template <typename _Node, typename _Iter>
+typename bidirectional_iterator<_Node, _Iter>::_self_reference
+bidirectional_iterator<_Node, _Iter>::operator++(void)
 {
 	if (_actual->dual == _bigger(_actual)->dual)
 	{
@@ -70,9 +72,9 @@ bidirectional_iterator<_Node>::operator++(void)
 	return *this;
 }
 
-template <typename _Node>
-typename bidirectional_iterator<_Node>::_self_reference
-bidirectional_iterator<_Node>::operator--(void)
+template <typename _Node, typename _Iter>
+typename bidirectional_iterator<_Node, _Iter>::_self_reference
+bidirectional_iterator<_Node, _Iter>::operator--(void)
 {
 	if (_actual->key() == _end->key())
 	{
@@ -112,9 +114,9 @@ bidirectional_iterator<_Node>::operator--(void)
 	return *this;
 }
 
-template <typename _Node>
-typename bidirectional_iterator<_Node>::_self
-bidirectional_iterator<_Node>::operator++(int)
+template <typename _Node, typename _Iter>
+typename bidirectional_iterator<_Node, _Iter>::_self
+bidirectional_iterator<_Node, _Iter>::operator++(int)
 {
 	bidirectional_iterator ret(*this);
 
@@ -123,9 +125,9 @@ bidirectional_iterator<_Node>::operator++(int)
 	return ret;
 }
 
-template <typename _Node>
-typename bidirectional_iterator<_Node>::_self
-bidirectional_iterator<_Node>::operator--(int)
+template <typename _Node, typename _Iter>
+typename bidirectional_iterator<_Node, _Iter>::_self
+bidirectional_iterator<_Node, _Iter>::operator--(int)
 {
 	bidirectional_iterator ret(*this);
 
@@ -134,16 +136,16 @@ bidirectional_iterator<_Node>::operator--(int)
 	return ret;
 }
 
-template <typename _Node>
+template <typename _Node, typename _Iter>
 bool
-bidirectional_iterator<_Node>::operator==(bidirectional_iterator const &other) const
+bidirectional_iterator<_Node, _Iter>::operator==(bidirectional_iterator const &other) const
 {
 	return this->_actual == other._actual;
 }
 
-template <typename _Node>
+template <typename _Node, typename _Iter>
 bool
-bidirectional_iterator<_Node>::operator!=(bidirectional_iterator const &other) const
+bidirectional_iterator<_Node, _Iter>::operator!=(bidirectional_iterator const &other) const
 {
 	return !(this->_actual == other._actual);
 }
@@ -152,9 +154,9 @@ bidirectional_iterator<_Node>::operator!=(bidirectional_iterator const &other) c
  * Private
  */
 
-template <typename _Node>
-typename bidirectional_iterator<_Node>::Node *
-bidirectional_iterator<_Node>::_bigger(Node *big) const
+template <typename _Node, typename _Iter>
+typename bidirectional_iterator<_Node, _Iter>::Node *
+bidirectional_iterator<_Node, _Iter>::_bigger(Node *big) const
 {
 	while (big->parent)
 		big = big->parent;
