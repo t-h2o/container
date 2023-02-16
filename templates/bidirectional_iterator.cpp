@@ -24,7 +24,7 @@ bidirectional_iterator<_Node, _Iter>::operator=(_self_reference other)
 }
 
 template <typename _Node, typename _Iter>
-typename bidirectional_iterator<_Node, _Iter>::value_type &
+typename bidirectional_iterator<_Node, _Iter>::reference
 bidirectional_iterator<_Node, _Iter>::operator*(void)
 {
 	return _actual->dual;
