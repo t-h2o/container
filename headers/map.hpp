@@ -44,8 +44,8 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 	iterator end();
 
 	/* const_iterator */
-	const_iterator begin() const;
-	const_iterator end() const;
+	const_iterator cbegin() const;
+	const_iterator cend() const;
 
 	/* Capacity */
 	bool   empty(void) const;
