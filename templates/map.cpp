@@ -18,7 +18,7 @@ template <typename T1, typename Type, typename Alloc> map<T1, Type, Alloc>::~map
 
 template <typename T1, typename T2, typename Alloc>
 typename map<T1, T2, Alloc>::iterator
-map<T1, T2, Alloc>::begin(void) const
+map<T1, T2, Alloc>::begin(void)
 {
 	Node *less(*_root);
 
@@ -30,6 +30,29 @@ map<T1, T2, Alloc>::begin(void) const
 
 template <typename T1, typename T2, typename Alloc>
 typename map<T1, T2, Alloc>::iterator
+map<T1, T2, Alloc>::end(void)
+{
+	return iterator(_root, _end);
+}
+
+/**
+ * const_iterator
+ */
+
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::const_iterator
+map<T1, T2, Alloc>::begin(void) const
+{
+	Node *less(*_root);
+
+	while (less->left())
+		less = less->left();
+
+	return const_iterator(_root, less, _end);
+}
+
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::const_iterator
 map<T1, T2, Alloc>::end(void) const
 {
 	return iterator(_root, _end);

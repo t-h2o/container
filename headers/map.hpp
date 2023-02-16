@@ -34,13 +34,18 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 
   public:
 	typedef ft::bidirectional_iterator<Node, pointer>		iterator;
+	typedef ft::bidirectional_iterator<Node, const_pointer> const_iterator;
 
 	explicit map(void);
 	~map(void);
 
 	/* iterator */
-	iterator begin() const;
-	iterator end() const;
+	iterator begin();
+	iterator end();
+
+	/* const_iterator */
+	const_iterator begin() const;
+	const_iterator end() const;
 
 	/* Capacity */
 	bool   empty(void) const;
