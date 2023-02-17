@@ -41,7 +41,7 @@ map<T1, T2, Alloc>::end(void)
 
 template <typename T1, typename T2, typename Alloc>
 typename map<T1, T2, Alloc>::const_iterator
-map<T1, T2, Alloc>::cbegin(void) const
+map<T1, T2, Alloc>::begin(void) const
 {
 	Node *less(*_root);
 

@@ -50,7 +50,7 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 		} while (end_ft);
 	}
 	{
-		typename ft::map<T1, T2>::const_iterator  it_ft = map_ft.cbegin();
+		typename ft::map<T1, T2>::const_iterator  it_ft = map_ft.begin();
 		typename std::map<T1, T2>::const_iterator it_std = map_std.begin();
 		Tdd::expected((*it_std).first, (*it_ft).first);
 
@@ -72,7 +72,7 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 			Tdd::expected((*it_std).first, (*it_ft).first);
 			--it_ft;
 			--it_std;
-			end_ft = it_ft != map_ft.cbegin();
+			end_ft = it_ft != map_ft.begin();
 			end_std = it_std != map_std.begin();
 			Tdd::expected(end_std, end_ft, "bool end");
 		} while (end_ft);
