@@ -151,6 +151,27 @@ bidirectional_iterator<_Node, _Iter>::operator!=(bidirectional_iterator const &o
 	return !(this->_actual == other._actual);
 }
 
+template <typename _Node, typename _Iter>
+typename bidirectional_iterator<_Node, _Iter>::Node **
+bidirectional_iterator<_Node, _Iter>::_get_root(void) const
+{
+	return _root;
+}
+
+template <typename _Node, typename _Iter>
+typename bidirectional_iterator<_Node, _Iter>::Node *
+bidirectional_iterator<_Node, _Iter>::_get_actual(void) const
+{
+	return _actual;
+}
+
+template <typename _Node, typename _Iter>
+typename bidirectional_iterator<_Node, _Iter>::Node *
+bidirectional_iterator<_Node, _Iter>::_get_end(void) const
+{
+	return _end;
+}
+
 /**
  * Private
  */

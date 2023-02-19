@@ -37,6 +37,10 @@ template <typename _Node, typename _Iter> class bidirectional_iterator
 	bool operator==(bidirectional_iterator const &) const;
 	bool operator!=(bidirectional_iterator const &) const;
 
+	Node **_get_root(void) const;
+	Node  *_get_actual(void) const;
+	Node  *_get_end(void) const;
+
   private:
 	Node **_root;
 	Node  *_actual;
