@@ -72,6 +72,18 @@ pair_four(void)
 	pair_std = std::make_pair(c_, i_);
 	Tdd::expected(pair_ft.first, pair_std.first, "make pair");
 	Tdd::expected(pair_ft.second, pair_std.second, "make pair");
+
+	ft::pair<char, int> *ptr_pait_ft = &pair_ft;
+	std::cout << ptr_pait_ft->first;
+	ptr_pait_ft->first = 'v'; /* compile */
+
+	const ft::pair<char, int> *const_ptr_pait_ft = &pair_ft;
+	std::cout << const_ptr_pait_ft->first;
+	// const_ptr_pait_ft->first = 'v'; /* do not compile */
+
+	ft::pair<char, int> const *ptr_const_pait_ft = &pair_ft;
+	std::cout << ptr_const_pait_ft->first;
+	// ptr_const_pait_ft->first = 'v'; /* do not compile */
 }
 
 void
