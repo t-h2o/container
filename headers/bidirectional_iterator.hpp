@@ -25,8 +25,8 @@ template <typename _Node, typename _Iter> class bidirectional_iterator
 	bidirectional_iterator(Node **, Node *);
 	bidirectional_iterator(Node **, Node *, Node *);
 
-	_self_reference operator=(_self_reference);
-	reference		operator*(void);
+	template <typename _It> bidirectional_iterator &operator=(bidirectional_iterator<Node, _It> const &);
+	reference										operator*(void);
 
 	_self_reference operator++(void);
 	_self_reference operator--(void);

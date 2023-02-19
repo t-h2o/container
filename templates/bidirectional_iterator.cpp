@@ -15,8 +15,9 @@ bidirectional_iterator<_Node, _Iter>::bidirectional_iterator(Node **root, Node *
 }
 
 template <typename _Node, typename _Iter>
-typename bidirectional_iterator<_Node, _Iter>::_self_reference
-bidirectional_iterator<_Node, _Iter>::operator=(_self_reference other)
+template <typename _It>
+typename bidirectional_iterator<_Node, _Iter>::bidirectional_iterator &
+bidirectional_iterator<_Node, _Iter>::operator=(bidirectional_iterator<_Node, _It> const &other)
 {
 	_root = other._root;
 	_actual = other._actual;
