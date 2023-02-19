@@ -16,12 +16,21 @@ bidirectional_iterator<_Node, _Iter>::bidirectional_iterator(Node **root, Node *
 
 template <typename _Node, typename _Iter>
 template <typename _It>
+bidirectional_iterator<_Node, _Iter>::bidirectional_iterator(bidirectional_iterator<_Node, _It> const &other)
+{
+	*this = other;
+}
+
+template <typename _Node, typename _Iter>
+template <typename _It>
 typename bidirectional_iterator<_Node, _Iter>::bidirectional_iterator &
 bidirectional_iterator<_Node, _Iter>::operator=(bidirectional_iterator<_Node, _It> const &other)
 {
-	_root = other._root;
-	_actual = other._actual;
-	_end = other._end;
+	_root = other._get_root();
+	_actual = other._get_actual();
+	_end = other._get_end();
+
+	return *this;
 }
 
 template <typename _Node, typename _Iter>
