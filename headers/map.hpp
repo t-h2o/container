@@ -37,7 +37,8 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 	typedef ft::bidirectional_iterator<Node, pointer>		iterator;
 	typedef ft::bidirectional_iterator<Node, const_pointer> const_iterator;
 
-	typedef ft::rev_bidirectional<iterator> reverse_iterator;
+	typedef ft::rev_bidirectional<iterator>		  reverse_iterator;
+	typedef ft::rev_bidirectional<const_iterator> const_reverse_iterator;
 
 	explicit map(void);
 	~map(void);
@@ -53,6 +54,10 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 	/* reverse iterator */
 	reverse_iterator rbegin();
 	reverse_iterator rend();
+
+	/* const reverse iterator */
+	const_reverse_iterator rbegin() const;
+	const_reverse_iterator rend() const;
 
 	/* Capacity */
 	bool   empty(void) const;
