@@ -25,8 +25,8 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 		typename ft::map<T1, T2>::iterator	it_ft = map_ft.begin();
 		typename std::map<T1, T2>::iterator it_std = map_std.begin();
 		Tdd::expected((*it_std).first, (*it_ft).first);
-		 (*it_ft).second = "forty two"; /* compile */
-		 it_ft->second = "forty two"; /* compile */
+		(*it_ft).second = "forty two"; /* compile */
+		it_ft->second = "forty two";   /* compile */
 
 		bool end_ft;
 		bool end_std;
