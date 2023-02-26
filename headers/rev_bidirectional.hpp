@@ -26,6 +26,15 @@ class rev_bidirectional
   public:
 	rev_bidirectional(void) : _it() {}
 	rev_bidirectional(iterator_type it) : _it(it) {}
+	template <typename _It> rev_bidirectional(rev_bidirectional<_It> const &other) { *this = other; }
+
+	template <typename _It>
+	rev_bidirectional &
+	operator=(rev_bidirectional<_It> const &other)
+	{
+		_it = other._get_it();
+		return *this;
+	}
 
 	/* bidirectional */
 
@@ -39,6 +48,12 @@ class rev_bidirectional
 	_self &operator--(void);
 	_self  operator++(int);
 	_self  operator--(int);
+
+	iterator_type
+	_get_it(void) const
+	{
+		return _it;
+	}
 
   private:
 	iterator_type _it;
