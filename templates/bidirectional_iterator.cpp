@@ -41,6 +41,13 @@ bidirectional_iterator<_Node, _Iter>::operator*(void)
 }
 
 template <typename _Node, typename _Iter>
+typename bidirectional_iterator<_Node, _Iter>::pointer
+bidirectional_iterator<_Node, _Iter>::operator->(void)
+{
+	return &(_actual->dual);
+}
+
+template <typename _Node, typename _Iter>
 typename bidirectional_iterator<_Node, _Iter>::_self_reference
 bidirectional_iterator<_Node, _Iter>::operator++(void)
 {

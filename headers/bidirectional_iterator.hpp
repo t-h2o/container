@@ -29,6 +29,7 @@ template <typename _Node, typename _Iter> class bidirectional_iterator
 	template <typename _It> bidirectional_iterator &operator=(bidirectional_iterator<Node, _It> const &);
 
 	reference operator*(void);
+	pointer operator->(void);
 
 	_self_reference operator++(void);
 	_self_reference operator--(void);
