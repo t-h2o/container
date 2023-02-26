@@ -85,6 +85,20 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 		typename ft::map<T1, T2>::reverse_iterator	it_ft = map_ft.rbegin();
 		typename std::map<T1, T2>::reverse_iterator it_std = map_std.rbegin();
 		Tdd::expected((*it_std).first, (*it_ft).first);
+		(*it_ft).second = "forty two"; /* compile */
+		it_ft->second = "forty two";   /* compile */
+
+		bool end_ft;
+		bool end_std;
+		do
+		{
+			Tdd::expected((*it_std).first, (*it_ft).first);
+			++it_ft;
+			++it_std;
+			end_ft = it_ft != map_ft.rend();
+			end_std = it_std != map_std.rend();
+			Tdd::expected(end_std, end_ft, "bool end");
+		} while (end_ft);
 	}
 }
 
