@@ -52,6 +52,7 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 
 	/* reverse iterator */
 	reverse_iterator rbegin();
+	reverse_iterator rend();
 
 	/* Capacity */
 	bool   empty(void) const;
