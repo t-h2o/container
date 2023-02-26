@@ -81,6 +81,11 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 			Tdd::expected(end_std, end_ft, "bool end");
 		} while (end_ft);
 	}
+	{
+		typename ft::map<T1, T2>::reverse_iterator	it_ft = map_ft.rbegin();
+		typename std::map<T1, T2>::reverse_iterator it_std = map_std.rbegin();
+		Tdd::expected((*it_std).first, (*it_ft).first);
+	}
 }
 
 template <typename T1, typename T2>
