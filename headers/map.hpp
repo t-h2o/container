@@ -10,6 +10,7 @@
 #include "bidirectional_iterator.hpp"
 #include "node.hpp"
 #include "pair.hpp"
+#include "rev_bidirectional.hpp"
 
 namespace ft
 {
@@ -36,6 +37,8 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 	typedef ft::bidirectional_iterator<Node, pointer>		iterator;
 	typedef ft::bidirectional_iterator<Node, const_pointer> const_iterator;
 
+	typedef ft::rev_bidirectional<iterator> reverse_iterator;
+
 	explicit map(void);
 	~map(void);
 
@@ -46,6 +49,9 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 	/* const_iterator */
 	const_iterator begin() const;
 	const_iterator cend() const;
+
+	/* reverse iterator */
+	reverse_iterator rbegin();
 
 	/* Capacity */
 	bool   empty(void) const;

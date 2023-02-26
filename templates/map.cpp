@@ -59,6 +59,17 @@ map<T1, T2, Alloc>::cend(void) const
 }
 
 /**
+ * reverse iterator
+ */
+
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::reverse_iterator
+map<T1, T2, Alloc>::rbegin(void)
+{
+	return reverse_iterator(end());
+}
+
+/**
  * Capacity
  */
 
