@@ -1,36 +1,36 @@
 #include "stack.hpp"
 
-template <typename t>
+template <typename T, typename _container_type>
 bool
-stack<t>::empty(void) const
+stack<T, _container_type>::empty(void) const
 {
 	return _container.empty();
 }
 
-template <typename t>
+template <typename T, typename _container_type>
 size_t
-stack<t>::size(void) const
+stack<T, _container_type>::size(void) const
 {
 	return _container.size();
 }
 
-template <typename T>
+template <typename T, typename _container_type>
 T &
-stack<T>::top(void) const
+stack<T, _container_type>::top(void) const
 {
 	return _container.back();
 }
 
-template <typename t>
+template <typename T, typename _container_type>
 void
-stack<t>::push(t const &value)
+stack<T, _container_type>::push(T const &value)
 {
 	_container.push_back(value);
 }
 
-template <typename T>
+template <typename T, typename _container_type>
 void
-stack<T>::pop(void)
+stack<T, _container_type>::pop(void)
 {
 	return _container.pop_back();
 }

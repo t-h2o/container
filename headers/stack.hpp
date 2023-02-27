@@ -6,8 +6,9 @@
 namespace ft
 {
 
-template <typename T> class stack
+template <typename T, typename _container_type = ft::vector<T> > class stack
 {
+	typedef _container_type container_type;
   public:
 	/* Member functions */
 	bool   empty(void) const;
@@ -17,7 +18,7 @@ template <typename T> class stack
 	void   pop(void);
 
   private:
-	vector<T> _container;
+	container_type _container;
 };
 
 #include "../templates/stack.cpp"
