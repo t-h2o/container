@@ -709,7 +709,11 @@ typename vector<T, Alloc>::size_type
 vector<T, Alloc>::_new_size(size_type minimum) const
 {
 	if (_allocated * 2 > minimum)
-		return _size * 2;
+#ifdef __APPLE__
+		return _allocated * 2;
+#else
+		return this->_size * 2;
+#endif /* __APPLE__ */
 	else
 		return minimum;
 }
