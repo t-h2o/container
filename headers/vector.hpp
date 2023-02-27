@@ -13,6 +13,9 @@
  *  also provided as with C-style arrays.
  */
 
+#ifndef VECTOR_HPP
+#define VECTOR_HPP
+
 #include "random_access_iterator.hpp"
 #include "rev_random_access_iterator.hpp"
 #include <memory>
@@ -127,3 +130,5 @@ template <typename T> std::ostream &operator<<(std::ostream &output, vector<T> c
 #include "../templates/vector.cpp"
 
 } /* namespace ft */
+
+#endif /* VECTOR_HPP */
