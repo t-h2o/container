@@ -39,13 +39,11 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 			end_std = it_std != map_std.end();
 			Tdd::expected(end_std, end_ft, "iterator bool end");
 		} while (end_ft);
-		--it_ft;
-		--it_std;
 		do
 		{
-			Tdd::expected((*it_std).first, (*it_ft).first);
 			--it_ft;
 			--it_std;
+			Tdd::expected((*it_std).first, (*it_ft).first);
 			end_ft = it_ft != map_ft.begin();
 			end_std = it_std != map_std.begin();
 			Tdd::expected(end_std, end_ft, "iterator bool end");
@@ -69,13 +67,11 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 			end_std = it_std != map_std.end();
 			Tdd::expected(end_std, end_ft, "const_iterator bool end");
 		} while (end_ft);
-		--it_ft;
-		--it_std;
 		do
 		{
-			Tdd::expected((*it_std).first, (*it_ft).first);
 			--it_ft;
 			--it_std;
+			Tdd::expected((*it_std).first, (*it_ft).first);
 			end_ft = it_ft != map_ft.begin();
 			end_std = it_std != map_std.begin();
 			Tdd::expected(end_std, end_ft, "const_iterator bool end");
@@ -97,18 +93,18 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 			++it_std;
 			end_ft = it_ft != map_ft.rend();
 			end_std = it_std != map_std.rend();
-			Tdd::expected(end_std, end_ft, "reverse_iterator bool end");
+			Tdd::expected(end_std, end_ft, "++ reverse_iterator bool end");
+			map_ft.print_tree();
 		} while (end_ft);
-		--it_ft;
-		--it_std;
 		do
 		{
-			Tdd::expected((*it_std).first, (*it_ft).first);
 			--it_ft;
 			--it_std;
+			std::cout << "FIRST: " << it_ft->first << std::endl;
+			Tdd::expected((*it_std).first, (*it_ft).first);
 			end_ft = it_ft != map_ft.rbegin();
 			end_std = it_std != map_std.rbegin();
-			Tdd::expected(end_std, end_ft, "reverse_iterator bool end");
+			Tdd::expected(end_std, end_ft, "-- reverse_iterator bool end");
 		} while (end_ft);
 	}
 	{
@@ -128,13 +124,11 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 			end_std = it_std != map_std.rend();
 			Tdd::expected(end_std, end_ft, "const_reverse_iterator bool end");
 		} while (end_ft);
-		--it_ft;
-		--it_std;
 		do
 		{
-			Tdd::expected((*it_std).first, (*it_ft).first);
 			--it_ft;
 			--it_std;
+			Tdd::expected((*it_std).first, (*it_ft).first);
 			end_ft = it_ft != map_ft.rbegin();
 			end_std = it_std != map_std.rbegin();
 			Tdd::expected(end_std, end_ft, "const_reverse_iterator bool end");
