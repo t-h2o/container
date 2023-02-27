@@ -49,7 +49,7 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 
 	/* const_iterator */
 	const_iterator begin() const;
-	const_iterator cend() const;
+	const_iterator end() const;
 
 	/* reverse iterator */
 	reverse_iterator rbegin();

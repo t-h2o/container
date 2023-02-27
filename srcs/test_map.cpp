@@ -65,7 +65,7 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 			Tdd::expected((*it_std).first, (*it_ft).first);
 			++it_ft;
 			++it_std;
-			end_ft = it_ft != map_ft.cend();
+			end_ft = it_ft != map_ft.end();
 			end_std = it_std != map_std.end();
 			Tdd::expected(end_std, end_ft, "const_iterator bool end");
 		} while (end_ft);
