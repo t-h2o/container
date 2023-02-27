@@ -19,18 +19,7 @@ OFLAGS	=	-fsanitize=address
 
 SRCD	=	srcs
 
-SRCS	+=	$(SRCD)/Awesome.cpp
-SRCS	+=	$(SRCD)/color.cpp
-SRCS	+=	$(SRCD)/main.cpp
-SRCS	+=	$(SRCD)/test_algorithm.cpp
-SRCS	+=	$(SRCD)/test_chain_list.cpp
-SRCS	+=	$(SRCD)/test_map.cpp
-SRCS	+=	$(SRCD)/test_pair.cpp
-SRCS	+=	$(SRCD)/test_random_access_iterator.cpp
-SRCS	+=	$(SRCD)/test_rev_random_access_iterator.cpp
-SRCS	+=	$(SRCD)/test_stack.cpp
-SRCS	+=	$(SRCD)/test_vector.cpp
-SRCS	+=	$(SRCD)/to_string.cpp
+SRCS	=	main.cpp
 
 
 #	Headers
