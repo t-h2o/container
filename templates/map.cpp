@@ -414,6 +414,7 @@ map<T1, Type, Alloc>::_get_reference(const T1 &key)
 	++_size;
 
 	node->key().first = key;
+	node->key().second = Type();
 
 	_rebalance_tree(node);
 
