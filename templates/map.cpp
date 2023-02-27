@@ -5,6 +5,30 @@ template <typename T1, typename Type, typename Alloc> map<T1, Type, Alloc>::map(
 	*_root = 0;
 }
 
+template <typename T1, typename Type, typename Alloc>
+map<T1, Type, Alloc>::map(map const &other) : _root(0), _size(0)
+{
+	_end = new Node(0);
+	_root = new Node *;
+	*_root = 0;
+	*this = other;
+}
+
+template <typename T1, typename T2, typename Alloc>
+typename map<T1, T2, Alloc>::map &
+map<T1, T2, Alloc>::operator=(const map &other)
+{
+	iterator first(other.begin()), end(other.end());
+
+	_free_tree(*_root);
+	while (first != end)
+	{
+		insert(*first);
+		++first;
+	}
+	return *this;
+}
+
 template <typename T1, typename Type, typename Alloc> map<T1, Type, Alloc>::~map(void)
 {
 	_free_tree(*_root);
