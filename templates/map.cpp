@@ -134,8 +134,6 @@ template <typename T1, typename Type, typename Alloc>
 void
 map<T1, Type, Alloc>::erase(T1 const &key)
 {
-	if (RBT_LOG_ERASE)
-		print_tree();
 
 	Node *node(_binary_search(key));
 
@@ -165,11 +163,9 @@ map<T1, Type, Alloc>::print(void) const
 {
 	Node *ptr(*_root);
 
-	std::cout << "map: size = " << _size << std::endl;
 
 	while (ptr)
 	{
-		std::cout << ptr->dual;
 		ptr = ptr->left();
 	}
 }
@@ -197,8 +193,6 @@ map<T1, Type, Alloc>::_rotate_del(Node *node)
 	Node *parent(node->parent);
 	Node *childc(node->child[oside]);
 
-	if (RBT_LOG_ERASE)
-		std::cout << "Rotate deletion: " << node->key() << std::endl;
 
 	parent->child[side] = childc;
 	node->child[oside] = parent;
@@ -216,10 +210,6 @@ map<T1, Type, Alloc>::_rotate_del(Node *node)
 	if (childc)
 		childc->parent = parent;
 
-	if (RBT_LOG_ERASE)
-		std::cout << "Rotate deletion: tree" << std::endl;
-	if (RBT_LOG_ERASE)
-		print_tree();
 }
 
 template <typename T1, typename Type, typename Alloc>
@@ -228,8 +218,6 @@ map<T1, Type, Alloc>::_case_0(Node *node, bool deletion)
 {
 	if (node->is_red() && node->is_leaf())
 	{
-		if (RBT_LOG_ERASE)
-			std::cout << "Case 0: node: " << node->key() << " is red & leaf" << std::endl;
 
 		if (!deletion)
 			return 1;
@@ -247,8 +235,6 @@ map<T1, Type, Alloc>::_case_1(Node *node, Node *sibling, bool deletion)
 {
 	if (node->is_black() && sibling->is_red())
 	{
-		if (RBT_LOG_ERASE)
-			std::cout << "Case 1: node is black; sibling is red;" << std::endl;
 
 		sibling->set_black();
 		node->parent->set_red();
@@ -273,17 +259,12 @@ map<T1, Type, Alloc>::_case_2(Node *node, Node *sibling, bool deletion)
 {
 	if (node->is_black() && sibling->is_black() && sibling->has_black_children())
 	{
-		if (RBT_LOG_ERASE)
-			std::cout << "Case 2: node is black; sibling is black; sibling has two black children"
-					  << std::endl;
 
 		sibling->set_red();
 		Node *nodeP(node->parent);
 
 		if (deletion)
 		{
-			if (RBT_LOG_ERASE)
-				std::cout << "Case 2: delete: " << node->key() << std::endl;
 			node->parent->child[node->get_side()] = 0;
 			delete node;
 			--_size;
@@ -313,9 +294,6 @@ map<T1, Type, Alloc>::_case_3(Node *node, Node *sibling, bool deletion)
 	if (node->is_black() && sibling->is_black() && sibling->child[side] && sibling->child[side]->is_red()
 		&& (!sibling->child[oside] || sibling->child[oside]->is_black()))
 	{
-		if (RBT_LOG_ERASE)
-			std::cout << "Case 3: node is black; sibling is black; nephew side is red; nephew oside is black"
-					  << std::endl;
 
 		if (sibling->child[side])
 			sibling->child[side]->set_black();
@@ -337,9 +315,6 @@ map<T1, Type, Alloc>::_case_4(Node *node, Node *sibling, bool deletion)
 
 	if (node->is_black() && sibling->is_black() && sibling->child[oside] && sibling->child[oside]->is_red())
 	{
-		if (RBT_LOG_ERASE)
-			std::cout << "Case 4: node is black; sibling is black; nephew side is black; nephew oside is red"
-					  << std::endl;
 
 		sibling->color = node->parent->color;
 		node->parent->set_black();
@@ -361,10 +336,6 @@ template <typename T1, typename Type, typename Alloc>
 void
 map<T1, Type, Alloc>::_solve(Node *node, bool deletion)
 {
-	if (RBT_LOG_ERASE)
-		std::cout << "_solve(" << node->key() << ", " << deletion << ")" << std::endl;
-	if (RBT_LOG_ERASE)
-		print_tree();
 
 	if (_case_0(node, deletion))
 		return;
@@ -391,20 +362,12 @@ map<T1, Type, Alloc>::_erase(Node *node)
 {
 	if (node == 0)
 	{
-		if (RBT_LOG_ERASE)
-			std::cout << "_erase(NULL POINTER)" << std::endl;
 		return;
 	}
 
-	if (RBT_LOG_ERASE)
-		std::cout << "_erase(" << node->key() << ")" << std::endl;
-	if (RBT_LOG_ERASE)
-		print_tree();
 
 	if (_size == 1)
 	{
-		if (RBT_LOG_ERASE)
-			std::cout << "_erase: node is alone and the root" << std::endl;
 
 		delete node;
 		--_size;
@@ -414,8 +377,6 @@ map<T1, Type, Alloc>::_erase(Node *node)
 
 	if (node->number_child() == 2)
 	{
-		if (RBT_LOG_ERASE)
-			std::cout << "_erase: node has two children: find a predecessor" << std::endl;
 		Node *predecessor(node->get_predecessor());
 
 		_swap(node, predecessor);
@@ -424,8 +385,6 @@ map<T1, Type, Alloc>::_erase(Node *node)
 	}
 	else if (node->number_child() == 1)
 	{
-		if (RBT_LOG_ERASE)
-			std::cout << "_erase: node has one child: swap with its child" << std::endl;
 		Node *child(node->get_child());
 
 		_swap(node, child);
@@ -462,45 +421,11 @@ map<T1, Type, Alloc>::_get_reference(const T1 &key)
 
 	_rebalance_tree(node);
 
-	if (RBT_LOG)
-		section("print_tree()");
-	if (RBT_LOG)
-		print_tree();
 
 	if (RBT_CHECKER)
 		_rbt_checker();
 
 	return node->dual;
-}
-
-/**
- *  @brief  Print the tree (Ascii art).
- *  @param  The parent pointer, the level indentation.
- *
- *  It's a recursive function for printing left child, parent and right child.
- */
-template <typename T1, typename Type, typename Alloc>
-void
-map<T1, Type, Alloc>::_print_tree(Node *ptr, size_t level) const
-{
-	if (ptr == 0)
-		return;
-
-	_print_tree(ptr->right(), level + 1);
-
-	std::cout << std::endl;
-
-	for (size_t i = 0; i < level; ++i)
-		std::cout << "    ";
-
-	if (ptr->is_red())
-		std::cout << COL_RED;
-	else
-		std::cout << COL_YEL;
-
-	std::cout << ptr->dual << std::endl << COL_RES;
-
-	_print_tree(ptr->left(), level + 1);
 }
 
 /**
@@ -540,32 +465,22 @@ map<T1, Type, Alloc>::_binary_search(T1 const &key) const
 	{
 		if (key > parent->key().first)
 		{
-			if (RBT_LOG)
-				std::cout << key << " > " << parent->key().first << " => Right" << std::endl;
 			if (parent->right() == 0)
 			{
-				if (RBT_LOG)
-					std::cout << key << " will be the right child of " << parent->key().first << std::endl;
 				break;
 			}
 			parent = parent->right();
 		}
 		else if (key < parent->key().first)
 		{
-			if (RBT_LOG)
-				std::cout << key << " < " << parent->key().first << " => Left" << std::endl;
 			if (parent->left() == 0)
 			{
-				if (RBT_LOG)
-					std::cout << key << " will be the left child of " << parent->key().first << std::endl;
 				break;
 			}
 			parent = parent->left();
 		}
 		else if (key == parent->key().first)
 		{
-			if (RBT_LOG)
-				std::cout << key << " = " << parent->key().first << " => find the same key" << std::endl;
 			return parent;
 		}
 	}
@@ -614,13 +529,9 @@ map<T1, Type, Alloc>::_swap(Node *one, Node *two)
 		twoside = two->get_side();
 	Color twocolor(two->color);
 
-	if (RBT_LOG)
-		std::cout << "Swap one: " << one->key().first << " with two: " << two->key().first << std::endl;
 
 	if (onechild[0] == two || onechild[1] == two)
 	{
-		if (RBT_LOG)
-			std::cout << "two is a child of one" << std::endl;
 
 		// Swap parent of one's children
 		if (onechild[0])
@@ -656,13 +567,9 @@ map<T1, Type, Alloc>::_swap(Node *one, Node *two)
 	}
 	else if (twochild[0] == one || twochild[1] == one)
 	{
-		if (RBT_LOG)
-			std::cout << "one is a child of two" << std::endl;
 	}
 	else
 	{
-		if (RBT_LOG)
-			std::cout << "one and two aren't parent<->child" << std::endl;
 
 		// Swap parent of one's children
 		if (onechild[0])
@@ -709,10 +616,6 @@ map<T1, Type, Alloc>::_swap(Node *one, Node *two)
 		two->color = onecolor;
 	}
 
-	if (RBT_LOG)
-		std::cout << "after swap" << std::endl;
-	if (RBT_LOG)
-		print_tree();
 }
 
 template <typename T1, typename Type, typename Alloc>
@@ -722,10 +625,6 @@ map<T1, Type, Alloc>::_rebalance_tree(Node *node)
 	if (node == 0)
 		return;
 
-	if (RBT_LOG)
-		std::cout << " == Red black tree rebalance == with " << node->key().first << " as node" << std::endl;
-	if (RBT_LOG)
-		print_tree();
 
 	if (node == *_root)
 	{
@@ -741,8 +640,6 @@ map<T1, Type, Alloc>::_rebalance_tree(Node *node)
 
 	if (uncle && uncle->is_red())
 	{
-		if (RBT_LOG)
-			std::cout << "uncle is red" << std::endl;
 		grandParent->color_children_black();
 		grandParent->set_red();
 		_rebalance_tree(grandParent);
@@ -753,16 +650,12 @@ map<T1, Type, Alloc>::_rebalance_tree(Node *node)
 
 	if (sibling == 0)
 	{
-		if (RBT_LOG)
-			std::cout << "node hasn't sibling" << std::endl;
 		_rebalance_tree(_rotate(node->parent));
 		return;
 	}
 
 	if (sibling->is_black())
 	{
-		if (RBT_LOG)
-			std::cout << "node has a black sibling" << std::endl;
 		_rebalance_tree(_rotate(node->parent));
 		return;
 	}
@@ -776,15 +669,9 @@ map<T1, Type, Alloc>::_rotate(Node *pivot)
 	enum e_side side(pivot->get_side());
 	enum e_side oSide(_flip_side(side));
 
-	if (RBT_LOG)
-		std::cout << " == Red black tree rotate == with " << pivot->key().first << " as pivot" << std::endl;
-	if (RBT_LOG)
-		print_tree();
 
 	if (pivot->child[oSide] && pivot->child[oSide]->is_red())
 	{
-		if (RBT_LOG)
-			std::cout << "opposite side" << std::endl;
 
 		root->child[side] = pivot->child[oSide];
 
@@ -800,8 +687,6 @@ map<T1, Type, Alloc>::_rotate(Node *pivot)
 	}
 	else if (pivot->child[side] && pivot->child[side]->is_red())
 	{
-		if (RBT_LOG)
-			std::cout << "same side" << std::endl;
 
 		root->child[side] = pivot->child[oSide];
 		pivot->child[oSide] = root;
