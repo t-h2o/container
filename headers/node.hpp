@@ -36,7 +36,9 @@ class Color
 template <typename value_type> class Node
 {
   public:
-	typedef value_type TYPE;
+	typedef value_type	  TYPE;
+	typedef Node		 *node_pointer;
+	typedef node_pointer &node_pointer_reference;
 
 	Node(Node *);
 	Node	  *parent;
@@ -61,16 +63,16 @@ template <typename value_type> class Node
 
 	unsigned char number_child() const;
 
-	Node *&right();
-	Node  *right() const;
-	Node *&left();
-	Node  *left() const;
+	node_pointer_reference right();
+	node_pointer		   right() const;
+	node_pointer_reference left();
+	node_pointer		   left() const;
 
-	Node *get_child() const;
-	Node *get_grandparent() const;
-	Node *get_uncle() const;
-	Node *get_sibling() const;
-	Node *get_predecessor() const;
+	node_pointer get_child() const;
+	node_pointer get_grandparent() const;
+	node_pointer get_uncle() const;
+	node_pointer get_sibling() const;
+	node_pointer get_predecessor() const;
 
 	enum e_side get_side() const;
 

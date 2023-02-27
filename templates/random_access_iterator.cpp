@@ -6,7 +6,7 @@ template <typename T> random_access_iterator<T>::random_access_iterator(pointer 
 
 template <typename T>
 template <typename _It>
-typename random_access_iterator<T>::random_access_iterator &
+typename random_access_iterator<T>::_self &
 random_access_iterator<T>::operator=(const random_access_iterator<_It> &other)
 {
 	_pointer = other.base();

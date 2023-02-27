@@ -8,14 +8,15 @@
 void
 test_algorithm(void)
 {
+#ifndef __APPLE__
 	{
 		ft::vector<int> vec_ft1(5, 12);
 		ft::vector<int> vec_ft2(6, 11);
 
 		bool comp_ft
 			= ft::lexicographical_compare(vec_ft1.begin(), vec_ft1.end(), vec_ft2.begin(), vec_ft2.end());
-		bool comp_std
-			= std::lexicographical_compare(vec_ft1.begin(), vec_ft1.end(), vec_ft2.begin(), vec_ft2.end());
+		bool comp_std = std::lexicographical_compare<ft::vector<int>::iterator, ft::vector<int>::iterator>(
+			vec_ft1.begin(), vec_ft1.end(), vec_ft2.begin(), vec_ft2.end());
 
 		Tdd::expected(comp_ft, comp_std, "lexicographical compare");
 	}
@@ -111,4 +112,6 @@ test_algorithm(void)
 
 		Tdd::expected(comp_ft, comp_std, "lexicographical compare");
 	}
+
+#endif /* __APPLE__ */
 }

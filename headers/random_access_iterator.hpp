@@ -22,7 +22,7 @@ template <typename _Iter> class random_access_iterator
 	random_access_iterator(void);
 	random_access_iterator(pointer);
 	template <typename _It> random_access_iterator(random_access_iterator<_It> const &);
-	template <typename _It> random_access_iterator &operator=(random_access_iterator<_It> const &);
+	template <typename _It> _self &operator=(random_access_iterator<_It> const &);
 
 	pointer base(void) const;
 

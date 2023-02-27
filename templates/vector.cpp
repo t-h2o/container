@@ -714,6 +714,7 @@ vector<T, Alloc>::_new_size(size_type minimum) const
 		return minimum;
 }
 
+#ifndef __APPLE__
 template <typename T>
 std::ostream &
 operator<<(std::ostream &output, vector<T> const &vec)
@@ -724,3 +725,4 @@ operator<<(std::ostream &output, vector<T> const &vec)
 	output << "}" << std::endl;
 	return output;
 }
+#endif

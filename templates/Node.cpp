@@ -106,35 +106,35 @@ Node<value_type>::number_child() const
 }
 
 template <typename value_type>
-typename Node<value_type>::Node *&
+typename Node<value_type>::node_pointer_reference
 Node<value_type>::right(void)
 {
 	return child[RIGHT];
 }
 
 template <typename value_type>
-typename Node<value_type>::Node *
+typename Node<value_type>::node_pointer
 Node<value_type>::right(void) const
 {
 	return child[RIGHT];
 }
 
 template <typename value_type>
-typename Node<value_type>::Node *&
+typename Node<value_type>::node_pointer_reference
 Node<value_type>::left(void)
 {
 	return child[LEFT];
 }
 
 template <typename value_type>
-typename Node<value_type>::Node *
+typename Node<value_type>::node_pointer
 Node<value_type>::left(void) const
 {
 	return child[LEFT];
 }
 
 template <typename value_type>
-typename Node<value_type>::Node *
+typename Node<value_type>::node_pointer
 Node<value_type>::get_child() const
 {
 	if (this->left())
@@ -143,7 +143,7 @@ Node<value_type>::get_child() const
 }
 
 template <typename value_type>
-typename Node<value_type>::Node *
+typename Node<value_type>::node_pointer
 Node<value_type>::get_grandparent() const
 {
 	if (this->parent)
@@ -152,7 +152,7 @@ Node<value_type>::get_grandparent() const
 }
 
 template <typename value_type>
-typename Node<value_type>::Node *
+typename Node<value_type>::node_pointer
 Node<value_type>::get_uncle() const
 {
 	Node *grandParent(this->get_grandparent());
@@ -165,7 +165,7 @@ Node<value_type>::get_uncle() const
 }
 
 template <typename value_type>
-typename Node<value_type>::Node *
+typename Node<value_type>::node_pointer
 Node<value_type>::get_sibling() const
 {
 	enum e_side side(this->get_side());
@@ -178,7 +178,7 @@ Node<value_type>::get_sibling() const
 }
 
 template <typename value_type>
-typename Node<value_type>::Node *
+typename Node<value_type>::node_pointer
 Node<value_type>::get_predecessor() const
 {
 	Node *predecessor(this->left());

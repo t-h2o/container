@@ -15,6 +15,11 @@
 
 #include "random_access_iterator.hpp"
 #include "rev_random_access_iterator.hpp"
+#include <memory>
+
+#ifndef __APPLE__
+#include <iostream>
+#endif
 
 namespace ft
 {
