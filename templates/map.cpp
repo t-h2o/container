@@ -113,10 +113,10 @@ map<T1, Type, Alloc>::size(void) const
 }
 
 template <typename T1, typename Type, typename Alloc>
-typename map<T1, Type, Alloc>::reference
+typename map<T1, Type, Alloc>::second_reference
 map<T1, Type, Alloc>::operator[](const T1 &key)
 {
-	return _get_reference(key);
+	return _get_reference(key).second;
 }
 
 /**
@@ -163,7 +163,6 @@ map<T1, Type, Alloc>::print(void) const
 {
 	Node *ptr(*_root);
 
-
 	while (ptr)
 	{
 		ptr = ptr->left();
@@ -193,7 +192,6 @@ map<T1, Type, Alloc>::_rotate_del(Node *node)
 	Node *parent(node->parent);
 	Node *childc(node->child[oside]);
 
-
 	parent->child[side] = childc;
 	node->child[oside] = parent;
 	if (parent->parent)
@@ -209,7 +207,6 @@ map<T1, Type, Alloc>::_rotate_del(Node *node)
 	parent->parent = node;
 	if (childc)
 		childc->parent = parent;
-
 }
 
 template <typename T1, typename Type, typename Alloc>
@@ -365,7 +362,6 @@ map<T1, Type, Alloc>::_erase(Node *node)
 		return;
 	}
 
-
 	if (_size == 1)
 	{
 
@@ -420,7 +416,6 @@ map<T1, Type, Alloc>::_get_reference(const T1 &key)
 	node->key().first = key;
 
 	_rebalance_tree(node);
-
 
 	if (RBT_CHECKER)
 		_rbt_checker();
@@ -529,7 +524,6 @@ map<T1, Type, Alloc>::_swap(Node *one, Node *two)
 		twoside = two->get_side();
 	Color twocolor(two->color);
 
-
 	if (onechild[0] == two || onechild[1] == two)
 	{
 
@@ -615,7 +609,6 @@ map<T1, Type, Alloc>::_swap(Node *one, Node *two)
 		one->color = twocolor;
 		two->color = onecolor;
 	}
-
 }
 
 template <typename T1, typename Type, typename Alloc>
@@ -624,7 +617,6 @@ map<T1, Type, Alloc>::_rebalance_tree(Node *node)
 {
 	if (node == 0)
 		return;
-
 
 	if (node == *_root)
 	{
@@ -668,7 +660,6 @@ map<T1, Type, Alloc>::_rotate(Node *pivot)
 	Node	   *root(pivot->parent);
 	enum e_side side(pivot->get_side());
 	enum e_side oSide(_flip_side(side));
-
 
 	if (pivot->child[oSide] && pivot->child[oSide]->is_red())
 	{

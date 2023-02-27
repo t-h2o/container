@@ -21,6 +21,8 @@ namespace ft
 template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<Key, Type> > > class map
 {
 
+	typedef Type				second;
+	typedef second			   &second_reference;
 	typedef ft::pair<Key, Type> pair;
 	typedef ft::Node<pair>		Node;
 	typedef Alloc				allocator_type;
@@ -64,7 +66,7 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 	size_t size(void) const;
 
 	/* Element access */
-	reference operator[](const Key &);
+	second_reference operator[](const Key &);
 
 	/* Modifiers */
 	void insert(value_type const &);
