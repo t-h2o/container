@@ -18,8 +18,7 @@ template <typename T, typename _container_type = ft::vector<T> > class stack
 	void   push(T const &);
 	void   pop(void);
 
-  private:
-	container_type _container;
+	container_type c;
 };
 
 #include "../templates/stack.cpp"
