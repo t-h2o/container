@@ -156,6 +156,18 @@ map<T1, Type, Alloc>::insert(value_type const &pair)
 
 template <typename T1, typename Type, typename Alloc>
 void
+map<T1, Type, Alloc>::clear(void)
+{
+	iterator first(begin()), end(end());
+	while (first != end)
+	{
+		erase(first.key);
+		++first;
+	}
+}
+
+template <typename T1, typename Type, typename Alloc>
+void
 map<T1, Type, Alloc>::erase(T1 const &key)
 {
 
@@ -168,6 +180,19 @@ map<T1, Type, Alloc>::erase(T1 const &key)
 
 	if (RBT_CHECKER)
 		_rbt_checker();
+}
+
+template <typename T1, typename Type, typename Alloc>
+typename map<T1, Type, Alloc>::iterator
+map<T1, Type, Alloc>::find(T1 const &key)
+{
+
+	Node *node(_binary_search(key));
+
+	if (node == 0 || node->key().first != key)
+		return end();
+
+	return iterator(_root, node, _end);
 }
 
 /**

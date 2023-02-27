@@ -72,7 +72,10 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 
 	/* Modifiers */
 	void insert(value_type const &);
+	void clear(void);
 	void erase(Key const &);
+
+	iterator find(const Key &);
 
 	void print(void) const;
 	void print_tree(void) const;
