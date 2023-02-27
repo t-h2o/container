@@ -8,8 +8,9 @@ namespace ft
 
 template <typename T, typename _container_type = ft::vector<T> > class stack
 {
-	typedef _container_type container_type;
   public:
+	typedef _container_type container_type;
+	typedef typename container_type::iterator iterator;
 	/* Member functions */
 	bool   empty(void) const;
 	size_t size(void) const;
