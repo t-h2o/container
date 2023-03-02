@@ -15,7 +15,7 @@ map<T1, Type, Alloc>::map(map const &other) : _root(0), _size(0)
 }
 
 template <typename T1, typename T2, typename Alloc>
-typename map<T1, T2, Alloc>::map &
+typename map<T1, T2, Alloc>::_self_reference
 map<T1, T2, Alloc>::operator=(const map &other)
 {
 	iterator first(other.begin()), end(other.end());

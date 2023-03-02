@@ -35,6 +35,9 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 	typedef typename allocator_type::difference_type difference_type;
 	typedef typename allocator_type::size_type		 size_type;
 
+	typedef map	   _self;
+	typedef _self &_self_reference;
+
   public:
 	typedef ft::bidirectional_iterator<Node, pointer>		iterator;
 	typedef ft::bidirectional_iterator<Node, const_pointer> const_iterator;
@@ -44,7 +47,7 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 
 	explicit map(void);
 	map(map const &);
-	map &operator=(const map &);
+	_self_reference operator=(const map &);
 	~map(void);
 
 	/* iterator */
