@@ -195,28 +195,6 @@ map<T1, Type, Alloc>::find(T1 const &key)
 	return iterator(_root, node, _end);
 }
 
-/**
- * Extra
- */
-
-template <typename T1, typename Type, typename Alloc>
-void
-map<T1, Type, Alloc>::print_tree(void) const
-{
-	_print_tree(*_root, 0);
-}
-
-template <typename T1, typename Type, typename Alloc>
-void
-map<T1, Type, Alloc>::print(void) const
-{
-	Node *ptr(*_root);
-
-	while (ptr)
-	{
-		ptr = ptr->left();
-	}
-}
 
 /**
  * Private

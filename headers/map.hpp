@@ -80,9 +80,6 @@ template <typename Key, typename Type, typename Alloc = std::allocator<ft::pair<
 
 	iterator find(const Key &);
 
-	void print(void) const;
-	void print_tree(void) const;
-
   private:
 	Node **_root;
 	size_t _size;
