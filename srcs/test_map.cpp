@@ -94,13 +94,11 @@ expected_equal(std::map<T1, T2> &map_std, ft::map<T1, T2> &map_ft)
 			end_ft = it_ft != map_ft.rend();
 			end_std = it_std != map_std.rend();
 			Tdd::expected(end_std, end_ft, "++ reverse_iterator bool end");
-			map_ft.print_tree();
 		} while (end_ft);
 		do
 		{
 			--it_ft;
 			--it_std;
-			std::cout << "FIRST: " << it_ft->first << std::endl;
 			Tdd::expected((*it_std).first, (*it_ft).first);
 			end_ft = it_ft != map_ft.rbegin();
 			end_std = it_std != map_std.rbegin();
