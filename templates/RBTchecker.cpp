@@ -16,10 +16,6 @@ map<Key, Type, Alloc>::_rbt_checker(void) const
 	if ((*_root)->is_red())
 		throw(std::logic_error("Root is red"));
 
-	if (RBT_LOG_CHECKER)
-		std::cout << " == Red black tree checker ==" << std::endl;
-	if (RBT_LOG_CHECKER)
-		print_tree();
 
 	black_node = 0;
 
@@ -29,14 +25,10 @@ map<Key, Type, Alloc>::_rbt_checker(void) const
 	enum e_side side;
 	while (true)
 	{
-		if (RBT_LOG_CHECKER)
-			std::cout << node->key();
 		if (node->is_black() && !is_backing)
 			++black_node;
 		if (node->right() && !is_backing)
 		{
-			if (RBT_LOG_CHECKER)
-				std::cout << " -> ";
 			if (node->is_red() && node->right()->is_red())
 				throw(std::logic_error("two following red"));
 			node = node->right();
@@ -45,8 +37,6 @@ map<Key, Type, Alloc>::_rbt_checker(void) const
 		}
 		else if (node->left() && (!is_backing || (is_backing && side == RIGHT)))
 		{
-			if (RBT_LOG_CHECKER)
-				std::cout << " -> ";
 			if (node->is_red() && node->left()->is_red())
 				throw(std::logic_error("two following red"));
 			node = node->left();
@@ -59,20 +49,14 @@ map<Key, Type, Alloc>::_rbt_checker(void) const
 			{
 				reach_end = 1;
 				total_black_node = black_node;
-				if (RBT_LOG_CHECKER)
-					std::cout << " : " << total_black_node << " black node" << std::endl;
 			}
 			else if (node->is_leaf())
 			{
-				if (RBT_LOG_CHECKER)
-					std::cout << " : " << black_node << " black node" << std::endl;
 				if (black_node != total_black_node)
 					throw(std::logic_error("Not same number of black"));
 			}
 			else
 			{
-				if (RBT_LOG_CHECKER)
-					std::cout << " <- ";
 			}
 			side = node->get_side();
 			if (node->is_black())
@@ -83,6 +67,4 @@ map<Key, Type, Alloc>::_rbt_checker(void) const
 		else
 			break;
 	}
-	if (RBT_LOG_CHECKER)
-		std::cout << std::endl;
 }
